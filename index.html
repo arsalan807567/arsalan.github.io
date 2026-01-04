@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsalan | AI Expert</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#e0e0e0;
+  overflow-x:hidden;
+}
+
+/* PARTICLES */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+/* HERO */
+header{
+  text-align:center;
+  padding:90px 20px;
+}
+
+.profile-pic{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin-bottom:20px;
+  border:3px solid #00f7ff;
+  box-shadow:0 0 25px #00f7ff;
+}
+
+header h1{
+  font-size:3rem;
+  color:#00f7ff;
+  text-shadow:0 0 20px #00f7ff;
+}
+
+header p{
+  margin-top:10px;
+  color:#aaa;
+  font-size:1.2rem;
+}
+
+/* SECTIONS */
+section{
+  margin-top:70px;
+}
+
+section h2{
+  color:#00f7ff;
+  font-size:2rem;
+  margin-bottom:20px;
+  border-left:4px solid #00f7ff;
+  padding-left:10px;
+}
+
+/* ABOUT */
+.about p{
+  color:#ccc;
+  font-size:1.05rem;
+}
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+
+.skill{
+  padding:15px;
+  text-align:center;
+  border-radius:10px;
+  background:rgba(0,247,255,0.08);
+  border:1px solid rgba(0,247,255,0.3);
+  box-shadow:0 0 10px rgba(0,247,255,0.3);
+}
+
+/* PROJECTS */
+.project{
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+/* BUTTONS */
+.buttons a{
+  display:inline-block;
+  margin:10px 10px 0 0;
+  padding:12px 25px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#00f7ff,#008cff);
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 20px #00f7ff;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  margin:80px 0 20px;
+  color:#777;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1{font-size:2.2rem;}
+}
+
+/* FADE ANIMATION */
+.fade{
+  animation:fadeUp 1.2s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+<header class="fade">
+  <!-- 🔽 Replace image URL with your photo later -->
+  <img src="https://i.imgur.com/7Qp6Y5y.png" class="profile-pic">
+  <h1>Arsalan</h1>
+  <p>AI Expert • AI Content Creator • Futuristic Thinker</p>
+</header>
+
+<section class="about fade">
+  <h2>About Me</h2>
+  <p>
+    I am Arsalan, an AI expert specializing in AI content creation,
+    automation, prompt engineering, and next-generation AI tools.
+    I build intelligent systems that save time and create impact.
+  </p>
+</section>
+
+<section class="fade">
+  <h2>AI Skills</h2>
+  <div class="skills">
+    <div class="skill">AI Content Creation</div>
+    <div class="skill">Prompt Engineering</div>
+    <div class="skill">ChatGPT / LLMs</div>
+    <div class="skill">Automation Bots</div>
+    <div class="skill">AI Tools & APIs</div>
+    <div class="skill">Python (Basics)</div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Projects</h2>
+  <div class="project">
+    <h3>AI Content Engine</h3>
+    <p>Automated AI workflows for reels, posts, blogs and ads.</p>
+  </div>
+  <div class="project">
+    <h3>Smart Automation Bots</h3>
+    <p>AI bots to automate digital and business tasks.</p>
+  </div>
+</section>
+
+<section class="fade buttons">
+  <h2>Contact</h2>
+  <a href="mailto:your@email.com">Email</a>
+  <a href="https://wa.me/XXXXXXXXXX">WhatsApp</a>
+  <a href="cv.pdf" download>Download CV</a>
+</section>
+
+<footer>
+  © 2026 Arsalan • AI Portfolio
+</footer>
+
+</div>
+
+<script>
+/* PARTICLES SCRIPT */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+1,
+    dx:Math.random()-0.5,
+    dy:Math.random()-0.5
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="#00f7ff";
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
