@@ -124,6 +124,8 @@ header p {
   object-fit: contain;
   animation: float 6s ease-in-out infinite;
   filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.2));
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
 }
 
 @keyframes float {
@@ -205,6 +207,20 @@ header p {
 }
 .eye-left { left: 8px; }
 .eye-right { right: 8px; }
+
+/* Robot Dog Tail */
+#robot-tail {
+  position: absolute;
+  bottom: -15px;
+  right: 2px;
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #00f7ff, rgba(0, 247, 255, 0.3));
+  border-radius: 2px;
+  box-shadow: 0 0 10px #00f7ff, 0 0 20px rgba(0, 247, 255, 0.5);
+  transform-origin: top center;
+  transition: transform 0.2s ease-out;
+}
 
 /* Sections */
 section{
@@ -399,6 +415,7 @@ footer{
   <div class="robot-dog">
     <div class="robot-dog-eye eye-left"></div>
     <div class="robot-dog-eye eye-right"></div>
+    <div id="robot-tail"></div>
   </div>
 </div>
 
@@ -601,8 +618,11 @@ animate();
 
 // --- Cursor Follower Logic ---
 const follower = document.getElementById('cursor-follower');
+const heroImg = document.querySelector('.hero-img');
+const robotTail = document.getElementById('robot-tail');
 let mouseX = 0, mouseY = 0;
 let followerX = 0, followerY = 0;
+let tailRotation = 0;
 
 // Enable only on desktop (simple check)
 if (window.innerWidth > 900 && !('ontouchstart' in window)) {
@@ -611,6 +631,24 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Tilt effect on hero image based on cursor position
+    if (heroImg) {
+      const rect = heroImg.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const rotateX = (mouseY - centerY) / 10;
+      const rotateY = (centerX - mouseX) / 10;
+      
+      heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+    
+    // Tail wagging effect
+    tailRotation = (mouseX % 30 - 15) / 5;
+    if (robotTail) {
+      robotTail.style.transform = `rotate(${tailRotation}deg)`;
+    }
   });
 
   function moveFollower() {
@@ -625,6 +663,33 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
     requestAnimationFrame(moveFollower);
   }
   moveFollower();
+}
+
+// Touch support for mobile
+if ('ontouchstart' in window) {
+  document.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    mouseX = touch.clientX;
+    mouseY = touch.clientY;
+    
+    // Tilt effect on hero image based on touch position
+    if (heroImg) {
+      const rect = heroImg.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const rotateX = (mouseY - centerY) / 10;
+      const rotateY = (centerX - mouseX) / 10;
+      
+      heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+  });
+  
+  document.addEventListener('touchend', () => {
+    if (heroImg) {
+      heroImg.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    }
+  });
 }
 
 // Handle resize
