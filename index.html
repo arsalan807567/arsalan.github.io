@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arsalan | AI Expert</title>
 
+<!-- Added Inter font for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 body{
@@ -32,63 +35,120 @@ canvas{
   padding:20px;
 }
 
+/* --- Hero Section Redesign --- */
 header{
-  text-align:center;
-  padding:80px 20px 40px 20px;
+  padding:100px 20px 60px 20px;
   position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 80vh;
 }
 
-.profile-pic{
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  margin-bottom:20px;
-  border:3px solid #00f7ff;
-  box-shadow:0 0 25px #00f7ff;
-  object-fit:cover;
-  transition:0.4s all ease;
+.hero-left {
+  flex: 1;
+  z-index: 2;
 }
 
-.profile-pic:hover{
-  box-shadow: 0 0 40px #00f7ff, 0 0 60px #008cff;
-  transform: scale(1.05);
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-header h1{
-  font-size:3rem;
-  color:#00f7ff;
-  text-shadow:0 0 20px #00f7ff;
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-header p{
-  margin-top:15px;
-  color:#aaa;
-  font-size:1.2rem;
-  line-height:1.6rem;
-  max-width:800px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 247, 255, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(0, 247, 255, 0.15);
+}
+
+header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #00f7ff, #008cff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none; /* Removed old shadow for gradient look */
+}
+
+header p {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+  margin: 0;
+}
+
+/* Hero Image Styling */
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+}
+
+.hero-image-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(0, 247, 255, 0.15) 0%, rgba(0, 140, 255, 0.05) 50%, transparent 70%);
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.2));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
 /* Floating neon dots */
 .floating-dots{
   position:absolute;
-  top:10px;
-  width:100%;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display:flex;
-  justify-content:center;
   gap:25px;
   pointer-events:none;
 }
 
 .floating-dots span{
   display:block;
-  width:15px;
-  height:15px;
+  width:12px;
+  height:12px;
   background: linear-gradient(45deg, #00f7ff, #008cff);
   border-radius:50%;
-  box-shadow: 0 0 15px #00f7ff, 0 0 25px #008cff;
+  box-shadow: 0 0 15px #00f7ff;
   animation:dotFloat 3s ease-in-out infinite alternate;
 }
 
@@ -102,6 +162,49 @@ header p{
   50%{transform: translateY(-12px);}
   100%{transform: translateY(0);}
 }
+
+/* Cursor Follower (Robot Dog/Animal) */
+#cursor-follower {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease-out;
+  display: none; /* Hidden by default, shown via JS on desktop */
+}
+
+.robot-dog {
+  width: 100%;
+  height: 100%;
+  background: #00f7ff;
+  border-radius: 50% 50% 20% 20%;
+  position: relative;
+  box-shadow: 0 0 15px #00f7ff;
+}
+
+.robot-dog::before, .robot-dog::after {
+  content: '';
+  position: absolute;
+  background: #00f7ff;
+  width: 10px;
+  height: 15px;
+  top: -8px;
+  border-radius: 5px;
+}
+.robot-dog::before { left: 2px; transform: rotate(-15deg); }
+.robot-dog::after { right: 2px; transform: rotate(15deg); }
+
+.robot-dog-eye {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  top: 10px;
+}
+.eye-left { left: 8px; }
+.eye-right { right: 8px; }
 
 /* Sections */
 section{
@@ -237,8 +340,34 @@ footer{
   color:#777;
 }
 
+/* --- Responsive Behavior --- */
+@media(max-width:900px){
+  header {
+    flex-direction: column;
+    padding-top: 60px;
+    text-align: center;
+    min-height: auto;
+  }
+  .hero-right {
+    order: -1; /* Image on top for mobile */
+    width: 100%;
+  }
+  .hero-left {
+    width: 100%;
+  }
+  header h1 {
+    font-size: 3rem;
+  }
+  header p {
+    text-align: center;
+  }
+  .glass-card {
+    padding: 30px 20px;
+  }
+}
+
 @media(max-width:600px){
-  header h1{font-size:2.2rem;}
+  header h1{font-size:2.5rem;}
 }
 
 /* Fade animation */
@@ -265,14 +394,31 @@ footer{
 
 <canvas id="particles"></canvas>
 
+<!-- Cursor Follower Element -->
+<div id="cursor-follower">
+  <div class="robot-dog">
+    <div class="robot-dog-eye eye-left"></div>
+    <div class="robot-dog-eye eye-right"></div>
+  </div>
+</div>
+
 <div class="container">
 
 <header class="fade">
-  <img src="profile.jpg" class="profile-pic" alt="Arsalan">
-  <h1>Arsalan</h1>
-  <p>
-    I’m Arsalan, an AI Expert and Creative Technologist. I specialize in AI-powered video production, generative content creation, product photography, and graphics design. Leveraging advanced AI models like <span class="highlight">ChatGPT</span>, <span class="highlight">Runway ML</span>, <span class="highlight">MidJourney</span>, and others, I build intelligent solutions that bring ideas to life. I’ve collaborated with global companies to deliver high-impact AI projects, constantly pushing the boundaries of AI creativity.
-  </p>
+  <div class="hero-left">
+    <div class="glass-card">
+      <h1>Arsalan</h1>
+      <p>
+        I’m Arsalan, an AI Expert and Creative Technologist. I specialize in AI-powered video production, generative content creation, product photography, and graphics design. Leveraging advanced AI models like <span class="highlight">ChatGPT</span>, <span class="highlight">Runway ML</span>, <span class="highlight">MidJourney</span>, and others, I build intelligent solutions that bring ideas to life. I’ve collaborated with global companies to deliver high-impact AI projects, constantly pushing the boundaries of AI creativity.
+      </p>
+    </div>
+  </div>
+  
+  <div class="hero-right">
+    <div class="hero-image-container">
+      <img src="hero-image.png" class="hero-img" alt="Arsalan">
+    </div>
+  </div>
 
   <!-- Floating neon dots -->
   <div class="floating-dots">
@@ -311,6 +457,8 @@ footer{
     <div class="skill">AI Graphics Designing</div>
     <div class="skill">AI Basic Websites</div>
     <div class="skill">Portfolio Websites</div>
+    <!-- Added Mobile App Skill Line -->
+    <div class="skill">I can also create mobile applications using AI</div>
   </div>
 </section>
 
@@ -397,6 +545,7 @@ footer{
 </div>
 
 <script>
+// --- Background Particles ---
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
@@ -416,7 +565,6 @@ for(let i=0;i<80;i++){
   });
 }
 
-// Draw connections like neural network
 function drawConnections(){
   particles.forEach((p,i)=>{
     for(let j=i+1;j<particles.length;j++){
@@ -450,6 +598,45 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate();
+
+// --- Cursor Follower Logic ---
+const follower = document.getElementById('cursor-follower');
+let mouseX = 0, mouseY = 0;
+let followerX = 0, followerY = 0;
+
+// Enable only on desktop (simple check)
+if (window.innerWidth > 900 && !('ontouchstart' in window)) {
+  follower.style.display = 'block';
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function moveFollower() {
+    // Smooth delay effect
+    let dx = mouseX - followerX;
+    let dy = mouseY - followerY;
+    
+    followerX += dx * 0.1;
+    followerY += dy * 0.1;
+    
+    follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+    requestAnimationFrame(moveFollower);
+  }
+  moveFollower();
+}
+
+// Handle resize
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  if (window.innerWidth <= 900) {
+    follower.style.display = 'none';
+  } else if (!('ontouchstart' in window)) {
+    follower.style.display = 'block';
+  }
+});
 </script>
 
 </body>
