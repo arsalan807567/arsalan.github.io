@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsalan | AI Expert</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#e0e0e0;
+  overflow-x:hidden;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+header{
+  text-align:center;
+  padding:80px 20px 40px 20px;
+  position:relative;
+}
+
+.profile-pic{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin-bottom:20px;
+  border:3px solid #00f7ff;
+  box-shadow:0 0 25px #00f7ff;
+  object-fit:cover;
+  transition:0.4s all ease;
+}
+
+.profile-pic:hover{
+  box-shadow: 0 0 40px #00f7ff, 0 0 60px #008cff;
+  transform: scale(1.05);
+}
+
+header h1{
+  font-size:3rem;
+  color:#00f7ff;
+  text-shadow:0 0 20px #00f7ff;
+}
+
+header p{
+  margin-top:15px;
+  color:#aaa;
+  font-size:1.2rem;
+  line-height:1.6rem;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+/* Floating neon dots */
+.floating-dots{
+  position:absolute;
+  top:10px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  pointer-events:none;
+}
+
+.floating-dots span{
+  display:block;
+  width:15px;
+  height:15px;
+  background: linear-gradient(45deg, #00f7ff, #008cff);
+  border-radius:50%;
+  box-shadow: 0 0 15px #00f7ff, 0 0 25px #008cff;
+  animation:dotFloat 3s ease-in-out infinite alternate;
+}
+
+.floating-dots span:nth-child(2){ animation-delay:0.3s; }
+.floating-dots span:nth-child(3){ animation-delay:0.6s; }
+.floating-dots span:nth-child(4){ animation-delay:0.9s; }
+.floating-dots span:nth-child(5){ animation-delay:1.2s; }
+
+@keyframes dotFloat{
+  0%{transform: translateY(0);}
+  50%{transform: translateY(-12px);}
+  100%{transform: translateY(0);}
+}
+
+/* Sections */
+section{
+  margin-top:70px;
+}
+
+section h2{
+  color:#00f7ff;
+  font-size:2rem;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* Skills grid */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+
+.skill{
+  padding:15px;
+  text-align:center;
+  border-radius:10px;
+  background:rgba(0,247,255,0.08);
+  border:1px solid rgba(0,247,255,0.3);
+  box-shadow:0 0 10px rgba(0,247,255,0.3);
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.skill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(0, 247, 255, 0.3);
+  z-index: 0;
+  transition: width 1s ease-in-out;
+}
+
+.skill:hover::after {
+  width: 100%;
+}
+
+/* Portfolio */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.project{
+  padding:20px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  text-align:center;
+}
+
+.project img, .project video{
+  width:100%;
+  border-radius:10px;
+  margin-top:10px;
+  transition:0.3s;
+}
+
+.project img:hover, .project video:hover{
+  box-shadow: 0 0 30px #00f7ff, 0 0 50px #008cff;
+  transform: scale(1.03);
+}
+
+.project a{
+  display:inline-block;
+  margin-top:12px;
+  color:#00f7ff;
+  font-weight:bold;
+  text-decoration:none;
+  text-shadow:0 0 10px #00f7ff;
+}
+
+.project a:hover{
+  text-decoration:underline;
+}
+
+/* Bottom AI capabilities section */
+.ai-services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.service{
+  background: rgba(0,247,255,0.05);
+  border:1px solid rgba(0,247,255,0.2);
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.service:hover{
+  background: rgba(0,247,255,0.12);
+  box-shadow:0 0 30px #00f7ff, 0 0 50px #008cff;
+  transform: translateY(-5px);
+}
+
+.service h3{
+  margin-bottom:10px;
+  color:#00f7ff;
+}
+
+/* Contact buttons */
+.buttons a{
+  display:inline-block;
+  margin:10px 10px 0 0;
+  padding:12px 25px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#00f7ff,#008cff);
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 20px #00f7ff;
+}
+
+footer{
+  text-align:center;
+  margin:80px 0 20px;
+  color:#777;
+}
+
+@media(max-width:600px){
+  header h1{font-size:2.2rem;}
+}
+
+/* Fade animation */
+.fade{
+  animation:fadeUp 1.2s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* Highlighted text */
+.highlight{
+  color:#00f7ff;
+  font-weight:bold;
+  text-shadow:0 0 15px #00f7ff;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+<header class="fade">
+  <img src="profile.jpg" class="profile-pic" alt="Arsalan">
+  <h1>Arsalan</h1>
+  <p>
+    I’m Arsalan, an AI Expert and Creative Technologist. I specialize in AI-powered video production, generative content creation, product photography, and graphics design. Leveraging advanced AI models like <span class="highlight">ChatGPT</span>, <span class="highlight">Runway ML</span>, <span class="highlight">MidJourney</span>, and others, I build intelligent solutions that bring ideas to life. I’ve collaborated with global companies to deliver high-impact AI projects, constantly pushing the boundaries of AI creativity.
+  </p>
+
+  <!-- Floating neon dots -->
+  <div class="floating-dots">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- AI Tools / Models -->
+<section class="fade">
+  <h2>AI Tools & Models</h2>
+  <div class="skills">
+    <div class="skill">ChatGPT / LLMs</div>
+    <div class="skill">Runway ML</div>
+    <div class="skill">MidJourney</div>
+    <div class="skill">DALL·E 3</div>
+    <div class="skill">Stable Diffusion</div>
+    <div class="skill">Synthesia</div>
+    <div class="skill">Pika Labs</div>
+    <div class="skill">Hugging Face</div>
+    <div class="skill">AI Video Editing Tools</div>
+    <div class="skill">AI Graphics & Design Tools</div>
+  </div>
+</section>
+
+<!-- AI Skills -->
+<section class="fade">
+  <h2>AI Skills</h2>
+  <div class="skills">
+    <div class="skill">AI Video Creation</div>
+    <div class="skill">AI Photos</div>
+    <div class="skill">AI Product Photography</div>
+    <div class="skill">AI Graphics Designing</div>
+    <div class="skill">AI Basic Websites</div>
+    <div class="skill">Portfolio Websites</div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section class="fade">
+  <h2>Portfolio</h2>
+  <div class="projects">
+
+    <div class="project">
+      <h3>AI Video Project 1</h3>
+      <video controls width="100%">
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="project">
+      <h3>AI Video Project 2</h3>
+      <video controls width="100%">
+        <source src="video2.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="project">
+      <h3>Photos Project 1</h3>
+      <video autoplay loop muted playsinline width="100%">
+        <source src="slideshow1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="project">
+      <h3>Photos Project 2</h3>
+      <video autoplay loop muted playsinline width="100%">
+        <source src="slideshow2.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="project">
+      <h3>Time Stamp Project Website</h3>
+      <img src="timestamp-project.jpg" alt="Timestamp Changer Website">
+      <a href="https://timestampchanger.netlify.app/" target="_blank">Visit Project Website</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- AI Capabilities / Services -->
+<section class="fade">
+  <h2>AI Capabilities & Services</h2>
+  <div class="ai-services">
+    <div class="service">
+      <h3>AI Video Production</h3>
+      <p>Create professional AI-generated videos for marketing, social media, and branding.</p>
+    </div>
+    <div class="service">
+      <h3>Generative AI Art & Graphics</h3>
+      <p>Design stunning AI-generated images, illustrations, and product graphics.</p>
+    </div>
+    <div class="service">
+      <h3>AI Automation</h3>
+      <p>Build AI-powered chatbots, workflow automation, and virtual assistants for businesses.</p>
+    </div>
+    <div class="service">
+      <h3>AI Content Creation</h3>
+      <p>Generate scripts, blogs, marketing content, and social media posts using AI models.</p>
+    </div>
+    <div class="service">
+      <h3>AI Web Solutions</h3>
+      <p>Develop AI-integrated websites and apps that showcase modern interactive experiences.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="fade buttons">
+  <h2>Contact</h2>
+  <a href="mailto:arslankhan807567@gmail.com">Email</a>
+  <a href="https://wa.me/qr/3GD3KSLD77LKK1">WhatsApp</a>
+</section>
+
+<footer>
+  © 2026 Arsalan • AI Portfolio
+</footer>
+
+</div>
+
+<script>
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let colors=['#00f7ff','#008cff','#ff00ff'];
+let particles=[];
+
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+1,
+    dx:Math.random()-0.5,
+    dy:Math.random()-0.5,
+    color:colors[Math.floor(Math.random()*colors.length)]
+  });
+}
+
+// Draw connections like neural network
+function drawConnections(){
+  particles.forEach((p,i)=>{
+    for(let j=i+1;j<particles.length;j++){
+      let p2=particles[j];
+      let dist=Math.hypot(p.x-p2.x, p.y-p2.y);
+      if(dist<120){
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(p2.x,p2.y);
+        ctx.strokeStyle=`rgba(0,247,255,${1-dist/120})`;
+        ctx.lineWidth=0.5;
+        ctx.stroke();
+      }
+    }
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  });
+  drawConnections();
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
