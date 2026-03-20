@@ -165,89 +165,121 @@ header p {
   100%{transform: translateY(0);}
 }
 
-/* Cursor Follower (Running Robot Dog) */
+/* Cursor Follower - Sleek Robot Dog */
 #cursor-follower {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 35px;
   pointer-events: none;
   z-index: 9999;
   display: none;
+  filter: drop-shadow(0 0 10px #00f7ff);
 }
 
 .robot-dog {
-  width: 30px;
-  height: 20px;
-  background: #00f7ff;
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
   position: relative;
-  box-shadow: 0 0 15px #00f7ff;
+}
+
+/* Body */
+.robot-dog::before {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 18px;
+  background: linear-gradient(135deg, #00f7ff, #008cff);
+  border-radius: 8px;
+  left: 0;
+  top: 8px;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.3), 0 0 10px #00f7ff;
 }
 
 /* Head */
 .robot-dog::after {
   content: '';
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #00f7ff;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #00f7ff, #008cff);
   border-radius: 50%;
-  top: -8px;
   right: -5px;
+  top: 8px;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.3), 0 0 10px #00f7ff;
 }
 
-/* Ears */
+/* Eyes */
 .robot-dog-ears {
   position: absolute;
-  top: -15px;
-  right: -2px;
   width: 100%;
+  height: 100%;
 }
 .robot-dog-ears::before, .robot-dog-ears::after {
   content: '';
   position: absolute;
-  width: 4px;
-  height: 8px;
-  background: #00f7ff;
-  border-radius: 2px;
+  width: 3px;
+  height: 3px;
+  background: #000;
+  border-radius: 50%;
+  right: 0px;
+  top: 12px;
 }
-.robot-dog-ears::before { right: 8px; transform: rotate(-20deg); }
-.robot-dog-ears::after { right: 0px; transform: rotate(20deg); }
+.robot-dog-ears::before { right: 6px; }
+.robot-dog-ears::after { right: 2px; }
 
-/* Legs with Running Animation */
-.leg {
+/* Front Legs */
+.leg-front {
   position: absolute;
-  width: 4px;
-  height: 10px;
-  background: #00f7ff;
-  bottom: -8px;
+  width: 3px;
+  height: 12px;
+  background: linear-gradient(to bottom, #00f7ff, #008cff);
+  bottom: -12px;
+  right: 8px;
   border-radius: 2px;
-}
-.leg-front { right: 5px; animation: run 0.4s infinite alternate; }
-.leg-back { left: 5px; animation: run 0.4s infinite alternate-reverse; }
-
-@keyframes run {
-  from { transform: rotate(-30deg); }
-  to { transform: rotate(30deg); }
+  transform-origin: top center;
+  animation: legRun 0.5s infinite;
+  box-shadow: 0 0 5px #00f7ff;
 }
 
-/* Waving Glowing Tail */
+/* Back Legs */
+.leg-back {
+  position: absolute;
+  width: 3px;
+  height: 12px;
+  background: linear-gradient(to bottom, #00f7ff, #008cff);
+  bottom: -12px;
+  left: 8px;
+  border-radius: 2px;
+  transform-origin: top center;
+  animation: legRun 0.5s infinite reverse;
+  box-shadow: 0 0 5px #00f7ff;
+}
+
+@keyframes legRun {
+  0% { transform: rotate(-35deg); }
+  25% { transform: rotate(-10deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(25deg); }
+  100% { transform: rotate(35deg); }
+}
+
+/* Tail */
 #robot-tail {
   position: absolute;
-  left: -5px;
-  top: 5px;
-  width: 15px;
-  height: 4px;
-  background: linear-gradient(to left, #00f7ff, rgba(0, 247, 255, 0));
+  left: -8px;
+  top: 12px;
+  width: 12px;
+  height: 3px;
+  background: linear-gradient(to left, #00f7ff, rgba(0, 247, 255, 0.3));
   border-radius: 2px;
-  box-shadow: 0 0 15px #00f7ff;
   transform-origin: right center;
-  animation: tailWag 0.3s infinite alternate;
+  animation: tailWag 0.4s infinite;
+  box-shadow: 0 0 8px #00f7ff;
 }
 
 @keyframes tailWag {
-  from { transform: rotate(-20deg); }
-  to { transform: rotate(20deg); }
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
 }
 
 /* Sections */
@@ -369,13 +401,27 @@ section h2{
 .buttons {
   text-align: center;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.buttons h2 {
+  margin-bottom: 0;
+}
+
+.buttons-container {
+  display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
 .buttons a{
-  display:inline-block;
+  display:inline-flex;
+  align-items: center;
+  gap: 8px;
   padding:12px 25px;
   border-radius:30px;
   background:linear-gradient(135deg,#00f7ff,#008cff);
@@ -383,11 +429,12 @@ section h2{
   text-decoration:none;
   font-weight:bold;
   box-shadow:0 0 20px #00f7ff;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .buttons a:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 30px #00f7ff, 0 0 50px #008cff;
 }
 
 footer{
@@ -450,7 +497,7 @@ footer{
 
 <canvas id="particles"></canvas>
 
-<!-- Cursor Follower Element -->
+<!-- Cursor Follower Element - Robot Dog -->
 <div id="cursor-follower">
   <div class="robot-dog">
     <div class="robot-dog-ears"></div>
@@ -592,8 +639,10 @@ footer{
 <!-- Contact -->
 <section class="fade buttons">
   <h2>Contact</h2>
-  <a href="mailto:arslankhan807567@gmail.com">Email</a>
-  <a href="https://wa.me/qr/3GD3KSLD77LKK1">WhatsApp</a>
+  <div class="buttons-container">
+    <a href="mailto:arslankhan807567@gmail.com">📧 Email</a>
+    <a href="https://wa.me/qr/3GD3KSLD77LKK1">💬 WhatsApp</a>
+  </div>
 </section>
 
 <footer>
@@ -698,8 +747,8 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
     let dx = mouseX - followerX;
     let dy = mouseY - followerY;
     
-    followerX += dx * 0.1;
-    followerY += dy * 0.1;
+    followerX += dx * 0.15;
+    followerY += dy * 0.15;
     
     // Update transform with flip logic
     const flip = mouseX > followerX ? 1 : -1;
