@@ -165,66 +165,89 @@ header p {
   100%{transform: translateY(0);}
 }
 
-/* Cursor Follower (Robot Dog/Animal) */
+/* Cursor Follower (Running Robot Dog) */
 #cursor-follower {
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.15s ease-out;
-  display: none; /* Hidden by default, shown via JS on desktop */
+  display: none;
 }
 
 .robot-dog {
-  width: 100%;
-  height: 100%;
+  width: 30px;
+  height: 20px;
   background: #00f7ff;
-  border-radius: 50% 50% 20% 20%;
+  border-radius: 10px;
   position: relative;
   box-shadow: 0 0 15px #00f7ff;
 }
 
-.robot-dog::before, .robot-dog::after {
+/* Head */
+.robot-dog::after {
   content: '';
   position: absolute;
-  background: #00f7ff;
-  width: 10px;
+  width: 15px;
   height: 15px;
+  background: #00f7ff;
+  border-radius: 50%;
   top: -8px;
-  border-radius: 5px;
+  right: -5px;
 }
-.robot-dog::before { left: 2px; transform: rotate(-15deg); }
-.robot-dog::after { right: 2px; transform: rotate(15deg); }
 
-.robot-dog-eye {
+/* Ears */
+.robot-dog-ears {
+  position: absolute;
+  top: -15px;
+  right: -2px;
+  width: 100%;
+}
+.robot-dog-ears::before, .robot-dog-ears::after {
+  content: '';
   position: absolute;
   width: 4px;
-  height: 4px;
-  background: #000;
-  border-radius: 50%;
-  top: 10px;
+  height: 8px;
+  background: #00f7ff;
+  border-radius: 2px;
 }
-.eye-left { left: 8px; }
-.eye-right { right: 8px; }
+.robot-dog-ears::before { right: 8px; transform: rotate(-20deg); }
+.robot-dog-ears::after { right: 0px; transform: rotate(20deg); }
 
-/* Robot Dog Tail - Waving Glowing Trail */
+/* Legs with Running Animation */
+.leg {
+  position: absolute;
+  width: 4px;
+  height: 10px;
+  background: #00f7ff;
+  bottom: -8px;
+  border-radius: 2px;
+}
+.leg-front { right: 5px; animation: run 0.4s infinite alternate; }
+.leg-back { left: 5px; animation: run 0.4s infinite alternate-reverse; }
+
+@keyframes run {
+  from { transform: rotate(-30deg); }
+  to { transform: rotate(30deg); }
+}
+
+/* Waving Glowing Tail */
 #robot-tail {
   position: absolute;
-  bottom: -25px;
-  right: 2px;
-  width: 6px;
-  height: 30px;
-  background: linear-gradient(to bottom, #00f7ff, rgba(0, 247, 255, 0.5), rgba(0, 247, 255, 0));
-  border-radius: 3px;
-  box-shadow: 0 0 15px #00f7ff, 0 0 30px rgba(0, 247, 255, 0.6);
-  transform-origin: top center;
-  animation: tailWave 1.5s ease-in-out infinite;
+  left: -5px;
+  top: 5px;
+  width: 15px;
+  height: 4px;
+  background: linear-gradient(to left, #00f7ff, rgba(0, 247, 255, 0));
+  border-radius: 2px;
+  box-shadow: 0 0 15px #00f7ff;
+  transform-origin: right center;
+  animation: tailWag 0.3s infinite alternate;
 }
 
-@keyframes tailWave {
-  0%, 100% { transform: rotate(-8deg); }
-  50% { transform: rotate(8deg); }
+@keyframes tailWag {
+  from { transform: rotate(-20deg); }
+  to { transform: rotate(20deg); }
 }
 
 /* Sections */
@@ -343,9 +366,16 @@ section h2{
 }
 
 /* Contact buttons */
+.buttons {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .buttons a{
   display:inline-block;
-  margin:10px 10px 0 0;
   padding:12px 25px;
   border-radius:30px;
   background:linear-gradient(135deg,#00f7ff,#008cff);
@@ -353,6 +383,11 @@ section h2{
   text-decoration:none;
   font-weight:bold;
   box-shadow:0 0 20px #00f7ff;
+  transition: transform 0.3s;
+}
+
+.buttons a:hover {
+  transform: scale(1.05);
 }
 
 footer{
@@ -418,8 +453,9 @@ footer{
 <!-- Cursor Follower Element -->
 <div id="cursor-follower">
   <div class="robot-dog">
-    <div class="robot-dog-eye eye-left"></div>
-    <div class="robot-dog-eye eye-right"></div>
+    <div class="robot-dog-ears"></div>
+    <div class="leg leg-front"></div>
+    <div class="leg leg-back"></div>
     <div id="robot-tail"></div>
   </div>
 </div>
@@ -649,10 +685,11 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
     
-    // Tail wagging effect
-    tailRotation = (mouseX % 30 - 15) / 5;
-    if (robotTail) {
-      robotTail.style.transform = `rotate(${tailRotation}deg)`;
+    // Flip dog based on movement direction
+    if (mouseX > followerX) {
+      follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(1)`;
+    } else {
+      follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(-1)`;
     }
   });
 
@@ -664,7 +701,10 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
     followerX += dx * 0.1;
     followerY += dy * 0.1;
     
-    follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+    // Update transform with flip logic
+    const flip = mouseX > followerX ? 1 : -1;
+    follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(${flip})`;
+    
     requestAnimationFrame(moveFollower);
   }
   moveFollower();
