@@ -182,7 +182,8 @@ header p {
   background: #00f7ff;
   border-radius: 50% 50% 20% 20%;
   position: relative;
-  box-shadow: 0 0 15px #00f7ff;
+  box-shadow: 0 0 15px #00f7ff, 0 0 30px rgba(0, 247, 255, 0.6);
+  border: 2px solid #00f7ff;
 }
 
 .robot-dog::before, .robot-dog::after {
@@ -557,7 +558,6 @@ footer{
 
     <div class="project">
       <h3>Time Stamp Project Website</h3>
-      <img src="timestamp-project.jpg" alt="Timestamp Changer Website">
       <a href="https://timestampchanger.netlify.app/" target="_blank">Visit Project Website</a>
     </div>
 
@@ -738,6 +738,9 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
     // Update transform with flip logic
     const flip = mouseX > followerX ? 1 : -1;
     follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(${flip})`;
+    
+    // Apply neon glow style dynamically if needed, though CSS handles most of it
+    follower.style.filter = `drop-shadow(0 0 15px #00f7ff) drop-shadow(0 0 5px #ff00ff)`;
     
     requestAnimationFrame(moveFollower);
   }
