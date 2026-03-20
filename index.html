@@ -80,19 +80,19 @@ header{
 }
 
 header h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   background: linear-gradient(to right, #00f7ff, #008cff, #ff00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: none; /* Removed old shadow for gradient look */
+  text-shadow: none;
 }
 
 header p {
   color: #ccc;
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.9;
   text-align: left;
   margin: 0;
 }
@@ -112,7 +112,7 @@ header p {
   transform: translate(-50%, -50%);
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle, rgba(0, 247, 255, 0.15) 0%, rgba(0, 140, 255, 0.05) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 247, 255, 0.05) 0%, rgba(0, 140, 255, 0.02) 50%, transparent 70%);
   z-index: -1;
   border-radius: 50%;
 }
@@ -123,7 +123,7 @@ header p {
   display: block;
   object-fit: contain;
   animation: float 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.2));
+  filter: drop-shadow(0 0 5px rgba(0, 247, 255, 0.1));
   transition: transform 0.1s ease-out;
   transform-style: preserve-3d;
 }
@@ -208,18 +208,23 @@ header p {
 .eye-left { left: 8px; }
 .eye-right { right: 8px; }
 
-/* Robot Dog Tail */
+/* Robot Dog Tail - Waving Glowing Trail */
 #robot-tail {
   position: absolute;
-  bottom: -15px;
+  bottom: -25px;
   right: 2px;
-  width: 4px;
-  height: 20px;
-  background: linear-gradient(to bottom, #00f7ff, rgba(0, 247, 255, 0.3));
-  border-radius: 2px;
-  box-shadow: 0 0 10px #00f7ff, 0 0 20px rgba(0, 247, 255, 0.5);
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(to bottom, #00f7ff, rgba(0, 247, 255, 0.5), rgba(0, 247, 255, 0));
+  border-radius: 3px;
+  box-shadow: 0 0 15px #00f7ff, 0 0 30px rgba(0, 247, 255, 0.6);
   transform-origin: top center;
-  transition: transform 0.2s ease-out;
+  animation: tailWave 1.5s ease-in-out infinite;
+}
+
+@keyframes tailWave {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
 }
 
 /* Sections */
@@ -638,8 +643,8 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      const rotateX = (mouseY - centerY) / 10;
-      const rotateY = (centerX - mouseX) / 10;
+      const rotateX = (mouseY - centerY) / 15;
+      const rotateY = (centerX - mouseX) / 15;
       
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
@@ -678,8 +683,8 @@ if ('ontouchstart' in window) {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      const rotateX = (mouseY - centerY) / 10;
-      const rotateY = (centerX - mouseX) / 10;
+      const rotateX = (mouseY - centerY) / 15;
+      const rotateY = (centerX - mouseX) / 15;
       
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
