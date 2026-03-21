@@ -165,77 +165,7 @@ header p {
   100%{transform: translateY(0);}
 }
 
-/* Cursor Follower (Robot Dog with Tail) */
-#cursor-follower {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.15s ease-out;
-  display: none;
-}
 
-.robot-dog {
-  width: 100%;
-  height: 100%;
-  background: #00f7ff;
-  border-radius: 50% 50% 20% 20%;
-  position: relative;
-  box-shadow: 0 0 15px #00f7ff, 0 0 30px rgba(0, 247, 255, 0.6);
-  border: 2px solid #00f7ff;
-}
-
-.robot-dog::before, .robot-dog::after {
-  content: '';
-  position: absolute;
-  background: #00f7ff;
-  width: 10px;
-  height: 15px;
-  top: -8px;
-  border-radius: 5px;
-}
-.robot-dog::before { left: 2px; transform: rotate(-15deg); }
-.robot-dog::after { right: 2px; transform: rotate(15deg); }
-
-.robot-dog-ears {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.robot-dog-eye {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #000;
-  border-radius: 50%;
-  top: 10px;
-}
-.eye-left { left: 8px; }
-.eye-right { right: 8px; }
-
-/* Robot Dog Tail - Waving Glowing Trail */
-#robot-tail {
-  position: absolute;
-  bottom: -25px;
-  right: 2px;
-  width: 6px;
-  height: 30px;
-  background: linear-gradient(to bottom, #00f7ff, rgba(0, 247, 255, 0.5), rgba(0, 247, 255, 0));
-  border-radius: 3px;
-  box-shadow: 0 0 15px #00f7ff, 0 0 30px rgba(0, 247, 255, 0.6);
-  transform-origin: top center;
-  animation: tailWave 1.5s ease-in-out infinite;
-}
-
-@keyframes tailWave {
-  0% { transform: rotate(-20deg); }
-  25% { transform: rotate(-5deg); }
-  50% { transform: rotate(20deg); }
-  75% { transform: rotate(5deg); }
-  100% { transform: rotate(-20deg); }
-}
 
 /* Sections */
 section{
@@ -452,16 +382,10 @@ footer{
 
 <canvas id="particles"></canvas>
 
-<!-- Cursor Follower Element -->
-<div id="cursor-follower">
-  <div class="robot-dog">
-    <div class="robot-dog-ears">
-      <div class="robot-dog-eye eye-left"></div>
-      <div class="robot-dog-eye eye-right"></div>
-    </div>
-    <div id="robot-tail"></div>
-  </div>
-</div>
+<!-- Cursor Follower Canvas -->
+<canvas id="creature-follower"></canvas>
+
+
 
 <div class="container">
 
@@ -673,41 +597,15 @@ function animate(){
 }
 animate();
 
-// --- Cursor Follower Logic ---
-const follower = document.getElementById('cursor-follower');
-const heroImg = document.querySelector('.hero-img');
-const robotTail = document.getElementById('robot-tail');
+// --- Cursor Follower Logic const heroImg = document.querySelector(\".hero-img\");
 let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
-let prevMouseX = 0, prevMouseY = 0;
-let tailRotation = 0;
-let tailWagSpeed = 1.5;
 
-// Enable only on desktop (simple check)
-if (window.innerWidth > 900 && !('ontouchstart' in window)) {
-  follower.style.display = 'block';
-  
-  window.addEventListener('mousemove', (e) => {
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
+// Tilt effect on hero image based on cursor position
+if (window.innerWidth > 900 && !(\'ontouchstart\' in window)) {
+  window.addEventListener(\'mousemove\', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     
-    // Calculate cursor speed for dynamic tail wagging
-    const speedX = Math.abs(mouseX - prevMouseX);
-    const speedY = Math.abs(mouseY - prevMouseY);
-    const speed = Math.sqrt(speedX * speedX + speedY * speedY);
-    
-    // Increase tail wag speed based on cursor movement speed
-    tailWagSpeed = 1.5 - (speed / 100); // Faster movement = faster tail wag
-    if (tailWagSpeed < 0.5) tailWagSpeed = 0.5; // Minimum speed
-    if (tailWagSpeed > 2) tailWagSpeed = 2; // Maximum speed
-    
-    if (robotTail) {
-      robotTail.style.animationDuration = `${tailWagSpeed}s`;
-    }
-    
-    // Tilt effect on hero image based on cursor position
     if (heroImg) {
       const rect = heroImg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -718,38 +616,12 @@ if (window.innerWidth > 900 && !('ontouchstart' in window)) {
       
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
-    
-    // Flip dog based on movement direction
-    if (mouseX > followerX) {
-      follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(1)`;
-    } else {
-      follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(-1)`;
-    }
   });
-
-  function moveFollower() {
-    // Smooth delay effect
-    let dx = mouseX - followerX;
-    let dy = mouseY - followerY;
-    
-    followerX += dx * 0.15;
-    followerY += dy * 0.15;
-    
-    // Update transform with flip logic
-    const flip = mouseX > followerX ? 1 : -1;
-    follower.style.transform = `translate(${followerX}px, ${followerY}px) scaleX(${flip})`;
-    
-    // Apply neon glow style dynamically if needed, though CSS handles most of it
-    follower.style.filter = `drop-shadow(0 0 15px #00f7ff) drop-shadow(0 0 5px #ff00ff)`;
-    
-    requestAnimationFrame(moveFollower);
-  }
-  moveFollower();
 }
 
 // Touch support for mobile
-if ('ontouchstart' in window) {
-  document.addEventListener('touchmove', (e) => {
+if (\'ontouchstart\' in window) {
+  document.addEventListener(\'touchmove\', (e) => {
     const touch = e.touches[0];
     mouseX = touch.clientX;
     mouseY = touch.clientY;
@@ -767,24 +639,131 @@ if ('ontouchstart' in window) {
     }
   });
   
-  document.addEventListener('touchend', () => {
+  document.addEventListener(\'touchend\', () => {
     if (heroImg) {
-      heroImg.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      heroImg.style.transform = \'perspective(1000px) rotateX(0deg) rotateY(0deg)\
+\';
     }
   });
 }
 
 // Handle resize
-window.addEventListener('resize', () => {
+window.addEventListener(\'resize\', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   if (window.innerWidth <= 900) {
-    follower.style.display = 'none';
-  } else if (!('ontouchstart' in window)) {
-    follower.style.display = 'block';
+    // No cursor follower on mobile
+  } else if (!(\'ontouchstart\' in window)) {
+    // No cursor follower on desktop either, as it\'s replaced by the creature
   }
 });
-</script>
 
-</body>
+// --- Creature Follower Logic ---
+const creatureCanvas = document.getElementById(\'creature-follower\');
+const creatureCtx = creatureCanvas.getContext(\'2d\');
+creatureCanvas.width = window.innerWidth;
+creatureCanvas.height = window.innerHeight;
+creatureCanvas.style.position = \'fixed\';
+creatureCanvas.style.top = \'0\';
+creatureCanvas.style.left = \'0\';
+creatureCanvas.style.pointerEvents = \'none\';
+creatureCanvas.style.zIndex = \'9998\'; // Below the main content
+
+let creatureX = 0, creatureY = 0;
+let targetCreatureX = 0, targetCreatureY = 0;
+
+window.addEventListener(\'mousemove\', (e) => {
+  targetCreatureX = e.clientX;
+  targetCreatureY = e.clientY;
+});
+
+function drawCreature(x, y) {
+  creatureCtx.clearRect(0, 0, creatureCanvas.width, creatureCanvas.height);
+  creatureCtx.save();
+  creatureCtx.translate(x, y);
+
+  // Apply neon glow
+  creatureCtx.strokeStyle = \'#00f7ff\';
+  creatureCtx.lineWidth = 1.5;
+  creatureCtx.shadowBlur = 15;
+  creatureCtx.shadowColor = \'#00f7ff\';
+
+  // Draw the skeletal creature
+  // Head
+  creatureCtx.beginPath();
+  creatureCtx.arc(0, -25, 8, 0, Math.PI * 2);
+  creatureCtx.stroke();
+
+  // Spine
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(0, -17);
+  creatureCtx.lineTo(0, 30);
+  creatureCtx.stroke();
+
+  // Ribs
+  for (let i = 0; i < 4; i++) {
+    creatureCtx.beginPath();
+    creatureCtx.moveTo(0, -10 + i * 10);
+    creatureCtx.bezierCurveTo(-15, -5 + i * 10, -15, 5 + i * 10, 0, 10 + i * 10);
+    creatureCtx.moveTo(0, -10 + i * 10);
+    creatureCtx.bezierCurveTo(15, -5 + i * 10, 15, 5 + i * 10, 0, 10 + i * 10);
+    creatureCtx.stroke();
+  }
+
+  // Limbs
+  // Front left
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(-5, 0);
+  creatureCtx.lineTo(-20, 15);
+  creatureCtx.lineTo(-15, 25);
+  creatureCtx.stroke();
+
+  // Front right
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(5, 0);
+  creatureCtx.lineTo(20, 15);
+  creatureCtx.lineTo(15, 25);
+  creatureCtx.stroke();
+
+  // Back left
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(-5, 25);
+  creatureCtx.lineTo(-20, 40);
+  creatureCtx.lineTo(-15, 50);
+  creatureCtx.stroke();
+
+  // Back right
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(5, 25);
+  creatureCtx.lineTo(20, 40);
+  creatureCtx.lineTo(15, 50);
+  creatureCtx.stroke();
+
+  // Tail
+  creatureCtx.beginPath();
+  creatureCtx.moveTo(0, 30);
+  creatureCtx.lineTo(-10, 45);
+  creatureCtx.lineTo(0, 60);
+  creatureCtx.lineTo(10, 75);
+  creatureCtx.stroke();
+
+  creatureCtx.restore();
+}
+
+function animateCreature() {
+  let dx = targetCreatureX - creatureX;
+  let dy = targetCreatureY - creatureY;
+
+  creatureX += dx * 0.1;
+  creatureY += dy * 0.1;
+
+  drawCreature(creatureX, creatureY);
+  requestAnimationFrame(animateCreature);
+}
+animateCreature();
+
+window.addEventListener(\'resize\', () => {
+  creatureCanvas.width = window.innerWidth;
+  creatureCanvas.height = window.innerHeight;
+});/body>
 </html>
