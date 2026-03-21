@@ -377,15 +377,12 @@ footer{
 }
 </style>
 </head>
-
 <body>
 
 <canvas id="particles"></canvas>
 
 <!-- Cursor Follower Canvas -->
 <canvas id="creature-follower"></canvas>
-
-
 
 <div class="container">
 
@@ -597,22 +594,18 @@ function animate(){
 }
 animate();
 
-// --- Cursor Follower Logic const heroImg = document.querySelector(\".hero-img\");
-let mouseX = 0, mouseY = 0;
+// --- Cursor Follower Logic cconst heroImg = document.querySelector(\".hero-img\");
 
 // Tilt effect on hero image based on cursor position
 if (window.innerWidth > 900 && !(\'ontouchstart\' in window)) {
   window.addEventListener(\'mousemove\', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
     if (heroImg) {
       const rect = heroImg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      const rotateX = (mouseY - centerY) / 15;
-      const rotateY = (centerX - mouseX) / 15;
+      const rotateX = (e.clientY - centerY) / 15;
+      const rotateY = (centerX - e.clientX) / 15;
       
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
@@ -623,17 +616,13 @@ if (window.innerWidth > 900 && !(\'ontouchstart\' in window)) {
 if (\'ontouchstart\' in window) {
   document.addEventListener(\'touchmove\', (e) => {
     const touch = e.touches[0];
-    mouseX = touch.clientX;
-    mouseY = touch.clientY;
-    
-    // Tilt effect on hero image based on touch position
     if (heroImg) {
       const rect = heroImg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      const rotateX = (mouseY - centerY) / 15;
-      const rotateY = (centerX - mouseX) / 15;
+      const rotateX = (touch.clientY - centerY) / 15;
+      const rotateY = (centerX - touch.clientX) / 15;
       
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
@@ -641,8 +630,7 @@ if (\'ontouchstart\' in window) {
   
   document.addEventListener(\'touchend\', () => {
     if (heroImg) {
-      heroImg.style.transform = \'perspective(1000px) rotateX(0deg) rotateY(0deg)\
-\';
+      heroImg.style.transform = \'perspective(1000px) rotateX(0deg) rotateY(0deg)\'\n\';
     }
   });
 }
@@ -651,12 +639,7 @@ if (\'ontouchstart\' in window) {
 window.addEventListener(\'resize\', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  if (window.innerWidth <= 900) {
-    // No cursor follower on mobile
-  } else if (!(\'ontouchstart\' in window)) {
-    // No cursor follower on desktop either, as it\'s replaced by the creature
-  }
-});
+});;
 
 // --- Creature Follower Logic ---
 const creatureCanvas = document.getElementById(\'creature-follower\');
