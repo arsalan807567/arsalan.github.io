@@ -20,6 +20,7 @@ body{
   background:#000;
   color:#e0e0e0;
   overflow-x:hidden;
+  cursor: none;
 }
 
 canvas{
@@ -381,8 +382,8 @@ footer{
 
 <canvas id="particles"></canvas>
 
-<!-- Cursor Follower Canvas -->
-<canvas id="creature-follower"></canvas>
+<!-- Creature Cursor Follower Canvas -->
+<canvas id="creature-canvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;"></canvas>
 
 <div class="container">
 
@@ -391,7 +392,7 @@ footer{
     <div class="glass-card">
       <h1>Arsalan</h1>
       <p>
-        I’m Arsalan, an AI Expert and Creative Technologist. I specialize in AI-powered video production, generative content creation, product photography, and graphics design. Leveraging advanced AI models like <span class="highlight">ChatGPT</span>, <span class="highlight">Runway ML</span>, <span class="highlight">MidJourney</span>, and others, I build intelligent solutions that bring ideas to life. I’ve collaborated with global companies to deliver high-impact AI projects, constantly pushing the boundaries of AI creativity.
+        I'm Arsalan, an AI Expert and Creative Technologist. I specialize in AI-powered video production, generative content creation, product photography, and graphics design. Leveraging advanced AI models like <span class="highlight">ChatGPT</span>, <span class="highlight">Runway ML</span>, <span class="highlight">MidJourney</span>, and others, I build intelligent solutions that bring ideas to life. I've collaborated with global companies to deliver high-impact AI projects, constantly pushing the boundaries of AI creativity.
       </p>
     </div>
   </div>
@@ -439,7 +440,6 @@ footer{
     <div class="skill">AI Graphics Designing</div>
     <div class="skill">AI Basic Websites</div>
     <div class="skill">Portfolio Websites</div>
-    <!-- Added Mobile App Skill Line -->
     <div class="skill">Android/IOS app building with AI</div>
   </div>
 </section>
@@ -534,219 +534,409 @@ footer{
 </section>
 
 <footer>
-  © 2026 Arsalan • AI Portfolio
+  &copy; 2026 Arsalan &bull; AI Portfolio
 </footer>
 
 </div>
 
 <script>
-// --- Background Particles ---
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+// =============================================
+// BACKGROUND PARTICLES
+// =============================================
+const bgCanvas = document.getElementById('particles');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
 
-let colors=['#00f7ff','#008cff','#ff00ff'];
-let particles=[];
+const particleColors = ['#00f7ff','#008cff','#ff00ff'];
+const particles = [];
 
-for(let i=0;i<80;i++){
+for (let i = 0; i < 80; i++) {
   particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*2+1,
-    dx:Math.random()-0.5,
-    dy:Math.random()-0.5,
-    color:colors[Math.floor(Math.random()*colors.length)]
+    x: Math.random() * bgCanvas.width,
+    y: Math.random() * bgCanvas.height,
+    r: Math.random() * 2 + 1,
+    dx: Math.random() - 0.5,
+    dy: Math.random() - 0.5,
+    color: particleColors[Math.floor(Math.random() * particleColors.length)]
   });
 }
 
-function drawConnections(){
-  particles.forEach((p,i)=>{
-    for(let j=i+1;j<particles.length;j++){
-      let p2=particles[j];
-      let dist=Math.hypot(p.x-p2.x, p.y-p2.y);
-      if(dist<120){
-        ctx.beginPath();
-        ctx.moveTo(p.x,p.y);
-        ctx.lineTo(p2.x,p2.y);
-        ctx.strokeStyle=`rgba(0,247,255,${1-dist/120})`;
-        ctx.lineWidth=0.5;
-        ctx.stroke();
+function drawConnections() {
+  particles.forEach((p, i) => {
+    for (let j = i + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 120) {
+        bgCtx.beginPath();
+        bgCtx.moveTo(p.x, p.y);
+        bgCtx.lineTo(p2.x, p2.y);
+        bgCtx.strokeStyle = `rgba(0,247,255,${1 - dist / 120})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.stroke();
       }
     }
   });
 }
 
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=p.color;
-    ctx.fill();
-    p.x+=p.dx;
-    p.y+=p.dy;
-    if(p.x<0||p.x>canvas.width)p.dx*=-1;
-    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+function animateBg() {
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+  particles.forEach(p => {
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    bgCtx.fillStyle = p.color;
+    bgCtx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > bgCanvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > bgCanvas.height) p.dy *= -1;
   });
   drawConnections();
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateBg);
 }
-animate();
+animateBg();
 
-// --- Cursor Follower Logic cconst heroImg = document.querySelector(\".hero-img\");
+// =============================================
+// HERO IMAGE TILT EFFECT
+// =============================================
+const heroImg = document.querySelector('.hero-img');
 
-// Tilt effect on hero image based on cursor position
-if (window.innerWidth > 900 && !(\'ontouchstart\' in window)) {
-  window.addEventListener(\'mousemove\', (e) => {
+if (window.innerWidth > 900 && !('ontouchstart' in window)) {
+  window.addEventListener('mousemove', (e) => {
     if (heroImg) {
       const rect = heroImg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
       const rotateX = (e.clientY - centerY) / 15;
       const rotateY = (centerX - e.clientX) / 15;
-      
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
   });
 }
 
-// Touch support for mobile
-if (\'ontouchstart\' in window) {
-  document.addEventListener(\'touchmove\', (e) => {
+if ('ontouchstart' in window) {
+  document.addEventListener('touchmove', (e) => {
     const touch = e.touches[0];
     if (heroImg) {
       const rect = heroImg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
       const rotateX = (touch.clientY - centerY) / 15;
       const rotateY = (centerX - touch.clientX) / 15;
-      
       heroImg.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
   });
-  
-  document.addEventListener(\'touchend\', () => {
+  document.addEventListener('touchend', () => {
     if (heroImg) {
-      heroImg.style.transform = \'perspective(1000px) rotateX(0deg) rotateY(0deg)\'\n\';
+      heroImg.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     }
   });
 }
 
-// Handle resize
-window.addEventListener(\'resize\', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});;
-
-// --- Creature Follower Logic ---
-const creatureCanvas = document.getElementById(\'creature-follower\');
-const creatureCtx = creatureCanvas.getContext(\'2d\');
-creatureCanvas.width = window.innerWidth;
-creatureCanvas.height = window.innerHeight;
-creatureCanvas.style.position = \'fixed\';
-creatureCanvas.style.top = \'0\';
-creatureCanvas.style.left = \'0\';
-creatureCanvas.style.pointerEvents = \'none\';
-creatureCanvas.style.zIndex = \'9998\'; // Below the main content
-
-let creatureX = 0, creatureY = 0;
-let targetCreatureX = 0, targetCreatureY = 0;
-
-window.addEventListener(\'mousemove\', (e) => {
-  targetCreatureX = e.clientX;
-  targetCreatureY = e.clientY;
+window.addEventListener('resize', () => {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
 });
 
-function drawCreature(x, y) {
-  creatureCtx.clearRect(0, 0, creatureCanvas.width, creatureCanvas.height);
-  creatureCtx.save();
-  creatureCtx.translate(x, y);
+// =============================================
+// CENTIPEDE CREATURE CURSOR FOLLOWER
+// =============================================
+(function() {
+  const canvas = document.getElementById('creature-canvas');
+  const ctx = canvas.getContext('2d');
 
-  // Apply neon glow
-  creatureCtx.strokeStyle = \'#00f7ff\';
-  creatureCtx.lineWidth = 1.5;
-  creatureCtx.shadowBlur = 15;
-  creatureCtx.shadowColor = \'#00f7ff\';
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-  // Draw the skeletal creature
-  // Head
-  creatureCtx.beginPath();
-  creatureCtx.arc(0, -25, 8, 0, Math.PI * 2);
-  creatureCtx.stroke();
+  // --- Configuration ---
+  const NUM_SEGMENTS   = 18;   // body segments (including head)
+  const SEG_LENGTH     = 14;   // distance between segment centres
+  const HEAD_RADIUS    = 7;    // head circle radius
+  const BODY_RADIUS_MAX = 6;   // widest body segment radius
+  const BODY_RADIUS_MIN = 2;   // tail segment radius
+  const LEG_PAIRS      = 8;    // pairs of legs (on body segments 1..8)
+  const LEG_LENGTH     = 22;   // leg length
+  const LEG_SPREAD     = 0.55; // radians offset from perpendicular for leg tip
+  const ANTENNA_LEN    = 18;   // antenna length
+  const GLOW_COLOR     = '#00f7ff';
+  const STROKE_COLOR   = 'rgba(0, 247, 255, 0.85)';
+  const LERP_SPEED     = 0.18; // how fast head chases cursor
 
-  // Spine
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(0, -17);
-  creatureCtx.lineTo(0, 30);
-  creatureCtx.stroke();
+  // --- State ---
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-  // Ribs
-  for (let i = 0; i < 4; i++) {
-    creatureCtx.beginPath();
-    creatureCtx.moveTo(0, -10 + i * 10);
-    creatureCtx.bezierCurveTo(-15, -5 + i * 10, -15, 5 + i * 10, 0, 10 + i * 10);
-    creatureCtx.moveTo(0, -10 + i * 10);
-    creatureCtx.bezierCurveTo(15, -5 + i * 10, 15, 5 + i * 10, 0, 10 + i * 10);
-    creatureCtx.stroke();
+  // Segments: index 0 = head, index N-1 = tail
+  const segments = [];
+  for (let i = 0; i < NUM_SEGMENTS; i++) {
+    segments.push({ x: mouseX - i * SEG_LENGTH, y: mouseY });
   }
 
-  // Limbs
-  // Front left
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(-5, 0);
-  creatureCtx.lineTo(-20, 15);
-  creatureCtx.lineTo(-15, 25);
-  creatureCtx.stroke();
+  // Leg phase for walking animation
+  let legPhase = 0;
 
-  // Front right
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(5, 0);
-  creatureCtx.lineTo(20, 15);
-  creatureCtx.lineTo(15, 25);
-  creatureCtx.stroke();
+  // Track cursor
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
-  // Back left
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(-5, 25);
-  creatureCtx.lineTo(-20, 40);
-  creatureCtx.lineTo(-15, 50);
-  creatureCtx.stroke();
+  // --- Helpers ---
+  function lerp(a, b, t) { return a + (b - a) * t; }
 
-  // Back right
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(5, 25);
-  creatureCtx.lineTo(20, 40);
-  creatureCtx.lineTo(15, 50);
-  creatureCtx.stroke();
+  function setGlow(blur) {
+    ctx.shadowBlur  = blur;
+    ctx.shadowColor = GLOW_COLOR;
+    ctx.strokeStyle = STROKE_COLOR;
+    ctx.fillStyle   = STROKE_COLOR;
+  }
 
-  // Tail
-  creatureCtx.beginPath();
-  creatureCtx.moveTo(0, 30);
-  creatureCtx.lineTo(-10, 45);
-  creatureCtx.lineTo(0, 60);
-  creatureCtx.lineTo(10, 75);
-  creatureCtx.stroke();
+  // --- Update: inverse kinematics chain ---
+  function update() {
+    // Head smoothly follows cursor
+    segments[0].x = lerp(segments[0].x, mouseX, LERP_SPEED);
+    segments[0].y = lerp(segments[0].y, mouseY, LERP_SPEED);
 
-  creatureCtx.restore();
-}
+    // Each subsequent segment follows the one ahead
+    for (let i = 1; i < NUM_SEGMENTS; i++) {
+      const prev = segments[i - 1];
+      const curr = segments[i];
+      const dx = curr.x - prev.x;
+      const dy = curr.y - prev.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+      // Constrain to SEG_LENGTH behind the previous segment
+      curr.x = prev.x + (dx / dist) * SEG_LENGTH;
+      curr.y = prev.y + (dy / dist) * SEG_LENGTH;
+    }
 
-function animateCreature() {
-  let dx = targetCreatureX - creatureX;
-  let dy = targetCreatureY - creatureY;
+    legPhase += 0.12;
+  }
 
-  creatureX += dx * 0.1;
-  creatureY += dy * 0.1;
+  // --- Draw ---
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  drawCreature(creatureX, creatureY);
-  requestAnimationFrame(animateCreature);
-}
-animateCreature();
+    ctx.lineCap  = 'round';
+    ctx.lineJoin = 'round';
 
-window.addEventListener(\'resize\', () => {
-  creatureCanvas.width = window.innerWidth;
-  creatureCanvas.height = window.innerHeight;
-});/body>
+    // ---- Draw body spine ----
+    ctx.beginPath();
+    ctx.moveTo(segments[0].x, segments[0].y);
+    for (let i = 1; i < NUM_SEGMENTS; i++) {
+      ctx.lineTo(segments[i].x, segments[i].y);
+    }
+    setGlow(12);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // ---- Draw body segment ellipses ----
+    for (let i = 0; i < NUM_SEGMENTS; i++) {
+      const t = i / (NUM_SEGMENTS - 1);
+      const radius = lerp(BODY_RADIUS_MAX, BODY_RADIUS_MIN, t);
+
+      // Angle of this segment relative to the previous
+      let angle = 0;
+      if (i < NUM_SEGMENTS - 1) {
+        const nx = segments[i + 1].x - segments[i].x;
+        const ny = segments[i + 1].y - segments[i].y;
+        angle = Math.atan2(ny, nx);
+      } else {
+        const nx = segments[i].x - segments[i - 1].x;
+        const ny = segments[i].y - segments[i - 1].y;
+        angle = Math.atan2(ny, nx);
+      }
+
+      ctx.save();
+      ctx.translate(segments[i].x, segments[i].y);
+      ctx.rotate(angle);
+
+      setGlow(8);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      // Slightly wider than tall for a centipede plate look
+      ctx.ellipse(0, 0, radius * 1.4, radius, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Faint fill for body depth
+      ctx.fillStyle = 'rgba(0, 247, 255, 0.06)';
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // ---- Draw legs ----
+    for (let pair = 0; pair < LEG_PAIRS; pair++) {
+      const segIdx = pair + 1; // skip head
+      if (segIdx >= NUM_SEGMENTS) break;
+
+      const seg  = segments[segIdx];
+      const prev = segments[segIdx - 1];
+
+      // Body direction angle
+      const bodyAngle = Math.atan2(seg.y - prev.y, seg.x - prev.x);
+      // Perpendicular
+      const perpAngle = bodyAngle + Math.PI / 2;
+
+      // Alternating walk offset per pair
+      const phase = legPhase + pair * (Math.PI / LEG_PAIRS);
+      const swing = Math.sin(phase) * LEG_SPREAD;
+
+      // Left leg
+      const leftAngle  = perpAngle + swing;
+      const leftTipX   = seg.x + Math.cos(leftAngle)  * LEG_LENGTH;
+      const leftTipY   = seg.y + Math.sin(leftAngle)  * LEG_LENGTH;
+      // Knee (midpoint bent outward)
+      const leftKneeX  = seg.x + Math.cos(leftAngle)  * (LEG_LENGTH * 0.55);
+      const leftKneeY  = seg.y + Math.sin(leftAngle)  * (LEG_LENGTH * 0.55);
+
+      // Right leg
+      const rightAngle = perpAngle + Math.PI + swing;
+      const rightTipX  = seg.x + Math.cos(rightAngle) * LEG_LENGTH;
+      const rightTipY  = seg.y + Math.sin(rightAngle) * LEG_LENGTH;
+      const rightKneeX = seg.x + Math.cos(rightAngle) * (LEG_LENGTH * 0.55);
+      const rightKneeY = seg.y + Math.sin(rightAngle) * (LEG_LENGTH * 0.55);
+
+      setGlow(6);
+      ctx.lineWidth = 1;
+
+      // Left leg: shoulder → knee → tip
+      ctx.beginPath();
+      ctx.moveTo(seg.x, seg.y);
+      ctx.lineTo(leftKneeX, leftKneeY);
+      ctx.lineTo(leftTipX, leftTipY);
+      ctx.stroke();
+
+      // Right leg
+      ctx.beginPath();
+      ctx.moveTo(seg.x, seg.y);
+      ctx.lineTo(rightKneeX, rightKneeY);
+      ctx.lineTo(rightTipX, rightTipY);
+      ctx.stroke();
+
+      // Tiny claw at tip
+      const clawLen = 5;
+      const clawSpread = 0.35;
+
+      // Left claw
+      const leftLegAngle = Math.atan2(leftTipY - leftKneeY, leftTipX - leftKneeX);
+      ctx.beginPath();
+      ctx.moveTo(leftTipX, leftTipY);
+      ctx.lineTo(leftTipX + Math.cos(leftLegAngle + clawSpread) * clawLen,
+                 leftTipY + Math.sin(leftLegAngle + clawSpread) * clawLen);
+      ctx.moveTo(leftTipX, leftTipY);
+      ctx.lineTo(leftTipX + Math.cos(leftLegAngle - clawSpread) * clawLen,
+                 leftTipY + Math.sin(leftLegAngle - clawSpread) * clawLen);
+      ctx.stroke();
+
+      // Right claw
+      const rightLegAngle = Math.atan2(rightTipY - rightKneeY, rightTipX - rightKneeX);
+      ctx.beginPath();
+      ctx.moveTo(rightTipX, rightTipY);
+      ctx.lineTo(rightTipX + Math.cos(rightLegAngle + clawSpread) * clawLen,
+                 rightTipY + Math.sin(rightLegAngle + clawSpread) * clawLen);
+      ctx.moveTo(rightTipX, rightTipY);
+      ctx.lineTo(rightTipX + Math.cos(rightLegAngle - clawSpread) * clawLen,
+                 rightTipY + Math.sin(rightLegAngle - clawSpread) * clawLen);
+      ctx.stroke();
+    }
+
+    // ---- Draw head ----
+    const head = segments[0];
+    const neck = segments[1];
+    const headAngle = Math.atan2(head.y - neck.y, head.x - neck.x);
+
+    // Head circle
+    setGlow(18);
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.arc(head.x, head.y, HEAD_RADIUS, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(0, 247, 255, 0.12)';
+    ctx.fill();
+
+    // Eyes (two small dots)
+    const eyeOffset = HEAD_RADIUS * 0.55;
+    const eyePerp   = headAngle + Math.PI / 2;
+    setGlow(10);
+    ctx.fillStyle = STROKE_COLOR;
+
+    ctx.beginPath();
+    ctx.arc(
+      head.x + Math.cos(headAngle) * (HEAD_RADIUS * 0.4) + Math.cos(eyePerp) * eyeOffset,
+      head.y + Math.sin(headAngle) * (HEAD_RADIUS * 0.4) + Math.sin(eyePerp) * eyeOffset,
+      2, 0, Math.PI * 2
+    );
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(
+      head.x + Math.cos(headAngle) * (HEAD_RADIUS * 0.4) - Math.cos(eyePerp) * eyeOffset,
+      head.y + Math.sin(headAngle) * (HEAD_RADIUS * 0.4) - Math.sin(eyePerp) * eyeOffset,
+      2, 0, Math.PI * 2
+    );
+    ctx.fill();
+
+    // Antennae (two curved lines from head)
+    const antSwing = Math.sin(legPhase * 0.7) * 0.3;
+    const antBase  = HEAD_RADIUS * 0.9;
+
+    setGlow(10);
+    ctx.lineWidth = 1;
+
+    // Left antenna
+    const laAngle = headAngle - 0.45 + antSwing;
+    const laMidX  = head.x + Math.cos(laAngle) * (ANTENNA_LEN * 0.5);
+    const laMidY  = head.y + Math.sin(laAngle) * (ANTENNA_LEN * 0.5);
+    const laTipX  = head.x + Math.cos(laAngle - 0.3) * ANTENNA_LEN;
+    const laTipY  = head.y + Math.sin(laAngle - 0.3) * ANTENNA_LEN;
+    ctx.beginPath();
+    ctx.moveTo(head.x + Math.cos(headAngle) * antBase, head.y + Math.sin(headAngle) * antBase);
+    ctx.quadraticCurveTo(laMidX, laMidY, laTipX, laTipY);
+    ctx.stroke();
+
+    // Right antenna
+    const raAngle = headAngle + 0.45 + antSwing;
+    const raMidX  = head.x + Math.cos(raAngle) * (ANTENNA_LEN * 0.5);
+    const raMidY  = head.y + Math.sin(raAngle) * (ANTENNA_LEN * 0.5);
+    const raTipX  = head.x + Math.cos(raAngle + 0.3) * ANTENNA_LEN;
+    const raTipY  = head.y + Math.sin(raAngle + 0.3) * ANTENNA_LEN;
+    ctx.beginPath();
+    ctx.moveTo(head.x + Math.cos(headAngle) * antBase, head.y + Math.sin(headAngle) * antBase);
+    ctx.quadraticCurveTo(raMidX, raMidY, raTipX, raTipY);
+    ctx.stroke();
+
+    // Antenna tips (small dots)
+    ctx.fillStyle = STROKE_COLOR;
+    setGlow(14);
+    ctx.beginPath();
+    ctx.arc(laTipX, laTipY, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(raTipX, raTipY, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // ---- Draw cursor dot ----
+    ctx.shadowBlur  = 20;
+    ctx.shadowColor = '#00f7ff';
+    ctx.fillStyle   = 'rgba(0, 247, 255, 0.9)';
+    ctx.beginPath();
+    ctx.arc(mouseX, mouseY, 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // --- Main loop ---
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+})();
+</script>
+</body>
 </html>
