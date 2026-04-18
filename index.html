@@ -3,322 +3,1267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsalan | AI Expert</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
+<title>Arsalan | AI Expert & Creative Technologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Inter', sans-serif;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  background:#000;
-  color:#e0e0e0;
-  overflow-x:hidden;
+:root {
+  --cyan: #00f7ff;
+  --blue: #008cff;
+  --magenta: #ff00ff;
+  --bg: #050810;
+  --surface: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(0,247,255,0.2);
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a9bb0;
+  --text-muted: #4a5568;
 }
 
-/* REMOVE CURSOR ONLY ON DESKTOP */
-@media(min-width:901px){
-  body{ cursor:none; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
 }
 
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
+/* Mobile: restore default cursor */
+@media (max-width: 900px) {
+  body { cursor: auto; }
 }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
+canvas#particles {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* HERO */
-header{
-  padding:100px 20px 60px;
-  display:flex;
-  gap:40px;
-  align-items:center;
-  min-height:80vh;
+canvas#creature-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
 }
 
-.hero-left, .hero-right{
-  flex:1;
+/* Hide creature canvas on mobile */
+@media (max-width: 900px) {
+  canvas#creature-canvas { display: none; }
 }
 
-/* CARD STYLE */
-.card{
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  background: rgba(5, 8, 16, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav .nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cyan); }
+
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+}
+
+/* ---- HERO ---- */
+header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .hero-right { order: -1; }
+}
+
+/* Left text content */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--cyan);
+}
+
+.hero-left h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 1.0;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #c8d8f0 60%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title-accent {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 28px;
+  display: block;
+}
+
+.hero-left p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 900px) {
+  .hero-left p { max-width: 100%; }
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero-cta-row { justify-content: center; }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #000;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  cursor: none;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border-accent);
+  color: var(--cyan);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  cursor: none;
+}
+
+.btn-outline:hover {
+  background: rgba(0,247,255,0.06);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .btn-primary, .btn-outline { cursor: auto; }
+}
+
+/* ---- PROFILE CARD ---- */
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  position: relative;
+  width: 340px;
+}
+
+.profile-card-inner {
   background: rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  border-radius:20px;
-  padding:30px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* BIO SPLIT */
-.bio-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
+/* Subtle top accent line */
+.profile-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--blue), transparent);
 }
 
-header h1{
-  font-size:3.5rem;
-  background: linear-gradient(to right, #00f7ff,#008cff,#ff00ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.profile-img-wrap {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0,140,255,0.05) 0%, rgba(0,247,255,0.02) 100%);
 }
 
-header p{
-  line-height:1.7;
-  color:#ccc;
+.profile-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: contrast(1.03) saturate(1.05);
 }
 
-/* IMAGE */
-.hero-img{
-  width:100%;
-  max-width:400px;
-  display:block;
-  margin:auto;
-  animation:float 6s ease-in-out infinite;
+/* Gradient fade at bottom of image */
+.profile-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(8,10,20,0.95));
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-20px);}
+.profile-card-meta {
+  padding: 18px 22px 22px;
+  background: rgba(8,10,20,0.6);
 }
 
-/* SECTIONS */
-section{
-  margin-top:70px;
+.profile-card-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 4px;
 }
 
-h2{
-  text-align:center;
-  color:#00f7ff;
-  margin-bottom:20px;
+.profile-card-title {
+  font-size: 0.8rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
-/* PROJECTS */
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+.profile-stats {
+  display: flex;
+  gap: 20px;
 }
 
-.project{
-  padding:20px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.05);
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.project video{
-  width:100%;
-  border-radius:10px;
-  margin-top:10px;
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
 }
 
-/* CTA BUTTON */
-.cta{
-  text-align:center;
-  margin-top:50px;
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
 }
 
-.cta a{
-  display:inline-block;
-  padding:15px 30px;
-  background:#00ff88;
-  color:#000;
-  font-weight:bold;
-  border-radius:30px;
-  text-decoration:none;
-  box-shadow:0 0 20px #00ff88;
-  transition:0.3s;
+/* Card corner glow */
+.card-glow {
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,140,255,0.12), transparent 70%);
+  top: -60px; right: -60px;
+  pointer-events: none;
 }
 
-.cta a:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 40px #00ff88;
+/* ---- DIVIDER ---- */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  header{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .bio-grid{
-    grid-template-columns:1fr;
-  }
+/* ---- SECTIONS ---- */
+section {
+  padding: 90px 0;
 }
 
-/* CREATURE CANVAS OFF ON MOBILE */
-@media(max-width:900px){
-  #creature-canvas{
-    display:none !important;
-  }
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--cyan);
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
+
+/* ---- TOOLS GRID ---- */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.tool-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: all 0.25s;
+  cursor: default;
+}
+
+.tool-chip:hover {
+  border-color: var(--border-accent);
+  color: var(--cyan);
+  background: rgba(0,247,255,0.04);
+  transform: translateY(-2px);
+}
+
+/* ---- SKILLS ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.skill-card {
+  padding: 20px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.25s;
+}
+
+.skill-card:hover {
+  border-color: var(--border-accent);
+  background: rgba(0,247,255,0.03);
+  transform: translateY(-3px);
+}
+
+.skill-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(0,247,255,0.08);
+  border: 1px solid rgba(0,247,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ---- SERVICES ---- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  padding: 28px 26px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.service-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  background: rgba(0,247,255,0.03);
+}
+
+.service-card:hover::before { opacity: 1; }
+
+.service-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  opacity: 0.6;
+  margin-bottom: 14px;
+}
+
+.service-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.service-desc {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* ---- PORTFOLIO ---- */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.portfolio-card {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.portfolio-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+}
+
+.portfolio-media {
+  position: relative;
+  background: rgba(0,0,0,0.3);
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.portfolio-media video,
+.portfolio-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.portfolio-card:hover .portfolio-media video,
+.portfolio-card:hover .portfolio-media img {
+  transform: scale(1.03);
+}
+
+.portfolio-info {
+  padding: 18px 20px;
+}
+
+.portfolio-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+
+.portfolio-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--cyan);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.portfolio-link:hover { gap: 10px; }
+
+/* ---- CONTACT ---- */
+.contact-section {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.contact-section .section-label { justify-content: center; }
+.contact-section .section-label::after { display: none; }
+.contact-section .section-label::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--cyan);
+}
+
+.contact-section .section-sub { margin-left: auto; margin-right: auto; text-align: center; }
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---- FACP BANNER ---- */
+.facp-banner {
+  margin: 20px 0 60px;
+  padding: 36px 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,140,255,0.08) 0%, rgba(0,247,255,0.04) 50%, rgba(255,0,255,0.04) 100%);
+  border: 1px solid rgba(0,247,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.facp-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.facp-text p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+.btn-facp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  cursor: none;
+  box-shadow: 0 0 30px rgba(0,247,255,0.15);
+}
+
+.btn-facp:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(0,247,255,0.25);
+}
+
+@media (max-width: 700px) {
+  .btn-facp { cursor: auto; }
+  .facp-banner { text-align: center; justify-content: center; padding: 28px 24px; }
+}
+
+/* ---- FOOTER ---- */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---- FADE IN ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
 </head>
-
 <body>
 
 <canvas id="particles"></canvas>
 <canvas id="creature-canvas"></canvas>
 
-<div class="container">
-
-<header>
-  <div class="hero-left">
-
-    <div class="card">
-      <h1>Arsalan</h1>
-    </div>
-
-    <div class="bio-grid">
-      <div class="card">
-        <p>
-          AI Expert focused on building high-impact content using advanced tools and automation systems.
-        </p>
-      </div>
-
-      <div class="card">
-        <p>
-          I create AI videos, product visuals, and automated content pipelines that help brands scale faster.
-        </p>
-      </div>
-    </div>
-
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Arsalan</a>
+    <ul class="nav-links">
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
+</nav>
 
-  <div class="hero-right">
-    <img src="hero-image.png" class="hero-img">
+<!-- HERO -->
+<header>
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="hero-left reveal">
+        <div class="hero-eyebrow">AI Expert & Creative Technologist</div>
+        <h1>Arsalan</h1>
+        <span class="hero-title-accent">Shaping the Future with AI</span>
+        <p>
+          I build intelligent, high-impact solutions at the intersection of AI and creative production — from AI-powered video and generative content to product photography and interactive web experiences. Trusted by global companies to deliver results that push the limits of what AI can create.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#portfolio" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            View Portfolio
+          </a>
+          <a href="#contact" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="profile-card">
+          <div class="card-glow"></div>
+          <div class="profile-card-inner">
+            <div class="profile-img-wrap">
+              <img src="hero-image.png" alt="Arsalan — AI Expert">
+            </div>
+            <div class="profile-card-meta">
+              <div class="profile-card-name">Arsalan</div>
+              <div class="profile-card-title">AI Expert & Creative Technologist</div>
+              <div class="profile-stats">
+                <div class="stat">
+                  <span class="stat-num">50+</span>
+                  <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">Global</span>
+                  <span class="stat-label">Client Reach</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">10+</span>
+                  <span class="stat-label">AI Tools Mastered</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </header>
 
-<section>
-  <h2>Portfolio</h2>
+<hr class="section-divider">
 
-  <div class="projects">
-
-    <div class="project">
-      <h3>AI Video 1</h3>
-      <video controls>
-        <source src="video1.mp4">
-      </video>
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">AI Tools & Models</h2>
+      <p class="section-sub">A curated selection of the most powerful AI platforms I work with to deliver cutting-edge results.</p>
     </div>
-
-    <div class="project">
-      <h3>AI Video 2</h3>
-      <video controls>
-        <source src="video2.mp4">
-      </video>
+    <div class="tools-grid reveal">
+      <div class="tool-chip">ChatGPT / LLMs</div>
+      <div class="tool-chip">Runway ML</div>
+      <div class="tool-chip">MidJourney</div>
+      <div class="tool-chip">DALL·E 3</div>
+      <div class="tool-chip">Stable Diffusion</div>
+      <div class="tool-chip">Synthesia</div>
+      <div class="tool-chip">Pika Labs</div>
+      <div class="tool-chip">Hugging Face</div>
+      <div class="tool-chip">AI Video Editing</div>
+      <div class="tool-chip">AI Design Tools</div>
     </div>
-
-    <div class="project">
-      <h3>Photos 1</h3>
-      <video autoplay loop muted>
-        <source src="slideshow1.mp4">
-      </video>
-    </div>
-
-    <div class="project">
-      <h3>Photos 2</h3>
-      <video autoplay loop muted>
-        <source src="slideshow2.mp4">
-      </video>
-    </div>
-
   </div>
-
-  <!-- CTA BUTTON -->
-  <div class="cta">
-    <a href="facp.html">Get FACP Assistant</a>
-  </div>
-
 </section>
 
-<footer style="text-align:center;margin:60px 0;color:#777;">
-  © 2026 Arsalan
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">AI Skill Set</h2>
+      <p class="section-sub">End-to-end AI capabilities across video, visuals, web, and mobile.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-icon">🎬</div>
+        <div class="skill-name">AI Video Creation</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📸</div>
+        <div class="skill-name">AI Photography</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📦</div>
+        <div class="skill-name">Product Photography</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">AI Graphics Design</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">AI Web Solutions</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💼</div>
+        <div class="skill-name">Portfolio Websites</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Android / iOS with AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">What I Offer</div>
+      <h2 class="section-title">AI Capabilities & Services</h2>
+      <p class="section-sub">Comprehensive AI-powered services tailored for modern brands and businesses.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">AI Video Production</div>
+        <p class="service-desc">Professional AI-generated videos for marketing, social media, and brand storytelling that captivate audiences.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Generative AI Art & Graphics</div>
+        <p class="service-desc">Stunning AI-generated imagery, illustrations, and product visuals crafted with precision and creative vision.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">AI Automation</div>
+        <p class="service-desc">Intelligent chatbots, workflow automation, and virtual assistants that streamline operations and scale businesses.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">AI Content Creation</div>
+        <p class="service-desc">Scripts, blogs, marketing copy, and social content generated and refined with state-of-the-art AI models.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-title">AI Web Solutions</div>
+        <p class="service-desc">AI-integrated websites and applications that deliver modern, interactive, and intelligent user experiences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-sub">A showcase of AI-driven projects delivered for clients worldwide.</p>
+    </div>
+    <div class="portfolio-grid reveal">
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video controls width="100%">
+            <source src="video1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Video</div>
+          <div class="portfolio-title">AI Video Project 1</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video controls width="100%">
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Video</div>
+          <div class="portfolio-title">AI Video Project 2</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video autoplay loop muted playsinline width="100%">
+            <source src="slideshow1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Photography</div>
+          <div class="portfolio-title">Photos Project 1</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video autoplay loop muted playsinline width="100%">
+            <source src="slideshow2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Photography</div>
+          <div class="portfolio-title">Photos Project 2</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-info" style="padding: 24px;">
+          <div class="portfolio-tag">Web Project</div>
+          <div class="portfolio-title">Time Stamp Changer</div>
+          <a href="https://timestampchanger.netlify.app/" target="_blank" class="portfolio-link">
+            Visit Live Project
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Ready to bring your next AI project to life? Reach out and let's build something extraordinary together.</p>
+      <div class="contact-buttons">
+        <a href="mailto:arslankhan807567@gmail.com" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email Me
+        </a>
+        <a href="https://wa.me/qr/3GD3KSLD77LKK1" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.05.547 4.063 1.588 5.814L.461 23.016l6.552-1.746C10.063 23.201 11.001 23.5 12 23.5c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.5c-.85 0-1.677-.18-2.447-.525l-.175-.09-1.814.483.517-1.883-.116-.186C2.097 17.145 1.5 14.66 1.5 12c0-5.799 4.701-10.5 10.5-10.5s10.5 4.701 10.5 10.5-4.701 10.5-10.5 10.5z"/><path d="M17.415 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- FACP Banner -->
+    <div class="facp-banner reveal" style="margin-top: 60px;">
+      <div class="facp-text">
+        <h3>FACP Assistant App</h3>
+        <p>Experience the next generation of AI-powered assistance. Built to streamline your workflow and amplify your creative output.</p>
+      </div>
+      <a href="facp.html" class="btn-facp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        Get FACP Assistant App
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist &bull; All rights reserved.</p>
+  </div>
 </footer>
 
-</div>
-
 <script>
-// PARTICLES
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
+// =============================================
+// BACKGROUND PARTICLES
+// =============================================
+const bgCanvas = document.getElementById('particles');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+const particleColors = ['#00f7ff','#008cff','#ff00ff'];
 const particles = [];
-
-for(let i=0;i<60;i++){
+for (let i = 0; i < 80; i++) {
   particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    dx:(Math.random()-0.5),
-    dy:(Math.random()-0.5)
+    x: Math.random() * bgCanvas.width,
+    y: Math.random() * bgCanvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.6,
+    dy: (Math.random() - 0.5) * 0.6,
+    color: particleColors[Math.floor(Math.random() * particleColors.length)]
   });
 }
 
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,Math.PI*2);
-    ctx.fillStyle="#00f7ff";
-    ctx.fill();
-
-    p.x+=p.dx;
-    p.y+=p.dy;
-
-    if(p.x<0||p.x>canvas.width) p.dx*=-1;
-    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+function animateBg() {
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+  particles.forEach((p, i) => {
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    bgCtx.fillStyle = p.color;
+    bgCtx.globalAlpha = 0.6;
+    bgCtx.fill();
+    bgCtx.globalAlpha = 1;
+    for (let j = i + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 130) {
+        bgCtx.beginPath();
+        bgCtx.moveTo(p.x, p.y);
+        bgCtx.lineTo(p2.x, p2.y);
+        bgCtx.strokeStyle = `rgba(0,247,255,${(1 - dist / 130) * 0.25})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.stroke();
+      }
+    }
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0 || p.x > bgCanvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > bgCanvas.height) p.dy *= -1;
   });
-
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateBg);
 }
+animateBg();
 
-animate();
+window.addEventListener('resize', () => {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+});
 
-// CREATURE ONLY DESKTOP
-if(window.innerWidth > 900){
-  const c = document.getElementById('creature-canvas');
-  const cx = c.getContext('2d');
+// =============================================
+// REVEAL ON SCROLL
+// =============================================
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
 
-  c.width = window.innerWidth;
-  c.height = window.innerHeight;
+// =============================================
+// CENTIPEDE CREATURE CURSOR FOLLOWER (desktop only)
+// =============================================
+(function() {
+  if (window.innerWidth <= 900) return;
 
-  let mx = window.innerWidth/2;
-  let my = window.innerHeight/2;
+  const canvas = document.getElementById('creature-canvas');
+  const ctx = canvas.getContext('2d');
 
-  window.addEventListener('mousemove',e=>{
-    mx=e.clientX;
-    my=e.clientY;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900) { canvas.style.display = 'none'; return; }
+    canvas.style.display = 'block';
+    resize();
   });
 
-  function draw(){
-    cx.clearRect(0,0,c.width,c.height);
-    cx.beginPath();
-    cx.arc(mx,my,5,0,Math.PI*2);
-    cx.fillStyle="#00f7ff";
-    cx.fill();
-    requestAnimationFrame(draw);
+  const NUM_SEGMENTS = 18;
+  const SEG_LENGTH = 14;
+  const HEAD_RADIUS = 7;
+  const BODY_RADIUS_MAX = 6;
+  const BODY_RADIUS_MIN = 2;
+  const LEG_PAIRS = 8;
+  const LEG_LENGTH = 22;
+  const LEG_SPREAD = 0.55;
+  const ANTENNA_LEN = 18;
+  const GLOW_COLOR = '#00f7ff';
+  const STROKE_COLOR = 'rgba(0, 247, 255, 0.85)';
+  const LERP_SPEED = 0.18;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  const segments = [];
+  for (let i = 0; i < NUM_SEGMENTS; i++) {
+    segments.push({ x: mouseX - i * SEG_LENGTH, y: mouseY });
   }
 
-  draw();
-}
-</script>
+  let legPhase = 0;
 
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function setGlow(blur) {
+    ctx.shadowBlur = blur;
+    ctx.shadowColor = GLOW_COLOR;
+    ctx.strokeStyle = STROKE_COLOR;
+    ctx.fillStyle = STROKE_COLOR;
+  }
+
+  function update() {
+    segments[0].x = lerp(segments[0].x, mouseX, LERP_SPEED);
+    segments[0].y = lerp(segments[0].y, mouseY, LERP_SPEED);
+    for (let i = 1; i < NUM_SEGMENTS; i++) {
+      const prev = segments[i - 1];
+      const curr = segments[i];
+      const dx = curr.x - prev.x;
+      const dy = curr.y - prev.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+      curr.x = prev.x + (dx / dist) * SEG_LENGTH;
+      curr.y = prev.y + (dy / dist) * SEG_LENGTH;
+    }
+    legPhase += 0.12;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    ctx.beginPath();
+    ctx.moveTo(segments[0].x, segments[0].y);
+    for (let i = 1; i < NUM_SEGMENTS; i++) ctx.lineTo(segments[i].x, segments[i].y);
+    setGlow(12);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    for (let i = 0; i < NUM_SEGMENTS; i++) {
+      const t = i / (NUM_SEGMENTS - 1);
+      const radius = lerp(BODY_RADIUS_MAX, BODY_RADIUS_MIN, t);
+      let angle = 0;
+      if (i < NUM_SEGMENTS - 1) {
+        angle = Math.atan2(segments[i+1].y - segments[i].y, segments[i+1].x - segments[i].x);
+      } else {
+        angle = Math.atan2(segments[i].y - segments[i-1].y, segments[i].x - segments[i-1].x);
+      }
+      ctx.save();
+      ctx.translate(segments[i].x, segments[i].y);
+      ctx.rotate(angle);
+      setGlow(8); ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, radius * 1.4, radius, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(0, 247, 255, 0.06)';
+      ctx.fill();
+      ctx.restore();
+    }
+
+    for (let pair = 0; pair < LEG_PAIRS; pair++) {
+      const segIdx = pair + 1;
+      if (segIdx >= NUM_SEGMENTS) break;
+      const seg = segments[segIdx];
+      const prev = segments[segIdx - 1];
+      const bodyAngle = Math.atan2(seg.y - prev.y, seg.x - prev.x);
+      const perpAngle = bodyAngle + Math.PI / 2;
+      const phase = legPhase + pair * (Math.PI / LEG_PAIRS);
+      const swing = Math.sin(phase) * LEG_SPREAD;
+
+      const leftAngle = perpAngle + swing;
+      const leftTipX = seg.x + Math.cos(leftAngle) * LEG_LENGTH;
+      const leftTipY = seg.y + Math.sin(leftAngle) * LEG_LENGTH;
+      const leftKneeX = seg.x + Math.cos(leftAngle) * (LEG_LENGTH * 0.55);
+      const leftKneeY = seg.y + Math.sin(leftAngle) * (LEG_LENGTH * 0.55);
+      const rightAngle = perpAngle + Math.PI + swing;
+      const rightTipX = seg.x + Math.cos(rightAngle) * LEG_LENGTH;
+      const rightTipY = seg.y + Math.sin(rightAngle) * LEG_LENGTH;
+      const rightKneeX = seg.x + Math.cos(rightAngle) * (LEG_LENGTH * 0.55);
+      const rightKneeY = seg.y + Math.sin(rightAngle) * (LEG_LENGTH * 0.55);
+
+      setGlow(6); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(seg.x, seg.y); ctx.lineTo(leftKneeX, leftKneeY); ctx.lineTo(leftTipX, leftTipY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(seg.x, seg.y); ctx.lineTo(rightKneeX, rightKneeY); ctx.lineTo(rightTipX, rightTipY); ctx.stroke();
+
+      const clawLen = 5; const clawSpread = 0.35;
+      const leftLegAngle = Math.atan2(leftTipY - leftKneeY, leftTipX - leftKneeX);
+      ctx.beginPath();
+      ctx.moveTo(leftTipX, leftTipY); ctx.lineTo(leftTipX + Math.cos(leftLegAngle + clawSpread) * clawLen, leftTipY + Math.sin(leftLegAngle + clawSpread) * clawLen);
+      ctx.moveTo(leftTipX, leftTipY); ctx.lineTo(leftTipX + Math.cos(leftLegAngle - clawSpread) * clawLen, leftTipY + Math.sin(leftLegAngle - clawSpread) * clawLen);
+      ctx.stroke();
+      const rightLegAngle = Math.atan2(rightTipY - rightKneeY, rightTipX - rightKneeX);
+      ctx.beginPath();
+      ctx.moveTo(rightTipX, rightTipY); ctx.lineTo(rightTipX + Math.cos(rightLegAngle + clawSpread) * clawLen, rightTipY + Math.sin(rightLegAngle + clawSpread) * clawLen);
+      ctx.moveTo(rightTipX, rightTipY); ctx.lineTo(rightTipX + Math.cos(rightLegAngle - clawSpread) * clawLen, rightTipY + Math.sin(rightLegAngle - clawSpread) * clawLen);
+      ctx.stroke();
+    }
+
+    const head = segments[0];
+    const neck = segments[1];
+    const headAngle = Math.atan2(head.y - neck.y, head.x - neck.x);
+    setGlow(18); ctx.lineWidth = 1.8;
+    ctx.beginPath(); ctx.arc(head.x, head.y, HEAD_RADIUS, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = 'rgba(0, 247, 255, 0.12)'; ctx.fill();
+
+    const eyeOffset = HEAD_RADIUS * 0.55;
+    const eyePerp = headAngle + Math.PI / 2;
+    setGlow(10); ctx.fillStyle = STROKE_COLOR;
+    ctx.beginPath(); ctx.arc(head.x + Math.cos(headAngle)*(HEAD_RADIUS*0.4)+Math.cos(eyePerp)*eyeOffset, head.y + Math.sin(headAngle)*(HEAD_RADIUS*0.4)+Math.sin(eyePerp)*eyeOffset, 2, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(head.x + Math.cos(headAngle)*(HEAD_RADIUS*0.4)-Math.cos(eyePerp)*eyeOffset, head.y + Math.sin(headAngle)*(HEAD_RADIUS*0.4)-Math.sin(eyePerp)*eyeOffset, 2, 0, Math.PI*2); ctx.fill();
+
+    const antSwing = Math.sin(legPhase * 0.7) * 0.3;
+    const antBase = HEAD_RADIUS * 0.9;
+    setGlow(10); ctx.lineWidth = 1;
+    const laAngle = headAngle - 0.45 + antSwing;
+    const laMidX = head.x + Math.cos(laAngle)*(ANTENNA_LEN*0.5); const laMidY = head.y + Math.sin(laAngle)*(ANTENNA_LEN*0.5);
+    const laTipX = head.x + Math.cos(laAngle-0.3)*ANTENNA_LEN; const laTipY = head.y + Math.sin(laAngle-0.3)*ANTENNA_LEN;
+    ctx.beginPath(); ctx.moveTo(head.x+Math.cos(headAngle)*antBase, head.y+Math.sin(headAngle)*antBase); ctx.quadraticCurveTo(laMidX, laMidY, laTipX, laTipY); ctx.stroke();
+    const raAngle = headAngle + 0.45 + antSwing;
+    const raMidX = head.x + Math.cos(raAngle)*(ANTENNA_LEN*0.5); const raMidY = head.y + Math.sin(raAngle)*(ANTENNA_LEN*0.5);
+    const raTipX = head.x + Math.cos(raAngle+0.3)*ANTENNA_LEN; const raTipY = head.y + Math.sin(raAngle+0.3)*ANTENNA_LEN;
+    ctx.beginPath(); ctx.moveTo(head.x+Math.cos(headAngle)*antBase, head.y+Math.sin(headAngle)*antBase); ctx.quadraticCurveTo(raMidX, raMidY, raTipX, raTipY); ctx.stroke();
+
+    ctx.fillStyle = STROKE_COLOR; setGlow(14);
+    ctx.beginPath(); ctx.arc(laTipX, laTipY, 2.5, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(raTipX, raTipY, 2.5, 0, Math.PI*2); ctx.fill();
+
+    ctx.shadowBlur = 20; ctx.shadowColor = '#00f7ff';
+    ctx.fillStyle = 'rgba(0, 247, 255, 0.9)';
+    ctx.beginPath(); ctx.arc(mouseX, mouseY, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  function loop() { update(); draw(); requestAnimationFrame(loop); }
+  loop();
+})();
+</script>
 </body>
 </html>
