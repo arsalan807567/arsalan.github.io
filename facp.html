@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FACP Assistant App | Download</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cyan: #00f7ff;
+  --blue: #008cff;
+  --magenta: #ff00ff;
+  --bg: #050810;
+  --surface: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(0,247,255,0.2);
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a9bb0;
+  --text-muted: #4a5568;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  min-height: 100vh;
+  cursor: none;
+}
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+}
+
+canvas#particles {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+canvas#creature-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@media (max-width: 900px) {
+  canvas#creature-canvas { display: none; }
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  background: rgba(5, 8, 16, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .nav-inner { padding: 0 18px; }
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: none;
+}
+
+.nav-back:hover { color: var(--cyan); }
+
+@media (max-width: 900px) {
+  .nav-back { cursor: auto; }
+}
+
+.nav-back svg {
+  transition: transform 0.2s;
+}
+.nav-back:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ---- MAIN LAYOUT ---- */
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 18px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- BREADCRUMB ---- */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 50px;
+  letter-spacing: 0.05em;
+}
+
+.breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover { color: var(--cyan); }
+
+.breadcrumb span { color: var(--text-muted); }
+
+/* ---- HERO CARD ---- */
+.app-card {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top accent line */
+.app-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--blue), var(--magenta), transparent);
+}
+
+.app-card-header {
+  padding: 44px 44px 36px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .app-card-header { padding: 32px 24px 28px; }
+}
+
+/* App icon */
+.app-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(0,140,255,0.15), rgba(0,247,255,0.08));
+  border: 1px solid rgba(0,247,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+.app-icon::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 23px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue), var(--magenta));
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.app-icon svg {
+  width: 42px;
+  height: 42px;
+  color: var(--cyan);
+}
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0,247,255,0.08);
+  border: 1px solid rgba(0,247,255,0.2);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 18px;
+}
+
+.app-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.app-card-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.15;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #c8d8f0 60%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-card-header p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* ---- FEATURES ROW ---- */
+.features-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 500px) {
+  .features-row { grid-template-columns: 1fr; }
+}
+
+.feature-item {
+  padding: 22px 20px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+
+.feature-item:last-child { border-right: none; }
+
+@media (max-width: 500px) {
+  .feature-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-item:last-child { border-bottom: none; }
+}
+
+.feature-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.feature-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ---- DOWNLOAD SECTION ---- */
+.app-card-footer {
+  padding: 36px 44px 40px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .app-card-footer { padding: 28px 24px 32px; }
+}
+
+.version-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.version-tag {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.version-tag strong {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.version-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+/* THE DOWNLOAD BUTTON */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  cursor: none;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 40px rgba(0,247,255,0.2);
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-download::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-20deg);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  60%, 100% { left: 150%; }
+}
+
+.btn-download:hover {
+  opacity: 0.92;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 50px rgba(0,247,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .btn-download { cursor: auto; }
+}
+
+.btn-download svg {
+  flex-shrink: 0;
+}
+
+.download-note {
+  margin-top: 14px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* ---- BACK HOME STRIP ---- */
+.home-strip {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.home-strip p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.btn-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border-radius: 6px;
+  border: 1px solid var(--border-accent);
+  color: var(--cyan);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  cursor: none;
+}
+
+.btn-home:hover {
+  background: rgba(0,247,255,0.06);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .btn-home { cursor: auto; }
+}
+
+/* ---- FOOTER ---- */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 24px 18px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ---- REVEAL ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Portfolio
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="page-wrap">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb reveal">
+    <a href="index.html">Home</a>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    <span>FACP Assistant App</span>
+  </div>
+
+  <!-- App Card -->
+  <div class="app-card reveal">
+
+    <div class="app-card-header">
+      <!-- App Icon -->
+      <div class="app-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <path d="M9 7h6M9 11h6M9 15h4"/>
+          <circle cx="17" cy="17" r="4" fill="rgba(0,247,255,0.15)" stroke="currentColor"/>
+          <path d="M15.5 17l1 1 2-2"/>
+        </svg>
+      </div>
+
+      <div class="app-badge">
+        <span class="app-badge-dot"></span>
+        Latest Version Available
+      </div>
+
+      <h1>Download Updated Version of<br>FACP Assistant App</h1>
+      <p>The most powerful AI assistant built for you. Get the latest version with new features, improvements, and enhanced performance.</p>
+    </div>
+
+    <!-- Features -->
+    <div class="features-row">
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-label">Fast &amp; Lightweight</div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🤖</span>
+        <div class="feature-label">AI-Powered</div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔒</span>
+        <div class="feature-label">Secure &amp; Private</div>
+      </div>
+    </div>
+
+    <!-- Download -->
+    <div class="app-card-footer">
+      <div class="version-info">
+        <span class="version-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Platform: <strong>Android</strong>
+        </span>
+        <span class="version-dot"></span>
+        <span class="version-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Format: <strong>APK</strong>
+        </span>
+        <span class="version-dot"></span>
+        <span class="version-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Always Latest
+        </span>
+      </div>
+
+      <a href="Latest FACP Assistant.apk" download class="btn-download">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download FACP Assistant
+      </a>
+
+      <div class="download-note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Enable "Install from unknown sources" on Android to install
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Back Home -->
+  <div class="home-strip reveal">
+    <p>Looking for more AI work and services?</p>
+    <a href="index.html" class="btn-home">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Visit Full Portfolio
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist</p>
+</footer>
+
+<script>
+// =============================================
+// BACKGROUND PARTICLES
+// =============================================
+const bgCanvas = document.getElementById('particles');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+
+const particleColors = ['#00f7ff','#008cff','#ff00ff'];
+const particles = [];
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * bgCanvas.width,
+    y: Math.random() * bgCanvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.6,
+    dy: (Math.random() - 0.5) * 0.6,
+    color: particleColors[Math.floor(Math.random() * particleColors.length)]
+  });
+}
+
+function animateBg() {
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+  particles.forEach((p, i) => {
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    bgCtx.fillStyle = p.color;
+    bgCtx.globalAlpha = 0.6;
+    bgCtx.fill();
+    bgCtx.globalAlpha = 1;
+    for (let j = i + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 130) {
+        bgCtx.beginPath();
+        bgCtx.moveTo(p.x, p.y);
+        bgCtx.lineTo(p2.x, p2.y);
+        bgCtx.strokeStyle = `rgba(0,247,255,${(1 - dist / 130) * 0.25})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.stroke();
+      }
+    }
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0 || p.x > bgCanvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > bgCanvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateBg);
+}
+animateBg();
+
+window.addEventListener('resize', () => {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+});
+
+// =============================================
+// REVEAL ON SCROLL
+// =============================================
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// =============================================
+// CENTIPEDE CURSOR (desktop only)
+// =============================================
+(function() {
+  if (window.innerWidth <= 900) return;
+  const canvas = document.getElementById('creature-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900) { canvas.style.display = 'none'; return; }
+    canvas.style.display = 'block'; resize();
+  });
+  const NUM_SEGMENTS=18,SEG_LENGTH=14,HEAD_RADIUS=7,BODY_RADIUS_MAX=6,BODY_RADIUS_MIN=2,LEG_PAIRS=8,LEG_LENGTH=22,LEG_SPREAD=0.55,ANTENNA_LEN=18,GLOW_COLOR='#00f7ff',STROKE_COLOR='rgba(0,247,255,0.85)',LERP_SPEED=0.18;
+  let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2;
+  const segments=[];
+  for(let i=0;i<NUM_SEGMENTS;i++) segments.push({x:mouseX-i*SEG_LENGTH,y:mouseY});
+  let legPhase=0;
+  window.addEventListener('mousemove',(e)=>{mouseX=e.clientX;mouseY=e.clientY;});
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function setGlow(blur){ctx.shadowBlur=blur;ctx.shadowColor=GLOW_COLOR;ctx.strokeStyle=STROKE_COLOR;ctx.fillStyle=STROKE_COLOR;}
+  function update(){
+    segments[0].x=lerp(segments[0].x,mouseX,LERP_SPEED);
+    segments[0].y=lerp(segments[0].y,mouseY,LERP_SPEED);
+    for(let i=1;i<NUM_SEGMENTS;i++){
+      const prev=segments[i-1],curr=segments[i];
+      const dx=curr.x-prev.x,dy=curr.y-prev.y;
+      const dist=Math.sqrt(dx*dx+dy*dy)||0.001;
+      curr.x=prev.x+(dx/dist)*SEG_LENGTH;
+      curr.y=prev.y+(dy/dist)*SEG_LENGTH;
+    }
+    legPhase+=0.12;
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(segments[0].x,segments[0].y);
+    for(let i=1;i<NUM_SEGMENTS;i++) ctx.lineTo(segments[i].x,segments[i].y);
+    setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
+    for(let i=0;i<NUM_SEGMENTS;i++){
+      const t=i/(NUM_SEGMENTS-1),radius=lerp(BODY_RADIUS_MAX,BODY_RADIUS_MIN,t);
+      let angle=i<NUM_SEGMENTS-1?Math.atan2(segments[i+1].y-segments[i].y,segments[i+1].x-segments[i].x):Math.atan2(segments[i].y-segments[i-1].y,segments[i].x-segments[i-1].x);
+      ctx.save();ctx.translate(segments[i].x,segments[i].y);ctx.rotate(angle);
+      setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,radius*1.4,radius,0,0,Math.PI*2);ctx.stroke();
+      ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();
+    }
+    for(let pair=0;pair<LEG_PAIRS;pair++){
+      const segIdx=pair+1;if(segIdx>=NUM_SEGMENTS)break;
+      const seg=segments[segIdx],prev=segments[segIdx-1];
+      const bodyAngle=Math.atan2(seg.y-prev.y,seg.x-prev.x),perpAngle=bodyAngle+Math.PI/2;
+      const phase=legPhase+pair*(Math.PI/LEG_PAIRS),swing=Math.sin(phase)*LEG_SPREAD;
+      const lA=perpAngle+swing,lTX=seg.x+Math.cos(lA)*LEG_LENGTH,lTY=seg.y+Math.sin(lA)*LEG_LENGTH,lKX=seg.x+Math.cos(lA)*(LEG_LENGTH*0.55),lKY=seg.y+Math.sin(lA)*(LEG_LENGTH*0.55);
+      const rA=perpAngle+Math.PI+swing,rTX=seg.x+Math.cos(rA)*LEG_LENGTH,rTY=seg.y+Math.sin(rA)*LEG_LENGTH,rKX=seg.x+Math.cos(rA)*(LEG_LENGTH*0.55),rKY=seg.y+Math.sin(rA)*(LEG_LENGTH*0.55);
+      setGlow(6);ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lKX,lKY);ctx.lineTo(lTX,lTY);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rKX,rKY);ctx.lineTo(rTX,rTY);ctx.stroke();
+      const cL=5,cS=0.35;
+      const lLA=Math.atan2(lTY-lKY,lTX-lKX);
+      ctx.beginPath();ctx.moveTo(lTX,lTY);ctx.lineTo(lTX+Math.cos(lLA+cS)*cL,lTY+Math.sin(lLA+cS)*cL);ctx.moveTo(lTX,lTY);ctx.lineTo(lTX+Math.cos(lLA-cS)*cL,lTY+Math.sin(lLA-cS)*cL);ctx.stroke();
+      const rLA=Math.atan2(rTY-rKY,rTX-rKX);
+      ctx.beginPath();ctx.moveTo(rTX,rTY);ctx.lineTo(rTX+Math.cos(rLA+cS)*cL,rTY+Math.sin(rLA+cS)*cL);ctx.moveTo(rTX,rTY);ctx.lineTo(rTX+Math.cos(rLA-cS)*cL,rTY+Math.sin(rLA-cS)*cL);ctx.stroke();
+    }
+    const head=segments[0],neck=segments[1],headAngle=Math.atan2(head.y-neck.y,head.x-neck.x);
+    setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(head.x,head.y,HEAD_RADIUS,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();
+    const eyeOffset=HEAD_RADIUS*0.55,eyePerp=headAngle+Math.PI/2;
+    setGlow(10);ctx.fillStyle=STROKE_COLOR;
+    ctx.beginPath();ctx.arc(head.x+Math.cos(headAngle)*(HEAD_RADIUS*0.4)+Math.cos(eyePerp)*eyeOffset,head.y+Math.sin(headAngle)*(HEAD_RADIUS*0.4)+Math.sin(eyePerp)*eyeOffset,2,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(head.x+Math.cos(headAngle)*(HEAD_RADIUS*0.4)-Math.cos(eyePerp)*eyeOffset,head.y+Math.sin(headAngle)*(HEAD_RADIUS*0.4)-Math.sin(eyePerp)*eyeOffset,2,0,Math.PI*2);ctx.fill();
+    const antSwing=Math.sin(legPhase*0.7)*0.3,antBase=HEAD_RADIUS*0.9;
+    setGlow(10);ctx.lineWidth=1;
+    const laA=headAngle-0.45+antSwing,laMX=head.x+Math.cos(laA)*(ANTENNA_LEN*0.5),laMY=head.y+Math.sin(laA)*(ANTENNA_LEN*0.5),laTX=head.x+Math.cos(laA-0.3)*ANTENNA_LEN,laTY=head.y+Math.sin(laA-0.3)*ANTENNA_LEN;
+    ctx.beginPath();ctx.moveTo(head.x+Math.cos(headAngle)*antBase,head.y+Math.sin(headAngle)*antBase);ctx.quadraticCurveTo(laMX,laMY,laTX,laTY);ctx.stroke();
+    const raA=headAngle+0.45+antSwing,raMX=head.x+Math.cos(raA)*(ANTENNA_LEN*0.5),raMY=head.y+Math.sin(raA)*(ANTENNA_LEN*0.5),raTX=head.x+Math.cos(raA+0.3)*ANTENNA_LEN,raTY=head.y+Math.sin(raA+0.3)*ANTENNA_LEN;
+    ctx.beginPath();ctx.moveTo(head.x+Math.cos(headAngle)*antBase,head.y+Math.sin(headAngle)*antBase);ctx.quadraticCurveTo(raMX,raMY,raTX,raTY);ctx.stroke();
+    ctx.fillStyle=STROKE_COLOR;setGlow(14);
+    ctx.beginPath();ctx.arc(laTX,laTY,2.5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(raTX,raTY,2.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';
+    ctx.beginPath();ctx.arc(mouseX,mouseY,4,0,Math.PI*2);ctx.fill();
+  }
+  function loop(){update();draw();requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>
