@@ -66,6 +66,11 @@ canvas#creature-canvas {
   padding: 0 32px;
   position: relative;
   z-index: 1;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 18px; }
 }
 
 /* ---- NAV ---- */
@@ -373,8 +378,9 @@ section {
 }
 
 .section-label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-size: 0.7rem;
   font-weight: 500;
@@ -382,6 +388,13 @@ section {
   text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--cyan);
 }
 
 .section-label::after {
@@ -398,6 +411,7 @@ section {
   color: #fff;
   margin-bottom: 8px;
   line-height: 1.15;
+  text-align: center;
 }
 
 .section-sub {
@@ -406,6 +420,9 @@ section {
   max-width: 520px;
   line-height: 1.8;
   margin-bottom: 50px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---- TOOLS GRID ---- */
@@ -614,15 +631,6 @@ section {
 .contact-section {
   text-align: center;
   padding-bottom: 40px;
-}
-
-.contact-section .section-label { justify-content: center; }
-.contact-section .section-label::after { display: none; }
-.contact-section .section-label::before {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: var(--cyan);
 }
 
 .contact-section .section-sub { margin-left: auto; margin-right: auto; text-align: center; }
