@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arsalan | AI Expert & Creative Technologist</title>
+<link rel="icon" type="image/png" href="hero-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after {
@@ -36,7 +37,6 @@ body {
   cursor: none;
 }
 
-/* Mobile: restore default cursor */
 @media (max-width: 900px) {
   body { cursor: auto; }
 }
@@ -55,7 +55,6 @@ canvas#creature-canvas {
   z-index: 9999;
 }
 
-/* Hide creature canvas on mobile */
 @media (max-width: 900px) {
   canvas#creature-canvas { display: none; }
 }
@@ -105,8 +104,9 @@ nav .nav-inner {
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 28px;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links a {
@@ -121,7 +121,28 @@ nav .nav-inner {
 
 .nav-links a:hover { color: var(--cyan); }
 
-@media (max-width: 700px) {
+/* Special highlight for Free AI Services link */
+.nav-links .nav-free-ai {
+  color: var(--cyan);
+  font-weight: 500;
+  position: relative;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,247,255,0.3);
+  border-radius: 20px;
+  background: rgba(0,247,255,0.05);
+  transition: all 0.25s;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.nav-links .nav-free-ai:hover {
+  background: rgba(0,247,255,0.12);
+  border-color: var(--cyan);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(0,247,255,0.2);
+}
+
+@media (max-width: 800px) {
   .nav-links { display: none; }
 }
 
@@ -150,7 +171,6 @@ header {
   .hero-right { order: -1; }
 }
 
-/* Left text content */
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -253,8 +273,31 @@ header {
   transform: translateY(-2px);
 }
 
+.btn-prompts {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,0,255,0.3);
+  color: var(--magenta);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: none;
+  background: rgba(255,0,255,0.04);
+}
+
+.btn-prompts:hover {
+  background: rgba(255,0,255,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255,0,255,0.2);
+}
+
 @media (max-width: 900px) {
-  .btn-primary, .btn-outline { cursor: auto; }
+  .btn-primary, .btn-outline, .btn-prompts { cursor: auto; }
 }
 
 /* ---- PROFILE CARD ---- */
@@ -276,7 +319,6 @@ header {
   position: relative;
 }
 
-/* Subtle top accent line */
 .profile-card-inner::before {
   content: '';
   position: absolute;
@@ -301,7 +343,6 @@ header {
   filter: contrast(1.03) saturate(1.05);
 }
 
-/* Gradient fade at bottom of image */
 .profile-img-wrap::after {
   content: '';
   position: absolute;
@@ -355,7 +396,6 @@ header {
   letter-spacing: 0.05em;
 }
 
-/* Card corner glow */
 .card-glow {
   position: absolute;
   width: 200px; height: 200px;
@@ -642,6 +682,60 @@ section {
   flex-wrap: wrap;
 }
 
+/* ---- AI PROMPTS BUTTON SECTION ---- */
+.prompts-cta-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.prompts-cta-section p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.btn-ai-prompts {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255,0,255,0.15), rgba(0,140,255,0.15));
+  border: 1px solid rgba(255,0,255,0.4);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ai-prompts::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,0,255,0.2), rgba(0,140,255,0.2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-ai-prompts:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(255,0,255,0.25);
+  border-color: var(--magenta);
+}
+
+.btn-ai-prompts:hover::before { opacity: 1; }
+
+.btn-ai-prompts span { position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .btn-ai-prompts { cursor: auto; }
+}
+
 /* ---- FACP BANNER ---- */
 .facp-banner {
   margin: 20px 0 60px;
@@ -739,6 +833,7 @@ footer p {
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="prompts.html#free-ai" class="nav-free-ai">✨ Free AI Services</a></li>
     </ul>
   </div>
 </nav>
@@ -997,6 +1092,17 @@ footer p {
         <a href="https://wa.me/qr/3GD3KSLD77LKK1" class="btn-outline">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.05.547 4.063 1.588 5.814L.461 23.016l6.552-1.746C10.063 23.201 11.001 23.5 12 23.5c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.5c-.85 0-1.677-.18-2.447-.525l-.175-.09-1.814.483.517-1.883-.116-.186C2.097 17.145 1.5 14.66 1.5 12c0-5.799 4.701-10.5 10.5-10.5s10.5 4.701 10.5 10.5-4.701 10.5-10.5 10.5z"/><path d="M17.415 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/></svg>
           WhatsApp
+        </a>
+      </div>
+
+      <!-- AI PROMPTS BUTTON -->
+      <div class="prompts-cta-section">
+        <p>Explore free AI prompts crafted to supercharge your creative workflow</p>
+        <a href="prompts.html" class="btn-ai-prompts">
+          <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            🤖 AI Prompts
+          </span>
         </a>
       </div>
     </div>
