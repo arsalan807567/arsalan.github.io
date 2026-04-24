@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Prompts | Arsalan</title>
+<link rel="icon" type="image/png" href="hero-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cyan: #00f7ff;
+  --blue: #008cff;
+  --magenta: #ff00ff;
+  --bg: #050810;
+  --surface: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(0,247,255,0.2);
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a9bb0;
+  --text-muted: #4a5568;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  min-height: 100vh;
+}
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+}
+
+canvas#particles {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+canvas#creature-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@media (max-width: 900px) {
+  canvas#creature-canvas { display: none; }
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 18px; }
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  background: rgba(5, 8, 16, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav .nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.nav-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border-accent);
+  color: var(--cyan);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  cursor: none;
+}
+
+.nav-home-btn:hover {
+  background: rgba(0,247,255,0.06);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .nav-home-btn { cursor: auto; }
+}
+
+/* ---- PAGE HERO ---- */
+.page-hero {
+  padding: 140px 0 70px;
+  text-align: center;
+}
+
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  margin-bottom: 20px;
+}
+
+.page-eyebrow::before,
+.page-eyebrow::after {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--magenta);
+}
+
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #d0c8f0 50%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-sub {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin: 0 auto 50px;
+}
+
+/* ---- FREE AI ANCHOR ---- */
+#free-ai {
+  scroll-margin-top: 80px;
+}
+
+/* ---- PROMPTS SECTION ---- */
+.prompts-section {
+  padding: 20px 0 100px;
+}
+
+/* Category heading */
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.category-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,0,255,0.15), rgba(0,140,255,0.15));
+  border: 1px solid rgba(255,0,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.category-info h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.category-info p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Prompt card */
+.prompt-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+}
+
+.prompt-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--magenta), var(--blue), var(--cyan));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.prompt-card:hover {
+  border-color: rgba(255,0,255,0.25);
+  transform: translateY(-2px);
+}
+
+.prompt-card:hover::before {
+  opacity: 1;
+}
+
+/* Collapsed header */
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 26px;
+  cursor: pointer;
+  user-select: none;
+  gap: 16px;
+}
+
+.prompt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.prompt-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  background: rgba(255,0,255,0.08);
+  border: 1px solid rgba(255,0,255,0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prompt-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prompt-toggle {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.prompt-card.open .prompt-toggle {
+  background: rgba(255,0,255,0.08);
+  border-color: rgba(255,0,255,0.3);
+  color: var(--magenta);
+  transform: rotate(45deg);
+}
+
+/* Expanded body */
+.prompt-body {
+  display: none;
+  padding: 0 26px 26px;
+  border-top: 1px solid var(--border);
+}
+
+.prompt-card.open .prompt-body {
+  display: block;
+}
+
+.prompt-body-inner {
+  padding-top: 20px;
+}
+
+.prompt-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.prompt-text-box {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 18px 20px;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(0,247,255,0.12), rgba(0,140,255,0.12));
+  border: 1px solid rgba(0,247,255,0.25);
+  color: var(--cyan);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.btn-copy:hover {
+  background: linear-gradient(135deg, rgba(0,247,255,0.22), rgba(0,140,255,0.22));
+  border-color: var(--cyan);
+  transform: translateY(-1px);
+}
+
+.btn-copy.copied {
+  background: linear-gradient(135deg, rgba(0,255,120,0.15), rgba(0,200,80,0.1));
+  border-color: rgba(0,255,120,0.4);
+  color: #00ff78;
+}
+
+.copy-feedback {
+  font-size: 0.78rem;
+  color: #00ff78;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.copy-feedback.show { opacity: 1; }
+
+/* ---- COMING SOON CARD ---- */
+.coming-soon-card {
+  background: rgba(255,255,255,0.015);
+  border: 1px dashed rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.coming-soon-card .cs-icon {
+  font-size: 2.5rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.coming-soon-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.coming-soon-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ---- DIVIDER ---- */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---- REVEAL ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- MOBILE ---- */
+@media (max-width: 600px) {
+  .prompt-header { padding: 16px 18px; }
+  .prompt-body { padding: 0 18px 20px; }
+  .prompt-name { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="index.html" class="nav-home-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="reveal">
+      <div class="page-eyebrow">Free Resources</div>
+      <h1 class="page-title">Free AI Services</h1>
+      <p class="page-sub">Handcrafted AI prompts to unlock powerful results. Copy, paste, and create — completely free.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PROMPTS -->
+<section class="prompts-section" id="free-ai">
+  <div class="container">
+
+    <!-- Category: Image / Fashion -->
+    <div class="category-header reveal">
+      <div class="category-icon">👗</div>
+      <div class="category-info">
+        <h2>Fashion & Dress AI Prompts</h2>
+        <p>Use these with MidJourney, DALL·E 3, or Stable Diffusion for stunning outfit changes</p>
+      </div>
+    </div>
+
+    <!-- Prompt 1 -->
+    <div class="prompt-card reveal" id="dress-changing-prompt">
+      <div class="prompt-header" onclick="togglePrompt(this)">
+        <div class="prompt-header-left">
+          <span class="prompt-badge">Image AI</span>
+          <span class="prompt-name">Dress Changing Prompt</span>
+        </div>
+        <div class="prompt-toggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-body-inner">
+          <div class="prompt-label">Prompt Text</div>
+          <div class="prompt-text-box" id="prompt-text-1">
+
+Edit the image by transferring the outfit from the second man onto the first man with maximum realism and precision.
+
+STRICT REQUIREMENTS (NON-NEGOTIABLE):
+
+- The first man’s face must remain 100% unchanged.
+  
+  - No alteration in facial structure, skin tone, expression, lighting, beard, hairline, or identity.
+  - Do NOT retouch, enhance, beautify, or modify the face in any way.
+
+- The body must remain EXACTLY the same:
+  
+  - Preserve original body shape, proportions, size, posture, and silhouette.
+  - Do NOT slim, bulk, reshape, or “fit-adjust” the body.
+  - The clothing must adapt to the existing body — not the other way around.
+
+- The pose, camera angle, framing, and background must remain identical to the original image.
+
+- Only replace the clothing:
+  
+  - Transfer the exact outfit from the second man.
+  - Maintain all fine details: fabric texture, folds, stitching, patterns, wrinkles, shadows, and highlights.
+  - Ensure the outfit naturally fits the first man’s body without altering proportions.
+
+- Maintain perfect lighting consistency:
+  
+  - Match lighting direction, intensity, and color from the first image.
+  - Ensure shadows and highlights on the outfit align realistically with the body and environment.
+
+- Preserve full realism and quality:
+  
+  - No blur, distortion, or artifacts.
+  - Clean, natural edges (especially around neck, shoulders, arms, and waist).
+  - No “AI-generated” look — must appear like an authentic photo.
+
+- Do NOT change:
+  
+  - Face, hair, skin, body figure, pose, background, or environment.
+  - Accessories should only be adjusted if absolutely necessary to fit the outfit, and even then minimally.
+
+FAIL CONDITIONS (ZERO TOLERANCE):
+
+- Any facial modification
+- Any change in body shape or proportions
+- Warped or unnatural clothing fit
+- Lighting mismatch
+- Artificial or edited appearance</div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt('prompt-text-1', this)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt
+            </button>
+            <span class="copy-feedback" id="feedback-prompt-text-1">✓ Copied to clipboard!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="coming-soon-card reveal">
+      <span class="cs-icon">🚀</span>
+      <h3>More Prompts Coming Soon</h3>
+      <p>Arsalan is actively adding new AI prompts across categories — video, product photography, art, automation, and more. Check back regularly!</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist &bull; All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// =============================================
+// BACKGROUND PARTICLES
+// =============================================
+const bgCanvas = document.getElementById('particles');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+
+const particleColors = ['#00f7ff','#008cff','#ff00ff'];
+const particles = [];
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * bgCanvas.width,
+    y: Math.random() * bgCanvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.6,
+    dy: (Math.random() - 0.5) * 0.6,
+    color: particleColors[Math.floor(Math.random() * particleColors.length)]
+  });
+}
+
+function animateBg() {
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+  particles.forEach((p, i) => {
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    bgCtx.fillStyle = p.color;
+    bgCtx.globalAlpha = 0.6;
+    bgCtx.fill();
+    bgCtx.globalAlpha = 1;
+    for (let j = i + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 130) {
+        bgCtx.beginPath();
+        bgCtx.moveTo(p.x, p.y);
+        bgCtx.lineTo(p2.x, p2.y);
+        bgCtx.strokeStyle = `rgba(0,247,255,${(1 - dist / 130) * 0.25})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.stroke();
+      }
+    }
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0 || p.x > bgCanvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > bgCanvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animateBg);
+}
+animateBg();
+
+window.addEventListener('resize', () => {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+});
+
+// =============================================
+// TOGGLE PROMPT CARD
+// =============================================
+function togglePrompt(header) {
+  const card = header.closest('.prompt-card');
+  card.classList.toggle('open');
+}
+
+// Auto-open if URL has hash matching a prompt
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target && target.classList.contains('prompt-card')) {
+      target.classList.add('open');
+      setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+    }
+  }
+});
+
+// =============================================
+// COPY PROMPT
+// =============================================
+function copyPrompt(textBoxId, btn) {
+  const el = document.getElementById(textBoxId);
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    const feedbackId = 'feedback-' + textBoxId;
+    const feedback = document.getElementById(feedbackId);
+    if (feedback) { feedback.classList.add('show'); }
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Prompt`;
+      if (feedback) { feedback.classList.remove('show'); }
+    }, 2500);
+  }).catch(() => {
+    // Fallback
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+  });
+}
+
+// =============================================
+// REVEAL ON SCROLL
+// =============================================
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// =============================================
+// CENTIPEDE CURSOR (desktop only)
+// =============================================
+(function() {
+  if (window.innerWidth <= 900) return;
+  const canvas = document.getElementById('creature-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900) { canvas.style.display = 'none'; return; }
+    canvas.style.display = 'block'; resize();
+  });
+  const NUM_SEGMENTS=18,SEG_LENGTH=14,HEAD_RADIUS=7,BODY_RADIUS_MAX=6,BODY_RADIUS_MIN=2,LEG_PAIRS=8,LEG_LENGTH=22,LEG_SPREAD=0.55,ANTENNA_LEN=18,GLOW_COLOR='#00f7ff',STROKE_COLOR='rgba(0,247,255,0.85)',LERP_SPEED=0.18;
+  let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2;
+  const segments=[];
+  for(let i=0;i<NUM_SEGMENTS;i++) segments.push({x:mouseX-i*SEG_LENGTH,y:mouseY});
+  let legPhase=0;
+  window.addEventListener('mousemove',(e)=>{mouseX=e.clientX;mouseY=e.clientY;});
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function setGlow(blur){ctx.shadowBlur=blur;ctx.shadowColor=GLOW_COLOR;ctx.strokeStyle=STROKE_COLOR;ctx.fillStyle=STROKE_COLOR;}
+  function update(){
+    segments[0].x=lerp(segments[0].x,mouseX,LERP_SPEED);segments[0].y=lerp(segments[0].y,mouseY,LERP_SPEED);
+    for(let i=1;i<NUM_SEGMENTS;i++){const prev=segments[i-1],curr=segments[i],dx=curr.x-prev.x,dy=curr.y-prev.y,dist=Math.sqrt(dx*dx+dy*dy)||0.001;curr.x=prev.x+(dx/dist)*SEG_LENGTH;curr.y=prev.y+(dy/dist)*SEG_LENGTH;}
+    legPhase+=0.12;
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(segments[0].x,segments[0].y);for(let i=1;i<NUM_SEGMENTS;i++)ctx.lineTo(segments[i].x,segments[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
+    for(let i=0;i<NUM_SEGMENTS;i++){const t=i/(NUM_SEGMENTS-1),radius=lerp(BODY_RADIUS_MAX,BODY_RADIUS_MIN,t);let angle=i<NUM_SEGMENTS-1?Math.atan2(segments[i+1].y-segments[i].y,segments[i+1].x-segments[i].x):Math.atan2(segments[i].y-segments[i-1].y,segments[i].x-segments[i-1].x);ctx.save();ctx.translate(segments[i].x,segments[i].y);ctx.rotate(angle);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,radius*1.4,radius,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}
+    for(let pair=0;pair<LEG_PAIRS;pair++){const segIdx=pair+1;if(segIdx>=NUM_SEGMENTS)break;const seg=segments[segIdx],prev=segments[segIdx-1],bodyAngle=Math.atan2(seg.y-prev.y,seg.x-prev.x),perpAngle=bodyAngle+Math.PI/2,phase=legPhase+pair*(Math.PI/LEG_PAIRS),swing=Math.sin(phase)*LEG_SPREAD,leftAngle=perpAngle+swing,leftTipX=seg.x+Math.cos(leftAngle)*LEG_LENGTH,leftTipY=seg.y+Math.sin(leftAngle)*LEG_LENGTH,leftKneeX=seg.x+Math.cos(leftAngle)*(LEG_LENGTH*0.55),leftKneeY=seg.y+Math.sin(leftAngle)*(LEG_LENGTH*0.55),rightAngle=perpAngle+Math.PI+swing,rightTipX=seg.x+Math.cos(rightAngle)*LEG_LENGTH,rightTipY=seg.y+Math.sin(rightAngle)*LEG_LENGTH,rightKneeX=seg.x+Math.cos(rightAngle)*(LEG_LENGTH*0.55),rightKneeY=seg.y+Math.sin(rightAngle)*(LEG_LENGTH*0.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(leftKneeX,leftKneeY);ctx.lineTo(leftTipX,leftTipY);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rightKneeX,rightKneeY);ctx.lineTo(rightTipX,rightTipY);ctx.stroke();const clawLen=5,clawSpread=0.35,leftLegAngle=Math.atan2(leftTipY-leftKneeY,leftTipX-leftKneeX);ctx.beginPath();ctx.moveTo(leftTipX,leftTipY);ctx.lineTo(leftTipX+Math.cos(leftLegAngle+clawSpread)*clawLen,leftTipY+Math.sin(leftLegAngle+clawSpread)*clawLen);ctx.moveTo(leftTipX,leftTipY);ctx.lineTo(leftTipX+Math.cos(leftLegAngle-clawSpread)*clawLen,leftTipY+Math.sin(leftLegAngle-clawSpread)*clawLen);ctx.stroke();const rightLegAngle=Math.atan2(rightTipY-rightKneeY,rightTipX-rightKneeX);ctx.beginPath();ctx.moveTo(rightTipX,rightTipY);ctx.lineTo(rightTipX+Math.cos(rightLegAngle+clawSpread)*clawLen,rightTipY+Math.sin(rightLegAngle+clawSpread)*clawLen);ctx.moveTo(rightTipX,rightTipY);ctx.lineTo(rightTipX+Math.cos(rightLegAngle-clawSpread)*clawLen,rightTipY+Math.sin(rightLegAngle-clawSpread)*clawLen);ctx.stroke();}
+    const head=segments[0],neck=segments[1],headAngle=Math.atan2(head.y-neck.y,head.x-neck.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(head.x,head.y,HEAD_RADIUS,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();
+    const eyeOffset=HEAD_RADIUS*0.55,eyePerp=headAngle+Math.PI/2;setGlow(10);ctx.fillStyle=STROKE_COLOR;ctx.beginPath();ctx.arc(head.x+Math.cos(headAngle)*(HEAD_RADIUS*0.4)+Math.cos(eyePerp)*eyeOffset,head.y+Math.sin(headAngle)*(HEAD_RADIUS*0.4)+Math.sin(eyePerp)*eyeOffset,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(head.x+Math.cos(headAngle)*(HEAD_RADIUS*0.4)-Math.cos(eyePerp)*eyeOffset,head.y+Math.sin(headAngle)*(HEAD_RADIUS*0.4)-Math.sin(eyePerp)*eyeOffset,2,0,Math.PI*2);ctx.fill();
+    const antSwing=Math.sin(legPhase*0.7)*0.3,antBase=HEAD_RADIUS*0.9;setGlow(10);ctx.lineWidth=1;const laAngle=headAngle-0.45+antSwing,laMidX=head.x+Math.cos(laAngle)*(ANTENNA_LEN*0.5),laMidY=head.y+Math.sin(laAngle)*(ANTENNA_LEN*0.5),laTipX=head.x+Math.cos(laAngle-0.3)*ANTENNA_LEN,laTipY=head.y+Math.sin(laAngle-0.3)*ANTENNA_LEN;ctx.beginPath();ctx.moveTo(head.x+Math.cos(headAngle)*antBase,head.y+Math.sin(headAngle)*antBase);ctx.quadraticCurveTo(laMidX,laMidY,laTipX,laTipY);ctx.stroke();const raAngle=headAngle+0.45+antSwing,raMidX=head.x+Math.cos(raAngle)*(ANTENNA_LEN*0.5),raMidY=head.y+Math.sin(raAngle)*(ANTENNA_LEN*0.5),raTipX=head.x+Math.cos(raAngle+0.3)*ANTENNA_LEN,raTipY=head.y+Math.sin(raAngle+0.3)*ANTENNA_LEN;ctx.beginPath();ctx.moveTo(head.x+Math.cos(headAngle)*antBase,head.y+Math.sin(headAngle)*antBase);ctx.quadraticCurveTo(raMidX,raMidY,raTipX,raTipY);ctx.stroke();
+    ctx.fillStyle=STROKE_COLOR;setGlow(14);ctx.beginPath();ctx.arc(laTipX,laTipY,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(raTipX,raTipY,2.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mouseX,mouseY,4,0,Math.PI*2);ctx.fill();
+  }
+  function loop(){update();draw();requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>
