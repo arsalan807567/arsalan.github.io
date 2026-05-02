@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Blog | Arsalan — AI Expert & Creative Technologist</title>
+<meta name="description" content="Real thoughts on AI — no fluff, no hype. Essays on how artificial intelligence is reshaping work, creativity, and what it means to be human.">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cyan: #00f7ff;
+  --blue: #008cff;
+  --magenta: #ff00ff;
+  --gold: #f0c040;
+  --bg: #050810;
+  --surface: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(0,247,255,0.2);
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a9bb0;
+  --text-muted: #4a5568;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  min-height: 100vh;
+}
+
+@media (max-width: 900px) { body { cursor: auto; } }
+
+canvas#particles {
+  position: fixed; top: 0; left: 0;
+  z-index: 0; pointer-events: none;
+}
+
+canvas#creature-canvas {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+}
+
+@media (max-width: 900px) { canvas#creature-canvas { display: none; } }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) { .container { padding: 0 18px; } }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; padding: 20px 0;
+  background: rgba(5,8,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex; gap: 28px; list-style: none; align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.875rem; font-weight: 400;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: color 0.2s; cursor: none;
+}
+
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a.active { color: var(--cyan); }
+
+.nav-links .nav-blog-active {
+  color: var(--cyan); font-weight: 500;
+}
+
+@media (max-width: 800px) { .nav-links { display: none; } }
+
+.nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.85rem; font-weight: 400;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: color 0.2s; cursor: none;
+}
+
+.nav-back:hover { color: var(--cyan); }
+.nav-back svg { transition: transform 0.2s; }
+.nav-back:hover svg { transform: translateX(-3px); }
+
+@media (min-width: 801px) { .nav-back { display: none; } }
+@media (max-width: 900px) { .nav-back { cursor: auto; } }
+
+/* ---- PAGE HERO ---- */
+.page-hero {
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 22px;
+}
+
+.eyebrow::before, .eyebrow::after {
+  content: ''; display: block; width: 28px; height: 1px; background: var(--cyan);
+}
+
+.page-hero h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.0;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #c8d8f0 55%, var(--cyan) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.page-hero p {
+  font-size: 1rem; line-height: 1.9;
+  color: var(--text-secondary);
+  max-width: 520px; margin: 0 auto 50px;
+}
+
+/* ---- FILTER TABS ---- */
+.filter-row {
+  display: flex; gap: 10px; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 70px;
+}
+
+.filter-btn {
+  padding: 8px 20px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 400;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0,247,255,0.06);
+}
+
+/* ---- FEATURED POST ---- */
+.featured-post {
+  margin-bottom: 60px; position: relative; z-index: 1;
+}
+
+.featured-label {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+
+.featured-label::before {
+  content: '★'; font-size: 10px;
+}
+
+.featured-card {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(0,247,255,0.15);
+  background: rgba(255,255,255,0.025);
+  transition: transform 0.3s, border-color 0.3s;
+  text-decoration: none; color: inherit;
+  cursor: none;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,247,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .featured-card { cursor: auto; }
+}
+
+@media (max-width: 700px) {
+  .featured-card { grid-template-columns: 1fr; }
+}
+
+.featured-visual {
+  position: relative; overflow: hidden; min-height: 340px;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1525 50%, #0a1020 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.featured-visual-art {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* The sci-fi brain SVG */
+.featured-visual svg {
+  width: 260px; height: 260px; opacity: 0.85;
+}
+
+.featured-visual::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(0,247,255,0.06));
+}
+
+.featured-content {
+  padding: 44px 40px; display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+
+.featured-content::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(0,247,255,0.2), transparent);
+}
+
+@media (max-width: 700px) {
+  .featured-content::before { display: none; }
+  .featured-content { padding: 32px 28px; }
+  .featured-visual { min-height: 220px; }
+}
+
+.post-tag {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 14px;
+}
+
+.featured-content h2 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400; font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.25; color: #fff; margin-bottom: 16px;
+  font-style: italic;
+}
+
+.featured-content p {
+  font-size: 0.9rem; line-height: 1.85;
+  color: var(--text-secondary); margin-bottom: 28px;
+}
+
+.post-meta {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+
+.meta-author {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.meta-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #000; flex-shrink: 0;
+}
+
+.meta-name { font-size: 0.82rem; font-weight: 500; color: var(--text-primary); }
+.meta-sep { color: var(--text-muted); font-size: 0.7rem; }
+.meta-date { font-size: 0.78rem; color: var(--text-muted); }
+.meta-read { font-size: 0.78rem; color: var(--text-muted); }
+
+.read-link {
+  margin-top: 24px;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--cyan); font-size: 0.85rem; font-weight: 500;
+  text-decoration: none; transition: gap 0.2s;
+}
+
+.read-link:hover { gap: 14px; }
+
+/* ---- BLOG GRID ---- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px; margin-bottom: 70px;
+}
+
+.blog-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s; text-decoration: none;
+  color: inherit; display: flex; flex-direction: column;
+  cursor: none; position: relative;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--magenta));
+  opacity: 0; transition: opacity 0.3s;
+}
+
+.blog-card:hover { transform: translateY(-5px); border-color: var(--border-accent); }
+.blog-card:hover::before { opacity: 1; }
+
+@media (max-width: 900px) { .blog-card { cursor: auto; } }
+
+.card-visual {
+  height: 180px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Coming soon cards */
+.blog-card.coming-soon {
+  opacity: 0.55; pointer-events: none;
+}
+
+.blog-card.coming-soon .card-visual {
+  background: linear-gradient(135deg, #080c18, #0d1020);
+}
+
+.cs-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-muted);
+}
+
+.new-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+  background: rgba(0,247,255,0.1);
+  border: 1px solid rgba(0,247,255,0.3);
+  color: var(--cyan);
+}
+
+.card-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+
+.card-tag {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 10px;
+}
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400; font-size: 1.1rem;
+  line-height: 1.35; color: var(--text-primary);
+  margin-bottom: 10px; font-style: italic;
+}
+
+.card-excerpt {
+  font-size: 0.84rem; line-height: 1.75;
+  color: var(--text-secondary); flex: 1; margin-bottom: 18px;
+}
+
+.card-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border); padding-top: 14px;
+}
+
+.card-date { font-size: 0.75rem; color: var(--text-muted); }
+.card-read { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Visual illustrations for cards */
+.vi-1 { background: linear-gradient(135deg, #030d1a 0%, #060e20 100%); }
+.vi-2 { background: linear-gradient(135deg, #0a0615 0%, #100820 100%); }
+.vi-3 { background: linear-gradient(135deg, #050a10 0%, #0b1018 100%); }
+.vi-4 { background: linear-gradient(135deg, #0d0805 0%, #1a0f08 100%); }
+.vi-5 { background: linear-gradient(135deg, #050d0a 0%, #081510 100%); }
+.vi-6 { background: linear-gradient(135deg, #0a0508 0%, #150810 100%); }
+
+/* SVG card visuals */
+.card-svg {
+  width: 100px; height: 100px; opacity: 0.5;
+}
+
+/* ---- NEWSLETTER ---- */
+.newsletter-strip {
+  margin-bottom: 90px;
+  padding: 44px 50px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,140,255,0.06), rgba(0,247,255,0.03), rgba(255,0,255,0.04));
+  border: 1px solid rgba(0,247,255,0.12);
+  display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative; z-index: 1; overflow: hidden;
+}
+
+.newsletter-strip::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+
+.newsletter-text h3 {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 1.3rem; color: #fff; margin-bottom: 6px;
+}
+
+.newsletter-text p {
+  font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7;
+  max-width: 380px;
+}
+
+.newsletter-form {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.newsletter-input {
+  padding: 12px 18px; border-radius: 6px;
+  border: 1px solid var(--border-accent);
+  background: rgba(0,0,0,0.3);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  min-width: 220px; outline: none;
+  transition: border-color 0.2s;
+}
+
+.newsletter-input::placeholder { color: var(--text-muted); }
+.newsletter-input:focus { border-color: var(--cyan); }
+
+.newsletter-btn {
+  padding: 12px 24px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #000; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  border: none; cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.newsletter-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+@media (max-width: 650px) {
+  .newsletter-strip { padding: 32px 24px; }
+}
+
+/* ---- FOOTER ---- */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 28px 0; text-align: center;
+}
+
+footer p { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ---- REVEAL ---- */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <ul class="nav-links">
+      <li><a href="index.html#tools">Tools</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-blog-active">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">The AI Journal</div>
+      <h1>Thoughts on<br>Artificial Intelligence</h1>
+      <p>No hype. No press releases. Just real observations about where AI is going — and what it means for the rest of us.</p>
+    </div>
+    <div class="filter-row reveal">
+      <button class="filter-btn active">All Posts</button>
+      <button class="filter-btn">Future of Work</button>
+      <button class="filter-btn">Tools & Tech</button>
+      <button class="filter-btn">Opinion</button>
+      <button class="filter-btn">Tutorials</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+<section style="position:relative;z-index:1;padding-bottom:0;">
+  <div class="container">
+    <div class="featured-label reveal">Featured Essay</div>
+    <a href="blog-ai-takeover.html" class="featured-card reveal">
+      <div class="featured-visual">
+        <div class="featured-visual-art">
+          <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Brain circuit hybrid -->
+            <circle cx="130" cy="130" r="90" stroke="rgba(0,247,255,0.08)" stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="130" cy="130" r="60" stroke="rgba(0,247,255,0.12)" stroke-width="1"/>
+            <!-- Circuit lines radiating -->
+            <line x1="130" y1="40" x2="130" y2="70" stroke="#00f7ff" stroke-width="1.5" opacity="0.6"/>
+            <line x1="130" y1="190" x2="130" y2="220" stroke="#00f7ff" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="130" x2="70" y2="130" stroke="#008cff" stroke-width="1.5" opacity="0.6"/>
+            <line x1="190" y1="130" x2="220" y2="130" stroke="#008cff" stroke-width="1.5" opacity="0.6"/>
+            <!-- Diagonal lines -->
+            <line x1="66" y1="66" x2="88" y2="88" stroke="rgba(0,247,255,0.4)" stroke-width="1"/>
+            <line x1="194" y1="66" x2="172" y2="88" stroke="rgba(0,247,255,0.4)" stroke-width="1"/>
+            <line x1="66" y1="194" x2="88" y2="172" stroke="rgba(0,247,255,0.4)" stroke-width="1"/>
+            <line x1="194" y1="194" x2="172" y2="172" stroke="rgba(0,247,255,0.4)" stroke-width="1"/>
+            <!-- Node dots -->
+            <circle cx="130" cy="40" r="4" fill="#00f7ff" opacity="0.9"/>
+            <circle cx="130" cy="220" r="4" fill="#008cff" opacity="0.9"/>
+            <circle cx="40" cy="130" r="4" fill="#00f7ff" opacity="0.9"/>
+            <circle cx="220" cy="130" r="4" fill="#008cff" opacity="0.9"/>
+            <circle cx="66" cy="66" r="3" fill="rgba(0,247,255,0.6)"/>
+            <circle cx="194" cy="66" r="3" fill="rgba(0,247,255,0.6)"/>
+            <circle cx="66" cy="194" r="3" fill="rgba(0,247,255,0.6)"/>
+            <circle cx="194" cy="194" r="3" fill="rgba(0,247,255,0.6)"/>
+            <!-- Center brain-ish shape -->
+            <ellipse cx="130" cy="122" rx="32" ry="28" stroke="rgba(0,247,255,0.3)" stroke-width="1.5" fill="rgba(0,247,255,0.04)"/>
+            <path d="M110 115 Q115 105 125 110 Q128 100 135 105 Q142 98 148 108 Q155 110 152 120" stroke="rgba(0,247,255,0.5)" stroke-width="1.2" fill="none"/>
+            <path d="M110 125 Q112 135 120 132 Q125 142 132 138 Q138 148 147 140 Q152 130 148 124" stroke="rgba(0,247,255,0.4)" stroke-width="1.2" fill="none"/>
+            <!-- Pulsing center -->
+            <circle cx="130" cy="130" r="8" fill="rgba(0,247,255,0.15)" stroke="#00f7ff" stroke-width="1.5"/>
+            <circle cx="130" cy="130" r="3" fill="#00f7ff"/>
+            <!-- Tick marks on outer ring -->
+            <line x1="130" y1="218" x2="130" y2="224" stroke="rgba(0,247,255,0.3)" stroke-width="1"/>
+            <line x1="166" y1="208" x2="169" y2="214" stroke="rgba(0,247,255,0.3)" stroke-width="1"/>
+            <line x1="94" y1="208" x2="91" y2="214" stroke="rgba(0,247,255,0.3)" stroke-width="1"/>
+            <!-- Human silhouette outline, faint -->
+            <path d="M130 150 L118 175 L112 200 M130 150 L142 175 L148 200 M118 160 L142 160" stroke="rgba(255,0,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            <circle cx="130" cy="145" r="5" stroke="rgba(255,0,255,0.25)" stroke-width="1" fill="none"/>
+            <!-- Small satellite nodes -->
+            <circle cx="80" cy="100" r="5" fill="rgba(0,140,255,0.4)" stroke="rgba(0,140,255,0.7)" stroke-width="1"/>
+            <circle cx="180" cy="100" r="5" fill="rgba(0,140,255,0.4)" stroke="rgba(0,140,255,0.7)" stroke-width="1"/>
+            <circle cx="80" cy="160" r="5" fill="rgba(255,0,255,0.3)" stroke="rgba(255,0,255,0.6)" stroke-width="1"/>
+            <circle cx="180" cy="160" r="5" fill="rgba(255,0,255,0.3)" stroke="rgba(255,0,255,0.6)" stroke-width="1"/>
+            <!-- Connection lines to satellite nodes -->
+            <line x1="88" y1="104" x2="100" y2="112" stroke="rgba(0,140,255,0.3)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="172" y1="104" x2="160" y2="112" stroke="rgba(0,140,255,0.3)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="88" y1="156" x2="100" y2="148" stroke="rgba(255,0,255,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="172" y1="156" x2="160" y2="148" stroke="rgba(255,0,255,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="featured-content">
+        <span class="post-tag">Opinion · Future of Work</span>
+        <h2>I've Used AI Every Day for Two Years. Here's What Actually Scared Me.</h2>
+        <p>Everyone's debating whether AI will take jobs. I was busy watching it reshape the way I think. That turned out to be the more unsettling story.</p>
+        <div class="post-meta">
+          <div class="meta-author">
+            <div class="meta-avatar">A</div>
+            <span class="meta-name">Arsalan</span>
+          </div>
+          <span class="meta-sep">·</span>
+          <span class="meta-date">May 2, 2026</span>
+          <span class="meta-sep">·</span>
+          <span class="meta-read">7 min read</span>
+        </div>
+        <span class="read-link">
+          Read Essay
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MORE POSTS -->
+<section style="position:relative;z-index:1;padding:60px 0 20px;">
+  <div class="container">
+    <div class="blog-grid reveal">
+
+      <!-- Card 2 - Coming Soon -->
+      <div class="blog-card coming-soon">
+        <div class="card-visual vi-2">
+          <span class="cs-badge">Coming Soon</span>
+          <svg class="card-svg" viewBox="0 0 100 100" fill="none">
+            <rect x="20" y="30" width="60" height="45" rx="4" stroke="rgba(0,140,255,0.3)" stroke-width="1.5"/>
+            <line x1="20" y1="42" x2="80" y2="42" stroke="rgba(0,140,255,0.3)" stroke-width="1"/>
+            <circle cx="28" cy="36" r="2" fill="rgba(0,140,255,0.5)"/>
+            <circle cx="35" cy="36" r="2" fill="rgba(0,247,255,0.4)"/>
+            <rect x="28" y="50" width="44" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+            <rect x="28" y="58" width="30" height="4" rx="2" fill="rgba(255,255,255,0.04)"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Tools & Tech</span>
+          <div class="card-title">The Prompt Engineer's Toolkit: What Actually Works in 2026</div>
+          <p class="card-excerpt">After writing hundreds of prompts professionally, I've narrowed it down to the patterns that consistently produce results — and the ones that waste your time.</p>
+          <div class="card-meta">
+            <span class="card-date">Coming Soon</span>
+            <span class="card-read">9 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 - Coming Soon -->
+      <div class="blog-card coming-soon">
+        <div class="card-visual vi-3">
+          <span class="cs-badge">Coming Soon</span>
+          <svg class="card-svg" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="28" stroke="rgba(0,247,255,0.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="50" cy="50" r="8" fill="rgba(0,247,255,0.1)" stroke="rgba(0,247,255,0.4)" stroke-width="1.5"/>
+            <line x1="50" y1="22" x2="50" y2="38" stroke="rgba(0,247,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="50" y1="62" x2="50" y2="78" stroke="rgba(0,247,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="22" y1="50" x2="38" y2="50" stroke="rgba(0,247,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="62" y1="50" x2="78" y2="50" stroke="rgba(0,247,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Future of Work</span>
+          <div class="card-title">Why Freelancers Who Fear AI Are Getting It Backwards</div>
+          <p class="card-excerpt">The conversation is always about replacement. But the real shift is about leverage — and it heavily favors people who learn to move fast with AI tools.</p>
+          <div class="card-meta">
+            <span class="card-date">Coming Soon</span>
+            <span class="card-read">6 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 - Coming Soon -->
+      <div class="blog-card coming-soon">
+        <div class="card-visual vi-4">
+          <span class="cs-badge">Coming Soon</span>
+          <svg class="card-svg" viewBox="0 0 100 100" fill="none">
+            <path d="M25 70 L40 45 L55 58 L70 30 L75 70 Z" fill="rgba(255,0,255,0.06)" stroke="rgba(255,0,255,0.3)" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="40" cy="45" r="3" fill="rgba(255,0,255,0.6)"/>
+            <circle cx="55" cy="58" r="3" fill="rgba(255,0,255,0.5)"/>
+            <circle cx="70" cy="30" r="3" fill="rgba(255,0,255,0.7)"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Opinion</span>
+          <div class="card-title">AI Art Isn't Cheating. But Here's When It Starts to Feel Like It.</div>
+          <p class="card-excerpt">I generate hundreds of AI images a week for clients. I've had to sit with some uncomfortable questions about what "creativity" even means anymore.</p>
+          <div class="card-meta">
+            <span class="card-date">Coming Soon</span>
+            <span class="card-read">8 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 - Coming Soon -->
+      <div class="blog-card coming-soon">
+        <div class="card-visual vi-5">
+          <span class="cs-badge">Coming Soon</span>
+          <svg class="card-svg" viewBox="0 0 100 100" fill="none">
+            <rect x="30" y="25" width="40" height="55" rx="5" stroke="rgba(0,247,255,0.2)" stroke-width="1.5"/>
+            <rect x="36" y="35" width="28" height="3" rx="1.5" fill="rgba(0,247,255,0.25)"/>
+            <rect x="36" y="42" width="20" height="3" rx="1.5" fill="rgba(0,247,255,0.2)"/>
+            <rect x="36" y="49" width="24" height="3" rx="1.5" fill="rgba(0,247,255,0.15)"/>
+            <circle cx="50" cy="68" r="4" stroke="rgba(0,247,255,0.35)" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Tutorials</span>
+          <div class="card-title">How I Build AI-Powered Android Apps Without Being a Developer</div>
+          <p class="card-excerpt">My full workflow — from idea to Play Store — using AI tools, no-code platforms, and a browser. No CS degree required. I'll walk through it step by step.</p>
+          <div class="card-meta">
+            <span class="card-date">Coming Soon</span>
+            <span class="card-read">11 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 - Coming Soon -->
+      <div class="blog-card coming-soon">
+        <div class="card-visual vi-6">
+          <span class="cs-badge">Coming Soon</span>
+          <svg class="card-svg" viewBox="0 0 100 100" fill="none">
+            <path d="M50 20 L62 44 L88 48 L69 67 L74 93 L50 81 L26 93 L31 67 L12 48 L38 44 Z" stroke="rgba(240,192,64,0.3)" stroke-width="1.5" fill="rgba(240,192,64,0.04)"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Future of Work</span>
+          <div class="card-title">The Dubai AI Scene Nobody Talks About</div>
+          <p class="card-excerpt">Living and working in Dubai, you see an adoption curve that's moving faster than anywhere else I've seen. Here's what's actually happening on the ground.</p>
+          <div class="card-meta">
+            <span class="card-date">Coming Soon</span>
+            <span class="card-read">5 min read</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter-strip reveal">
+      <div class="newsletter-text">
+        <h3>New posts, when they drop.</h3>
+        <p>I write infrequently but intentionally. No newsletters about newsletters. Just the next piece when it's ready.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="your@email.com">
+        <button class="newsletter-btn">Notify Me</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist</p>
+</footer>
+
+<script>
+// PARTICLES
+const bgCanvas = document.getElementById('particles');
+const bgCtx = bgCanvas.getContext('2d');
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+const particleColors = ['#00f7ff','#008cff','#ff00ff'];
+const particles = [];
+for (let i = 0; i < 70; i++) {
+  particles.push({
+    x: Math.random()*bgCanvas.width, y: Math.random()*bgCanvas.height,
+    r: Math.random()*1.8+0.8, dx: (Math.random()-0.5)*0.5, dy: (Math.random()-0.5)*0.5,
+    color: particleColors[Math.floor(Math.random()*particleColors.length)]
+  });
+}
+function animateBg(){
+  bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+  particles.forEach((p,i)=>{
+    bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.5;bgCtx.fill();bgCtx.globalAlpha=1;
+    for(let j=i+1;j<particles.length;j++){
+      const p2=particles[j],dist=Math.hypot(p.x-p2.x,p.y-p2.y);
+      if(dist<120){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-dist/120)*0.18})`;bgCtx.lineWidth=0.5;bgCtx.stroke();}
+    }
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;
+    if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;
+  });
+  requestAnimationFrame(animateBg);
+}
+animateBg();
+window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
+
+// REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+revealEls.forEach(el=>obs.observe(el));
+
+// FILTER TABS (visual only)
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// CENTIPEDE CURSOR
+(function(){
+  if(window.innerWidth<=900)return;
+  const canvas=document.getElementById('creature-canvas');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});
+  const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=0.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LERP=0.18;
+  let mx=window.innerWidth/2,my=window.innerHeight/2;
+  const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});
+  let lp=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}
+  function update(){
+    segs[0].x=lerp(segs[0].x,mx,LERP);segs[0].y=lerp(segs[0].y,my,LERP);
+    for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}
+    lp+=0.12;
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
+    for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}
+    for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=0.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}
+    const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();
+    const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();
+    const as=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();
+    ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();
+  }
+  function loop(){update();draw();requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>
