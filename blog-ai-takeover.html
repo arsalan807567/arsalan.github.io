@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>I've Used AI Every Day for Two Years. Here's What Actually Scared Me. | Arsalan</title>
 <meta name="description" content="Everyone's debating whether AI will take jobs. I was busy watching it reshape the way I think. That turned out to be the more unsettling story.">
 <meta name="keywords" content="AI takeover, artificial intelligence future, AI replacing jobs, AI changing creativity, AI expert Dubai">
@@ -12,431 +12,119 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="manifest" href="site.webmanifest">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-  --cyan: #00f7ff;
-  --blue: #008cff;
-  --magenta: #ff00ff;
-  --gold: #f0c040;
-  --bg: #050810;
-  --surface: rgba(255,255,255,0.03);
-  --border: rgba(255,255,255,0.08);
-  --border-accent: rgba(0,247,255,0.2);
-  --text-primary: #f0f0f0;
-  --text-secondary: #8a9bb0;
-  --text-muted: #4a5568;
-  --prose: #c8d4e0;
+  --cyan: #00f7ff; --blue: #008cff; --magenta: #ff00ff; --gold: #f0c040;
+  --bg: #050810; --surface: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(0,247,255,0.2); --text-primary: #f0f0f0;
+  --text-secondary: #8a9bb0; --text-muted: #4a5568; --prose: #d0dae8;
 }
-
 html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  cursor: none;
-}
-
+body { background: var(--bg); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
 @media (max-width: 900px) { body { cursor: auto; } }
-
-canvas#particles {
-  position: fixed; top: 0; left: 0;
-  z-index: 0; pointer-events: none;
-}
-
-canvas#creature-canvas {
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9999;
-}
-
+canvas#particles { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+canvas#creature-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
 @media (max-width: 900px) { canvas#creature-canvas { display: none; } }
-
-/* ---- NAV ---- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 100; padding: 20px 0;
-  background: rgba(5,8,16,0.9);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-inner {
-  max-width: 1100px; margin: 0 auto;
-  padding: 0 32px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-
+#read-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200; background: linear-gradient(90deg, var(--cyan), var(--blue), var(--magenta)); transform-origin: left; transform: scaleX(0); transition: transform 0.1s linear; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 0; background: rgba(5,8,16,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
 @media (max-width: 600px) { .nav-inner { padding: 0 18px; } }
-
-.nav-logo {
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem;
-  background: linear-gradient(90deg, var(--cyan), var(--blue));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  text-decoration: none;
-}
-
-.nav-back {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: var(--text-secondary); text-decoration: none;
-  font-size: 0.82rem; font-weight: 400;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  transition: color 0.2s; cursor: none;
-}
-
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; background: linear-gradient(90deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+.nav-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
 .nav-back:hover { color: var(--cyan); }
 .nav-back svg { transition: transform 0.2s; }
 .nav-back:hover svg { transform: translateX(-3px); }
-@media (max-width: 900px) { .nav-back { cursor: auto; } }
-
-/* ---- PROGRESS BAR ---- */
-#read-progress {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 2px; z-index: 200;
-  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--magenta));
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.1s linear;
-}
-
-/* ---- HERO ---- */
-.post-hero {
-  padding: 130px 0 0;
-  position: relative; z-index: 1;
-}
-
-.hero-inner {
-  max-width: 780px; margin: 0 auto;
-  padding: 0 32px;
-}
-
+.post-hero { padding: 120px 0 0; position: relative; z-index: 1; }
+.hero-inner { max-width: 760px; margin: 0 auto; padding: 0 32px; }
 @media (max-width: 600px) { .hero-inner { padding: 0 18px; } }
-
-.breadcrumb {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.72rem; color: var(--text-muted);
-  margin-bottom: 40px; letter-spacing: 0.04em;
-}
-
-.breadcrumb a {
-  color: var(--text-secondary); text-decoration: none;
-  transition: color 0.2s;
-}
-
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 32px; }
+.breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--cyan); }
-
-.breadcrumb svg { color: var(--text-muted); flex-shrink: 0; }
-
-.post-tags {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px;
-}
-
-.post-tag-pill {
-  font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 20px;
-  border: 1px solid rgba(0,247,255,0.25);
-  background: rgba(0,247,255,0.06);
-  color: var(--cyan);
-}
-
-.post-tag-pill.magenta {
-  border-color: rgba(255,0,255,0.25);
-  background: rgba(255,0,255,0.06);
-  color: var(--magenta);
-}
-
-.post-hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-weight: 400; font-style: italic;
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  line-height: 1.18; color: #fff;
-  margin-bottom: 24px;
-}
-
-.post-hero .lede {
-  font-size: 1.15rem; line-height: 1.85;
-  color: var(--text-secondary);
-  font-weight: 300; margin-bottom: 36px;
-  border-left: 2px solid var(--cyan);
-  padding-left: 20px;
-}
-
-.post-meta-bar {
-  display: flex; align-items: center; gap: 16px;
-  padding: 20px 0; border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0; flex-wrap: wrap;
-}
-
-.meta-author-block {
-  display: flex; align-items: center; gap: 10px;
-}
-
-.meta-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: #000; flex-shrink: 0;
-}
-
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.post-tag-pill { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,247,255,0.25); background: rgba(0,247,255,0.06); color: var(--cyan); }
+.post-tag-pill.mag { border-color: rgba(255,0,255,0.25); background: rgba(255,0,255,0.06); color: var(--magenta); }
+.post-hero h1 { font-family: 'Lora', serif; font-weight: 600; font-style: italic; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; color: #fff; margin-bottom: 22px; }
+.lede { font-family: 'Lora', serif; font-size: 1.1rem; line-height: 1.85; color: var(--text-secondary); margin-bottom: 32px; font-style: italic; }
+.post-meta-bar { display: flex; align-items: center; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.meta-author-block { display: flex; align-items: center; gap: 10px; }
+.meta-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #000; flex-shrink: 0; }
 .meta-author-info { display: flex; flex-direction: column; gap: 1px; }
-.meta-author-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); }
-.meta-author-role { font-size: 0.72rem; color: var(--text-muted); }
-
+.meta-author-name { font-size: 0.88rem; font-weight: 500; color: var(--text-primary); }
+.meta-author-role { font-size: 0.7rem; color: var(--text-muted); }
 .meta-sep { color: var(--text-muted); font-size: 0.7rem; }
-.meta-date { font-size: 0.8rem; color: var(--text-muted); }
-.meta-read {
-  font-size: 0.78rem; color: var(--text-muted);
-  display: flex; align-items: center; gap: 5px;
-}
-
-/* ---- HERO VISUAL ---- */
-.post-hero-visual {
-  max-width: 780px; margin: 50px auto 0;
-  padding: 0 32px;
-}
-
-@media (max-width: 600px) { .post-hero-visual { padding: 0 18px; } }
-
-.hero-art-container {
-  border-radius: 16px; overflow: hidden;
-  border: 1px solid rgba(0,247,255,0.12);
-  background: linear-gradient(135deg, #060b18, #08101e, #060810);
-  height: 360px;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-
-@media (max-width: 600px) { .hero-art-container { height: 240px; } }
-
-.hero-art-container .art-caption {
-  position: absolute; bottom: 16px; right: 20px;
-  font-size: 0.68rem; color: var(--text-muted);
-  letter-spacing: 0.06em;
-}
-
-/* ---- ARTICLE BODY ---- */
-.post-body {
-  max-width: 680px; margin: 60px auto 0;
-  padding: 0 32px 100px;
-  position: relative; z-index: 1;
-}
-
-@media (max-width: 600px) { .post-body { padding: 0 18px 80px; } }
-
-.post-body p {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1.05rem; line-height: 1.95;
-  color: var(--prose); margin-bottom: 28px;
-  font-weight: 300;
-}
-
-.post-body p strong {
-  color: var(--text-primary); font-weight: 500;
-}
-
-.post-body h2 {
-  font-family: 'DM Serif Display', serif;
-  font-weight: 400; font-style: italic;
-  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
-  color: #fff; line-height: 1.25;
-  margin: 56px 0 22px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
-
-.post-body h3 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600; font-size: 1.05rem;
-  color: var(--text-primary);
-  margin: 38px 0 14px;
-  letter-spacing: 0.02em;
-}
-
-/* Pull quote */
-.pull-quote {
-  margin: 50px 0;
-  padding: 28px 32px;
-  border-left: 3px solid var(--cyan);
-  background: rgba(0,247,255,0.03);
-  border-radius: 0 12px 12px 0;
-  position: relative;
-}
-
-.pull-quote::before {
-  content: '"';
-  font-family: 'DM Serif Display', serif;
-  font-size: 5rem; line-height: 1; color: rgba(0,247,255,0.15);
-  position: absolute; top: -10px; left: 20px;
-}
-
-.pull-quote p {
-  font-family: 'DM Serif Display', serif;
-  font-style: italic; font-size: 1.25rem !important;
-  line-height: 1.6 !important; color: #e0eaf5 !important;
-  margin-bottom: 0 !important;
-  position: relative; z-index: 1;
-}
-
-/* Inline note / aside */
-.aside-box {
-  margin: 40px 0;
-  padding: 22px 26px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid var(--border);
-  position: relative; overflow: hidden;
-}
-
-.aside-box::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--magenta), var(--blue));
-}
-
-.aside-label {
-  font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--magenta); margin-bottom: 10px;
-}
-
-.aside-box p {
-  font-size: 0.9rem !important;
-  color: var(--text-secondary) !important;
-  margin-bottom: 0 !important;
-  line-height: 1.75 !important;
-}
-
-/* Inline section art */
-.section-art {
-  margin: 50px 0;
-  border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--border);
-  background: #060a14;
-  height: 240px;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-
-.section-art .art-label {
-  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-  font-size: 0.68rem; color: var(--text-muted);
-  letter-spacing: 0.08em; white-space: nowrap;
-}
-
-/* Horizontal rule */
-.post-body hr {
-  border: none; border-top: 1px solid var(--border);
-  margin: 52px 0;
-}
-
-/* Tags and share bar at end */
-.post-end-bar {
-  margin-top: 70px; padding-top: 32px;
-  border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 20px; flex-wrap: wrap;
-}
-
+.meta-date { font-size: 0.78rem; color: var(--text-muted); }
+.meta-read { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+.hero-visual { max-width: 760px; margin: 44px auto 0; padding: 0 32px; }
+@media (max-width: 600px) { .hero-visual { padding: 0 18px; } }
+.hero-visual-box { border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,247,255,0.12); position: relative; height: 420px; background: #060c1a; }
+@media (max-width: 600px) { .hero-visual-box { height: 260px; } }
+.img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(5,8,16,0.8)); }
+.img-caption { position: absolute; bottom: 14px; left: 18px; right: 18px; font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; font-style: italic; }
+.post-body { max-width: 680px; margin: 56px auto 0; padding: 0 32px 80px; position: relative; z-index: 1; }
+@media (max-width: 600px) { .post-body { padding: 0 18px 60px; } }
+.post-body p { font-family: 'Lora', serif; font-size: 1.05rem; line-height: 1.95; color: var(--prose); margin-bottom: 26px; font-weight: 400; }
+.post-body p strong { color: #fff; font-weight: 600; }
+.post-body p em { font-style: italic; color: #e8f0f8; }
+.post-body h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.5vw, 1.7rem); color: #fff; line-height: 1.25; margin: 52px 0 18px; padding-left: 16px; border-left: 3px solid var(--cyan); }
+.post-body h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.78rem; color: var(--cyan); margin: 36px 0 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+.post-body hr { border: none; border-top: 1px solid var(--border); margin: 50px 0; }
+.pull-quote { margin: 44px 0; padding: 0 0 0 24px; border-left: 3px solid var(--cyan); }
+.pull-quote p { font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem !important; line-height: 1.7 !important; color: rgba(255,255,255,0.85) !important; margin-bottom: 0 !important; }
+.aside-box { margin: 38px 0; padding: 20px 24px; border-radius: 10px; background: rgba(0,247,255,0.04); border: 1px solid rgba(0,247,255,0.15); }
+.aside-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.aside-label::before { content: ''; display: block; width: 14px; height: 1px; background: var(--cyan); }
+.aside-box p { font-family: 'DM Sans', sans-serif; font-size: 0.92rem !important; color: var(--text-secondary) !important; margin-bottom: 0 !important; line-height: 1.8 !important; }
+.post-img { margin: 40px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); position: relative; }
+.post-img-box { width: 100%; position: relative; background: #070d1c; display: flex; align-items: center; justify-content: center; }
+.post-img-box.tall { height: 340px; }
+.post-img-box.medium { height: 260px; }
+.post-img-box.short { height: 200px; }
+@media (max-width: 600px) { .post-img-box.tall { height: 220px; } .post-img-box.medium { height: 180px; } .post-img-box.short { height: 150px; } }
+.post-img-caption { padding: 10px 16px; font-size: 0.72rem; color: var(--text-muted); font-style: italic; text-align: center; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); }
+.img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 40px 0; }
+@media (max-width: 500px) { .img-grid { grid-template-columns: 1fr; } }
+.img-grid-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); height: 180px; position: relative; background: #070d1c; }
+.grid-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); font-size: 0.68rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+.stat-callout { margin: 40px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 500px) { .stat-callout { grid-template-columns: 1fr; } }
+.stat-box { padding: 22px 18px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.02); text-align: center; }
+.stat-box .num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--cyan); display: block; margin-bottom: 4px; }
+.stat-box .label { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+.highlight-text { margin: 40px 0; padding: 28px 32px; border-radius: 14px; background: linear-gradient(135deg, rgba(0,140,255,0.06), rgba(0,247,255,0.03)); border: 1px solid rgba(0,247,255,0.12); position: relative; overflow: hidden; }
+.highlight-text::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--blue)); }
+.highlight-text p { font-family: 'Lora', serif; font-size: 1.15rem !important; font-style: italic; color: rgba(255,255,255,0.88) !important; margin: 0 !important; line-height: 1.75 !important; }
+.post-end-bar { margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
 .end-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-
-.end-tag {
-  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 5px 13px; border-radius: 20px;
-  border: 1px solid var(--border); color: var(--text-muted);
-  transition: all 0.2s;
-}
-
-.end-tag:hover {
-  border-color: var(--border-accent); color: var(--cyan);
-}
-
+.end-tag { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-muted); transition: all 0.2s; cursor: default; }
+.end-tag:hover { border-color: var(--border-accent); color: var(--cyan); }
 .share-row { display: flex; align-items: center; gap: 10px; }
-
-.share-label {
-  font-size: 0.75rem; color: var(--text-muted);
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-
-.share-btn {
-  width: 34px; height: 34px; border-radius: 8px;
-  border: 1px solid var(--border); background: var(--surface);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-secondary); transition: all 0.2s; cursor: pointer;
-}
-
-.share-btn:hover {
-  border-color: var(--cyan); color: var(--cyan);
-  background: rgba(0,247,255,0.06);
-}
-
-/* Back to blog */
-.back-strip {
-  max-width: 680px; margin: 0 auto;
-  padding: 0 32px 80px;
-  position: relative; z-index: 1;
-}
-
+.share-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.share-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s; cursor: pointer; }
+.share-btn:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,247,255,0.06); }
+.back-strip { max-width: 680px; margin: 0 auto; padding: 0 32px 80px; position: relative; z-index: 1; }
 @media (max-width: 600px) { .back-strip { padding: 0 18px 60px; } }
-
-.back-strip-inner {
-  padding: 30px 36px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-}
-
-.back-strip-text p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; }
-.back-strip-text span {
-  font-family: 'Syne', sans-serif; font-weight: 700;
-  font-size: 1rem; color: var(--text-primary);
-}
-
-.btn-back-blog {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 24px; border-radius: 6px;
-  border: 1px solid var(--border-accent);
-  color: var(--cyan); font-family: 'DM Sans', sans-serif;
-  font-weight: 400; font-size: 0.875rem;
-  text-decoration: none; cursor: none;
-  transition: all 0.2s;
-}
-
-.btn-back-blog:hover {
-  background: rgba(0,247,255,0.06);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 900px) { .btn-back-blog { cursor: auto; } }
-
-/* ---- FOOTER ---- */
-footer {
-  position: relative; z-index: 1;
-  border-top: 1px solid var(--border);
-  padding: 28px 0; text-align: center;
-}
-
+.back-strip-inner { padding: 28px 32px; border-radius: 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.back-strip-text p { font-size: 0.76rem; color: var(--text-muted); margin-bottom: 4px; }
+.back-strip-text span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
+.btn-back-blog { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 6px; border: 1px solid var(--border-accent); color: var(--cyan); font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 0.875rem; text-decoration: none; transition: all 0.2s; }
+.btn-back-blog:hover { background: rgba(0,247,255,0.06); transform: translateY(-2px); }
+footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
 footer p { font-size: 0.78rem; color: var(--text-muted); }
-
-/* ---- REVEAL ---- */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+.author-sign { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+.author-sign-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #000; flex-shrink: 0; }
+.author-sign-info p { font-size: 0.78rem; color: var(--text-muted); }
+.author-sign-info strong { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; display: block; margin-bottom: 2px; }
 </style>
 </head>
 <body>
-
 <div id="read-progress"></div>
 <canvas id="particles"></canvas>
 <canvas id="creature-canvas"></canvas>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Arsalan</a>
@@ -447,32 +135,27 @@ footer p { font-size: 0.78rem; color: var(--text-muted); }
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="post-hero">
   <div class="hero-inner reveal">
     <div class="breadcrumb">
       <a href="index.html">Home</a>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
       <a href="blog.html">Blog</a>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
       <span>Essay</span>
     </div>
-
     <div class="post-tags">
       <span class="post-tag-pill">Opinion</span>
-      <span class="post-tag-pill magenta">Future of Work</span>
+      <span class="post-tag-pill mag">Future of Work</span>
     </div>
-
     <h1>I've Used AI Every Day for Two Years. Here's What Actually Scared Me.</h1>
-
-    <p class="lede">Everyone's debating whether AI will take jobs. I was busy watching it reshape the way I think. That turned out to be the more unsettling story.</p>
-
+    <p class="lede">Everyone's debating whether AI will take our jobs. I was too busy watching it quietly rewire the way I actually think. That turned out to be the scarier story.</p>
     <div class="post-meta-bar">
       <div class="meta-author-block">
         <div class="meta-avatar">A</div>
         <div class="meta-author-info">
           <span class="meta-author-name">Arsalan</span>
-          <span class="meta-author-role">AI Expert & Creative Technologist · Dubai</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
         </div>
       </div>
       <span class="meta-sep">·</span>
@@ -480,241 +163,397 @@ footer p { font-size: 0.78rem; color: var(--text-muted); }
       <span class="meta-sep">·</span>
       <span class="meta-read">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        7 min read
+        8 min read
       </span>
     </div>
   </div>
 
-  <!-- Hero art -->
-  <div class="post-hero-visual reveal">
-    <div class="hero-art-container">
-      <svg viewBox="0 0 900 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;">
-        <!-- Background grid -->
+  <div class="hero-visual reveal">
+    <div class="hero-visual-box">
+      <svg viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+        <rect width="1200" height="420" fill="#060c1a"/>
         <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,247,255,0.04)" stroke-width="1"/>
-          </pattern>
+          <radialGradient id="gL" cx="25%" cy="50%" r="40%"><stop offset="0%" stop-color="#ff00ff" stop-opacity="0.1"/><stop offset="100%" stop-color="#ff00ff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="gR" cx="75%" cy="50%" r="40%"><stop offset="0%" stop-color="#00f7ff" stop-opacity="0.09"/><stop offset="100%" stop-color="#00f7ff" stop-opacity="0"/></radialGradient>
+          <pattern id="dp" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.05)"/></pattern>
         </defs>
-        <rect width="900" height="360" fill="url(#grid)"/>
-
-        <!-- Left: Human brain shape (organic, wavy) -->
-        <g opacity="0.7">
-          <ellipse cx="200" cy="180" rx="90" ry="80" stroke="rgba(255,0,255,0.15)" stroke-width="1.5" fill="rgba(255,0,255,0.02)"/>
-          <path d="M145 155 Q155 135 170 142 Q175 125 190 132 Q198 118 212 128 Q225 120 232 135 Q245 130 248 145 Q258 148 255 162 Q262 172 255 182 Q260 195 248 200 Q245 215 232 210 Q225 225 212 218 Q200 228 190 218 Q175 225 170 212 Q155 215 148 200 Q138 195 140 182 Q132 172 138 162 Z" stroke="rgba(255,0,255,0.3)" stroke-width="1.5" fill="rgba(255,0,255,0.04)"/>
-          <!-- brain folds -->
-          <path d="M168 148 Q175 160 170 172 Q175 185 168 195" stroke="rgba(255,0,255,0.25)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          <path d="M195 135 Q200 148 195 160 Q200 172 195 182 Q198 195 192 205" stroke="rgba(255,0,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          <path d="M220 138 Q225 152 220 165 Q225 178 218 190" stroke="rgba(255,0,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          <!-- Human label -->
-          <text x="200" y="278" text-anchor="middle" fill="rgba(255,0,255,0.4)" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="3">HUMAN</text>
-        </g>
-
-        <!-- Middle: Tension / merge zone -->
-        <g>
-          <!-- Connecting arrows left to right -->
-          <line x1="305" y1="180" x2="580" y2="180" stroke="rgba(0,247,255,0.08)" stroke-width="40"/>
-          <line x1="305" y1="180" x2="580" y2="180" stroke="rgba(0,247,255,0.15)" stroke-width="1.5" stroke-dasharray="8 6"/>
-          <!-- Bidirectional arrows -->
-          <polyline points="330,165 310,180 330,195" stroke="rgba(255,0,255,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="560,165 580,180 560,195" stroke="rgba(0,247,255,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <!-- Center merge point -->
-          <circle cx="450" cy="180" r="18" fill="rgba(0,0,0,0.6)" stroke="rgba(0,247,255,0.35)" stroke-width="1.5"/>
-          <circle cx="450" cy="180" r="8" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.6)" stroke-width="1.5"/>
-          <circle cx="450" cy="180" r="3" fill="rgba(0,247,255,0.9)"/>
-
-          <!-- Ripple rings -->
-          <circle cx="450" cy="180" r="30" stroke="rgba(0,247,255,0.08)" stroke-width="1" fill="none"/>
-          <circle cx="450" cy="180" r="45" stroke="rgba(0,247,255,0.05)" stroke-width="1" fill="none"/>
-
-          <!-- Label -->
-          <text x="450" y="230" text-anchor="middle" fill="rgba(0,247,255,0.3)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="3">INTERFACE</text>
-        </g>
-
-        <!-- Right: AI / circuit brain -->
-        <g opacity="0.75">
-          <rect x="610" y="110" width="130" height="130" rx="10" stroke="rgba(0,247,255,0.15)" stroke-width="1.5" fill="rgba(0,247,255,0.02)"/>
-          <!-- Circuit traces inside -->
-          <line x1="640" y1="140" x2="710" y2="140" stroke="rgba(0,247,255,0.25)" stroke-width="1.2"/>
-          <line x1="640" y1="160" x2="695" y2="160" stroke="rgba(0,247,255,0.2)" stroke-width="1.2"/>
-          <line x1="640" y1="180" x2="710" y2="180" stroke="rgba(0,247,255,0.25)" stroke-width="1.2"/>
-          <line x1="640" y1="200" x2="690" y2="200" stroke="rgba(0,247,255,0.2)" stroke-width="1.2"/>
-          <line x1="640" y1="220" x2="710" y2="220" stroke="rgba(0,247,255,0.2)" stroke-width="1.2"/>
-          <!-- Vertical connectors -->
-          <line x1="660" y1="140" x2="660" y2="160" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
-          <line x1="680" y1="160" x2="680" y2="180" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
-          <line x1="695" y1="180" x2="695" y2="200" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
-          <line x1="665" y1="200" x2="665" y2="220" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
-          <!-- Nodes -->
-          <circle cx="660" cy="140" r="3" fill="rgba(0,247,255,0.7)"/>
-          <circle cx="695" cy="160" r="3" fill="rgba(0,247,255,0.6)"/>
-          <circle cx="680" cy="180" r="3" fill="rgba(0,247,255,0.8)"/>
-          <circle cx="695" cy="200" r="3" fill="rgba(0,247,255,0.6)"/>
-          <circle cx="665" cy="220" r="3" fill="rgba(0,247,255,0.5)"/>
-          <!-- External ports -->
-          <line x1="610" y1="145" x2="595" y2="145" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <line x1="610" y1="175" x2="595" y2="175" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <line x1="610" y1="205" x2="595" y2="205" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <line x1="740" y1="145" x2="755" y2="145" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <line x1="740" y1="175" x2="755" y2="175" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <line x1="740" y1="205" x2="755" y2="205" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-          <!-- AI label -->
-          <text x="675" y="278" text-anchor="middle" fill="rgba(0,247,255,0.4)" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="3">MACHINE</text>
-        </g>
-
-        <!-- Top floating data labels -->
-        <text x="200" y="65" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="Syne, sans-serif" font-size="10" letter-spacing="2">CREATIVITY</text>
-        <text x="450" y="65" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="Syne, sans-serif" font-size="10" letter-spacing="2">COGNITION</text>
-        <text x="675" y="65" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="Syne, sans-serif" font-size="10" letter-spacing="2">PROCESSING</text>
+        <rect width="1200" height="420" fill="url(#dp)"/>
+        <rect width="1200" height="420" fill="url(#gL)"/>
+        <rect width="1200" height="420" fill="url(#gR)"/>
+        <circle cx="240" cy="180" r="55" stroke="rgba(255,0,255,0.12)" stroke-width="1.5" fill="rgba(255,0,255,0.02)"/>
+        <path d="M195 165 Q210 140 228 150 Q234 128 250 140 Q260 120 278 135 Q295 126 300 145 Q318 140 316 162 Q328 170 318 185 Q325 200 310 206 Q306 226 288 218 Q278 234 260 224 Q246 234 232 222 Q215 228 208 210 Q194 204 196 188 Q184 178 192 168Z" stroke="rgba(255,0,255,0.35)" stroke-width="1.5" fill="rgba(255,0,255,0.04)"/>
+        <path d="M216 162 Q225 175 219 190 Q225 204 218 216" stroke="rgba(255,0,255,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M244 148 Q250 163 244 177 Q250 191 244 203 Q247 216 240 224" stroke="rgba(255,0,255,0.22)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M272 152 Q277 167 272 180 Q277 195 270 207" stroke="rgba(255,0,255,0.22)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <text x="255" y="295" text-anchor="middle" fill="rgba(255,0,255,0.4)" font-family="DM Sans,sans-serif" font-size="12" letter-spacing="4">HUMAN</text>
+        <line x1="340" y1="210" x2="840" y2="210" stroke="rgba(0,247,255,0.06)" stroke-width="36"/>
+        <line x1="340" y1="210" x2="840" y2="210" stroke="rgba(0,247,255,0.2)" stroke-width="1" stroke-dasharray="10 7"/>
+        <circle cx="480" cy="210" r="4" fill="rgba(0,247,255,0.55)"/>
+        <circle cx="600" cy="210" r="6" fill="rgba(0,247,255,0.9)"/>
+        <circle cx="720" cy="210" r="4" fill="rgba(0,247,255,0.55)"/>
+        <circle cx="600" cy="210" r="26" fill="rgba(0,0,0,0.55)" stroke="rgba(0,247,255,0.4)" stroke-width="1.5"/>
+        <circle cx="600" cy="210" r="12" fill="rgba(0,247,255,0.08)" stroke="rgba(0,247,255,0.55)" stroke-width="1"/>
+        <circle cx="600" cy="210" r="4" fill="rgba(0,247,255,0.95)"/>
+        <circle cx="600" cy="210" r="40" stroke="rgba(0,247,255,0.08)" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+        <circle cx="600" cy="210" r="60" stroke="rgba(0,247,255,0.04)" stroke-width="1" fill="none" stroke-dasharray="3 7"/>
+        <text x="600" y="280" text-anchor="middle" fill="rgba(0,247,255,0.28)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="4">INTERFACE</text>
+        <rect x="900" y="140" width="90" height="90" rx="8" stroke="rgba(0,247,255,0.3)" stroke-width="1.5" fill="rgba(0,247,255,0.03)"/>
+        <rect x="915" y="158" width="20" height="13" rx="3" fill="rgba(0,247,255,0.5)"/>
+        <rect x="950" y="158" width="20" height="13" rx="3" fill="rgba(0,247,255,0.5)"/>
+        <rect x="917" y="183" width="46" height="4" rx="2" fill="rgba(0,247,255,0.3)"/>
+        <rect x="922" y="193" width="34" height="3" rx="1.5" fill="rgba(0,247,255,0.18)"/>
+        <line x1="916" y1="230" x2="966" y2="230" stroke="rgba(0,247,255,0.22)" stroke-width="1.5"/>
+        <line x1="916" y1="260" x2="942" y2="315" stroke="rgba(0,247,255,0.22)" stroke-width="1.5"/>
+        <line x1="966" y1="260" x2="940" y2="315" stroke="rgba(0,247,255,0.22)" stroke-width="1.5"/>
+        <line x1="916" y1="260" x2="880" y2="290" stroke="rgba(0,247,255,0.22)" stroke-width="1.5"/>
+        <line x1="966" y1="260" x2="1002" y2="290" stroke="rgba(0,247,255,0.22)" stroke-width="1.5"/>
+        <line x1="990" y1="155" x2="1035" y2="155" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <line x1="1035" y1="155" x2="1035" y2="185" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <line x1="990" y1="175" x2="1048" y2="175" stroke="rgba(0,247,255,0.18)" stroke-width="1"/>
+        <circle cx="1035" cy="155" r="3" fill="rgba(0,247,255,0.7)"/>
+        <circle cx="1048" cy="175" r="3" fill="rgba(0,247,255,0.5)"/>
+        <text x="945" y="355" text-anchor="middle" fill="rgba(0,247,255,0.4)" font-family="DM Sans,sans-serif" font-size="12" letter-spacing="4">MACHINE</text>
+        <text x="255" y="80" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="Syne,sans-serif" font-size="11" letter-spacing="4">CREATIVITY · EMOTION · INTUITION</text>
+        <text x="945" y="80" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="Syne,sans-serif" font-size="11" letter-spacing="4">SPEED · SCALE · PATTERN</text>
+        <text x="600" y="80" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="Syne,sans-serif" font-size="11" letter-spacing="4">THE NEGOTIATION</text>
       </svg>
-      <span class="art-caption">Illustration: Arsalan / AI</span>
+      <div class="img-overlay"></div>
+      <span class="img-caption">The quiet negotiation happening inside every person who uses AI daily Dubai, 2026</span>
     </div>
   </div>
 </section>
 
-<!-- ARTICLE -->
 <article class="post-body reveal">
 
-  <p>Let me start with something I haven't told many people.</p>
+  <p>Let me start with something I haven't really said out loud before.</p>
 
-  <p>About eight months into using AI tools daily for client work — generating images, writing scripts, building automations — I started noticing something strange. When I sat down to write something myself, without any AI, I felt a kind of friction I hadn't felt before. A hesitation. Like I was moving through water.</p>
+  <p>About eight months into using AI tools every single day for client work generating images, writing scripts, building automations, editing videos I started noticing something off. When I sat down to write something myself, without any AI, there was this weird friction. A hesitation I hadn't felt in years. Like starting a car that had been sitting idle too long.</p>
 
-  <p>I brushed it off at first. Probably just fatigue. Long hours. Dubai summers do that to you.</p>
+  <p>I brushed it off at first. Long hours. Dubai summers. Whatever.</p>
 
-  <p>But it kept happening. And slowly I started to understand what was going on. <strong>My brain had quietly outsourced parts of its process.</strong> Not my skills — those were still there. But the low-level cognitive scaffolding. The "what do I say next" muscle. The first-draft courage. I'd been using AI as a cognitive crutch so frequently that I'd let some of those neurons go a bit slack.</p>
+  <p>But it kept showing up. And slowly I started putting words to it. <strong>My brain had quietly outsourced parts of its own process.</strong> Not my skills those were still there. But the messy, first-step thinking. The willingness to start badly and fix it later. I'd been handing that phase to AI so consistently that I'd stopped practicing it myself.</p>
 
-  <p>That was the moment I got genuinely unsettled. Not by what AI might do to the job market. By what it had already done to me, quietly, without asking permission.</p>
+  <p>That's the moment things got uncomfortable. Not because of what AI might do to the job market someday. Because of what it had already quietly done to me.</p>
 
-  <h2>The Job Question Is Real. But It's the Wrong Question.</h2>
-
-  <p>I'm not dismissing the employment conversation — it's serious, and anyone who tells you AI won't displace jobs is either selling something or hasn't been paying attention. It already has. I've watched it happen in industries I work in.</p>
-
-  <p>But that discussion is happening at the macro level. Politicians, economists, think tanks. The conversation I want to have is more granular and, I think, more urgent: <strong>what happens to the individual person who uses AI intensively, every day, for years?</strong></p>
-
-  <div class="pull-quote">
-    <p>The machine didn't take my job. It slowly, politely, reshaped the inside of my head. And I let it because it felt like productivity.</p>
+  <div class="post-img">
+    <div class="post-img-box tall">
+      <svg viewBox="0 0 680 340" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="680" height="340" fill="#060d1e"/>
+        <defs><radialGradient id="sg" cx="50%" cy="40%" r="50%"><stop offset="0%" stop-color="#008cff" stop-opacity="0.15"/><stop offset="100%" stop-color="#008cff" stop-opacity="0"/></radialGradient></defs>
+        <rect width="680" height="340" fill="url(#sg)"/>
+        <rect x="0" y="248" width="680" height="92" fill="rgba(12,18,32,0.85)"/>
+        <line x1="0" y1="248" x2="680" y2="248" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <rect x="218" y="78" width="244" height="158" rx="8" fill="#0a1428" stroke="rgba(0,140,255,0.28)" stroke-width="1.5"/>
+        <rect x="226" y="86" width="228" height="142" rx="5" fill="#050d1c"/>
+        <rect x="238" y="100" width="85" height="6" rx="3" fill="rgba(0,247,255,0.4)"/>
+        <rect x="238" y="114" width="148" height="4" rx="2" fill="rgba(255,255,255,0.09)"/>
+        <rect x="238" y="122" width="118" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
+        <rect x="238" y="130" width="138" height="4" rx="2" fill="rgba(255,255,255,0.09)"/>
+        <rect x="328" y="150" width="114" height="64" rx="6" fill="rgba(0,247,255,0.05)" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
+        <rect x="338" y="160" width="74" height="3" rx="1.5" fill="rgba(0,247,255,0.4)"/>
+        <rect x="338" y="168" width="94" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+        <rect x="338" y="176" width="84" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+        <rect x="338" y="184" width="88" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+        <rect x="334" y="200" width="2" height="10" rx="1" fill="rgba(0,247,255,0.8)"/>
+        <rect x="328" y="236" width="20" height="10" fill="#0a1428"/>
+        <rect x="298" y="244" width="84" height="4" rx="1" fill="#0a1428"/>
+        <rect x="226" y="263" width="228" height="32" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+        <rect x="234" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="252" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="270" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="288" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="306" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="324" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="342" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="360" y="270" width="14" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+        <rect x="380" y="270" width="54" height="8" rx="2" fill="rgba(0,247,255,0.09)"/>
+        <rect x="488" y="238" width="32" height="36" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <path d="M503 230 Q505 225 508 230" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+        <path d="M498 230 Q500 223 503 230" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+        <rect x="148" y="252" width="48" height="26" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+        <rect x="153" y="257" width="38" height="16" rx="2" fill="#050d1c"/>
+        <rect x="155" y="259" width="26" height="3" rx="1.5" fill="rgba(255,0,255,0.28)"/>
+        <ellipse cx="340" cy="243" rx="124" ry="18" fill="rgba(0,140,255,0.04)"/>
+      </svg>
+    </div>
+    <div class="post-img-caption">My actual setup in Dubai AI on one screen, me trying to figure out where the line was</div>
   </div>
 
-  <p>This is what nobody is really talking about. The cognitive and psychological dimension of deep AI integration. We're all focused on the output — faster work, better results, more scale — and mostly ignoring what's happening to the inputs. To us.</p>
+  <h2>The Job Question Is Real. But It's Not The Interesting One.</h2>
 
-  <h2>Two Years of Daily Use: What I Actually Observed</h2>
+  <p>I'm not going to tell you AI won't displace jobs. It already has, in industries I work in directly. That conversation is real and serious and worth having.</p>
 
-  <p>I want to be precise here, because I think vague scaremongering is useless. So let me be specific about what I noticed, what I didn't, and what I genuinely don't know yet.</p>
+  <p>But that's a macro story. Governments and economists are on it. The question I keep coming back to is smaller and more personal. What happens to <em>you</em>, as a person, when you use AI intensively every single day for years on end?</p>
 
-  <h3>What got better (genuinely)</h3>
+  <div class="pull-quote">
+    <p>The machine didn't take my job. It quietly, politely, started reshaping the inside of my head. And I let it happen because it felt exactly like productivity.</p>
+  </div>
 
-  <p>The volume and quality of my client output increased significantly. Things that used to take me three hours take forty minutes. My visual work — product photography, AI-generated campaigns — went from good to something I'm actually proud of. My ability to rapidly prototype ideas, test concepts, and iterate exploded. These are real gains and I don't want to undersell them.</p>
+  <p>Nobody writes about this. We're all focused on what AI produces the outputs, the time saved, the results and mostly ignoring what's happening to the person doing the producing.</p>
 
-  <p>I also got better at <em>thinking in systems</em>. Working with AI forces you to be precise about what you want. You have to articulate intent clearly or you get garbage back. That discipline, over time, made me a cleaner thinker in general. I'd call that an unexpected benefit.</p>
+  <div class="stat-callout">
+    <div class="stat-box">
+      <span class="num">2+</span>
+      <span class="label">Years of daily AI use across client projects</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">3h→40m</span>
+      <span class="label">Typical creative task time reduction</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">1</span>
+      <span class="label">Uncomfortable realization that changed everything</span>
+    </div>
+  </div>
+
+  <h2>Two Years In — What Actually Changed</h2>
+
+  <p>Let me be specific, because vague takes are useless. Here's exactly what I noticed: what got better, what got harder, and what I genuinely still don't know.</p>
+
+  <h3>What genuinely improved</h3>
+
+  <p>Output went way up. Deliverables that used to take three hours take forty minutes. My visual work — product photography, AI-generated campaigns went from competent to something I'm actually proud of. And my ability to prototype ideas fast, test ten variations before lunch, iterate without the fear of "wasting" a whole afternoon on something that doesn't work? That's a real superpower now.</p>
+
+  <p>Something subtler also got better: I started articulating intent much more clearly. Working with AI forces precision. You can't be vague and expect good output. That discipline leaked into my non-AI work and made me a cleaner thinker overall. I didn't expect that one.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="180" fill="#07101e"/>
+        <defs><radialGradient id="mg1" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#ff00ff" stop-opacity="0.12"/><stop offset="100%" stop-color="#ff00ff" stop-opacity="0"/></radialGradient></defs>
+        <rect width="300" height="180" fill="url(#mg1)"/>
+        <path d="M60 65 Q70 42 90 50 Q95 30 112 40 Q120 22 135 35 Q148 27 153 45 Q168 40 167 58 Q178 65 170 80 Q178 92 167 102 Q164 120 146 117 Q138 135 122 125 Q109 137 94 125 Q78 130 72 113 Q57 106 60 90 Q50 80 57 70Z" stroke="rgba(255,0,255,0.4)" stroke-width="1.5" fill="rgba(255,0,255,0.05)"/>
+        <path d="M85 62 Q93 75 87 88 Q93 102 86 113" stroke="rgba(255,0,255,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M110 50 Q116 65 110 78 Q116 92 110 103 Q112 116 106 125" stroke="rgba(255,0,255,0.24)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <text x="110" y="160" text-anchor="middle" fill="rgba(255,0,255,0.45)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="2">ORGANIC THINKING</text>
+      </svg>
+      <div class="grid-label">Before messy, slow, sometimes brilliant</div>
+    </div>
+    <div class="img-grid-item">
+      <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="180" fill="#05101e"/>
+        <defs><radialGradient id="cg1" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#00f7ff" stop-opacity="0.1"/><stop offset="100%" stop-color="#00f7ff" stop-opacity="0"/></radialGradient></defs>
+        <rect width="300" height="180" fill="url(#cg1)"/>
+        <rect x="80" y="38" width="140" height="104" rx="8" stroke="rgba(0,247,255,0.3)" stroke-width="1.5" fill="rgba(0,247,255,0.03)"/>
+        <line x1="100" y1="64" x2="200" y2="64" stroke="rgba(0,247,255,0.3)" stroke-width="1"/>
+        <line x1="100" y1="82" x2="182" y2="82" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
+        <line x1="100" y1="100" x2="200" y2="100" stroke="rgba(0,247,255,0.3)" stroke-width="1"/>
+        <line x1="100" y1="118" x2="176" y2="118" stroke="rgba(0,247,255,0.2)" stroke-width="1"/>
+        <line x1="130" y1="64" x2="130" y2="82" stroke="rgba(0,247,255,0.22)" stroke-width="1"/>
+        <line x1="162" y1="82" x2="162" y2="100" stroke="rgba(0,247,255,0.22)" stroke-width="1"/>
+        <line x1="182" y1="100" x2="182" y2="118" stroke="rgba(0,247,255,0.22)" stroke-width="1"/>
+        <circle cx="130" cy="64" r="3" fill="rgba(0,247,255,0.8)"/>
+        <circle cx="162" cy="82" r="3" fill="rgba(0,247,255,0.7)"/>
+        <circle cx="182" cy="100" r="3" fill="rgba(0,247,255,0.8)"/>
+        <circle cx="176" cy="118" r="3" fill="rgba(0,247,255,0.6)"/>
+        <text x="150" y="160" text-anchor="middle" fill="rgba(0,247,255,0.45)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="2">AI-ASSISTED MIND</text>
+      </svg>
+      <div class="grid-label">After faster, cleaner, but something different</div>
+    </div>
+  </div>
 
   <div class="aside-box">
-    <div class="aside-label">Worth noting</div>
-    <p>A lot of the "AI is making us dumb" takes come from people who use it occasionally and poorly. The picture is more complicated for intensive daily users. There are real cognitive benefits that casual observers miss — and real costs that enthusiasts don't want to admit.</p>
+    <div class="aside-label">Worth saying</div>
+    <p>Most of the "AI is making us stupid" takes come from people who use it occasionally and badly. The picture is more complicated for daily intensive users. Real cognitive gains that skeptics miss, and real costs that enthusiasts won't admit. Both are true at the same time.</p>
   </div>
 
-  <h3>What got harder (and why it matters)</h3>
+  <h3>What quietly got harder</h3>
 
-  <p>First-draft generation — the messy, unstructured, nobody-is-watching kind — got harder. Not impossible. Just slower and less natural than it used to be. I think the reason is simple: I'd been offloading that phase to AI so consistently that I'd practiced it less. Skills you don't use, you lose. Turns out this applies to creative cognition too.</p>
+  <p>First-draft generation got harder. The messy, nobody-is-watching, just-start-somewhere kind of writing or thinking. Not impossible — just slower and less natural than before. I'd been offloading that phase so consistently that I'd stopped practicing it. Skills you don't use, you lose. Creative initiation is apparently not exempt from that rule.</p>
 
-  <p>Second, and this one took me a while to name: <strong>my tolerance for "good enough" output went down, but my definition of "good enough" started to drift toward what AI could produce easily.</strong> In some categories, that's fine. In others — especially work that's supposed to feel distinctly human — it's a subtle but real problem.</p>
+  <p>Second: my tolerance for mediocre output dropped, but my definition of "good" started drifting toward what AI could produce easily. In some areas fine. In work that's supposed to feel human and personal, that drift is a quiet and real problem.</p>
 
-  <p>Third, and most interesting to me: my attention span inside individual tasks shortened. When you're used to generating ten variations in thirty seconds, sitting with one version for twenty minutes feels almost uncomfortable. I don't think this is entirely about AI — smartphones did a version of this years earlier — but the AI dimension is its own thing.</p>
+  <p>Third, most surprising of all: my attention span inside individual tasks shortened. When you can generate ten variations in thirty seconds, sitting with one thing for twenty minutes starts feeling weirdly uncomfortable. Like something is wrong. I don't think AI is entirely responsible for this but it absolutely adds its own layer.</p>
 
-  <h2>The Part That Surprised Me Most</h2>
-
-  <p>I assumed that heavy AI use would make me lazy. It didn't. If anything, I work more than I did before. What it actually changed was my relationship to difficulty. Specifically: I became less comfortable with the productive frustration that often precedes a breakthrough.</p>
-
-  <p>The best creative work I've ever done — and probably you'd say the same about yours — came out of a period of being stuck. Of not knowing. Of trying things that didn't work. That discomfort is where something new gets made.</p>
-
-  <p>AI removes that discomfort very efficiently. Which sounds good on paper. But I've started to wonder what gets lost when we never have to sit in the problem long enough for something genuinely original to emerge.</p>
-
-  <div class="pull-quote">
-    <p>Removing friction sounds like progress. But some friction is load-bearing. Take it out and the structure shifts in ways you don't notice until later.</p>
+  <div class="post-img">
+    <div class="post-img-box medium">
+      <svg viewBox="0 0 680 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="680" height="260" fill="#060c1a"/>
+        <defs><pattern id="sg2" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M 18 0 L 0 0 0 18" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="0.5"/></pattern></defs>
+        <rect width="680" height="260" fill="url(#sg2)"/>
+        <text x="170" y="35" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Syne,sans-serif" font-size="10" letter-spacing="3">BEFORE AI</text>
+        <rect x="58" y="50" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="58" y="50" width="204" height="18" rx="3" fill="rgba(255,0,255,0.25)"/>
+        <text x="53" y="47" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Deep focus</text>
+        <rect x="58" y="78" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="58" y="78" width="184" height="18" rx="3" fill="rgba(255,0,255,0.2)"/>
+        <text x="53" y="75" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Creative flow</text>
+        <rect x="58" y="106" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="58" y="106" width="164" height="18" rx="3" fill="rgba(255,0,255,0.15)"/>
+        <text x="53" y="103" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Tolerance for difficulty</text>
+        <text x="510" y="35" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Syne,sans-serif" font-size="10" letter-spacing="3">AFTER AI (2 YRS)</text>
+        <rect x="398" y="50" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="398" y="50" width="118" height="18" rx="3" fill="rgba(0,247,255,0.22)"/>
+        <text x="393" y="47" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Deep focus</text>
+        <rect x="398" y="78" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="398" y="78" width="98" height="18" rx="3" fill="rgba(0,247,255,0.18)"/>
+        <text x="393" y="75" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Creative flow</text>
+        <rect x="398" y="106" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="398" y="106" width="78" height="18" rx="3" fill="rgba(0,247,255,0.13)"/>
+        <text x="393" y="103" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Tolerance for difficulty</text>
+        <rect x="398" y="148" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="398" y="148" width="214" height="18" rx="3" fill="rgba(0,140,255,0.28)"/>
+        <text x="393" y="145" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Output speed</text>
+        <rect x="398" y="176" width="224" height="18" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <rect x="398" y="176" width="218" height="18" rx="3" fill="rgba(0,140,255,0.22)"/>
+        <text x="393" y="173" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="8">Systems thinking</text>
+        <line x1="338" y1="28" x2="338" y2="215" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="170" y="238" text-anchor="middle" fill="rgba(255,0,255,0.28)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">Some things got quieter</text>
+        <text x="510" y="238" text-anchor="middle" fill="rgba(0,247,255,0.28)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">Some things got louder</text>
+      </svg>
+    </div>
+    <div class="post-img-caption">Not a study just honest observations from two years of paying attention</div>
   </div>
 
-  <!-- Inline art: the "friction" concept -->
-  <div class="section-art">
-    <svg viewBox="0 0 680 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-      <defs>
-        <pattern id="grid2" width="30" height="30" patternUnits="userSpaceOnUse">
-          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0,247,255,0.03)" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="680" height="240" fill="url(#grid2)"/>
+  <h2>The Thing That Surprised Me Most</h2>
 
-      <!-- "Old path" - jagged, organic, leads to a star -->
-      <path d="M80 120 Q110 80 130 100 Q150 60 175 90 Q195 50 220 80 Q240 40 265 70 Q285 30 310 60 Q320 50 330 70" stroke="rgba(255,0,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Star at end (breakthrough) -->
-      <g transform="translate(350, 120)">
-        <path d="M0 -18 L4 -6 L16 -6 L7 1 L10 13 L0 7 L-10 13 L-7 1 L-16 -6 L-4 -6 Z" fill="rgba(240,192,64,0.2)" stroke="rgba(240,192,64,0.6)" stroke-width="1.5"/>
-        <circle cx="0" cy="0" r="3" fill="rgba(240,192,64,0.8)"/>
-      </g>
-      <text x="340" y="165" text-anchor="middle" fill="rgba(240,192,64,0.4)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="2">THE STRUGGLE</text>
+  <p>I assumed heavy AI use would make me lazy. It didn't. I work more now than I did two years ago. What it actually changed was my relationship to difficulty itself.</p>
 
-      <!-- Divider -->
-      <line x1="440" y1="30" x2="440" y2="210" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
-      <text x="440" y="22" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="2">VS</text>
+  <p>The best work I've ever done probably the best work you've ever done too came out of a period of being genuinely stuck. Not knowing the answer. Trying things that didn't work. Sitting in discomfort long enough that something new emerged on the other side.</p>
 
-      <!-- "AI path" - smooth, straight, leads to an X -->
-      <path d="M480 120 Q520 120 540 120 Q560 120 580 120" stroke="rgba(0,247,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <!-- Straight arrow -->
-      <polyline points="572,112 582,120 572,128" stroke="rgba(0,247,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Output mark -->
-      <circle cx="600" cy="120" r="16" fill="rgba(0,247,255,0.06)" stroke="rgba(0,247,255,0.3)" stroke-width="1.5"/>
-      <path d="M593 113 L607 127 M607 113 L593 127" stroke="rgba(0,247,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-      <text x="600" y="155" text-anchor="middle" fill="rgba(0,247,255,0.3)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="2">THE SHORTCUT</text>
+  <p>AI removes that discomfort really efficiently. And that sounds like a good thing. But I've been thinking about what gets lost when you never have to stay inside a problem long enough for something original to come out.</p>
 
-      <!-- Labels -->
-      <text x="80" y="42" fill="rgba(255,255,255,0.12)" font-family="Syne,sans-serif" font-size="10" letter-spacing="2">HUMAN PROCESS</text>
-      <text x="480" y="42" fill="rgba(255,255,255,0.12)" font-family="Syne,sans-serif" font-size="10" letter-spacing="2">AI PROCESS</text>
-    </svg>
-    <span class="art-label">The friction paradox — not all shortcuts lead to the same destination</span>
+  <div class="highlight-text">
+    <p>Removing friction sounds like progress. But some friction is structural. Take it out and the building shifts in ways you don't notice until later or until something falls.</p>
   </div>
 
-  <h2>So Is This a Warning? Sort Of.</h2>
+  <div class="post-img">
+    <div class="post-img-box medium">
+      <svg viewBox="0 0 680 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="680" height="260" fill="#060a14"/>
+        <defs><pattern id="g3" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(0,247,255,0.025)" stroke-width="0.5"/></pattern></defs>
+        <rect width="680" height="260" fill="url(#g3)"/>
+        <text x="58" y="32" fill="rgba(255,0,255,0.38)" font-family="Syne,sans-serif" font-size="10" letter-spacing="2">THE HUMAN PATH</text>
+        <path d="M58 140 Q80 108 102 126 Q124 76 150 102 Q170 60 200 84 Q222 46 254 72 Q276 38 308 62 Q326 50 342 70" stroke="rgba(255,0,255,0.5)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="102" cy="126" r="4" fill="rgba(255,0,255,0.4)" stroke="rgba(255,0,255,0.15)" stroke-width="5"/>
+        <circle cx="150" cy="102" r="4" fill="rgba(255,0,255,0.4)" stroke="rgba(255,0,255,0.15)" stroke-width="5"/>
+        <circle cx="200" cy="84" r="4" fill="rgba(255,0,255,0.4)" stroke="rgba(255,0,255,0.15)" stroke-width="5"/>
+        <g transform="translate(366,108)">
+          <path d="M0 -22 L5 -8 L20 -8 L9 2 L13 17 L0 9 L-13 17 L-9 2 L-20 -8 L-5 -8 Z" fill="rgba(240,192,64,0.18)" stroke="rgba(240,192,64,0.7)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="4" fill="rgba(240,192,64,0.9)"/>
+        </g>
+        <text x="366" y="155" text-anchor="middle" fill="rgba(240,192,64,0.45)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">BREAKTHROUGH</text>
+        <text x="400" y="32" fill="rgba(0,247,255,0.38)" font-family="Syne,sans-serif" font-size="10" letter-spacing="2">THE AI PATH</text>
+        <line x1="398" y1="140" x2="614" y2="140" stroke="rgba(0,247,255,0.42)" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="602,130 616,140 602,150" stroke="rgba(0,247,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="634" cy="140" r="20" fill="rgba(0,247,255,0.05)" stroke="rgba(0,247,255,0.28)" stroke-width="1.5"/>
+        <path d="M625 131 L643 149 M643 131 L625 149" stroke="rgba(0,247,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="634" y="178" text-anchor="middle" fill="rgba(0,247,255,0.28)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">OUTPUT</text>
+        <text x="634" y="192" text-anchor="middle" fill="rgba(0,247,255,0.16)" font-family="DM Sans,sans-serif" font-size="8">but which kind?</text>
+        <line x1="383" y1="18" x2="383" y2="225" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4 6"/>
+        <text x="58" y="238" fill="rgba(255,255,255,0.08)" font-family="DM Sans,sans-serif" font-size="9">Painful. Slow. Sometimes where original ideas are born.</text>
+        <text x="398" y="238" fill="rgba(255,255,255,0.08)" font-family="DM Sans,sans-serif" font-size="9">Fast. Clean. Not always the same destination.</text>
+      </svg>
+    </div>
+    <div class="post-img-caption">Two paths to output knowing which one you need is the skill nobody talks about</div>
+  </div>
 
-  <p>I want to be careful not to be that guy who writes a think piece about technology being bad while using it constantly. I still use AI every day. I will tomorrow. The practical benefits are too significant to walk away from, and honestly, I genuinely enjoy working with these tools. There's something remarkable about having this kind of capability available.</p>
+  <h2>What I Actually Changed</h2>
 
-  <p>But I've changed how I use it, and I think that matters.</p>
+  <p>I'm not going to be the person who writes a whole essay about technology being bad while using it constantly. I still use AI every day. The benefits are too real. And honestly I love these tools — there's something genuinely remarkable about what's available right now.</p>
 
-  <p>I now deliberately do first drafts by hand — actual handwriting, when I can — before I bring any AI into a project. Not because it's more efficient, because it isn't. But because I want to protect that initial uninfluenced thinking. I want the idea to be mine before I throw it into the amplification machine.</p>
+  <p>But I made two specific changes after that realization hit.</p>
 
-  <p>I also started taking one full day a week where I don't use any AI tools at all. Just me, some notes, and whatever I can figure out on my own. It felt embarrassingly hard at first. Now it feels like maintenance. Like the cognitive equivalent of going for a run when you have a desk job.</p>
+  <p>First: I do first drafts by hand now. Pen on paper when I can manage it, or at minimum typing into a blank doc with everything closed. Not because it's efficient — it absolutely is not. Because I want the seed of the idea to be mine before I hand it to the amplification machine.</p>
+
+  <p>Second: one day a week, no AI tools. Just me and whatever I can figure out alone. The first few weeks this felt embarrassingly hard. Now it feels like maintenance. The cognitive equivalent of going for a run when you sit at a desk all day.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="180" fill="#060e1c"/>
+        <rect x="70" y="45" width="100" height="95" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <rect x="78" y="65" width="84" height="3" rx="1.5" fill="rgba(255,255,255,0.1)"/>
+        <rect x="78" y="73" width="72" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+        <rect x="78" y="81" width="80" height="3" rx="1.5" fill="rgba(255,255,255,0.1)"/>
+        <rect x="78" y="89" width="60" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+        <rect x="78" y="97" width="76" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+        <rect x="152" y="62" width="6" height="70" rx="2" fill="rgba(255,0,255,0.4)" transform="rotate(18 155 97)"/>
+        <polygon points="152,132 158,132 155,142" fill="rgba(255,0,255,0.5)" transform="rotate(18 155 97)"/>
+        <text x="150" y="165" text-anchor="middle" fill="rgba(255,0,255,0.4)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="2">HUMAN FIRST</text>
+      </svg>
+      <div class="grid-label">First drafts always mine, always offline</div>
+    </div>
+    <div class="img-grid-item">
+      <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="180" fill="#050e1c"/>
+        <rect x="78" y="48" width="144" height="102" rx="6" fill="rgba(0,247,255,0.03)" stroke="rgba(0,247,255,0.18)" stroke-width="1"/>
+        <rect x="78" y="48" width="144" height="22" rx="6" fill="rgba(0,247,255,0.09)"/>
+        <text x="150" y="64" text-anchor="middle" fill="rgba(0,247,255,0.75)" font-family="Syne,sans-serif" font-size="10" letter-spacing="1">WEEK</text>
+        <rect x="88" y="78" width="18" height="16" rx="2" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <rect x="110" y="78" width="18" height="16" rx="2" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <rect x="132" y="78" width="18" height="16" rx="2" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <rect x="154" y="78" width="18" height="16" rx="2" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <rect x="176" y="78" width="18" height="16" rx="2" fill="rgba(0,247,255,0.12)" stroke="rgba(0,247,255,0.25)" stroke-width="1"/>
+        <rect x="198" y="78" width="18" height="16" rx="2" fill="rgba(255,0,255,0.18)" stroke="rgba(255,0,255,0.4)" stroke-width="1"/>
+        <path d="M201 89 L206 95 L213 83" stroke="rgba(255,0,255,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <text x="150" y="125" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-family="DM Sans,sans-serif" font-size="8">1 day — no AI tools at all</text>
+        <text x="150" y="165" text-anchor="middle" fill="rgba(0,247,255,0.4)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="2">AI FREE DAY</text>
+      </svg>
+      <div class="grid-label">One full day offline every week feels strange, keeps me honest</div>
+    </div>
+  </div>
 
   <h2>What I Think Is Actually Coming</h2>
 
-  <p>Here's my honest read on the next five years, based on what I've observed close up: the people who will be genuinely displaced are not the ones who use AI tools, and not even the ones who don't. The ones at real risk are those who use AI as a replacement for thinking rather than an extension of it.</p>
+  <p>Here's my honest read, based on two years of watching this up close in Dubai, working with clients across industries globally.</p>
 
-  <p>There's a difference. And it's subtle enough that a lot of people are on the wrong side of it without knowing it.</p>
+  <p>The people who will be genuinely displaced by AI are not the ones who use it, and not the ones who refuse to. The real risk is for people who use AI as a replacement for thinking rather than a tool for thinking faster.</p>
 
-  <p>Using AI to execute your ideas faster: great. Using AI because you don't want to have the ideas yourself: that's where things get complicated, for your work and, I'd argue, for something harder to name — your sense of authorship. Of agency. Of what it means to make something.</p>
+  <p>There's a real difference. Subtle enough that a lot of people are on the wrong side of it without knowing it.</p>
 
-  <p>I don't think AI is taking over in the dramatic sci-fi sense. What I think is happening is quieter and, in some ways, more interesting. <strong>We are slowly negotiating, each of us individually, how much of our cognitive life to delegate.</strong> And most people are making that negotiation unconsciously, one convenience at a time, without ever deciding to decide.</p>
+  <div class="pull-quote">
+    <p>Using AI to execute your ideas faster that's leverage. Using AI because you don't want to have the ideas yourself I'm not sure that ends well.</p>
+  </div>
 
-  <p>That's what scared me when I noticed it in myself. Not the machine. The sleepwalking.</p>
+  <p>I don't think AI is "taking over" in the sci-fi sense. What I think is happening is quieter and more interesting. We're each individually negotiating in real time how much of our cognitive life to delegate. And most people are making that negotiation unconsciously, one small convenience at a time, without ever actually deciding.</p>
+
+  <p>That's what scared me when I noticed it in myself. Not the machine. The fact that I was sleepwalking into a new version of how I think without ever choosing to.</p>
+
+  <div class="post-img">
+    <div class="post-img-box short">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="680" height="200" fill="#060c18"/>
+        <defs><radialGradient id="fg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00f7ff" stop-opacity="0.08"/><stop offset="100%" stop-color="#00f7ff" stop-opacity="0"/></radialGradient></defs>
+        <rect width="680" height="200" fill="url(#fg)"/>
+        <text x="340" y="78" text-anchor="middle" fill="rgba(255,255,255,0.07)" font-family="Syne,sans-serif" font-size="32" font-weight="800" letter-spacing="8">STAY AWAKE</text>
+        <text x="340" y="115" text-anchor="middle" fill="rgba(0,247,255,0.22)" font-family="Lora,serif" font-size="15" font-style="italic">the negotiation is already happening</text>
+        <line x1="240" y1="136" x2="440" y2="136" stroke="rgba(0,247,255,0.12)" stroke-width="1"/>
+        <text x="340" y="162" text-anchor="middle" fill="rgba(255,255,255,0.05)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="4">WHETHER YOU NOTICE IT OR NOT</text>
+      </svg>
+    </div>
+    <div class="post-img-caption">Dubai, 2026 — somewhere between the future and figuring out what it costs</div>
+  </div>
 
   <hr>
 
-  <p>I'm not sure I have a clean conclusion to offer. I don't think this is a story with a moral. It's more an observation I wanted to write down before it got harder to remember what it felt like on the other side.</p>
+  <p>I don't have a clean conclusion. I don't think this is a story with a tidy moral. It's more just something I've been sitting with and wanted to write down before it got harder to remember what things felt like on the other side of it.</p>
 
-  <p>If you work with AI tools regularly, pay attention. Not to what you're producing. To what's happening inside your head while you produce it. That's where the interesting stuff is, and I don't see nearly enough people talking about it.</p>
+  <p>If you use AI tools regularly: pay attention. Not to what you're producing. To what's happening in your head while you produce it. The output is easy to measure. The input is where the actually interesting stuff lives, and I don't see nearly enough people talking about it.</p>
 
-  <p style="color: var(--text-muted); font-size: 0.9rem; font-style: italic;">— Arsalan, Dubai, 2026</p>
+  <div class="author-sign">
+    <div class="author-sign-avatar">A</div>
+    <div class="author-sign-info">
+      <strong>Arsalan</strong>
+      <p>AI Expert & Creative Technologist · Dubai, May 2026</p>
+    </div>
+  </div>
 
   <div class="post-end-bar">
     <div class="end-tags">
       <span class="end-tag">AI</span>
       <span class="end-tag">Cognition</span>
-      <span class="end-tag">Future of Work</span>
+      <span class="end-tag">Work</span>
       <span class="end-tag">Opinion</span>
       <span class="end-tag">Creativity</span>
+      <span class="end-tag">Dubai</span>
     </div>
     <div class="share-row">
       <span class="share-label">Share</span>
-      <button class="share-btn" title="Copy link" onclick="copyLink()">
+      <button class="share-btn" title="Copy link" onclick="copyLink(event)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       </button>
-      <button class="share-btn" title="Share on X/Twitter" onclick="shareTwitter()">
+      <button class="share-btn" title="Share on X" onclick="shareTwitter()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </button>
     </div>
@@ -722,12 +561,11 @@ footer p { font-size: 0.78rem; color: var(--text-muted); }
 
 </article>
 
-<!-- BACK TO BLOG -->
 <div class="back-strip reveal">
   <div class="back-strip-inner">
     <div class="back-strip-text">
-      <p>Enjoying the writing?</p>
-      <span>More essays on AI, work, and creativity →</span>
+      <p>More essays on AI and how it's changing everything</p>
+      <span>The AI Journal by Arsalan →</span>
     </div>
     <a href="blog.html" class="btn-back-blog">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -737,11 +575,10 @@ footer p { font-size: 0.78rem; color: var(--text-muted); }
 </div>
 
 <footer>
-  <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist</p>
+  <p>&copy; 2026 Arsalan · AI Expert & Creative Technologist</p>
 </footer>
 
 <script>
-// READ PROGRESS
 const progress = document.getElementById('read-progress');
 window.addEventListener('scroll', () => {
   const doc = document.documentElement;
@@ -749,23 +586,19 @@ window.addEventListener('scroll', () => {
   const total = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
   progress.style.transform = `scaleX(${Math.min(scrolled / total, 1)})`;
 });
-
-// SHARE
-function copyLink() {
+function copyLink(e) {
   navigator.clipboard.writeText(window.location.href).then(() => {
-    const btn = event.currentTarget;
+    const btn = e.currentTarget;
     btn.style.borderColor = 'var(--cyan)';
     btn.style.color = 'var(--cyan)';
     setTimeout(() => { btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
   });
 }
 function shareTwitter() {
-  const text = encodeURIComponent("I've Used AI Every Day for Two Years. Here's What Actually Scared Me. — by @Arsalan");
+  const text = encodeURIComponent("I've Used AI Every Day for Two Years. Here's What Actually Scared Me.");
   const url = encodeURIComponent(window.location.href);
-  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+  window.open('https://twitter.com/intent/tweet?text='+text+'&url='+url, '_blank');
 }
-
-// PARTICLES
 const bgCanvas = document.getElementById('particles');
 const bgCtx = bgCanvas.getContext('2d');
 bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight;
@@ -775,21 +608,17 @@ for(let i=0;i<50;i++) pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*b
 function animBg(){
   bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
   pts.forEach((p,i)=>{
-    bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.35;bgCtx.fill();bgCtx.globalAlpha=1;
-    for(let j=i+1;j<pts.length;j++){const p2=pts[j],d=Math.hypot(p.x-p2.x,p.y-p2.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-d/100)*.12})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}
+    bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.3;bgCtx.fill();bgCtx.globalAlpha=1;
+    for(let j=i+1;j<pts.length;j++){const p2=pts[j],d=Math.hypot(p.x-p2.x,p.y-p2.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle='rgba(0,247,255,'+(1-d/100)*.1+')';bgCtx.lineWidth=.5;bgCtx.stroke();}}
     p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;
   });
   requestAnimationFrame(animBg);
 }
 animBg();
 window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
-
-// REVEAL
 const revs = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});
 revs.forEach(el=>obs.observe(el));
-
-// CENTIPEDE CURSOR
 (function(){
   if(window.innerWidth<=900)return;
   const canvas=document.getElementById('creature-canvas');const ctx=canvas.getContext('2d');
