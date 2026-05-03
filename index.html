@@ -125,7 +125,6 @@ nav .nav-inner {
 
 .nav-links a:hover { color: var(--cyan); }
 
-/* Special highlight for Free AI Services link */
 .nav-links .nav-free-ai {
   color: var(--cyan);
   font-weight: 500;
@@ -147,10 +146,11 @@ nav .nav-inner {
 }
 
 @media (max-width: 800px) {
-  .nav-links { display: none; }
+  .nav-links { display: none !important; }
 }
 
-  .hamburger {
+/* ---- HAMBURGER ---- */
+.hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
@@ -158,6 +158,8 @@ nav .nav-inner {
   padding: 4px;
   background: none;
   border: none;
+  z-index: 200;
+  position: relative;
 }
 
 .hamburger span {
@@ -167,6 +169,7 @@ nav .nav-inner {
   background: var(--text-secondary);
   border-radius: 2px;
   transition: all 0.3s;
+  pointer-events: none;
 }
 
 .hamburger.open span:nth-child(1) {
@@ -187,14 +190,15 @@ nav .nav-inner {
   .hamburger { display: flex; }
 }
 
+/* ---- MOBILE NAV ---- */
 .mobile-nav {
   display: none;
   position: fixed;
   top: 65px; left: 0; right: 0;
-  background: rgba(5,8,16,0.97);
+  background: rgba(5,8,16,0.98);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  z-index: 99;
+  z-index: 150;
   padding: 20px 24px 28px;
   flex-direction: column;
   gap: 4px;
@@ -208,15 +212,16 @@ nav .nav-inner {
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.05em;
-  padding: 12px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
   transition: color 0.2s;
+  display: block;
 }
 
 .mobile-nav a:last-child { border-bottom: none; }
 .mobile-nav a:hover { color: var(--cyan); }
 .mobile-nav a.nav-free-ai { color: var(--cyan); }
-  
+
 /* ---- HERO ---- */
 header {
   min-height: 100vh;
@@ -384,6 +389,7 @@ header {
   width: 340px;
   max-width: 100%;
 }
+
 .profile-card-inner {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.1);
@@ -757,7 +763,7 @@ section {
   flex-wrap: wrap;
 }
 
-/* ---- AI PROMPTS BUTTON SECTION ---- */
+/* ---- AI PROMPTS ---- */
 .prompts-cta-section {
   margin-top: 50px;
   text-align: center;
@@ -804,7 +810,6 @@ section {
 }
 
 .btn-ai-prompts:hover::before { opacity: 1; }
-
 .btn-ai-prompts span { position: relative; z-index: 1; }
 
 @media (max-width: 900px) {
@@ -892,8 +897,8 @@ footer p {
   opacity: 1;
   transform: translateY(0);
 }
-  /* MOBILE OVERFLOW FIX */
-/* MOBILE OVERFLOW FIX */
+
+/* ---- MOBILE FIXES ---- */
 @media (max-width: 800px) {
   html, body {
     overflow-x: hidden;
@@ -901,13 +906,9 @@ footer p {
     max-width: 100vw;
   }
 
-  .nav-links {
-    display: none !important;
-  }
-
   nav {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .nav-inner {
@@ -936,21 +937,7 @@ footer p {
     margin: 0 auto;
   }
 
-  .profile-card-inner {
-    width: 100%;
-  }
-
-  .profile-stats {
-    gap: 12px;
-  }
-
-  .stat-num {
-    font-size: 0.95rem;
-  }
-
-  .stat-label {
-    font-size: 0.65rem;
-  }
+  .profile-card-inner { width: 100%; }
 
   .hero-cta-row {
     justify-content: center;
@@ -963,26 +950,16 @@ footer p {
     box-sizing: border-box;
   }
 
-  .tools-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
 
   .facp-banner {
     flex-direction: column;
     text-align: center;
   }
 
-  section {
-    padding: 60px 0;
-  }
+  section { padding: 60px 0; }
 }
 </style>
 </head>
@@ -1008,12 +985,12 @@ footer p {
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <a href="#tools" onclick="closeMenu()">Tools</a>
-    <a href="#services" onclick="closeMenu()">Services</a>
-    <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
-    <a href="blog.html" onclick="closeMenu()">Blog</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
-    <a href="#contact" class="nav-free-ai" onclick="closeMenu()">✨ Free AI Services</a>
+    <a href="#tools">Tools</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-free-ai">✨ Free AI Services</a>
   </div>
 </nav>
 
@@ -1274,7 +1251,6 @@ footer p {
         </a>
       </div>
 
-      <!-- AI PROMPTS BUTTON -->
       <div class="prompts-cta-section">
         <p>Free AI prompts, tips and tricks, and free AI tools.</p>
         <a href="prompts.html" class="btn-ai-prompts">
@@ -1286,7 +1262,6 @@ footer p {
       </div>
     </div>
 
-    <!-- FACP Banner -->
     <div class="facp-banner reveal" style="margin-top: 60px;">
       <div class="facp-text">
         <h3>FACP Assistant App</h3>
@@ -1308,14 +1283,11 @@ footer p {
 </footer>
 
 <script>
-// =============================================
-// BACKGROUND PARTICLES
-// =============================================
+// PARTICLES
 const bgCanvas = document.getElementById('particles');
 const bgCtx = bgCanvas.getContext('2d');
 bgCanvas.width = window.innerWidth;
 bgCanvas.height = window.innerHeight;
-
 const particleColors = ['#00f7ff','#008cff','#ff00ff'];
 const particles = [];
 for (let i = 0; i < 80; i++) {
@@ -1328,7 +1300,6 @@ for (let i = 0; i < 80; i++) {
     color: particleColors[Math.floor(Math.random() * particleColors.length)]
   });
 }
-
 function animateBg() {
   bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
   particles.forEach((p, i) => {
@@ -1357,15 +1328,12 @@ function animateBg() {
   requestAnimationFrame(animateBg);
 }
 animateBg();
-
 window.addEventListener('resize', () => {
   bgCanvas.width = window.innerWidth;
   bgCanvas.height = window.innerHeight;
 });
 
-// =============================================
-// REVEAL ON SCROLL
-// =============================================
+// REVEAL
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1376,7 +1344,8 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
-// HAMBURGER MENU
+
+// HAMBURGER — fixed with stopPropagation and no inline onclick
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
 
@@ -1385,195 +1354,61 @@ function closeMenu() {
   mobileNav.classList.remove('open');
 }
 
-hamburger.addEventListener('click', (e) => {
+hamburger.addEventListener('click', function(e) {
   e.stopPropagation();
   hamburger.classList.toggle('open');
   mobileNav.classList.toggle('open');
 });
 
-document.addEventListener('click', (e) => {
+// Close when clicking a nav link
+mobileNav.querySelectorAll('a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    closeMenu();
+  });
+});
+
+// Close when clicking outside
+document.addEventListener('click', function(e) {
   if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
     closeMenu();
   }
 });
-// =============================================
-// CENTIPEDE CREATURE CURSOR FOLLOWER (desktop only)
-// =============================================
+
+// CENTIPEDE CURSOR
 (function() {
   if (window.innerWidth <= 900) return;
-
   const canvas = document.getElementById('creature-canvas');
   const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', () => {
     if (window.innerWidth <= 900) { canvas.style.display = 'none'; return; }
-    canvas.style.display = 'block';
-    resize();
+    canvas.style.display = 'block'; resize();
   });
-
-  const NUM_SEGMENTS = 18;
-  const SEG_LENGTH = 14;
-  const HEAD_RADIUS = 7;
-  const BODY_RADIUS_MAX = 6;
-  const BODY_RADIUS_MIN = 2;
-  const LEG_PAIRS = 8;
-  const LEG_LENGTH = 22;
-  const LEG_SPREAD = 0.55;
-  const ANTENNA_LEN = 18;
-  const GLOW_COLOR = '#00f7ff';
-  const STROKE_COLOR = 'rgba(0, 247, 255, 0.85)';
-  const LERP_SPEED = 0.18;
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-
-  const segments = [];
-  for (let i = 0; i < NUM_SEGMENTS; i++) {
-    segments.push({ x: mouseX - i * SEG_LENGTH, y: mouseY });
+  const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=0.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LR=0.18;
+  let mx=window.innerWidth/2,my=window.innerHeight/2;
+  const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});
+  let lp=0;
+  window.addEventListener('mousemove',(e)=>{mx=e.clientX;my=e.clientY;});
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}
+  function update(){
+    segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);
+    for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}
+    lp+=.12;
   }
-
-  let legPhase = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function setGlow(blur) {
-    ctx.shadowBlur = blur;
-    ctx.shadowColor = GLOW_COLOR;
-    ctx.strokeStyle = STROKE_COLOR;
-    ctx.fillStyle = STROKE_COLOR;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
+    for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}
+    for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}
+    const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();
+    const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();
+    const as=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();
+    ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();
   }
-
-  function update() {
-    segments[0].x = lerp(segments[0].x, mouseX, LERP_SPEED);
-    segments[0].y = lerp(segments[0].y, mouseY, LERP_SPEED);
-    for (let i = 1; i < NUM_SEGMENTS; i++) {
-      const prev = segments[i - 1];
-      const curr = segments[i];
-      const dx = curr.x - prev.x;
-      const dy = curr.y - prev.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
-      curr.x = prev.x + (dx / dist) * SEG_LENGTH;
-      curr.y = prev.y + (dy / dist) * SEG_LENGTH;
-    }
-    legPhase += 0.12;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    ctx.beginPath();
-    ctx.moveTo(segments[0].x, segments[0].y);
-    for (let i = 1; i < NUM_SEGMENTS; i++) ctx.lineTo(segments[i].x, segments[i].y);
-    setGlow(12);
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    for (let i = 0; i < NUM_SEGMENTS; i++) {
-      const t = i / (NUM_SEGMENTS - 1);
-      const radius = lerp(BODY_RADIUS_MAX, BODY_RADIUS_MIN, t);
-      let angle = 0;
-      if (i < NUM_SEGMENTS - 1) {
-        angle = Math.atan2(segments[i+1].y - segments[i].y, segments[i+1].x - segments[i].x);
-      } else {
-        angle = Math.atan2(segments[i].y - segments[i-1].y, segments[i].x - segments[i-1].x);
-      }
-      ctx.save();
-      ctx.translate(segments[i].x, segments[i].y);
-      ctx.rotate(angle);
-      setGlow(8); ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, radius * 1.4, radius, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fillStyle = 'rgba(0, 247, 255, 0.06)';
-      ctx.fill();
-      ctx.restore();
-    }
-
-    for (let pair = 0; pair < LEG_PAIRS; pair++) {
-      const segIdx = pair + 1;
-      if (segIdx >= NUM_SEGMENTS) break;
-      const seg = segments[segIdx];
-      const prev = segments[segIdx - 1];
-      const bodyAngle = Math.atan2(seg.y - prev.y, seg.x - prev.x);
-      const perpAngle = bodyAngle + Math.PI / 2;
-      const phase = legPhase + pair * (Math.PI / LEG_PAIRS);
-      const swing = Math.sin(phase) * LEG_SPREAD;
-
-      const leftAngle = perpAngle + swing;
-      const leftTipX = seg.x + Math.cos(leftAngle) * LEG_LENGTH;
-      const leftTipY = seg.y + Math.sin(leftAngle) * LEG_LENGTH;
-      const leftKneeX = seg.x + Math.cos(leftAngle) * (LEG_LENGTH * 0.55);
-      const leftKneeY = seg.y + Math.sin(leftAngle) * (LEG_LENGTH * 0.55);
-      const rightAngle = perpAngle + Math.PI + swing;
-      const rightTipX = seg.x + Math.cos(rightAngle) * LEG_LENGTH;
-      const rightTipY = seg.y + Math.sin(rightAngle) * LEG_LENGTH;
-      const rightKneeX = seg.x + Math.cos(rightAngle) * (LEG_LENGTH * 0.55);
-      const rightKneeY = seg.y + Math.sin(rightAngle) * (LEG_LENGTH * 0.55);
-
-      setGlow(6); ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(seg.x, seg.y); ctx.lineTo(leftKneeX, leftKneeY); ctx.lineTo(leftTipX, leftTipY); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(seg.x, seg.y); ctx.lineTo(rightKneeX, rightKneeY); ctx.lineTo(rightTipX, rightTipY); ctx.stroke();
-
-      const clawLen = 5; const clawSpread = 0.35;
-      const leftLegAngle = Math.atan2(leftTipY - leftKneeY, leftTipX - leftKneeX);
-      ctx.beginPath();
-      ctx.moveTo(leftTipX, leftTipY); ctx.lineTo(leftTipX + Math.cos(leftLegAngle + clawSpread) * clawLen, leftTipY + Math.sin(leftLegAngle + clawSpread) * clawLen);
-      ctx.moveTo(leftTipX, leftTipY); ctx.lineTo(leftTipX + Math.cos(leftLegAngle - clawSpread) * clawLen, leftTipY + Math.sin(leftLegAngle - clawSpread) * clawLen);
-      ctx.stroke();
-      const rightLegAngle = Math.atan2(rightTipY - rightKneeY, rightTipX - rightKneeX);
-      ctx.beginPath();
-      ctx.moveTo(rightTipX, rightTipY); ctx.lineTo(rightTipX + Math.cos(rightLegAngle + clawSpread) * clawLen, rightTipY + Math.sin(rightLegAngle + clawSpread) * clawLen);
-      ctx.moveTo(rightTipX, rightTipY); ctx.lineTo(rightTipX + Math.cos(rightLegAngle - clawSpread) * clawLen, rightTipY + Math.sin(rightLegAngle - clawSpread) * clawLen);
-      ctx.stroke();
-    }
-
-    const head = segments[0];
-    const neck = segments[1];
-    const headAngle = Math.atan2(head.y - neck.y, head.x - neck.x);
-    setGlow(18); ctx.lineWidth = 1.8;
-    ctx.beginPath(); ctx.arc(head.x, head.y, HEAD_RADIUS, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = 'rgba(0, 247, 255, 0.12)'; ctx.fill();
-
-    const eyeOffset = HEAD_RADIUS * 0.55;
-    const eyePerp = headAngle + Math.PI / 2;
-    setGlow(10); ctx.fillStyle = STROKE_COLOR;
-    ctx.beginPath(); ctx.arc(head.x + Math.cos(headAngle)*(HEAD_RADIUS*0.4)+Math.cos(eyePerp)*eyeOffset, head.y + Math.sin(headAngle)*(HEAD_RADIUS*0.4)+Math.sin(eyePerp)*eyeOffset, 2, 0, Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.arc(head.x + Math.cos(headAngle)*(HEAD_RADIUS*0.4)-Math.cos(eyePerp)*eyeOffset, head.y + Math.sin(headAngle)*(HEAD_RADIUS*0.4)-Math.sin(eyePerp)*eyeOffset, 2, 0, Math.PI*2); ctx.fill();
-
-    const antSwing = Math.sin(legPhase * 0.7) * 0.3;
-    const antBase = HEAD_RADIUS * 0.9;
-    setGlow(10); ctx.lineWidth = 1;
-    const laAngle = headAngle - 0.45 + antSwing;
-    const laMidX = head.x + Math.cos(laAngle)*(ANTENNA_LEN*0.5); const laMidY = head.y + Math.sin(laAngle)*(ANTENNA_LEN*0.5);
-    const laTipX = head.x + Math.cos(laAngle-0.3)*ANTENNA_LEN; const laTipY = head.y + Math.sin(laAngle-0.3)*ANTENNA_LEN;
-    ctx.beginPath(); ctx.moveTo(head.x+Math.cos(headAngle)*antBase, head.y+Math.sin(headAngle)*antBase); ctx.quadraticCurveTo(laMidX, laMidY, laTipX, laTipY); ctx.stroke();
-    const raAngle = headAngle + 0.45 + antSwing;
-    const raMidX = head.x + Math.cos(raAngle)*(ANTENNA_LEN*0.5); const raMidY = head.y + Math.sin(raAngle)*(ANTENNA_LEN*0.5);
-    const raTipX = head.x + Math.cos(raAngle+0.3)*ANTENNA_LEN; const raTipY = head.y + Math.sin(raAngle+0.3)*ANTENNA_LEN;
-    ctx.beginPath(); ctx.moveTo(head.x+Math.cos(headAngle)*antBase, head.y+Math.sin(headAngle)*antBase); ctx.quadraticCurveTo(raMidX, raMidY, raTipX, raTipY); ctx.stroke();
-
-    ctx.fillStyle = STROKE_COLOR; setGlow(14);
-    ctx.beginPath(); ctx.arc(laTipX, laTipY, 2.5, 0, Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.arc(raTipX, raTipY, 2.5, 0, Math.PI*2); ctx.fill();
-
-    ctx.shadowBlur = 20; ctx.shadowColor = '#00f7ff';
-    ctx.fillStyle = 'rgba(0, 247, 255, 0.9)';
-    ctx.beginPath(); ctx.arc(mouseX, mouseY, 4, 0, Math.PI*2); ctx.fill();
-  }
-
-  function loop() { update(); draw(); requestAnimationFrame(loop); }
+  function loop(){update();draw();requestAnimationFrame(loop);}
   loop();
 })();
 </script>
