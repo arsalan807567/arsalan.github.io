@@ -238,6 +238,8 @@ header {
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
+    width: 100%;
+    max-width: 100%;
   }
   .hero-right { order: -1; }
 }
@@ -380,8 +382,8 @@ header {
 .profile-card {
   position: relative;
   width: 340px;
+  max-width: 100%;
 }
-
 .profile-card-inner {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.1);
@@ -446,6 +448,7 @@ header {
 .profile-stats {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .stat {
@@ -889,10 +892,12 @@ footer p {
   transform: translateY(0);
 }
   /* MOBILE OVERFLOW FIX */
+/* MOBILE OVERFLOW FIX */
 @media (max-width: 800px) {
   html, body {
     overflow-x: hidden;
     width: 100%;
+    max-width: 100vw;
   }
 
   .nav-links {
@@ -907,22 +912,77 @@ footer p {
   .nav-inner {
     width: 100%;
     padding: 0 18px;
-  }
-
-  .hero-grid {
-    width: 100%;
-    overflow: hidden;
+    box-sizing: border-box;
   }
 
   .container {
     width: 100%;
+    max-width: 100%;
+    padding: 0 18px;
+    box-sizing: border-box;
     overflow: hidden;
   }
 
-  section {
+  .hero-grid {
     width: 100%;
+    max-width: 100%;
     overflow: hidden;
   }
+
+  .profile-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .profile-card-inner {
+    width: 100%;
+  }
+
+  .profile-stats {
+    gap: 12px;
+  }
+
+  .stat-num {
+    font-size: 0.95rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  .hero-cta-row {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-outline, .btn-prompts {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .facp-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+}
 }
 </style>
 </head>
@@ -934,25 +994,26 @@ footer p {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="#" class="nav-logo">Arsalan</a>
     <ul class="nav-links">
-      <li><a href="index.html#tools">Tools</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="index.html#portfolio">Portfolio</a></li>
-      <li><a href="blog.html" class="nav-blog-active">Blog</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-free-ai">✨ Free AI Services</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html" onclick="closeMenu()">Home</a>
-    <a href="index.html#tools" onclick="closeMenu()">Tools</a>
-    <a href="index.html#services" onclick="closeMenu()">Services</a>
-    <a href="index.html#portfolio" onclick="closeMenu()">Portfolio</a>
+    <a href="#tools" onclick="closeMenu()">Tools</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
     <a href="blog.html" onclick="closeMenu()">Blog</a>
-    <a href="index.html#contact" onclick="closeMenu()">Contact</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#contact" class="nav-free-ai" onclick="closeMenu()">✨ Free AI Services</a>
   </div>
 </nav>
 
