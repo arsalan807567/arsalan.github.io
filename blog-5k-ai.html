@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>How I Make $5000/month Using Only AI Tools | Arsalan</title>
+<meta name="description" content="No agency. No team. No office. Just me, a laptop, and a stack of AI tools that I figured out over two years of trial and error. Here is exactly how it works.">
+<meta name="keywords" content="make money with AI, AI freelancing, AI tools income, ChatGPT money, AI side hustle 2026, Dubai freelancer AI">
+<meta property="og:title" content="How I Make $5000/month Using Only AI Tools">
+<meta property="og:type" content="article">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;
+  --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
+  --border-accent:rgba(0,247,255,0.2);--text-primary:#f0f0f0;
+  --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+@media(max-width:900px){body{cursor:auto;}}
+canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+@media(max-width:900px){canvas#creature-canvas{display:none;}}
+#read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--blue));transform-origin:left;transform:scaleX(0);transition:transform 0.1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:600px){.nav-inner{padding:0 18px;}}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-back:hover{color:var(--cyan);}
+.nav-back svg{transition:transform 0.2s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.hero-inner{padding:0 18px;}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
+.breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--cyan);}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.post-tag-pill{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(240,192,64,0.3);background:rgba(240,192,64,0.07);color:var(--gold);}
+.post-tag-pill.cyan{border-color:rgba(0,247,255,0.25);background:rgba(0,247,255,0.06);color:var(--cyan);}
+.post-hero h1{font-family:'Lora',serif;font-weight:600;font-style:italic;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;color:#fff;margin-bottom:20px;}
+.lede{font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:30px;font-style:italic;}
+.post-meta-bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.meta-author-block{display:flex;align-items:center;gap:10px;}
+.meta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-author-info{display:flex;flex-direction:column;gap:1px;}
+.meta-author-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);}
+.meta-author-role{font-size:0.7rem;color:var(--text-muted);}
+.meta-sep{color:var(--text-muted);font-size:0.7rem;}
+.meta-date{font-size:0.78rem;color:var(--text-muted);}
+.meta-read{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+@media(max-width:600px){.hero-visual{padding:0 18px;}}
+.hero-img-box{border-radius:16px;overflow:hidden;border:1px solid rgba(240,192,64,0.2);position:relative;height:420px;}
+@media(max-width:600px){.hero-img-box{height:240px;}}
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82) saturate(1.15);}
+.hero-img-box .img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(5,8,16,0.75));}
+.hero-img-box .img-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.post-body{padding:0 18px 60px;}}
+.post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
+.post-body p strong{color:#fff;font-weight:600;}
+.post-body p em{font-style:italic;color:#e8f0f8;}
+.post-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:#fff;line-height:1.2;margin:54px 0 18px;padding-left:16px;border-left:3px solid var(--gold);}
+.post-body h3{font-family:'DM Sans',sans-serif;font-weight:500;color:var(--gold);margin:36px 0 12px;text-transform:uppercase;letter-spacing:0.1em;font-size:0.78rem;}
+.post-body hr{border:none;border-top:1px solid var(--border);margin:52px 0;}
+.pull-quote{margin:44px 0;padding:0 0 0 24px;border-left:3px solid var(--gold);}
+.pull-quote p{font-family:'Lora',serif;font-style:italic;font-size:1.2rem!important;line-height:1.7!important;color:rgba(255,255,255,0.88)!important;margin-bottom:0!important;}
+.aside-box{margin:38px 0;padding:20px 24px;border-radius:10px;background:rgba(240,192,64,0.04);border:1px solid rgba(240,192,64,0.18);}
+.aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.aside-label::before{content:'';display:block;width:14px;height:1px;background:var(--gold);}
+.aside-box p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
+.post-img{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.post-img img{width:100%;display:block;object-fit:cover;filter:brightness(0.85) saturate(1.1);}
+.post-img.tall img{height:380px;}
+.post-img.medium img{height:280px;}
+.post-img.short img{height:200px;}
+@media(max-width:600px){.post-img.tall img{height:220px;}.post-img.medium img{height:180px;}.post-img.short img{height:150px;}}
+.post-img-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.img-grid{grid-template-columns:1fr;}}
+.img-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);height:200px;position:relative;}
+.img-grid-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);}
+.img-grid-item .grid-label{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(to top,rgba(0,0,0,0.78),transparent);font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:0.04em;}
+.income-breakdown{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(240,192,64,0.2);background:rgba(240,192,64,0.03);}
+.income-row{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+.income-row:last-child{border-bottom:none;}
+.income-row.header{background:rgba(240,192,64,0.06);border-bottom:1px solid rgba(240,192,64,0.2);}
+.income-service{font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text-primary);font-weight:400;}
+.income-amount{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--gold);}
+.income-note{font-size:0.75rem;color:var(--text-muted);flex:1;text-align:right;}
+.income-header-label{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
+.income-total-row{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:rgba(240,192,64,0.08);border-top:1px solid rgba(240,192,64,0.25);}
+.income-total-label{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;}
+.income-total-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
+.tool-card{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.02);}
+.tool-card-header{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.025);}
+.tool-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--gold);min-width:36px;}
+.tool-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#fff;}
+.tool-cost{font-size:0.75rem;color:var(--text-muted);margin-left:auto;white-space:nowrap;}
+.tool-body{padding:20px 24px;}
+.tool-body p{font-family:'DM Sans',sans-serif;font-size:0.9rem!important;color:var(--text-secondary)!important;line-height:1.8!important;margin-bottom:0!important;}
+.img-wide{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.img-wide img{width:100%;display:block;height:340px;object-fit:cover;filter:brightness(0.83) saturate(1.1);}
+@media(max-width:600px){.img-wide img{height:200px;}}
+.img-wide-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(240,192,64,0.06),rgba(0,140,255,0.04));border:1px solid rgba(240,192,64,0.18);position:relative;overflow:hidden;}
+.highlight-text::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));}
+.highlight-text p{font-family:'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
+.post-end-bar{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+.end-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);transition:all 0.2s;cursor:default;}
+.end-tag:hover{border-color:var(--border-accent);color:var(--cyan);}
+.share-row{display:flex;align-items:center;gap:10px;}
+.share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
+.share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,247,255,0.06);}
+.back-strip{max-width:680px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.back-strip{padding:0 18px 60px;}}
+.back-strip-inner{padding:28px 32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.back-strip-text p{font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;}
+.back-strip-text span{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text-primary);}
+.btn-back-blog{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;border:1px solid var(--border-accent);color:var(--cyan);font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.875rem;text-decoration:none;transition:all 0.2s;}
+.btn-back-blog:hover{background:rgba(0,247,255,0.06);transform:translateY(-2px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{font-size:0.78rem;color:var(--text-muted);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.author-sign{margin-top:40px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.author-sign-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0;}
+.author-sign-info p{font-size:0.78rem;color:var(--text-muted);}
+.author-sign-info strong{font-size:0.9rem;color:var(--text-primary);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="blog.html" class="nav-back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="blog.html">Blog</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Tutorial</span>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag-pill">Income</span>
+      <span class="post-tag-pill cyan">AI Tools</span>
+    </div>
+    <h1>How I Make $5000/month Using Only AI Tools</h1>
+    <p class="lede">No agency. No team. No office. Just me, a laptop, and a stack of AI tools I figured out over two years of trial and error. Here is exactly how it works.</p>
+    <div class="post-meta-bar">
+      <div class="meta-author-block">
+        <div class="meta-avatar">A</div>
+        <div class="meta-author-info">
+          <span class="meta-author-name">Arsalan</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
+        </div>
+      </div>
+      <span class="meta-sep">·</span>
+      <span class="meta-date">May 6, 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        12 min read
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="hero-img-box">
+      <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1400&q=80&auto=format&fit=crop" alt="Freelancer earning money working on laptop with AI tools" loading="eager">
+      <div class="img-overlay"></div>
+      <span class="img-caption">My actual workspace in Dubai. Everything you see here earns its keep or it gets replaced. — 2026</span>
+    </div>
+  </div>
+</section>
+
+<article class="post-body reveal">
+
+  <p>I want to be upfront about something before I get into this. The $5000 a month figure is real but it is not consistent every single month. Some months it is $4200. Some months it is $7000. I am not here to sell you a course or a dream. I am just going to tell you what I actually do, what tools I use, and roughly how much each thing brings in. You can decide what is useful for you.</p>
+
+  <p>Also I want to be clear this took time. I did not figure this out in thirty days. It took probably eighteen months of trying things that did not work before I found the combinations that do. So if you are looking for a get-rich-quick answer this is not that post. But if you want an honest breakdown of how one person in Dubai built a real income stream using AI tools, keep reading.</p>
+
+  <div class="post-img tall">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&auto=format&fit=crop" alt="Working on laptop late night freelancing with multiple screens" loading="lazy">
+    <div class="post-img-caption">The first year looked a lot like this. Late nights, a lot of failed experiments, and slowly figuring out what people would actually pay for.</div>
+  </div>
+
+  <h2>Where the Money Actually Comes From</h2>
+
+  <p>Let me just show you the breakdown. This is roughly what an average month looks like for me.</p>
+
+  <div class="income-breakdown">
+    <div class="income-row header">
+      <span class="income-header-label">Service</span>
+      <span class="income-header-label">Monthly Avg</span>
+    </div>
+    <div class="income-row">
+      <span class="income-service">AI product photography for e-commerce clients</span>
+      <span class="income-amount">$1,800</span>
+    </div>
+    <div class="income-row">
+      <span class="income-service">AI video content for social media brands</span>
+      <span class="income-amount">$1,400</span>
+    </div>
+    <div class="income-row">
+      <span class="income-service">AI ad creatives for performance marketing agencies</span>
+      <span class="income-amount">$900</span>
+    </div>
+    <div class="income-row">
+      <span class="income-service">Custom AI tools and automations for small businesses</span>
+      <span class="income-amount">$600</span>
+    </div>
+    <div class="income-row">
+      <span class="income-service">AI prompt consulting and one-off projects</span>
+      <span class="income-amount">$400</span>
+    </div>
+    <div class="income-total-row">
+      <span class="income-total-label">Average Monthly Total</span>
+      <span class="income-total-num">~$5,100</span>
+    </div>
+  </div>
+
+  <p>The biggest one by a wide margin is AI product photography. I want to spend some time on this because it is also the one that surprises people the most. They do not expect it to be the top earner.</p>
+
+  <h2>AI Product Photography — The Sleeper Service</h2>
+
+  <p>When I first started offering AI product photography I thought it would be a small side thing. I was wrong. It turned out to be the service that clients understood the fastest and valued the most clearly.</p>
+
+  <p>Here is the basic problem I am solving. An e-commerce brand needs their product on a white background, on a lifestyle background, in ten different color environments, with different lighting moods, at different angles. To do this with traditional photography you need a studio, a photographer, props, lighting equipment, and multiple shoot days. The cost for a proper shoot can be anywhere from $800 to $5000 depending on the scope.</p>
+
+  <p>With AI tools I can deliver the same range of images in a fraction of the time at a fraction of the cost. And the quality is genuinely professional. I have had clients go back and look at their AI-generated product images next to their old traditional photography and prefer the AI ones.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=75&auto=format&fit=crop" alt="Professional product photography watch on clean background" loading="lazy">
+      <div class="grid-label">Before: expensive studio shoot, weeks of turnaround</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=75&auto=format&fit=crop" alt="AI generated product photography skincare lifestyle" loading="lazy">
+      <div class="grid-label">After: AI workflow, same quality, 90% cheaper</div>
+    </div>
+  </div>
+
+  <p>My workflow for this is basically: client sends me the product images on a plain background. I use a combination of tools to place the product in different environments, adjust lighting to match, generate lifestyle backgrounds, and deliver a full set of production-ready images. A typical project is 40 to 60 images and takes me about four to six hours of actual work.</p>
+
+  <p>I charge between $400 and $600 for a standard project. So at four projects a month that is already $1600 to $2400. I usually do three to four a month which is why it comes out to around $1800 average.</p>
+
+  <aside class="aside-box">
+    <div class="aside-label">The real secret</div>
+    <p>The clients who pay well for AI product photography are not startups trying to save money. They are established brands who already know what good photography costs and are amazed that they can get the same quality for less. Target mid-size e-commerce businesses, not solopreneurs.</p>
+  </aside>
+
+  <div class="post-img medium">
+    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop" alt="E-commerce product images flat lay professional photography" loading="lazy">
+    <div class="post-img-caption">E-commerce brands need a constant stream of fresh product visuals. AI makes that actually affordable for them.</div>
+  </div>
+
+  <h2>The Exact Tools I Use Every Day</h2>
+
+  <p>People ask me this all the time so let me just go through my actual stack. I am not affiliated with any of these. I pay for all of them myself and I switch tools when better ones come out.</p>
+
+  <div class="tool-card">
+    <div class="tool-card-header">
+      <span class="tool-num">01</span>
+      <span class="tool-name">Midjourney</span>
+      <span class="tool-cost">$30/month</span>
+    </div>
+    <div class="tool-body">
+      <p>Still the best for anything creative and visually striking. Product backgrounds, lifestyle environments, conceptual ad imagery. The output quality when you know how to prompt it is genuinely stunning. I use this every single day for product photography and ad creatives. The learning curve is real but once you understand how it thinks the results are consistent.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header">
+      <span class="tool-num">02</span>
+      <span class="tool-name">Runway ML</span>
+      <span class="tool-cost">$76/month</span>
+    </div>
+    <div class="tool-body">
+      <p>This is what I use for all the video work. Static images into video, video-to-video style transfer, motion graphics, short form content for Instagram and TikTok. The Gen-3 model is genuinely impressive for brand content. My social media video clients pay $400 to $600 per month for a content package and Runway is doing most of the heavy lifting on the production side.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header">
+      <span class="tool-num">03</span>
+      <span class="tool-name">Claude / ChatGPT</span>
+      <span class="tool-cost">$40/month combined</span>
+    </div>
+    <div class="tool-body">
+      <p>I use both depending on the task. Claude for anything that requires careful thinking, nuanced writing, or complex instructions. ChatGPT for faster iterative stuff, coding help, and when I need something quickly. These two together handle all my copy, strategy documents, client briefs, email templates, and the occasional custom tool build for clients.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header">
+      <span class="tool-num">04</span>
+      <span class="tool-name">Adobe Firefly</span>
+      <span class="tool-cost">$54/month via Creative Cloud</span>
+    </div>
+    <div class="tool-body">
+      <p>Specifically for the product photography workflow. The generative fill and generative background features inside Photoshop are genuinely excellent for placing products into new environments in a way that looks natural. The lighting matching is much better than doing it entirely in Midjourney. I use both together, Midjourney to generate the environment and Firefly to composite the product into it.</p>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header">
+      <span class="tool-num">05</span>
+      <span class="tool-name">ElevenLabs</span>
+      <span class="tool-cost">$22/month</span>
+    </div>
+    <div class="tool-body">
+      <p>Voiceovers for video content. Some of my video clients want narrated content and paying a voice actor for every piece would be expensive and slow. ElevenLabs handles this cleanly. The voices are convincing enough that most viewers have no idea it is AI. I use maybe three or four different voices across different clients to keep things sounding distinct.</p>
+    </div>
+  </div>
+
+  <p>Total tool costs: around $222 a month. Which means my net income after tools is comfortably above $4800 in an average month. The ROI on these subscriptions is absurd when you do the math.</p>
+
+  <div class="img-wide">
+    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1400&q=80&auto=format&fit=crop" alt="Person working on creative digital work on phone and laptop" loading="lazy">
+    <div class="img-wide-caption">The whole operation runs from a laptop and a phone. No studio. No office. Just tools and clients.</div>
+  </div>
+
+  <h2>How I Actually Find Clients</h2>
+
+  <p>This is the question I get asked more than any other and I think most people expect me to say something about a fancy funnel or a complicated marketing system. The real answer is much more boring.</p>
+
+  <p>About 70% of my clients came from word of mouth. I did good work for someone, they told someone else, and that person reached out. The first few clients were the hardest to get. After that it kind of snowballed on its own.</p>
+
+  <p>The other 30% came from LinkedIn. Not from posting about AI constantly or trying to build a personal brand. Just from having a clear profile that says exactly what I do, and from occasionally commenting genuinely on posts from people in industries I target like e-commerce, marketing, and retail in the Gulf region.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=75&auto=format&fit=crop" alt="Business meeting client relationship building Dubai" loading="lazy">
+      <div class="grid-label">70% of income came from referrals — do good work first</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=600&q=75&auto=format&fit=crop" alt="LinkedIn professional profile networking" loading="lazy">
+      <div class="grid-label">LinkedIn brought the other 30% — no ads, just presence</div>
+    </div>
+  </div>
+
+  <p>I have never run a paid ad. I have never cold emailed a list. I am not saying those things do not work, I just have not needed to do them yet. What has worked is being extremely good at a small number of things and making it easy for happy clients to tell other people about you.</p>
+
+  <div class="pull-quote">
+    <p>The client who pays you $600 once is fine. The client who sends you three referrals is what actually builds the business. Every project I take I am thinking about whether the quality of my work will make this person want to tell someone else about me.</p>
+  </div>
+
+  <h2>What I Tried That Did Not Work</h2>
+
+  <p>I think it is important to be honest about the failures because the successes make more sense in context of what did not work.</p>
+
+  <p>I spent three months trying to sell AI-written blog content to businesses. The market for this was completely saturated within about six months of ChatGPT launching and the rates dropped to basically nothing. What used to be a $500 blog post became a $30 blog post because every freelancer on Upwork was suddenly offering AI content. I got out of that quickly.</p>
+
+  <p>I also tried selling AI-generated logo and branding packages. The problem was that clients who care about their brand identity genuinely want a human designer with a point of view. The ones who do not care about their brand identity are not willing to pay much anyway. It is a bad market to be in. Abandoned that after two months.</p>
+
+  <p>The services that work all have one thing in common. There is a clear before and after. The client can see exactly what they had, what they got, and calculate the value of the difference. Product photography is perfect for this. Video content is good for it. Copy and strategy are harder because the value is less visual and immediate.</p>
+
+  <div class="post-img medium">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop" alt="Analytics data showing business growth results" loading="lazy">
+    <div class="post-img-caption">When you can show a client the before and after clearly, pricing conversations become much easier.</div>
+  </div>
+
+  <h2>The Honest Challenges Nobody Talks About</h2>
+
+  <p>This life has real downsides that the make-money-with-AI YouTube videos do not show you.</p>
+
+  <p>The income unpredictability is genuinely stressful. Even now with a solid client base there are months where things slow down, clients pause projects, or a big contract ends and the replacement takes time to find. I have an emergency fund now that I did not have in year one and that has made a massive difference to my stress levels.</p>
+
+  <p>The tools change constantly. Something I built a workflow around six months ago might get worse in a model update or get beaten by a competitor. I spend real time every month just keeping up with what the tools can do now versus what they could do before. That is not optional, it is part of the job.</p>
+
+  <p>And honestly the solitude. Working alone is great in many ways but there are days where you realise you have not had a real conversation about your work with anyone who understands it. I have found a few online communities and one or two people locally in Dubai who do similar work and making time to talk to them regularly has been important for my sanity.</p>
+
+  <div class="highlight-text">
+    <p>The lifestyle looks amazing from the outside. And it genuinely is good. But anyone who tells you it is easy or passive is selling something. It is a real job that requires real skill and consistent effort. The AI tools are powerful but they do not replace the thinking, the client management, or the constant learning.</p>
+  </div>
+
+  <h2>If I Were Starting From Zero Today</h2>
+
+  <p>People ask me this a lot. If I woke up tomorrow with no clients and had to build this back up from nothing, what would I do.</p>
+
+  <p>First thing I would do is pick one service only. Not five. One. The temptation when you are starting out is to offer everything because you want to capture as many opportunities as possible. What actually happens is you end up being mediocre at many things rather than excellent at one thing. Pick the one service where AI gives the biggest quality and cost advantage over traditional methods. Right now I still think that is product photography or short-form video content.</p>
+
+  <p>Second thing I would do is do that one service for free for three clients. Not cheap, free. In exchange for permission to use the work in my portfolio and a testimonial. Three really strong examples in your portfolio is worth more than a hundred mediocre paid projects when you are starting out.</p>
+
+  <p>Third thing I would do is find where my target clients actually spend time online and show up there consistently. Not to pitch, just to be present and occasionally say something genuinely useful. Trust takes time to build and you cannot shortcut it.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600&q=75&auto=format&fit=crop" alt="Person typing on keyboard building portfolio and online presence" loading="lazy">
+      <div class="grid-label">Start with one service, do it free three times for portfolio</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=75&auto=format&fit=crop" alt="Creative workspace with tablet drawing and AI tools" loading="lazy">
+      <div class="grid-label">Master the tools before charging premium rates</div>
+    </div>
+  </div>
+
+  <p>The fourth thing, and this is the most importent one that most people skip: get really good at the tools before you start charging premium rates. There is a big difference between someone who knows how to use Midjourney and someone who has spent 300 hours with it. Clients can feel that difference in the output even if they cant articulate why. Put in the hours before you put up the prices.</p>
+
+  <hr>
+
+  <p>I dont share income stuff publicly very often because I find a lot of the make-money-online content online to be misleading or performative. So I wanted to write something that was actually useful and honest, even if that means admitting the failures and the hard parts alongside the successes.</p>
+
+  <p>If you have questions about any specific part of this, my contact is on the homepage. I try to respond to every message though sometimes it takes a few days depending on workload.</p>
+
+  <div class="author-sign">
+    <div class="author-sign-avatar">A</div>
+    <div class="author-sign-info">
+      <strong>Arsalan</strong>
+      <p>AI Expert &amp; Creative Technologist · Dubai, May 2026</p>
+    </div>
+  </div>
+
+  <div class="post-end-bar">
+    <div class="end-tags">
+      <span class="end-tag">AI Income</span>
+      <span class="end-tag">Freelancing</span>
+      <span class="end-tag">AI Tools</span>
+      <span class="end-tag">Dubai</span>
+      <span class="end-tag">Tutorial</span>
+      <span class="end-tag">Midjourney</span>
+    </div>
+    <div class="share-row">
+      <span class="share-label">Share</span>
+      <button class="share-btn" title="Copy link" onclick="copyLink(event)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+      <button class="share-btn" title="Share on X" onclick="shareTwitter()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </button>
+    </div>
+  </div>
+
+</article>
+
+<div class="back-strip reveal">
+  <div class="back-strip-inner">
+    <div class="back-strip-text">
+      <p>More essays on AI and how it's changing everything</p>
+      <span>The AI Journal by Arsalan</span>
+    </div>
+    <a href="blog.html" class="btn-back-blog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Arsalan &middot; AI Expert &amp; Creative Technologist</p>
+</footer>
+
+<script>
+const progress=document.getElementById('read-progress');
+window.addEventListener('scroll',()=>{const doc=document.documentElement,s=doc.scrollTop||document.body.scrollTop,t=(doc.scrollHeight||document.body.scrollHeight)-doc.clientHeight;progress.style.transform=`scaleX(${Math.min(s/t,1)})`;});
+function copyLink(e){navigator.clipboard.writeText(window.location.href).then(()=>{const b=e.currentTarget;b.style.borderColor='var(--cyan)';b.style.color='var(--cyan)';setTimeout(()=>{b.style.borderColor='';b.style.color='';},2000);});}
+function shareTwitter(){const t=encodeURIComponent("How I Make $5000/month Using Only AI Tools — by Arsalan"),u=encodeURIComponent(window.location.href);window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`,'_blank');}
+const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
+const pc=['#00f7ff','#008cff','#f0c040'],pts=[];
+for(let i=0;i<50;i++)pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.5+0.5,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:pc[Math.floor(Math.random()*3)]});
+function animBg(){bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);pts.forEach((p,i)=>{bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.3;bgCtx.fill();bgCtx.globalAlpha=1;for(let j=i+1;j<pts.length;j++){const p2=pts[j],d=Math.hypot(p.x-p2.x,p.y-p2.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-d/100)*.1})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;});requestAnimationFrame(animBg);}
+animBg();
+window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
+const revs=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});revs.forEach(el=>obs.observe(el));
+(function(){if(window.innerWidth<=900)return;const canvas=document.getElementById('creature-canvas'),ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LR=.18;let mx=window.innerWidth/2,my=window.innerHeight/2;const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});let lp=0;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});const lerp=(a,b,t)=>a+(b-a)*t;function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}function update(){segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}lp+=.12;}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();const as2=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as2,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as2,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}function loop(){update();draw();requestAnimationFrame(loop);}loop();})();
+</script>
+</body>
+</html>
