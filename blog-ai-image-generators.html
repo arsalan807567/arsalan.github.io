@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>I Tested Every AI Image Generator in 2026. Here's the Honest Ranking. | Arsalan</title>
+<meta name="description" content="Midjourney vs DALL-E 3 vs Stable Diffusion vs Adobe Firefly vs Ideogram. I tested every major AI image generator in 2026 for real client work and ranked them honestly. No sponsored opinions.">
+<meta name="keywords" content="best AI image generator 2026, Midjourney vs DALL-E 3, AI image generator comparison, Stable Diffusion vs Midjourney, best AI art tool, Adobe Firefly review, Ideogram AI review, AI image generator for business, AI photography tools Dubai">
+<meta property="og:title" content="I Tested Every AI Image Generator in 2026. Here's the Honest Ranking.">
+<meta property="og:description" content="Midjourney vs DALL-E 3 vs Stable Diffusion vs Adobe Firefly. Real results from real client work. No sponsored opinions.">
+<meta property="og:type" content="article">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;
+  --green:#00ff88;
+  --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
+  --border-accent:rgba(0,247,255,0.2);--text-primary:#f0f0f0;
+  --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+@media(max-width:900px){body{cursor:auto;}}
+canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+@media(max-width:900px){canvas#creature-canvas{display:none;}}
+#read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green));transform-origin:left;transform:scaleX(0);transition:transform 0.1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:600px){.nav-inner{padding:0 18px;}}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-back:hover{color:var(--cyan);}
+.nav-back svg{transition:transform 0.2s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.hero-inner{padding:0 18px;}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
+.breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--cyan);}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.post-tag-pill{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,247,255,0.25);background:rgba(0,247,255,0.06);color:var(--cyan);}
+.post-tag-pill.green{border-color:rgba(0,255,136,0.25);background:rgba(0,255,136,0.06);color:var(--green);}
+.post-hero h1{font-family:'Lora',serif;font-weight:600;font-style:italic;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;color:#fff;margin-bottom:20px;}
+.lede{font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:30px;font-style:italic;}
+.post-meta-bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.meta-author-block{display:flex;align-items:center;gap:10px;}
+.meta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-author-info{display:flex;flex-direction:column;gap:1px;}
+.meta-author-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);}
+.meta-author-role{font-size:0.7rem;color:var(--text-muted);}
+.meta-sep{color:var(--text-muted);font-size:0.7rem;}
+.meta-date{font-size:0.78rem;color:var(--text-muted);}
+.meta-read{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+@media(max-width:600px){.hero-visual{padding:0 18px;}}
+.hero-img-box{border-radius:16px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);position:relative;height:420px;}
+@media(max-width:600px){.hero-img-box{height:240px;}}
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82) saturate(1.2);}
+.hero-img-box .img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(5,8,16,0.75));}
+.hero-img-box .img-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.post-body{padding:0 18px 60px;}}
+.post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
+.post-body p strong{color:#fff;font-weight:600;}
+.post-body p em{font-style:italic;color:#e8f0f8;}
+.post-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:#fff;line-height:1.2;margin:54px 0 18px;padding-left:16px;border-left:3px solid var(--cyan);}
+.post-body h3{font-family:'DM Sans',sans-serif;font-weight:500;color:var(--cyan);margin:36px 0 12px;text-transform:uppercase;letter-spacing:0.1em;font-size:0.78rem;}
+.post-body hr{border:none;border-top:1px solid var(--border);margin:52px 0;}
+.pull-quote{margin:44px 0;padding:0 0 0 24px;border-left:3px solid var(--cyan);}
+.pull-quote p{font-family:'Lora',serif;font-style:italic;font-size:1.2rem!important;line-height:1.7!important;color:rgba(255,255,255,0.88)!important;margin-bottom:0!important;}
+.aside-box{margin:38px 0;padding:20px 24px;border-radius:10px;background:rgba(0,247,255,0.04);border:1px solid rgba(0,247,255,0.15);}
+.aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.aside-label::before{content:'';display:block;width:14px;height:1px;background:var(--cyan);}
+.aside-box p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
+.post-img{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.post-img img{width:100%;display:block;object-fit:cover;filter:brightness(0.85) saturate(1.1);}
+.post-img.tall img{height:380px;}
+.post-img.medium img{height:280px;}
+.post-img.short img{height:200px;}
+@media(max-width:600px){.post-img.tall img{height:220px;}.post-img.medium img{height:180px;}.post-img.short img{height:150px;}}
+.post-img-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.post-video{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);background:#060a14;}
+.post-video-inner{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.post-video-inner iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.post-video-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;border-top:1px solid var(--border);}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.img-grid{grid-template-columns:1fr;}}
+.img-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);height:200px;position:relative;}
+.img-grid-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);}
+.img-grid-item .grid-label{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(to top,rgba(0,0,0,0.78),transparent);font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:0.04em;}
+.img-wide{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.img-wide img{width:100%;display:block;height:340px;object-fit:cover;filter:brightness(0.83) saturate(1.1);}
+@media(max-width:600px){.img-wide img{height:200px;}}
+.img-wide-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+
+/* RANKING CARDS */
+.rank-card{margin:36px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.02);}
+.rank-card-header{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--border);}
+.rank-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;min-width:44px;}
+.rank-num.gold{color:var(--gold);}
+.rank-num.silver{color:#c0c8d8;}
+.rank-num.bronze{color:#cd7f32;}
+.rank-num.four{color:var(--cyan);}
+.rank-num.five{color:var(--text-muted);}
+.rank-tool-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:#fff;flex:1;}
+.rank-verdict{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.rank-verdict.best{background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);color:var(--green);}
+.rank-verdict.great{background:rgba(0,247,255,0.08);border:1px solid rgba(0,247,255,0.25);color:var(--cyan);}
+.rank-verdict.good{background:rgba(0,140,255,0.08);border:1px solid rgba(0,140,255,0.25);color:var(--blue);}
+.rank-verdict.mixed{background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.25);color:var(--gold);}
+.rank-verdict.skip{background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.2);color:#ff6060;}
+.rank-body{padding:20px 24px;}
+.rank-body p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;line-height:1.85!important;margin-bottom:14px!important;}
+.rank-body p:last-child{margin-bottom:0!important;}
+.rank-scores{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.score-pill{font-size:0.7rem;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-secondary);}
+.score-pill span{color:var(--text-primary);font-weight:500;}
+
+.highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(0,140,255,0.06),rgba(0,247,255,0.03));border:1px solid rgba(0,247,255,0.15);position:relative;overflow:hidden;}
+.highlight-text::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));}
+.highlight-text p{font-family:'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
+
+/* QUICK SUMMARY TABLE */
+.summary-table{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.summary-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
+.summary-row:last-child{border-bottom:none;}
+.summary-row.header{background:rgba(0,247,255,0.05);}
+.summary-cell{padding:14px 18px;font-size:0.82rem;color:var(--text-secondary);border-right:1px solid var(--border);}
+.summary-cell:last-child{border-right:none;}
+.summary-cell.header-cell{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.summary-cell.tool-name{color:var(--text-primary);font-weight:500;}
+@media(max-width:500px){.summary-row{grid-template-columns:1fr 1fr;}.summary-cell:nth-child(3){display:none;}}
+
+.post-end-bar{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+.end-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);transition:all 0.2s;cursor:default;}
+.end-tag:hover{border-color:var(--border-accent);color:var(--cyan);}
+.share-row{display:flex;align-items:center;gap:10px;}
+.share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
+.share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,247,255,0.06);}
+.back-strip{max-width:680px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.back-strip{padding:0 18px 60px;}}
+.back-strip-inner{padding:28px 32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.back-strip-text p{font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;}
+.back-strip-text span{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text-primary);}
+.btn-back-blog{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;border:1px solid var(--border-accent);color:var(--cyan);font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.875rem;text-decoration:none;transition:all 0.2s;}
+.btn-back-blog:hover{background:rgba(0,247,255,0.06);transform:translateY(-2px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{font-size:0.78rem;color:var(--text-muted);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.author-sign{margin-top:40px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.author-sign-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0;}
+.author-sign-info p{font-size:0.78rem;color:var(--text-muted);}
+.author-sign-info strong{font-size:0.9rem;color:var(--text-primary);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="blog.html" class="nav-back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="blog.html">Blog</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Review</span>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag-pill">Tools &amp; Tech</span>
+      <span class="post-tag-pill green">Review</span>
+    </div>
+    <h1>I Tested Every AI Image Generator in 2026. Here's the Honest Ranking.</h1>
+    <p class="lede">Midjourney, DALL-E 3, Stable Diffusion, Adobe Firefly, Ideogram. I ran all of them through real client briefs for six months and ranked every AI image generator without any sponsorship or affiliate deal. This is what I actually found.</p>
+    <div class="post-meta-bar">
+      <div class="meta-author-block">
+        <div class="meta-avatar">A</div>
+        <div class="meta-author-info">
+          <span class="meta-author-name">Arsalan</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
+        </div>
+      </div>
+      <span class="meta-sep">·</span>
+      <span class="meta-date">May 6, 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        14 min read
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="hero-img-box">
+      <img src="https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=1400&q=80&auto=format&fit=crop" alt="AI image generator comparison 2026 best AI art tools" loading="eager">
+      <div class="img-overlay"></div>
+      <span class="img-caption">Six months, five AI image generators, hundreds of real client briefs. Here is what I found.</span>
+    </div>
+  </div>
+</section>
+
+<article class="post-body reveal">
+
+  <p>Every few weeks someone asks me which AI image generator they should use. And every time I give the same answer: it depends on what you are trying to do. That answer is genuinely true but it is also a bit of a cop-out because most people asking the question dont have time to test five different AI image generators themselves.</p>
+
+  <p>So I did it for you. Over the past six months I ran every major AI image generator through the same set of real client briefs I work with regularly. Product photography. Ad creatives. Social media content. Editorial illustrations. Brand visuals. I wanted to know which AI image generator actually delivers for professional work, not just which one makes the prettiest demo images.</p>
+
+  <p>I paid for all the subscriptions myself. Nobody sponsored this. I have no affiliate links. These are just my honest observations from using every AI image generator in 2026 as a working professional in Dubai.</p>
+
+  <div class="post-img tall">
+    <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=80&auto=format&fit=crop" alt="AI generated digital art comparison tools 2026" loading="lazy">
+    <div class="post-img-caption">The quality gap between AI image generators has narrowed significantly in 2026. But they are still very different tools for very different purposes.</div>
+  </div>
+
+  <h2>How I Tested Each AI Image Generator</h2>
+
+  <p>Before I get into the ranking I want to be clear about how I tested these. I used five categories that represent the work I actually do for clients. Product photography, where the AI image generator needs to place a product realistically in an environment. Ad creatives, where the output needs to be polished and on-brand. Social media content, where speed and variety matter more than perfection. Editorial illustration, where creativity and uniqueness are the whole point. And text-heavy images, because some AI image generators are dramatically better at rendering text than others.</p>
+
+  <p>I ran at least twenty prompts per category per tool. I used the same or similar prompts across tools where possible. I judged on quality of output, consistency, how much prompting skill was required to get good results, and practical useability for client work.</p>
+
+  <div class="aside-box">
+    <div class="aside-label">Important note</div>
+    <p>AI image generators update constantly. Midjourney releases new model versions regularly. DALL-E 3 has improved significantly. This review reflects my experience through early May 2026. Some scores may shift as models update. The overall rankings have been fairly stable for several months though so I expect the core conclusions to hold for a while.</p>
+  </div>
+
+  <h2>The Quick Summary Before The Full Breakdown</h2>
+
+  <div class="summary-table">
+    <div class="summary-row header">
+      <div class="summary-cell header-cell">AI Image Generator</div>
+      <div class="summary-cell header-cell">Best For</div>
+      <div class="summary-cell header-cell">Monthly Cost</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-cell tool-name">🥇 Midjourney</div>
+      <div class="summary-cell">Creative, editorial, brand visuals</div>
+      <div class="summary-cell">$30</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-cell tool-name">🥈 Adobe Firefly</div>
+      <div class="summary-cell">Product photography, commercial safe</div>
+      <div class="summary-cell">$54 (CC)</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-cell tool-name">🥉 Ideogram</div>
+      <div class="summary-cell">Text in images, typography</div>
+      <div class="summary-cell">$16</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-cell tool-name">4. DALL-E 3</div>
+      <div class="summary-cell">Quick concepts, simple briefs</div>
+      <div class="summary-cell">Via ChatGPT Plus</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-cell tool-name">5. Stable Diffusion</div>
+      <div class="summary-cell">Custom workflows, technical users</div>
+      <div class="summary-cell">Free / Variable</div>
+    </div>
+  </div>
+
+  <h2>The Full Ranking of Every AI Image Generator I Tested</h2>
+
+  <!-- RANK 1 -->
+  <div class="rank-card">
+    <div class="rank-card-header">
+      <span class="rank-num gold">01</span>
+      <span class="rank-tool-name">Midjourney — Still The Best AI Image Generator Overall</span>
+      <span class="rank-verdict best">Best Overall</span>
+    </div>
+    <div class="rank-body">
+      <p>If you ask most professional AI creatives which AI image generator they reach for first, the answer is almost always Midjourney. I have been using it since version 4 and the jump to the current model is genuinely remarkable. The aesthetic quality, the ability to generate complex scenes with coherent lighting, the way it handles atmosphere and mood — nothing else comes close for creative work.</p>
+      <p>For client briefs that involve brand imagery, editorial illustrations, hero visuals for websites, campaign concepts, or anything where the output needs to feel premium and intentional, Midjourney is the AI image generator I use. The learning curve is real. If you just type a sentence and expect magic you will be disappointed. But once you understand how to compose a Midjourney prompt the consistency of output is exceptional.</p>
+      <p>The weak points are text rendering, which is still inconsistent, and very precise product placement, where you need specific objects to look exactly right. For those use cases there are better options. But for sheer visual quality and creative range, Midjourney remains the top AI image generator in 2026.</p>
+      <div class="rank-scores">
+        <div class="score-pill">Quality <span>9.5/10</span></div>
+        <div class="score-pill">Consistency <span>8.5/10</span></div>
+        <div class="score-pill">Ease of use <span>7/10</span></div>
+        <div class="score-pill">Text rendering <span>5/10</span></div>
+        <div class="score-pill">Value <span>9/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=75&auto=format&fit=crop" alt="Professional AI generated creative image Midjourney quality" loading="lazy">
+      <div class="grid-label">The kind of creative quality Midjourney produces consistently</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=600&q=75&auto=format&fit=crop" alt="AI art digital creative work professional quality" loading="lazy">
+      <div class="grid-label">Complex lighting and atmosphere — Midjourney's strongest suit</div>
+    </div>
+  </div>
+
+  <!-- RANK 2 -->
+  <div class="rank-card">
+    <div class="rank-card-header">
+      <span class="rank-num silver">02</span>
+      <span class="rank-tool-name">Adobe Firefly — The Best AI Image Generator for Commercial Work</span>
+      <span class="rank-verdict great">Best for Business</span>
+    </div>
+    <div class="rank-body">
+      <p>Adobe Firefly is not trying to compete with Midjourney on pure creative output. What it does instead is solve a different and arguably more important problem for professional users: commercial licensing. Every image generated by Adobe Firefly is trained on licensed content and cleared for commercial use. That matters enormously when you are delivering work to clients.</p>
+      <p>For product photography workflows specifically, the combination of Firefly inside Photoshop with generative fill is genuinely excellent. I can take a client product image and extend it into a completely different environment with realistic lighting matching. The integration with the rest of the Adobe suite means the AI image generator fits naturally into an existing professional workflow rather than requiring you to build a separate pipeline.</p>
+      <p>The output quality is not as visually striking as Midjourney for editorial or conceptual work. But for functional commercial images, product placements, background replacements, and safe-to-deliver client work, Adobe Firefly is the AI image generator I trust most.</p>
+      <div class="rank-scores">
+        <div class="score-pill">Quality <span>8/10</span></div>
+        <div class="score-pill">Commercial safety <span>10/10</span></div>
+        <div class="score-pill">Product photography <span>9/10</span></div>
+        <div class="score-pill">Workflow integration <span>9.5/10</span></div>
+        <div class="score-pill">Value <span>8/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO: YouTube embed of AI image generator comparison -->
+  <div class="post-video">
+    <div class="post-video-inner">
+      <iframe src="https://www.youtube.com/embed/YFnQMy2EiWk" title="AI Image Generator Comparison 2026 Midjourney vs DALL-E vs Firefly" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="post-video-caption">A visual walkthrough of how different AI image generators handle the same prompt — the quality gap is visible immediately.</div>
+  </div>
+
+  <!-- RANK 3 -->
+  <div class="rank-card">
+    <div class="rank-card-header">
+      <span class="rank-num bronze">03</span>
+      <span class="rank-tool-name">Ideogram — The AI Image Generator That Actually Handles Text</span>
+      <span class="rank-verdict great">Best for Text</span>
+    </div>
+    <div class="rank-body">
+      <p>For a long time the inability to render readable text was the one thing that made every AI image generator frustrating for certain types of work. Ideogram basically solved this problem. I use it specifically when I need text to appear inside an image, things like poster designs, social media graphics with captions baked in, typographic compositions, or anything where the words need to actually be legible.</p>
+      <p>Beyond text, Ideogram also produces solid general imagery with a slightly different aesthetic to Midjourney. Some clients actually prefer the Ideogram look for certain brand styles. At $16 a month it is also the most affordable AI image generator in this list by a significant margin, which makes it an easy addition to the stack for the specific use cases where it excels.</p>
+      <p>I would not use Ideogram as my primary AI image generator for creative work. But as a specialist tool for text-heavy images it is unbeaten right now and earns its place in every serious AI creator's toolkit.</p>
+      <div class="rank-scores">
+        <div class="score-pill">Text rendering <span>9.5/10</span></div>
+        <div class="score-pill">General quality <span>7.5/10</span></div>
+        <div class="score-pill">Speed <span>8.5/10</span></div>
+        <div class="score-pill">Value <span>9.5/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-img medium">
+    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80&auto=format&fit=crop" alt="Typography and text design AI image generation" loading="lazy">
+    <div class="post-img-caption">Ideogram changed everything for text-heavy AI image work. What used to be impossible is now reliable.</div>
+  </div>
+
+  <!-- RANK 4 -->
+  <div class="rank-card">
+    <div class="rank-card-header">
+      <span class="rank-num four">04</span>
+      <span class="rank-tool-name">DALL-E 3 — The Most Accessible AI Image Generator, But Not The Best</span>
+      <span class="rank-verdict good">Good Starter</span>
+    </div>
+    <div class="rank-body">
+      <p>DALL-E 3 is the AI image generator most people encounter first because it lives inside ChatGPT. That accessibility is genuinely its biggest strength. You can describe what you want in plain conversational language and get a reasonable result without learning any prompting syntax. For quick concept visualisation, client mood boards, or rough ideation it works well.</p>
+      <p>The problem is the ceiling. Once you have used Midjourney seriously the quality difference becomes really obvious. DALL-E 3 images tend to have a particular softness and a slightly flat look that is fine for rough concepts but not ideal for final deliverables. The anatomy and proportions are also still inconsistent in complex scenes.</p>
+      <p>If you already pay for ChatGPT Plus you have DALL-E 3 included so there is no reason not to use it. But if you are choosing an AI image generator to invest in learning properly, the other options in this list will serve you better for professional work.</p>
+      <div class="rank-scores">
+        <div class="score-pill">Ease of use <span>9.5/10</span></div>
+        <div class="score-pill">Output quality <span>7/10</span></div>
+        <div class="score-pill">Consistency <span>7/10</span></div>
+        <div class="score-pill">Value <span>8/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>The best AI image generator is not the one with the most impressive demo. It is the one that fits your specific workflow and delivers consistent results for your actual use cases. That answer is different for every person.</p>
+  </div>
+
+  <!-- RANK 5 -->
+  <div class="rank-card">
+    <div class="rank-card-header">
+      <span class="rank-num five">05</span>
+      <span class="rank-tool-name">Stable Diffusion — Powerful But Not For Most People</span>
+      <span class="rank-verdict mixed">Technical Users Only</span>
+    </div>
+    <div class="rank-body">
+      <p>Stable Diffusion is genuinely powerful and the fact that it is open source and can be run locally is a significant advantage in certain situations. If you need complete control over the model, want to fine-tune on specific styles, or need to run an AI image generator without any API costs at scale, Stable Diffusion is the answer.</p>
+      <p>But the setup barrier is real. Getting a good Stable Diffusion workflow running requires technical knowledge, the right hardware or cloud setup, and significant time investment in finding and testing the right models and LoRAs. The base models without fine-tuning produce results that are noticeably below Midjourney in quality for most use cases.</p>
+      <p>I use Stable Diffusion for very specific technical workflows where I need to customise things that the other AI image generators dont allow. For everyday client work I reach for Midjourney or Firefly first. Stable Diffusion ranks fifth not because it is bad but because the difficulty-to-output ratio is wrong for most professional use cases in 2026.</p>
+      <div class="rank-scores">
+        <div class="score-pill">Customisation <span>10/10</span></div>
+        <div class="score-pill">Ease of use <span>4/10</span></div>
+        <div class="score-pill">Base quality <span>7/10</span></div>
+        <div class="score-pill">Cost (free) <span>10/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=600&q=75&auto=format&fit=crop" alt="AI technology generative image creation process" loading="lazy">
+      <div class="grid-label">Each AI image generator has a different approach to generation</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" alt="AI creative tools and machine learning visual art" loading="lazy">
+      <div class="grid-label">The technology behind every AI image generator is evolving fast</div>
+    </div>
+  </div>
+
+  <h2>Which AI Image Generator Should You Actually Use?</h2>
+
+  <p>After six months of testing every major AI image generator with real client work, here is how I actually think about this.</p>
+
+  <p>If you are doing creative or editorial work and you want the best possible visual output, start with Midjourney. Invest the time to learn how to prompt it properly. The learning curve is worth it and nothing else matches it for sheer visual quality and creative range.</p>
+
+  <p>If you are doing commercial work for clients and you need images that are definitively cleared for commercial use, Adobe Firefly should be part of your stack. Especially if you are already in the Adobe ecosystem. The product photography workflow inside Photoshop with Firefly is genuinely one of the most useful things I have found in any AI image generator.</p>
+
+  <p>If you regularly need text to appear inside images, add Ideogram. At $16 a month it is cheap enough to have alongside your primary AI image generator and it solves a specific problem that none of the others handle reliably.</p>
+
+  <p>Use DALL-E 3 for quick ideation if you already have ChatGPT Plus. Dont buy it separately just for image generation.</p>
+
+  <p>Consider Stable Diffusion only if you have technical experience and a specific use case that requires it. Otherwise the other AI image generators will serve you better.</p>
+
+  <div class="highlight-text">
+    <p>My actual daily stack is Midjourney for creative work, Adobe Firefly for product photography, and Ideogram when I need text in the image. Three AI image generators covering three different needs. Total cost around $100 a month. Revenue generated from that stack is significantly more.</p>
+  </div>
+
+  <div class="img-wide">
+    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1400&q=80&auto=format&fit=crop" alt="AI technology future of creative work image generation tools 2026" loading="lazy">
+    <div class="img-wide-caption">The AI image generator landscape in 2026 has matured to the point where the right tool for the job matters more than which tool is theoretically best.</div>
+  </div>
+
+  <h2>What I Expect From AI Image Generators in the Next Year</h2>
+
+  <p>The AI image generator market is moving fast and some of what I wrote here will probably be outdated within six months. A few things I am watching closely.</p>
+
+  <p>The text rendering problem is mostly solved now thanks to Ideogram and some improvements in the other tools. The next frontier is consistency. Generating the same character, product, or face across multiple images without it looking like a different person every time. A few AI image generators are working on this and it will be a significant unlock for brand and campaign work when it arrives reliably.</p>
+
+  <p>Video generation is increasingly blurring the line with AI image generators. Tools like Runway can now animate still images convincingly. I expect the distinction between AI image generator and AI video generator to become less meaningful over the next year as these capabilities merge.</p>
+
+  <p>And the commercial licensing question will become more important not less. As AI generated images become more common in commercial work, clients will increasingly ask about the provenance of AI image generator outputs. Adobe Firefly's advantage here is real and I expect other AI image generators to work harder on this problem.</p>
+
+  <hr>
+
+  <p>If you are trying to figure out which AI image generator to invest your time in learning, I hope this breakdown was useful. The short version is Midjourney for quality, Firefly for commercial safety, Ideogram for text. Everything else is optional depending on your specific needs.</p>
+
+  <p>If you have questions about any specific AI image generator or want to know more about how I use these tools for client work, feel free to reach out through the contact page.</p>
+
+  <div class="author-sign">
+    <div class="author-sign-avatar">A</div>
+    <div class="author-sign-info">
+      <strong>Arsalan</strong>
+      <p>AI Expert &amp; Creative Technologist · Dubai, May 2026</p>
+    </div>
+  </div>
+
+  <div class="post-end-bar">
+    <div class="end-tags">
+      <span class="end-tag">AI Image Generator</span>
+      <span class="end-tag">Midjourney</span>
+      <span class="end-tag">DALL-E 3</span>
+      <span class="end-tag">Adobe Firefly</span>
+      <span class="end-tag">Stable Diffusion</span>
+      <span class="end-tag">Ideogram</span>
+      <span class="end-tag">Review 2026</span>
+    </div>
+    <div class="share-row">
+      <span class="share-label">Share</span>
+      <button class="share-btn" title="Copy link" onclick="copyLink(event)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+      <button class="share-btn" title="Share on X" onclick="shareTwitter()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </button>
+    </div>
+  </div>
+
+</article>
+
+<div class="back-strip reveal">
+  <div class="back-strip-inner">
+    <div class="back-strip-text">
+      <p>More essays on AI and how it's changing everything</p>
+      <span>The AI Journal by Arsalan</span>
+    </div>
+    <a href="blog.html" class="btn-back-blog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Arsalan &middot; AI Expert &amp; Creative Technologist</p>
+</footer>
+
+<script>
+const progress=document.getElementById('read-progress');
+window.addEventListener('scroll',()=>{const doc=document.documentElement,s=doc.scrollTop||document.body.scrollTop,t=(doc.scrollHeight||document.body.scrollHeight)-doc.clientHeight;progress.style.transform=`scaleX(${Math.min(s/t,1)})`;});
+function copyLink(e){navigator.clipboard.writeText(window.location.href).then(()=>{const b=e.currentTarget;b.style.borderColor='var(--cyan)';b.style.color='var(--cyan)';setTimeout(()=>{b.style.borderColor='';b.style.color='';},2000);});}
+function shareTwitter(){const t=encodeURIComponent("I Tested Every AI Image Generator in 2026. Here's the Honest Ranking. by Arsalan"),u=encodeURIComponent(window.location.href);window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`,'_blank');}
+const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
+const pc=['#00f7ff','#008cff','#00ff88'],pts=[];
+for(let i=0;i<50;i++)pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.5+0.5,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:pc[Math.floor(Math.random()*3)]});
+function animBg(){bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);pts.forEach((p,i)=>{bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.3;bgCtx.fill();bgCtx.globalAlpha=1;for(let j=i+1;j<pts.length;j++){const p2=pts[j],d=Math.hypot(p.x-p2.x,p.y-p2.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-d/100)*.1})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;});requestAnimationFrame(animBg);}
+animBg();
+window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
+const revs=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});revs.forEach(el=>obs.observe(el));
+(function(){if(window.innerWidth<=900)return;const canvas=document.getElementById('creature-canvas'),ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LR=.18;let mx=window.innerWidth/2,my=window.innerHeight/2;const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});let lp=0;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});const lerp=(a,b,t)=>a+(b-a)*t;function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}function update(){segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}lp+=.12;}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();const as2=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as2,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as2,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}function loop(){update();draw();requestAnimationFrame(loop);}loop();})();
+</script>
+</body>
+</html>
