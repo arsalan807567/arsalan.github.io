@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>The Internet is Dead, and AI Killed It: Why Your Online Life Feels So... Empty | Arsalan</title>
+<meta name="description" content="Ever feel like the internet's just... off? Like you're talking to ghosts, or worse, bots? The 'Dead Internet Theory' isn't just a conspiracy anymore. AI changed everything.">
+<meta name="keywords" content="Dead Internet Theory, AI bots, AI generated content, internet authenticity, online trust, future of internet, AI impact, digital loneliness">
+<meta property="og:title" content="The Internet is Dead, and AI Killed It: Why Your Online Life Feels So... Empty">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.arsalanportfolio.live/blog_ai_laptop.jpg">
+<link rel="canonical" href="https://www.arsalanportfolio.live/blog-dead-internet.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;
+  --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
+  --border-accent:rgba(0,247,255,0.2);--text-primary:#f0f0f0;
+  --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:
+'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+@media(max-width:900px){body{cursor:auto;}}
+canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+@media(max-width:900px){canvas#creature-canvas{display:none;}}
+#read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--magenta),var(--blue),var(--cyan));transform-origin:left;transform:scaleX(0);transition:transform 0.1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:600px){.nav-inner{padding:0 18px;}}
+.nav-logo{font-family:
+'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-back:hover{color:var(--cyan);}
+.nav-back svg{transition:transform 0.2s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.hero-inner{padding:0 18px;}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
+.breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--cyan);}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.post-tag-pill{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,0,255,0.3);background:rgba(255,0,255,0.07);color:var(--magenta);}
+.post-tag-pill.cyan{border-color:rgba(0,247,255,0.25);background:rgba(0,247,255,0.06);color:var(--cyan);}
+.post-hero h1{font-family:
+'Lora',serif;font-weight:600;font-style:italic;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;color:#fff;margin-bottom:20px;}
+.lede{font-family:
+'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:30px;font-style:italic;}
+.post-meta-bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.meta-author-block{display:flex;align-items:center;gap:10px;}
+.meta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-author-info{display:flex;flex-direction:column;gap:1px;}
+.meta-author-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);}
+.meta-author-role{font-size:0.7rem;color:var(--text-muted);}
+.meta-sep{color:var(--text-muted);font-size:0.7rem;}
+.meta-date{font-size:0.78rem;color:var(--text-muted);}
+.meta-read{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+@media(max-width:600px){.hero-visual{padding:0 18px;}}
+.hero-img-box{border-radius:16px;overflow:hidden;border:1px solid rgba(255,0,255,0.2);position:relative;height:420px;}
+@media(max-width:600px){.hero-img-box{height:240px;}}
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82) saturate(1.15);}
+.hero-img-box .img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(5,8,16,0.75));}
+.hero-img-box .img-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.post-body{padding:0 18px 60px;}}
+.post-body p{font-family:
+'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
+.post-body p strong{color:#fff;font-weight:600;}
+.post-body p em{font-style:italic;color:#e8f0f8;}
+.post-body h2{font-family:
+'Syne',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:#fff;line-height:1.2;margin:54px 0 18px;padding-left:16px;border-left:3px solid var(--magenta);}
+.post-body h3{font-family:
+'DM Sans',sans-serif;font-weight:500;color:var(--magenta);margin:36px 0 12px;text-transform:uppercase;letter-spacing:0.1em;font-size:0.78rem;}
+.post-body hr{border:none;border-top:1px solid var(--border);margin:52px 0;}
+.pull-quote{margin:44px 0;padding:0 0 0 24px;border-left:3px solid var(--magenta);}
+.pull-quote p{font-family:
+'Lora',serif;font-style:italic;font-size:1.2rem!important;line-height:1.7!important;color:rgba(255,255,255,0.88)!important;margin-bottom:0!important;}
+.aside-box{margin:38px 0;padding:20px 24px;border-radius:10px;background:rgba(255,0,255,0.04);border:1px solid rgba(255,0,255,0.18);}
+.aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.aside-label::before{content:
+'';display:block;width:14px;height:1px;background:var(--magenta);}
+.aside-box p{font-family:
+'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
+.post-img{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.post-img img{width:100%;display:block;object-fit:cover;filter:brightness(0.85) saturate(1.1);}
+.post-img.tall img{height:380px;}
+.post-img.medium img{height:280px;}
+.post-img.short img{height:200px;}
+@media(max-width:600px){.post-img.tall img{height:220px;}.post-img.medium img{height:180px;}.post-img.short img{height:150px;}}
+.post-img-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.img-grid{grid-template-columns:1fr;}}
+.img-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);height:200px;position:relative;}
+.img-grid-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);}
+.img-grid-item .grid-label{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(to top,rgba(0,0,0,0.78),transparent);font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:0.04em;}
+.video-container { margin: 40px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #070d1c; }
+.video-container video { width: 100%; height: auto; display: block; }
+.video-caption { padding: 10px 16px; font-size: 0.72rem; color: var(--text-muted); font-style: italic; text-align: center; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); }
+.highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(255,0,255,0.06),rgba(0,140,255,0.04));border:1px solid rgba(255,0,255,0.18);position:relative;overflow:hidden;}
+.highlight-text::before{content:
+'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--magenta),var(--blue));}
+.highlight-text p{font-family:
+'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
+.end-tag-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);transition:all 0.2s;cursor:default;}
+.end-tag:hover{border-color:var(--border-accent);color:var(--cyan);}
+.share-row{display:flex;align-items:center;gap:10px;}
+.share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
+.share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,247,255,0.06);}
+.back-strip{max-width:680px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.back-strip{padding:0 18px 60px;}}
+.back-strip-inner{padding:28px 32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.back-strip-text p{font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;}
+.back-strip-text span{font-family:
+'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text-primary);}
+.btn-back-blog{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;border:1px solid var(--border-accent);color:var(--cyan);font-family:
+'DM Sans',sans-serif;font-weight:400;font-size:0.875rem;text-decoration:none;transition:all 0.2s;}
+.btn-back-blog:hover{background:rgba(0,247,255,0.06);transform:translateY(-2px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{font-size:0.78rem;color:var(--text-muted);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.author-sign{margin-top:40px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.author-sign-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0;}
+.author-sign-info p{font-size:0.78rem;color:var(--text-muted);}
+.author-sign-info strong{font-size:0.9rem;color:var(--text-primary);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="blog.html" class="nav-back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="blog.html">Blog</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Opinion</span>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag-pill">AI & Society</span>
+      <span class="post-tag-pill cyan">Digital Culture</span>
+    </div>
+    <h1>The Internet is Dead, and AI Killed It: Why Your Online Life Feels So... Empty</h1>
+    <p class="lede">Ever scroll through your feeds and feel like something's just... off? Like you're wading through a sea of perfectly curated, yet utterly soulless content? The 'Dead Internet Theory' isn't just some fringe conspiracy anymore. It's becoming our unsettling reality, and AI is holding the smoking gun.</p>
+    <div class="post-meta-bar">
+      <div class="meta-author-block">
+        <div class="meta-avatar">A</div>
+        <div class="meta-author-info">
+          <span class="meta-author-name">Arsalan</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
+        </div>
+      </div>
+      <span class="meta-sep">·</span>
+      <span class="meta-date">May 7, 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        10 min read
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="hero-img-box">
+      <img src="blog_ai_laptop.jpg" alt="AI generated content on a laptop screen" loading="eager">
+      <div class="img-overlay"></div>
+      <span class="img-caption">Is what you're seeing real, or just another AI's perfect imitation? The lines are blurring faster than we can keep up.</span>
+    </div>
+  </div>
+</section>
+
+<article class="post-body reveal">
+
+  <p>Remember the early internet? A bit clunky, sure, but it felt alive. Like a wild, untamed frontier where anyone could stumble upon something genuinely new, weird, or wonderfully human. Fast forward to today, and that feeling is mostly gone. Now, it's all so… polished. So optimized. So much like everything else. And that, my friends, is the core of the Dead Internet Theory. It posits that a significant, perhaps even dominant, portion of online content and activity isn't from real people anymore. It's bots. It's algorithms. It's AI.</p>
+
+  <p>For years, this was just a quirky idea, something discussed in hushed tones on obscure forums. But with the explosion of generative AI, it's become a lot less theoretical and a lot more terrifyingly real. Think about it: how many times have you seen a comment section filled with oddly generic, yet perfectly grammatical, responses? Or scrolled through social media only to find endless streams of content that feels vaguely familiar, but utterly devoid of genuine personality?</p>
+
+  <div class="post-img medium">
+    <img src="blog_ai_brain.jpg" alt="AI brain network" loading="lazy">
+    <div class="post-img-caption">The digital brain behind the curtain. AI's influence is everywhere, from content creation to shaping our online interactions.</div>
+  </div>
+
+  <h2>The Bot Takeover: More Than Just Spam</h2>
+
+  <p>When we talk about bots, most people still picture those annoying spam accounts trying to sell you crypto. But the new generation of AI bots? They're sophisticated. They can write articles that pass for human, generate images that win art competitions, and even hold conversations that are eerily convincing. They're not just pushing products; they're shaping narratives, influencing opinions, and filling the internet with a vast ocean of synthetic data.</p>
+
+  <p>This isn't just about a few bad actors. Major platforms are incentivized to keep engagement high, and if AI-generated content does that, well, who's to say they're not quietly letting it flourish? The sheer volume of content needed to feed the 24/7 news cycle and social media beast is astronomical. Humans simply can't keep up. Enter AI, the tireless content factory.</p>
+
+  <div class="video-container">
+    <video controls preload="metadata">
+      <source src="video_robot.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-caption">Is this robot dancing, or just executing a perfectly optimized algorithm to capture your attention? The line is thin.</div>
+  </div>
+
+  <h2>The Uncanny Valley of Online Interaction</h2>
+
+  <p>One of the most unsettling aspects of the Dead Internet Theory is the feeling it leaves you with. That subtle sense of unease when an online interaction feels just a little too perfect, a little too generic. It's the digital equivalent of the 
+uncanny valley, but for conversations and content. You start to question everything. Is that glowing review for a product real, or was it spun up by an AI? Is that passionate comment on a forum a genuine human opinion, or a bot designed to stir engagement?</p>
+
+  <p>This erosion of trust is perhaps the most damaging consequence. If we can no longer discern human from machine, if the very fabric of online interaction becomes suspect, what does that do to our ability to connect, to share, to build communities? It fosters a deep sense of digital loneliness, even when surrounded by millions of 
+digital 'friends'.</p>
+
+  <div class="post-img tall">
+    <img src="blog_human_vs_ai.jpg" alt="Human vs AI content battle" loading="lazy">
+    <div class="post-img-caption">The digital arena where human creativity clashes with algorithmic efficiency. Who will win the battle for our attention?</div>
+  </div>
+
+  <h2>The Echo Chamber Effect: When AI Feeds Itself</h2>
+
+  <p>Here’s where it gets really spicy. Imagine a scenario where AI-generated content is not just consumed by humans, but also used to train *other* AIs. It’s a feedback loop, a digital echo chamber where synthetic data begets more synthetic data. What happens to originality? What happens to genuine human insight when the wellspring of information is increasingly polluted by its own reflections?</p>
+
+  <p>This isn't some far-off dystopian future. It's happening now. AI models are being trained on vast datasets that already contain a significant amount of AI-generated text and images. The internet, once a reflection of humanity, risks becoming a hall of mirrors, reflecting only itself. The nuances, the quirks, the beautiful imperfections of human expression could slowly, subtly, be ironed out, replaced by a bland, optimized, algorithmically-pleasing uniformity.</p>
+
+  <div class="aside-box">
+    <div class="aside-label">A thought experiment</div>
+    <p>If an AI writes a blog post, and another AI reads it, and then another AI summarizes it, and then another AI uses that summary to generate a social media post... was there ever a human in the loop? And does it even matter?</p>
+  </div>
+
+  <h2>What Can We Do? Or Is It Already Too Late?</h2>
+
+  <p>So, is the internet truly dead? Maybe not entirely, but it's certainly on life support, and AI is both the disease and, potentially, the cure. We can't un-invent AI, nor should we want to. The power it offers is immense. But we need to start asking harder questions. We need better tools for provenance, for distinguishing human-created content from machine-generated. We need to value authenticity more than ever before.</p>
+
+  <p>Perhaps the answer lies in a conscious effort to seek out and support human creators. To engage with content that feels raw, real, and imperfect. To cultivate digital spaces where genuine connection is prioritized over algorithmic engagement. It won't be easy. The current incentives are all stacked against it. But if we don't, we risk losing something truly precious: the messy, beautiful, unpredictable essence of human interaction online. And that, my friends, would be a tragedy far spicier than any AI could ever generate.</p>
+
+  <div class="post-img short">
+    <img src="blog_ai_city.jpg" alt="AI city with digital overlay" loading="lazy">
+    <div class="post-img-caption">A future shaped by AI. Will it be a vibrant metropolis of innovation, or a sterile, automated landscape? The choice, for now, is still ours.</div>
+  </div>
+
+  <hr>
+
+  <div class="end-tag-row">
+    <span class="end-tag">AI & Society</span>
+    <span class="end-tag">Digital Culture</span>
+    <span class="end-tag">Opinion</span>
+    <span class="end-tag">Future of Internet</span>
+  </div>
+
+  <div class="author-sign">
+    <div class="author-sign-avatar">A</div>
+    <div class="author-sign-info">
+      <p>Written by <strong>Arsalan</strong></p>
+      <p>AI Expert & Creative Technologist</p>
+    </div>
+  </div>
+
+</article>
+
+<div class="back-strip">
+  <div class="back-strip-inner">
+    <div class="back-strip-text">
+      <p>More thoughts on AI?</p>
+      <span>Explore All Blog Posts</span>
+    </div>
+    <a href="blog.html" class="btn-back-blog">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist</p>
+</footer>
+
+<script>
+// PARTICLES
+const bgCanvas = document.getElementById("particles");
+const bgCtx = bgCanvas.getContext("2d");
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+const particleColors = ["#00f7ff","#008cff","#ff00ff"];
+const particles = [];
+for (let i = 0; i < 70; i++) {
+  particles.push({
+    x: Math.random()*bgCanvas.width, y: Math.random()*bgCanvas.height,
+    r: Math.random()*1.8+0.8, dx: (Math.random()-0.5)*0.5, dy: (Math.random()-0.5)*0.5,
+    color: particleColors[Math.floor(Math.random()*particleColors.length)]
+  });
+}
+function animateBg(){
+  bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+  particles.forEach((p,i)=>{
+    bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.5;bgCtx.fill();bgCtx.globalAlpha=1;
+    for(let j=i+1;j<particles.length;j++){
+      const p2=particles[j],dist=Math.hypot(p.x-p2.x,p.y-p2.y);
+      if(dist<120){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-dist/120)*0.18})`;bgCtx.lineWidth=0.5;bgCtx.stroke();}
+    }
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;
+    if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;
+  });
+  requestAnimationFrame(animateBg);
+}
+animateBg();
+window.addEventListener("resize",()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
+
+// READ PROGRESS
+window.addEventListener("scroll", () => {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollTop / scrollHeight) * 100;
+  document.getElementById("read-progress").style.transform = `scaleX(${scrolled / 100})`;
+});
+
+// REVEAL
+const revealEls = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:0.08});
+revealEls.forEach(el=>obs.observe(el));
+
+// HAMBURGER MENU
+const hamburger = document.getElementById("hamburger");
+const mobileNav = document.getElementById("mobile-nav");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("open");
+  mobileNav.classList.toggle("open");
+});
+
+function closeMenu() {
+  hamburger.classList.remove("open");
+  mobileNav.classList.remove("open");
+}
+
+document.addEventListener("click", (e) => {
+  if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+    closeMenu();
+  }
+});
+
+// CENTIPEDE CURSOR
+(function(){
+  if(window.innerWidth<=900)return;
+  const canvas=document.getElementById("creature-canvas");
+  const ctx=canvas.getContext("2d");
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener("resize",()=>{if(window.innerWidth<=900){canvas.style.display="none";return;}canvas.style.display="block";resize();});
+  const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=0.55,AL=18,GC="#00f7ff",SC="rgba(0,247,255,0.85)",LERP=0.18;
+  let mx=window.innerWidth/2,my=window.innerHeight/2;
+  const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});
+  let lp=0;
+  window.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;});
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}
+  function update(){
+    segs[0].x=lerp(segs[0].x,mx,LERP);segs[0].y=lerp(segs[0].y,my,LERP);
+    for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}
+    lp+=0.12;
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap="round";ctx.lineJoin="round";
+    ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
+    for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle="rgba(0,247,255,0.06)";ctx.fill();ctx.restore();}
+    for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=0.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}
+    const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle="rgba(0,247,255,0.12)";ctx.fill();
+    const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();
+    const as=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();
+    ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=20;ctx.shadowColor="#00f7ff";ctx.fillStyle="rgba(0,247,255,0.9)";ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();
+  }
+  function loop(){update();draw();requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>
