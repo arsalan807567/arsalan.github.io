@@ -16,8 +16,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;
-  --green:#00ff88;
+  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;--green:#00ff88;
   --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
   --border-accent:rgba(0,247,255,0.2);--text-primary:#f0f0f0;
   --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
@@ -37,6 +36,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .nav-back:hover{color:var(--cyan);}
 .nav-back svg{transition:transform 0.2s;}
 .nav-back:hover svg{transform:translateX(-3px);}
+/* HERO */
 .post-hero{padding:115px 0 0;position:relative;z-index:1;}
 .hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
 @media(max-width:600px){.hero-inner{padding:0 18px;}}
@@ -57,13 +57,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .meta-sep{color:var(--text-muted);font-size:0.7rem;}
 .meta-date{font-size:0.78rem;color:var(--text-muted);}
 .meta-read{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+/* VISUALS */
 .hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
 @media(max-width:600px){.hero-visual{padding:0 18px;}}
-.hero-img-box{border-radius:16px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);position:relative;height:420px;}
-@media(max-width:600px){.hero-img-box{height:240px;}}
-.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82) saturate(1.2);}
-.hero-img-box .img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(5,8,16,0.75));}
-.hero-img-box .img-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.visual-box{border-radius:16px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);position:relative;}
+.visual-box svg{width:100%;display:block;}
+.visual-caption{padding:10px 16px;font-size:0.7rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+/* ARTICLE */
 .post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
 @media(max-width:600px){.post-body{padding:0 18px 60px;}}
 .post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
@@ -78,28 +78,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
 .aside-label::before{content:'';display:block;width:14px;height:1px;background:var(--cyan);}
 .aside-box p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
-.post-img{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
-.post-img img{width:100%;display:block;object-fit:cover;filter:brightness(0.85) saturate(1.1);}
-.post-img.tall img{height:380px;}
-.post-img.medium img{height:280px;}
-.post-img.short img{height:200px;}
-@media(max-width:600px){.post-img.tall img{height:220px;}.post-img.medium img{height:180px;}.post-img.short img{height:150px;}}
-.post-img-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+/* INLINE VISUALS */
+.post-vis{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.post-vis svg{width:100%;display:block;}
+.post-vis-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.vis-grid{grid-template-columns:1fr;}}
+.vis-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.vis-grid-item svg{width:100%;display:block;}
+.vis-grid-label{padding:8px 12px;font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;background:rgba(0,0,0,0.4);border-top:1px solid var(--border);}
+/* VIDEO EMBED */
 .post-video{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);background:#060a14;}
 .post-video-inner{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
 .post-video-inner iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 .post-video-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;border-top:1px solid var(--border);}
-.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
-@media(max-width:500px){.img-grid{grid-template-columns:1fr;}}
-.img-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);height:200px;position:relative;}
-.img-grid-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1);}
-.img-grid-item .grid-label{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(to top,rgba(0,0,0,0.78),transparent);font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:0.04em;}
-.img-wide{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
-.img-wide img{width:100%;display:block;height:340px;object-fit:cover;filter:brightness(0.83) saturate(1.1);}
-@media(max-width:600px){.img-wide img{height:200px;}}
-.img-wide-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
-
-/* RANKING CARDS */
+/* SUMMARY TABLE */
+.summary-table{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.summary-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
+.summary-row:last-child{border-bottom:none;}
+.summary-row.header{background:rgba(0,247,255,0.05);}
+.summary-cell{padding:14px 18px;font-size:0.82rem;color:var(--text-secondary);border-right:1px solid var(--border);}
+.summary-cell:last-child{border-right:none;}
+.summary-cell.header-cell{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.summary-cell.tool-name{color:var(--text-primary);font-weight:500;}
+@media(max-width:500px){.summary-row{grid-template-columns:1fr 1fr;}.summary-cell:nth-child(3){display:none;}}
+/* RANK CARDS */
 .rank-card{margin:36px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.02);}
 .rank-card-header{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--border);}
 .rank-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;min-width:44px;}
@@ -114,33 +117,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .rank-verdict.great{background:rgba(0,247,255,0.08);border:1px solid rgba(0,247,255,0.25);color:var(--cyan);}
 .rank-verdict.good{background:rgba(0,140,255,0.08);border:1px solid rgba(0,140,255,0.25);color:var(--blue);}
 .rank-verdict.mixed{background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.25);color:var(--gold);}
-.rank-verdict.skip{background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.2);color:#ff6060;}
 .rank-body{padding:20px 24px;}
 .rank-body p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;line-height:1.85!important;margin-bottom:14px!important;}
 .rank-body p:last-child{margin-bottom:0!important;}
 .rank-scores{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
 .score-pill{font-size:0.7rem;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-secondary);}
 .score-pill span{color:var(--text-primary);font-weight:500;}
-
 .highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(0,140,255,0.06),rgba(0,247,255,0.03));border:1px solid rgba(0,247,255,0.15);position:relative;overflow:hidden;}
 .highlight-text::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));}
 .highlight-text p{font-family:'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
-
-/* QUICK SUMMARY TABLE */
-.summary-table{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
-.summary-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
-.summary-row:last-child{border-bottom:none;}
-.summary-row.header{background:rgba(0,247,255,0.05);}
-.summary-cell{padding:14px 18px;font-size:0.82rem;color:var(--text-secondary);border-right:1px solid var(--border);}
-.summary-cell:last-child{border-right:none;}
-.summary-cell.header-cell{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
-.summary-cell.tool-name{color:var(--text-primary);font-weight:500;}
-@media(max-width:500px){.summary-row{grid-template-columns:1fr 1fr;}.summary-cell:nth-child(3){display:none;}}
-
 .post-end-bar{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
 .end-tags{display:flex;gap:8px;flex-wrap:wrap;}
-.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);transition:all 0.2s;cursor:default;}
-.end-tag:hover{border-color:var(--border-accent);color:var(--cyan);}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);cursor:default;}
 .share-row{display:flex;align-items:center;gap:10px;}
 .share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
 .share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
@@ -163,7 +151,6 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
 </style>
 </head>
 <body>
-
 <div id="read-progress"></div>
 <canvas id="particles"></canvas>
 <canvas id="creature-canvas"></canvas>
@@ -189,7 +176,7 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
     <div class="post-tags">
       <span class="post-tag-pill">Tools &amp; Tech</span>
-      <span class="post-tag-pill green">Review</span>
+      <span class="post-tag-pill green">Review 2026</span>
     </div>
     <h1>I Tested Every AI Image Generator in 2026. Here's the Honest Ranking.</h1>
     <p class="lede">Midjourney, DALL-E 3, Stable Diffusion, Adobe Firefly, Ideogram. I ran all of them through real client briefs for six months and ranked every AI image generator without any sponsorship or affiliate deal. This is what I actually found.</p>
@@ -211,11 +198,76 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
+  <!-- HERO VISUAL - 100% inline SVG, always works -->
   <div class="hero-visual reveal">
-    <div class="hero-img-box">
-      <img src="https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=1400&q=80&auto=format&fit=crop" alt="AI image generator comparison 2026 best AI art tools" loading="eager">
-      <div class="img-overlay"></div>
-      <span class="img-caption">Six months, five AI image generators, hundreds of real client briefs. Here is what I found.</span>
+    <div class="visual-box">
+      <svg viewBox="0 0 900 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="400" fill="#060c1a"/>
+        <defs>
+          <radialGradient id="hg1" cx="20%" cy="50%" r="35%"><stop offset="0%" stop-color="#ff00ff" stop-opacity="0.12"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+          <radialGradient id="hg2" cx="80%" cy="50%" r="35%"><stop offset="0%" stop-color="#00f7ff" stop-opacity="0.1"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+          <radialGradient id="hg3" cx="50%" cy="50%" r="30%"><stop offset="0%" stop-color="#00ff88" stop-opacity="0.08"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+          <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.6" fill="rgba(255,255,255,0.05)"/></pattern>
+        </defs>
+        <rect width="900" height="400" fill="url(#dots)"/>
+        <rect width="900" height="400" fill="url(#hg1)"/>
+        <rect width="900" height="400" fill="url(#hg2)"/>
+        <rect width="900" height="400" fill="url(#hg3)"/>
+        <!-- 5 tool cards -->
+        <!-- Midjourney - gold glow -->
+        <rect x="40" y="80" width="140" height="240" rx="12" fill="rgba(240,192,64,0.06)" stroke="rgba(240,192,64,0.4)" stroke-width="1.5"/>
+        <rect x="40" y="80" width="140" height="3" rx="2" fill="rgba(240,192,64,0.8)"/>
+        <text x="110" y="140" text-anchor="middle" fill="rgba(240,192,64,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="28">MJ</text>
+        <text x="110" y="165" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Sans,sans-serif" font-size="11" letter-spacing="1">MIDJOURNEY</text>
+        <rect x="60" y="185" width="100" height="6" rx="3" fill="rgba(240,192,64,0.5)"/>
+        <rect x="60" y="197" width="80" height="6" rx="3" fill="rgba(240,192,64,0.35)"/>
+        <rect x="60" y="209" width="90" height="6" rx="3" fill="rgba(240,192,64,0.25)"/>
+        <text x="110" y="285" text-anchor="middle" fill="rgba(240,192,64,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="20">9.5</text>
+        <text x="110" y="300" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="9">QUALITY</text>
+        <!-- Firefly -->
+        <rect x="200" y="100" width="140" height="220" rx="12" fill="rgba(0,140,255,0.06)" stroke="rgba(0,140,255,0.35)" stroke-width="1.5"/>
+        <rect x="200" y="100" width="140" height="3" rx="2" fill="rgba(0,140,255,0.7)"/>
+        <text x="270" y="158" text-anchor="middle" fill="rgba(0,140,255,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="24">FF</text>
+        <text x="270" y="180" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="1">FIREFLY</text>
+        <rect x="220" y="198" width="100" height="5" rx="2" fill="rgba(0,140,255,0.45)"/>
+        <rect x="220" y="209" width="75" height="5" rx="2" fill="rgba(0,140,255,0.3)"/>
+        <rect x="220" y="220" width="88" height="5" rx="2" fill="rgba(0,140,255,0.2)"/>
+        <text x="270" y="285" text-anchor="middle" fill="rgba(0,140,255,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="18">8.0</text>
+        <text x="270" y="298" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="9">QUALITY</text>
+        <!-- Ideogram -->
+        <rect x="360" y="90" width="140" height="230" rx="12" fill="rgba(0,255,136,0.05)" stroke="rgba(0,255,136,0.3)" stroke-width="1.5"/>
+        <rect x="360" y="90" width="140" height="3" rx="2" fill="rgba(0,255,136,0.7)"/>
+        <text x="430" y="148" text-anchor="middle" fill="rgba(0,255,136,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="24">IG</text>
+        <text x="430" y="170" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="1">IDEOGRAM</text>
+        <rect x="380" y="190" width="100" height="5" rx="2" fill="rgba(0,255,136,0.4)"/>
+        <rect x="380" y="201" width="85" height="5" rx="2" fill="rgba(0,255,136,0.28)"/>
+        <rect x="380" y="212" width="92" height="5" rx="2" fill="rgba(0,255,136,0.18)"/>
+        <text x="430" y="283" text-anchor="middle" fill="rgba(0,255,136,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="18">9.5</text>
+        <text x="430" y="296" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="9">TEXT</text>
+        <!-- DALL-E -->
+        <rect x="520" y="108" width="140" height="210" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <text x="590" y="162" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Syne,sans-serif" font-weight="800" font-size="20">D3</text>
+        <text x="590" y="182" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10" letter-spacing="1">DALL-E 3</text>
+        <rect x="540" y="200" width="100" height="5" rx="2" fill="rgba(255,255,255,0.2)"/>
+        <rect x="540" y="211" width="70" height="5" rx="2" fill="rgba(255,255,255,0.13)"/>
+        <text x="590" y="280" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Syne,sans-serif" font-weight="800" font-size="18">7.0</text>
+        <text x="590" y="293" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="9">QUALITY</text>
+        <!-- SD -->
+        <rect x="680" y="118" width="140" height="190" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="750" y="170" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="Syne,sans-serif" font-weight="800" font-size="18">SD</text>
+        <text x="750" y="188" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">STABLE DIFF</text>
+        <text x="750" y="270" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Syne,sans-serif" font-weight="800" font-size="16">10</text>
+        <text x="750" y="283" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="DM Sans,sans-serif" font-size="9">CUSTOM</text>
+        <!-- Rank labels -->
+        <text x="110" y="55" text-anchor="middle" fill="rgba(240,192,64,0.8)" font-family="Syne,sans-serif" font-weight="800" font-size="11" letter-spacing="2">#1</text>
+        <text x="270" y="72" text-anchor="middle" fill="rgba(0,140,255,0.7)" font-family="Syne,sans-serif" font-weight="800" font-size="11" letter-spacing="2">#2</text>
+        <text x="430" y="62" text-anchor="middle" fill="rgba(0,255,136,0.7)" font-family="Syne,sans-serif" font-weight="800" font-size="11" letter-spacing="2">#3</text>
+        <text x="590" y="80" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="Syne,sans-serif" font-weight="800" font-size="11" letter-spacing="2">#4</text>
+        <text x="750" y="90" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="Syne,sans-serif" font-weight="800" font-size="11" letter-spacing="2">#5</text>
+        <!-- title -->
+        <text x="450" y="375" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-family="Syne,sans-serif" font-size="11" letter-spacing="4">AI IMAGE GENERATOR RANKING 2026</text>
+      </svg>
+      <div class="visual-caption">Six months, five AI image generators, hundreds of real client briefs. Here is the ranking.</div>
     </div>
   </div>
 </section>
@@ -228,9 +280,42 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
 
   <p>I paid for all the subscriptions myself. Nobody sponsored this. I have no affiliate links. These are just my honest observations from using every AI image generator in 2026 as a working professional in Dubai.</p>
 
-  <div class="post-img tall">
-    <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=80&auto=format&fit=crop" alt="AI generated digital art comparison tools 2026" loading="lazy">
-    <div class="post-img-caption">The quality gap between AI image generators has narrowed significantly in 2026. But they are still very different tools for very different purposes.</div>
+  <!-- VISUAL 1: quality comparison bars -->
+  <div class="post-vis">
+    <svg viewBox="0 0 680 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="280" fill="#06101e"/>
+      <defs><pattern id="g1" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M18 0L0 0 0 18" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="0.5"/></pattern></defs>
+      <rect width="680" height="280" fill="url(#g1)"/>
+      <text x="340" y="30" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="Syne,sans-serif" font-size="11" letter-spacing="3">OVERALL QUALITY SCORES — ALL AI IMAGE GENERATORS</text>
+      <!-- bars -->
+      <rect x="60" y="55" width="95" height="160" rx="6" fill="rgba(240,192,64,0.08)" stroke="rgba(240,192,64,0.2)" stroke-width="1"/>
+      <rect x="60" y="55" width="95" height="152" rx="6" fill="rgba(240,192,64,0.25)"/>
+      <text x="107" y="235" text-anchor="middle" fill="rgba(240,192,64,0.8)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">MIDJOURNEY</text>
+      <text x="107" y="48" text-anchor="middle" fill="rgba(240,192,64,0.9)" font-family="Syne,sans-serif" font-weight="700" font-size="14">9.5</text>
+
+      <rect x="185" y="55" width="95" height="160" rx="6" fill="rgba(0,140,255,0.08)" stroke="rgba(0,140,255,0.2)" stroke-width="1"/>
+      <rect x="185" y="82" width="95" height="133" rx="6" fill="rgba(0,140,255,0.22)"/>
+      <text x="232" y="235" text-anchor="middle" fill="rgba(0,140,255,0.8)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">FIREFLY</text>
+      <text x="232" y="75" text-anchor="middle" fill="rgba(0,140,255,0.9)" font-family="Syne,sans-serif" font-weight="700" font-size="14">8.0</text>
+
+      <rect x="310" y="55" width="95" height="160" rx="6" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.18)" stroke-width="1"/>
+      <rect x="310" y="71" width="95" height="144" rx="6" fill="rgba(0,255,136,0.18)"/>
+      <text x="357" y="235" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">IDEOGRAM</text>
+      <text x="357" y="64" text-anchor="middle" fill="rgba(0,255,136,0.9)" font-family="Syne,sans-serif" font-weight="700" font-size="14">8.5</text>
+
+      <rect x="435" y="55" width="95" height="160" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <rect x="435" y="95" width="95" height="120" rx="6" fill="rgba(255,255,255,0.1)"/>
+      <text x="482" y="235" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">DALL-E 3</text>
+      <text x="482" y="88" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="Syne,sans-serif" font-weight="700" font-size="14">7.0</text>
+
+      <rect x="560" y="55" width="95" height="160" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <rect x="560" y="104" width="95" height="111" rx="6" fill="rgba(255,255,255,0.07)"/>
+      <text x="607" y="235" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">STABLE DIFF</text>
+      <text x="607" y="97" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Syne,sans-serif" font-weight="700" font-size="14">6.5*</text>
+
+      <text x="340" y="260" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-family="DM Sans,sans-serif" font-size="9">*Base model only. Fine-tuned SD can exceed all others.</text>
+    </svg>
+    <div class="post-vis-caption">Overall output quality scores across five AI image generator tools — based on 6 months of professional client work.</div>
   </div>
 
   <h2>How I Tested Each AI Image Generator</h2>
@@ -244,7 +329,7 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     <p>AI image generators update constantly. Midjourney releases new model versions regularly. DALL-E 3 has improved significantly. This review reflects my experience through early May 2026. Some scores may shift as models update. The overall rankings have been fairly stable for several months though so I expect the core conclusions to hold for a while.</p>
   </div>
 
-  <h2>The Quick Summary Before The Full Breakdown</h2>
+  <h2>Quick Summary Before the Full Breakdown</h2>
 
   <div class="summary-table">
     <div class="summary-row header">
@@ -281,7 +366,6 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
 
   <h2>The Full Ranking of Every AI Image Generator I Tested</h2>
 
-  <!-- RANK 1 -->
   <div class="rank-card">
     <div class="rank-card-header">
       <span class="rank-num gold">01</span>
@@ -291,7 +375,7 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     <div class="rank-body">
       <p>If you ask most professional AI creatives which AI image generator they reach for first, the answer is almost always Midjourney. I have been using it since version 4 and the jump to the current model is genuinely remarkable. The aesthetic quality, the ability to generate complex scenes with coherent lighting, the way it handles atmosphere and mood — nothing else comes close for creative work.</p>
       <p>For client briefs that involve brand imagery, editorial illustrations, hero visuals for websites, campaign concepts, or anything where the output needs to feel premium and intentional, Midjourney is the AI image generator I use. The learning curve is real. If you just type a sentence and expect magic you will be disappointed. But once you understand how to compose a Midjourney prompt the consistency of output is exceptional.</p>
-      <p>The weak points are text rendering, which is still inconsistent, and very precise product placement, where you need specific objects to look exactly right. For those use cases there are better options. But for sheer visual quality and creative range, Midjourney remains the top AI image generator in 2026.</p>
+      <p>The weak points are text rendering, which is still inconsistent, and very precise product placement. For those use cases there are better options. But for sheer visual quality and creative range, Midjourney remains the top AI image generator in 2026.</p>
       <div class="rank-scores">
         <div class="score-pill">Quality <span>9.5/10</span></div>
         <div class="score-pill">Consistency <span>8.5/10</span></div>
@@ -302,28 +386,58 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <div class="img-grid">
-    <div class="img-grid-item">
-      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=75&auto=format&fit=crop" alt="Professional AI generated creative image Midjourney quality" loading="lazy">
-      <div class="grid-label">The kind of creative quality Midjourney produces consistently</div>
+  <!-- VISUAL 2: Midjourney vs others grid -->
+  <div class="vis-grid">
+    <div class="vis-grid-item">
+      <svg viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="190" fill="#07101e"/>
+        <defs><radialGradient id="mg1" cx="50%" cy="40%" r="55%"><stop offset="0%" stop-color="#f0c040" stop-opacity="0.15"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>
+        <rect width="300" height="190" fill="url(#mg1)"/>
+        <!-- abstract creative art Midjourney style -->
+        <ellipse cx="150" cy="90" rx="70" ry="55" fill="rgba(240,192,64,0.05)" stroke="rgba(240,192,64,0.3)" stroke-width="1"/>
+        <path d="M90 60 Q110 30 150 45 Q190 30 210 60 Q230 90 210 115 Q190 140 150 135 Q110 140 90 115 Q70 90 90 60Z" fill="rgba(240,192,64,0.08)" stroke="rgba(240,192,64,0.4)" stroke-width="1"/>
+        <path d="M120 70 Q135 55 150 65 Q165 55 180 70 Q185 85 175 95 Q160 108 150 100 Q140 108 125 95 Q115 85 120 70Z" fill="rgba(240,192,64,0.2)" stroke="rgba(240,192,64,0.6)" stroke-width="1.5"/>
+        <circle cx="150" cy="85" r="12" fill="rgba(240,192,64,0.3)" stroke="rgba(240,192,64,0.8)" stroke-width="1.5"/>
+        <circle cx="150" cy="85" r="5" fill="rgba(240,192,64,0.9)"/>
+        <!-- stars -->
+        <circle cx="100" cy="45" r="2" fill="rgba(240,192,64,0.6)"/>
+        <circle cx="200" cy="40" r="2" fill="rgba(240,192,64,0.5)"/>
+        <circle cx="80" cy="130" r="1.5" fill="rgba(240,192,64,0.4)"/>
+        <circle cx="220" cy="125" r="1.5" fill="rgba(240,192,64,0.4)"/>
+      </svg>
+      <div class="vis-grid-label">Midjourney: complex lighting and atmosphere it does naturally</div>
     </div>
-    <div class="img-grid-item">
-      <img src="https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?w=600&q=75&auto=format&fit=crop" alt="AI art digital creative work professional quality" loading="lazy">
-      <div class="grid-label">Complex lighting and atmosphere — Midjourney's strongest suit</div>
+    <div class="vis-grid-item">
+      <svg viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="190" fill="#060e1c"/>
+        <defs><radialGradient id="mg2" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#00f7ff" stop-opacity="0.1"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>
+        <rect width="300" height="190" fill="url(#mg2)"/>
+        <!-- product on background - Firefly style -->
+        <rect x="90" y="40" width="120" height="110" rx="8" fill="rgba(0,140,255,0.05)" stroke="rgba(0,140,255,0.2)" stroke-width="1"/>
+        <!-- product bottle shape -->
+        <rect x="130" y="60" width="40" height="70" rx="6" fill="rgba(0,140,255,0.15)" stroke="rgba(0,140,255,0.5)" stroke-width="1.5"/>
+        <rect x="135" y="55" width="30" height="12" rx="4" fill="rgba(0,140,255,0.25)" stroke="rgba(0,140,255,0.6)" stroke-width="1"/>
+        <rect x="138" y="50" width="24" height="8" rx="3" fill="rgba(0,140,255,0.3)" stroke="rgba(0,140,255,0.7)" stroke-width="1"/>
+        <!-- light rays -->
+        <line x1="150" y1="40" x2="120" y2="20" stroke="rgba(0,140,255,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="150" y1="40" x2="180" y2="20" stroke="rgba(0,140,255,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
+        <!-- shadow -->
+        <ellipse cx="150" cy="148" rx="32" ry="6" fill="rgba(0,0,0,0.3)"/>
+      </svg>
+      <div class="vis-grid-label">Adobe Firefly: product placement with realistic lighting match</div>
     </div>
   </div>
 
-  <!-- RANK 2 -->
   <div class="rank-card">
     <div class="rank-card-header">
       <span class="rank-num silver">02</span>
-      <span class="rank-tool-name">Adobe Firefly — The Best AI Image Generator for Commercial Work</span>
+      <span class="rank-tool-name">Adobe Firefly — Best AI Image Generator for Commercial Work</span>
       <span class="rank-verdict great">Best for Business</span>
     </div>
     <div class="rank-body">
       <p>Adobe Firefly is not trying to compete with Midjourney on pure creative output. What it does instead is solve a different and arguably more important problem for professional users: commercial licensing. Every image generated by Adobe Firefly is trained on licensed content and cleared for commercial use. That matters enormously when you are delivering work to clients.</p>
-      <p>For product photography workflows specifically, the combination of Firefly inside Photoshop with generative fill is genuinely excellent. I can take a client product image and extend it into a completely different environment with realistic lighting matching. The integration with the rest of the Adobe suite means the AI image generator fits naturally into an existing professional workflow rather than requiring you to build a separate pipeline.</p>
-      <p>The output quality is not as visually striking as Midjourney for editorial or conceptual work. But for functional commercial images, product placements, background replacements, and safe-to-deliver client work, Adobe Firefly is the AI image generator I trust most.</p>
+      <p>For product photography workflows specifically, the combination of Firefly inside Photoshop with generative fill is genuinely excellent. I can take a client product image and extend it into a completely different environment with realistic lighting matching. The integration with the rest of the Adobe suite means the AI image generator fits naturally into an existing professional workflow.</p>
+      <p>The output quality is not as visually striking as Midjourney for editorial work. But for functional commercial images, product placements, background replacements, and safe-to-deliver client work, Adobe Firefly is the AI image generator I trust most.</p>
       <div class="rank-scores">
         <div class="score-pill">Quality <span>8/10</span></div>
         <div class="score-pill">Commercial safety <span>10/10</span></div>
@@ -334,24 +448,29 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <!-- VIDEO: YouTube embed of AI image generator comparison -->
+  <!-- YOUTUBE VIDEO - working public video about AI image generators -->
   <div class="post-video">
     <div class="post-video-inner">
-      <iframe src="https://www.youtube.com/embed/YFnQMy2EiWk" title="AI Image Generator Comparison 2026 Midjourney vs DALL-E vs Firefly" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/D_zjS5UKEbk"
+        title="Midjourney vs DALL-E 3 vs Stable Diffusion vs Adobe Firefly - AI Image Generator Comparison"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </div>
-    <div class="post-video-caption">A visual walkthrough of how different AI image generators handle the same prompt — the quality gap is visible immediately.</div>
+    <div class="post-video-caption">Midjourney vs DALL-E 3 vs Adobe Firefly vs Stable Diffusion — a visual side-by-side comparison of what each AI image generator actually produces.</div>
   </div>
 
-  <!-- RANK 3 -->
   <div class="rank-card">
     <div class="rank-card-header">
       <span class="rank-num bronze">03</span>
-      <span class="rank-tool-name">Ideogram — The AI Image Generator That Actually Handles Text</span>
+      <span class="rank-tool-name">Ideogram — The AI Image Generator That Handles Text</span>
       <span class="rank-verdict great">Best for Text</span>
     </div>
     <div class="rank-body">
-      <p>For a long time the inability to render readable text was the one thing that made every AI image generator frustrating for certain types of work. Ideogram basically solved this problem. I use it specifically when I need text to appear inside an image, things like poster designs, social media graphics with captions baked in, typographic compositions, or anything where the words need to actually be legible.</p>
-      <p>Beyond text, Ideogram also produces solid general imagery with a slightly different aesthetic to Midjourney. Some clients actually prefer the Ideogram look for certain brand styles. At $16 a month it is also the most affordable AI image generator in this list by a significant margin, which makes it an easy addition to the stack for the specific use cases where it excels.</p>
+      <p>For a long time the inability to render readable text was the one thing that made every AI image generator frustrating for certain types of work. Ideogram basically solved this problem. I use it specifically when I need text to appear inside an image — poster designs, social media graphics with captions baked in, typographic compositions, or anything where the words need to actually be legible.</p>
+      <p>Beyond text, Ideogram also produces solid general imagery with a slightly different aesthetic to Midjourney. Some clients actually prefer the Ideogram look for certain brand styles. At $16 a month it is also the most affordable AI image generator in this list by a significant margin.</p>
       <p>I would not use Ideogram as my primary AI image generator for creative work. But as a specialist tool for text-heavy images it is unbeaten right now and earns its place in every serious AI creator's toolkit.</p>
       <div class="rank-scores">
         <div class="score-pill">Text rendering <span>9.5/10</span></div>
@@ -362,21 +481,48 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
   </div>
 
-  <div class="post-img medium">
-    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80&auto=format&fit=crop" alt="Typography and text design AI image generation" loading="lazy">
-    <div class="post-img-caption">Ideogram changed everything for text-heavy AI image work. What used to be impossible is now reliable.</div>
+  <!-- VISUAL 3: Text rendering comparison -->
+  <div class="post-vis">
+    <svg viewBox="0 0 680 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="220" fill="#060c18"/>
+      <defs><pattern id="g2" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0L0 0 0 16" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="0.5"/></pattern></defs>
+      <rect width="680" height="220" fill="url(#g2)"/>
+      <text x="340" y="28" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Syne,sans-serif" font-size="10" letter-spacing="3">TEXT RENDERING COMPARISON — AI IMAGE GENERATORS</text>
+      <!-- Ideogram card -->
+      <rect x="30" y="45" width="180" height="130" rx="8" fill="rgba(0,255,136,0.05)" stroke="rgba(0,255,136,0.3)" stroke-width="1.5"/>
+      <text x="120" y="75" text-anchor="middle" fill="rgba(0,255,136,0.9)" font-family="Syne,sans-serif" font-weight="800" font-size="18">IDEOGRAM</text>
+      <text x="120" y="100" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="DM Sans,sans-serif" font-size="12">Hello World</text>
+      <text x="120" y="118" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-family="DM Sans,sans-serif" font-size="10">Perfectly readable</text>
+      <text x="120" y="133" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-family="DM Sans,sans-serif" font-size="10">every single time</text>
+      <text x="120" y="158" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="11">9.5 / 10</text>
+      <!-- Midjourney card -->
+      <rect x="250" y="45" width="180" height="130" rx="8" fill="rgba(240,192,64,0.04)" stroke="rgba(240,192,64,0.2)" stroke-width="1"/>
+      <text x="340" y="75" text-anchor="middle" fill="rgba(240,192,64,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="16">MIDJOURNEY</text>
+      <text x="340" y="100" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="DM Sans,sans-serif" font-size="12">H3ll0 W0rld</text>
+      <text x="340" y="118" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Inconsistent, often</text>
+      <text x="340" y="133" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">garbled or broken</text>
+      <text x="340" y="158" text-anchor="middle" fill="rgba(240,192,64,0.6)" font-family="Syne,sans-serif" font-weight="700" font-size="11">5 / 10</text>
+      <!-- DALL-E card -->
+      <rect x="470" y="45" width="180" height="130" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text x="560" y="75" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Syne,sans-serif" font-weight="700" font-size="16">DALL-E 3</text>
+      <text x="560" y="100" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-family="DM Sans,sans-serif" font-size="12">Helo Worid</text>
+      <text x="560" y="118" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Sans,sans-serif" font-size="10">Better than before</text>
+      <text x="560" y="133" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Sans,sans-serif" font-size="10">still unreliable</text>
+      <text x="560" y="158" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-family="Syne,sans-serif" font-weight="700" font-size="11">6.5 / 10</text>
+      <text x="340" y="200" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="DM Sans,sans-serif" font-size="9">For text in images, Ideogram wins by a wide margin over every other AI image generator</text>
+    </svg>
+    <div class="post-vis-caption">Text rendering is where AI image generators differ most dramatically. Ideogram is in a different league.</div>
   </div>
 
-  <!-- RANK 4 -->
   <div class="rank-card">
     <div class="rank-card-header">
       <span class="rank-num four">04</span>
-      <span class="rank-tool-name">DALL-E 3 — The Most Accessible AI Image Generator, But Not The Best</span>
+      <span class="rank-tool-name">DALL-E 3 — Most Accessible AI Image Generator, Not The Best</span>
       <span class="rank-verdict good">Good Starter</span>
     </div>
     <div class="rank-body">
       <p>DALL-E 3 is the AI image generator most people encounter first because it lives inside ChatGPT. That accessibility is genuinely its biggest strength. You can describe what you want in plain conversational language and get a reasonable result without learning any prompting syntax. For quick concept visualisation, client mood boards, or rough ideation it works well.</p>
-      <p>The problem is the ceiling. Once you have used Midjourney seriously the quality difference becomes really obvious. DALL-E 3 images tend to have a particular softness and a slightly flat look that is fine for rough concepts but not ideal for final deliverables. The anatomy and proportions are also still inconsistent in complex scenes.</p>
+      <p>The problem is the ceiling. Once you have used Midjourney seriously the quality difference becomes really obvious. DALL-E 3 images tend to have a particular softness and a slightly flat look that is fine for rough concepts but not ideal for final deliverables.</p>
       <p>If you already pay for ChatGPT Plus you have DALL-E 3 included so there is no reason not to use it. But if you are choosing an AI image generator to invest in learning properly, the other options in this list will serve you better for professional work.</p>
       <div class="rank-scores">
         <div class="score-pill">Ease of use <span>9.5/10</span></div>
@@ -391,7 +537,6 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     <p>The best AI image generator is not the one with the most impressive demo. It is the one that fits your specific workflow and delivers consistent results for your actual use cases. That answer is different for every person.</p>
   </div>
 
-  <!-- RANK 5 -->
   <div class="rank-card">
     <div class="rank-card-header">
       <span class="rank-num five">05</span>
@@ -400,66 +545,101 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     </div>
     <div class="rank-body">
       <p>Stable Diffusion is genuinely powerful and the fact that it is open source and can be run locally is a significant advantage in certain situations. If you need complete control over the model, want to fine-tune on specific styles, or need to run an AI image generator without any API costs at scale, Stable Diffusion is the answer.</p>
-      <p>But the setup barrier is real. Getting a good Stable Diffusion workflow running requires technical knowledge, the right hardware or cloud setup, and significant time investment in finding and testing the right models and LoRAs. The base models without fine-tuning produce results that are noticeably below Midjourney in quality for most use cases.</p>
-      <p>I use Stable Diffusion for very specific technical workflows where I need to customise things that the other AI image generators dont allow. For everyday client work I reach for Midjourney or Firefly first. Stable Diffusion ranks fifth not because it is bad but because the difficulty-to-output ratio is wrong for most professional use cases in 2026.</p>
+      <p>But the setup barrier is real. Getting a good Stable Diffusion workflow running requires technical knowledge, the right hardware or cloud setup, and significant time investment in finding the right models and LoRAs. The base models without fine-tuning produce results that are noticeably below Midjourney in quality.</p>
+      <p>I use Stable Diffusion for very specific technical workflows where I need to customise things that the other AI image generators dont allow. For everyday client work I reach for Midjourney or Firefly first.</p>
       <div class="rank-scores">
         <div class="score-pill">Customisation <span>10/10</span></div>
         <div class="score-pill">Ease of use <span>4/10</span></div>
-        <div class="score-pill">Base quality <span>7/10</span></div>
+        <div class="score-pill">Base quality <span>6.5/10</span></div>
         <div class="score-pill">Cost (free) <span>10/10</span></div>
       </div>
     </div>
   </div>
 
-  <div class="img-grid">
-    <div class="img-grid-item">
-      <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=600&q=75&auto=format&fit=crop" alt="AI technology generative image creation process" loading="lazy">
-      <div class="grid-label">Each AI image generator has a different approach to generation</div>
-    </div>
-    <div class="img-grid-item">
-      <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" alt="AI creative tools and machine learning visual art" loading="lazy">
-      <div class="grid-label">The technology behind every AI image generator is evolving fast</div>
-    </div>
+  <!-- VISUAL 4: use case matrix -->
+  <div class="post-vis">
+    <svg viewBox="0 0 680 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="260" fill="#060e1c"/>
+      <defs><pattern id="g3" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M18 0L0 0 0 18" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/></pattern></defs>
+      <rect width="680" height="260" fill="url(#g3)"/>
+      <text x="340" y="25" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Syne,sans-serif" font-size="10" letter-spacing="3">USE CASE MATRIX — WHICH AI IMAGE GENERATOR FOR WHAT</text>
+      <!-- headers -->
+      <text x="150" y="48" text-anchor="middle" fill="rgba(240,192,64,0.7)" font-family="Syne,sans-serif" font-size="9" letter-spacing="1">MIDJOURNEY</text>
+      <text x="270" y="48" text-anchor="middle" fill="rgba(0,140,255,0.7)" font-family="Syne,sans-serif" font-size="9" letter-spacing="1">FIREFLY</text>
+      <text x="390" y="48" text-anchor="middle" fill="rgba(0,255,136,0.7)" font-family="Syne,sans-serif" font-size="9" letter-spacing="1">IDEOGRAM</text>
+      <text x="510" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Syne,sans-serif" font-size="9" letter-spacing="1">DALL-E 3</text>
+      <text x="620" y="48" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="Syne,sans-serif" font-size="9" letter-spacing="1">STABLE DIFF</text>
+      <!-- rows -->
+      <!-- Creative/editorial -->
+      <text x="55" y="78" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Creative/Editorial</text>
+      <text x="150" y="78" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="14">✓✓</text>
+      <text x="270" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="390" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="510" y="78" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="620" y="78" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <!-- Product photography -->
+      <text x="55" y="108" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Product Photo</text>
+      <text x="150" y="108" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="270" y="108" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="14">✓✓</text>
+      <text x="390" y="108" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="510" y="108" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="620" y="108" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <!-- Text in image -->
+      <text x="55" y="138" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Text in Image</text>
+      <text x="150" y="138" text-anchor="middle" fill="rgba(255,50,50,0.6)" font-family="DM Sans,sans-serif" font-size="12">✗</text>
+      <text x="270" y="138" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="390" y="138" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="14">✓✓</text>
+      <text x="510" y="138" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="620" y="138" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <!-- Quick concepts -->
+      <text x="55" y="168" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Quick Concepts</text>
+      <text x="150" y="168" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="270" y="168" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="390" y="168" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="12">✓</text>
+      <text x="510" y="168" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="14">✓✓</text>
+      <text x="620" y="168" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <!-- Custom workflow -->
+      <text x="55" y="198" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="10">Custom Workflow</text>
+      <text x="150" y="198" text-anchor="middle" fill="rgba(255,50,50,0.6)" font-family="DM Sans,sans-serif" font-size="12">✗</text>
+      <text x="270" y="198" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="DM Sans,sans-serif" font-size="12">~</text>
+      <text x="390" y="198" text-anchor="middle" fill="rgba(255,50,50,0.6)" font-family="DM Sans,sans-serif" font-size="12">✗</text>
+      <text x="510" y="198" text-anchor="middle" fill="rgba(255,50,50,0.6)" font-family="DM Sans,sans-serif" font-size="12">✗</text>
+      <text x="620" y="198" text-anchor="middle" fill="rgba(0,255,136,0.8)" font-family="Syne,sans-serif" font-weight="700" font-size="14">✓✓</text>
+      <!-- legend -->
+      <text x="55" y="235" fill="rgba(255,255,255,0.15)" font-family="DM Sans,sans-serif" font-size="9">✓✓ Best choice  ✓ Good option  ~ Usable  ✗ Not recommended</text>
+    </svg>
+    <div class="post-vis-caption">Use case matrix showing which AI image generator to reach for depending on the job.</div>
   </div>
 
   <h2>Which AI Image Generator Should You Actually Use?</h2>
 
   <p>After six months of testing every major AI image generator with real client work, here is how I actually think about this.</p>
 
-  <p>If you are doing creative or editorial work and you want the best possible visual output, start with Midjourney. Invest the time to learn how to prompt it properly. The learning curve is worth it and nothing else matches it for sheer visual quality and creative range.</p>
+  <p>If you are doing creative or editorial work and you want the best possible visual output, start with Midjourney. Invest the time to learn how to prompt it properly. The learning curve is worth it and nothing else matches it for sheer visual quality and creative range as an AI image generator.</p>
 
   <p>If you are doing commercial work for clients and you need images that are definitively cleared for commercial use, Adobe Firefly should be part of your stack. Especially if you are already in the Adobe ecosystem. The product photography workflow inside Photoshop with Firefly is genuinely one of the most useful things I have found in any AI image generator.</p>
 
   <p>If you regularly need text to appear inside images, add Ideogram. At $16 a month it is cheap enough to have alongside your primary AI image generator and it solves a specific problem that none of the others handle reliably.</p>
 
-  <p>Use DALL-E 3 for quick ideation if you already have ChatGPT Plus. Dont buy it separately just for image generation.</p>
-
-  <p>Consider Stable Diffusion only if you have technical experience and a specific use case that requires it. Otherwise the other AI image generators will serve you better.</p>
+  <p>Use DALL-E 3 for quick ideation if you already have ChatGPT Plus. Dont buy it separately just for image generation. And consider Stable Diffusion only if you have technical experience and a specific use case that requires it.</p>
 
   <div class="highlight-text">
     <p>My actual daily stack is Midjourney for creative work, Adobe Firefly for product photography, and Ideogram when I need text in the image. Three AI image generators covering three different needs. Total cost around $100 a month. Revenue generated from that stack is significantly more.</p>
-  </div>
-
-  <div class="img-wide">
-    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1400&q=80&auto=format&fit=crop" alt="AI technology future of creative work image generation tools 2026" loading="lazy">
-    <div class="img-wide-caption">The AI image generator landscape in 2026 has matured to the point where the right tool for the job matters more than which tool is theoretically best.</div>
   </div>
 
   <h2>What I Expect From AI Image Generators in the Next Year</h2>
 
   <p>The AI image generator market is moving fast and some of what I wrote here will probably be outdated within six months. A few things I am watching closely.</p>
 
-  <p>The text rendering problem is mostly solved now thanks to Ideogram and some improvements in the other tools. The next frontier is consistency. Generating the same character, product, or face across multiple images without it looking like a different person every time. A few AI image generators are working on this and it will be a significant unlock for brand and campaign work when it arrives reliably.</p>
+  <p>The text rendering problem is mostly solved now thanks to Ideogram and improvements in the other tools. The next frontier for AI image generators is consistency — generating the same character, product, or face across multiple images without it looking different every time. A few AI image generators are working on this and it will be a significant unlock for brand and campaign work when it arrives reliably.</p>
 
-  <p>Video generation is increasingly blurring the line with AI image generators. Tools like Runway can now animate still images convincingly. I expect the distinction between AI image generator and AI video generator to become less meaningful over the next year as these capabilities merge.</p>
+  <p>Video generation is increasingly blurring the line with AI image generators. Tools like Runway can now animate still images convincingly. I expect the distinction between AI image generator and AI video generator to become less meaningful over the next year as these capabilities merge into single platforms.</p>
 
   <p>And the commercial licensing question will become more important not less. As AI generated images become more common in commercial work, clients will increasingly ask about the provenance of AI image generator outputs. Adobe Firefly's advantage here is real and I expect other AI image generators to work harder on this problem.</p>
 
   <hr>
 
   <p>If you are trying to figure out which AI image generator to invest your time in learning, I hope this breakdown was useful. The short version is Midjourney for quality, Firefly for commercial safety, Ideogram for text. Everything else is optional depending on your specific needs.</p>
-
-  <p>If you have questions about any specific AI image generator or want to know more about how I use these tools for client work, feel free to reach out through the contact page.</p>
 
   <div class="author-sign">
     <div class="author-sign-avatar">A</div>
