@@ -24,7 +24,7 @@
 }
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text-primary);font-family:
-'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;max-width:100vw;}
 @media(max-width:900px){body{cursor:auto;}}
 canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
 canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
@@ -367,6 +367,9 @@ document.addEventListener("click", (e) => {
   const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});
   let lp=0;
   window.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;});
+  // Initial position to avoid jump
+  mx = window.innerWidth / 2;
+  my = window.innerHeight / 2;
   const lerp=(a,b,t)=>a+(b-a)*t;
   function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}
   function update(){
