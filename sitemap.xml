@@ -4,72 +4,88 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
   <url>
     <loc>https://www.arsalanportfolio.live/</loc>
-    <lastmod>2026-05-03T10:54:28+00:00</lastmod>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
 
   <url>
+    <loc>https://www.arsalanportfolio.live/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
     <loc>https://www.arsalanportfolio.live/blog.html</loc>
-    <lastmod>2026-05-03T10:54:29+00:00</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/prompts.html</loc>
-    <lastmod>2026-05-03T10:54:29+00:00</lastmod>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/facp.html</loc>
-    <lastmod>2026-05-03T10:54:29+00:00</lastmod>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.arsalanportfolio.live/index.html</loc>
-    <lastmod>2026-05-03T10:54:29+00:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-
-  <url>
     <loc>https://www.arsalanportfolio.live/blog-ai-takeover.html</loc>
-    <lastmod>2026-05-03T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-
-  <url>
-    <loc>https://www.arsalanportfolio.live/Latest%20FACP%20Assistant.apk</loc>
-    <lastmod>2026-05-03T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/blog-ai-agents.html</loc>
-    <lastmod>2026-05-03T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/blog-5k-ai.html</loc>
-    <lastmod>2026-05-07T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/blog-dead-internet.html</loc>
-    <lastmod>2026-05-08T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://www.arsalanportfolio.live/blog-ai-image-generators.html</loc>
-    <lastmod>2026-05-08T10:54:30+00:00</lastmod>
-    <priority>0.64</priority>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://www.arsalanportfolio.live/blog-freelancers-ai.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://www.arsalanportfolio.live/Latest%20FACP%20Assistant.apk</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
   </url>
 
 </urlset>
