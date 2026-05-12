@@ -39,7 +39,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .nav-back:hover{color:var(--cyan);}
 .nav-back svg{transition:transform 0.2s;}
 .nav-back:hover svg{transform:translateX(-3px);}
-.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.post-hero{padding:115px 0 40px;position:relative;z-index:1;}
 .hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
 @media(max-width:600px){.hero-inner{padding:0 18px;}}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
@@ -60,15 +60,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .meta-sep{color:var(--text-muted);font-size:0.7rem;}
 .meta-date,.meta-read{font-size:0.78rem;color:var(--text-muted);}
 .meta-read{display:flex;align-items:center;gap:5px;}
-.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;padding-bottom:0;}
 @media(max-width:600px){.hero-visual{padding:0 18px;}}
 .photo-box{border-radius:16px;overflow:hidden;border:1px solid rgba(0,255,136,0.15);position:relative;background:#06101e;}
 .photo-box img{width:100%;display:block;object-fit:cover;filter:brightness(0.82) saturate(1.15);}
 .photo-box img.hero-img{height:420px;}
-@media(max-width:600px){.photo-box img.hero-img{height:240px;}}
-.photo-box .photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(5,8,16,0.72));}
+@media(max-width:600px){.photo-box img.hero-img{height:220px;}}
+.photo-box .photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(5,8,16,0.72));pointer-events:none;}
 .photo-caption{padding:10px 16px;font-size:0.7rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
-.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;opacity:1!important;transform:none!important;}
 @media(max-width:600px){.post-body{padding:0 18px 60px;}}
 .post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
 .post-body p strong{color:#fff;font-weight:600;}
@@ -203,7 +203,7 @@ img{background:#06101e;}
   </div>
 </section>
 
-<article class="post-body reveal">
+<article class="post-body">
 
   <p>Two years ago I had an idea for a simple utility app. Something that would help people in my local area find housing faster, a specific problem I had watched people struggle with. The old version of me would have either hired a developer, waited until I had the money to do that properly, or just filed it away and forgotten about it.</p>
 
@@ -229,303 +229,4 @@ img{background:#06101e;}
 
   <div class="aside-box">
     <div class="aside-label">Apps I have personally shipped this way</div>
-    <p>A bed space and housing finder for expats in Dubai. A building code assistant with OCR that scans documents and extracts relevant regulations. A local classifieds platform for a specific Pakistani district. All of these are real Android apps on real devices built without a traditional development background. The tools I used for each one are in this post.</p>
-  </div>
-
-  <!-- PHOTO GRID 1 -->
-  <div class="photo-grid">
-    <div class="photo-grid-item">
-      <img
-        src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=600&q=75&auto=format&fit=crop"
-        alt="mobile app UI design screens wireframe prototype"
-        onerror="this.style.display='none'">
-      <div class="photo-grid-label">Good apps solve one specific problem clearly</div>
-    </div>
-    <div class="photo-grid-item">
-      <img
-        src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=600&q=75&auto=format&fit=crop"
-        alt="android phone development app store google play"
-        onerror="this.style.display='none'">
-      <div class="photo-grid-label">Play Store submission is more straightforward than most people think</div>
-    </div>
-  </div>
-
-  <h2>The Full Workflow: How I Build AI-Powered Android Apps Step by Step</h2>
-
-  <p>Here is the actual process, in the order I do it. Each step has the specific tools I use and roughly how long it takes.</p>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">01</span>
-      <span class="step-title">Define the App in One Sentence</span>
-      <span class="step-badge">30 minutes</span>
-    </div>
-    <div class="step-body">
-      <p>Before touching any tool I write one sentence that describes who the app is for, what specific problem it solves, and what the user does in the first thirty seconds of opening it. This sounds trivial and it is not. Most failed app ideas fail at this step because the idea is actually ten ideas pretending to be one.</p>
-      <p>I use Claude for this. I describe my rough idea and ask it to help me sharpen it into a single actionable sentence, identify the core use case, and list the three features that matter most for the first version. Everything else goes into a "version two" note that I mostly never look at again.</p>
-      <div class="step-tool">
-        <p>Tool: Claude or ChatGPT for product thinking. Nothing else yet. This is all thinking.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">02</span>
-      <span class="step-title">Design the Screens With AI</span>
-      <span class="step-badge">2 to 4 hours</span>
-    </div>
-    <div class="step-body">
-      <p>I do not start with Figma or any design tool. I describe each screen to Claude in plain English and ask it to give me the HTML and CSS for a mobile-sized prototype. Something like "design a home screen for a housing finder app that shows a search bar at the top, filter chips for price and location, and a vertical scroll list of property cards below." It generates the code. I paste it into a browser and look at it.</p>
-      <p>This is not the final UI. It is a thinking tool. I iterate on it three or four times until the flow makes sense. By the end of this step I know exactly what screens exist, what each one contains, and how users move between them. That clarity makes every subsequent step faster.</p>
-      <div class="step-tool">
-        <p>Tool: Claude for screen design in HTML. Browser to preview. No Figma unless a client specifically requests a design file.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PHOTO 2 -->
-  <div class="post-photo">
-    <img
-      src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&q=80&auto=format&fit=crop"
-      alt="UI design wireframe mobile app screen layout planning"
-      class="medium"
-      onerror="this.style.display='none'">
-    <div class="post-photo-caption">Designing in HTML first instead of Figma saves hours. You can see it in a real browser and change things instantly.</div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">03</span>
-      <span class="step-title">Build the App in a No-Code Platform</span>
-      <span class="step-badge">1 to 3 days</span>
-    </div>
-    <div class="step-body">
-      <p>This is where the actual app gets built. My current go-to platform is a combination of React Native with Expo for apps that need more control, and Glide or Adalo for simpler utility apps. For most of the apps I build, Expo with React Native is the right choice because it gives you a real native app and the ability to add AI features easily.</p>
-      <p>The key to making this work without a development background is how you use Claude during this phase. I do not try to write code. I describe what I need in plain English and ask Claude to write it. "Write me a React Native component that shows a card with a photo on the left, a title and price on the right, and a heart icon in the top right corner that toggles when tapped." It writes the component. I paste it in. I describe the next thing.</p>
-      <p>When something breaks, I copy the error message and paste it back to Claude and ask what went wrong. Nine times out of ten it fixes it immediately and explains what the problem was. Over time you start to understand patterns and catch things yourself but that understanding is not a prerequisite for getting started.</p>
-      <div class="step-tool">
-        <p>Tool: Expo with React Native for the app shell. Claude for every piece of code. VS Code as the editor. Expo Go app on my phone to see changes live as I build.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="pull-quote">
-    <p>I dont write code in the traditional sense. I describe what I want in plain English and Claude writes it. When it breaks I describe the error in plain English and Claude fixes it. That loop is the whole workflow.</p>
-  </div>
-
-  <!-- WIDE PHOTO -->
-  <div class="photo-wide">
-    <img
-      src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&q=80&auto=format&fit=crop"
-      alt="coding screen development laptop code editor building app"
-      onerror="this.style.display='none'">
-    <div class="photo-wide-caption">The code editor is just a text box once you have Claude writing everything. The skill is knowing what to ask for.</div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">04</span>
-      <span class="step-title">Add the AI Features</span>
-      <span class="step-badge">Half a day to 2 days</span>
-    </div>
-    <div class="step-body">
-      <p>This is where android apps built this way actually become interesting. Adding AI capabilities to a React Native app is mostly a matter of connecting to an API. The Anthropic API, the OpenAI API, Google Vision for OCR, or whatever the specific feature requires. None of this requires deep backend knowledge. It is just API calls.</p>
-      <p>For my FACP building code assistant app, the AI feature was OCR plus document analysis. User takes a photo of a document, the app sends it to the API, the API returns extracted text and relevant building code sections, the app displays them. That whole feature took me about a day to build using Claude to write every line of the integration code.</p>
-      <p>The pattern is always the same. Describe the feature to Claude. Ask it to write the API integration. Test it. Describe what is wrong. Repeat. The first time takes longest because you are learning the pattern. By the third app it is genuinely fast.</p>
-      <div class="step-tool">
-        <p>Tool: Anthropic API or OpenAI API for AI features. Google Vision API for OCR tasks. Claude to write all the integration code. Postman to test API calls before wiring them into the app.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PHOTO GRID 2 -->
-  <div class="photo-grid">
-    <div class="photo-grid-item">
-      <img
-        src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=75&auto=format&fit=crop"
-        alt="API code data connection AI integration programming screen"
-        onerror="this.style.display='none'">
-      <div class="photo-grid-label">API integrations are just copy paste once Claude writes them</div>
-    </div>
-    <div class="photo-grid-item">
-      <img
-        src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=600&q=75&auto=format&fit=crop"
-        alt="phone testing app mobile development testing device"
-        onerror="this.style.display='none'">
-      <div class="photo-grid-label">Test on a real device early and often — emulators lie</div>
-    </div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">05</span>
-      <span class="step-title">Build the Backend if You Need One</span>
-      <span class="step-badge">1 day (optional)</span>
-    </div>
-    <div class="step-body">
-      <p>A lot of simple apps dont need a custom backend at all. Firebase handles authentication, a real-time database, file storage, and push notifications out of the box with almost no setup. For most of the apps I build, Firebase does everything I need and I never have to think about servers.</p>
-      <p>For more complex data needs I use Supabase, which is essentially a hosted Postgres database with a nice API. Again, Claude writes every query and every backend interaction. I describe what data I need and how it should be structured and it handles the implementation.</p>
-      <div class="step-tool">
-        <p>Tool: Firebase for most apps. Supabase when I need more relational data. Claude for all database queries and backend logic. Neither requires managing a server.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">06</span>
-      <span class="step-title">Generate the App Store Assets</span>
-      <span class="step-badge">2 to 3 hours</span>
-    </div>
-    <div class="step-body">
-      <p>This is where my background in AI image generation actually saves a lot of time. The Play Store requires an app icon, a feature graphic, and screenshots. I generate the icon and feature graphic using Midjourney or Firefly depending on the style I am going for. Screenshots I take directly from the app running on my phone.</p>
-      <p>For the app description and metadata I use Claude. I describe the app and who it is for and ask it to write a Play Store description optimized for discoverability. It also helps with choosing the right category, writing the short description that appears in search results, and drafting the privacy policy that Google requires.</p>
-      <div class="step-tool">
-        <p>Tool: Midjourney or Adobe Firefly for icon and feature graphic. Claude for all written metadata and the privacy policy. Expo for generating the actual APK or AAB file for submission.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PHOTO 3 -->
-  <div class="post-photo">
-    <img
-      src="https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=1200&q=80&auto=format&fit=crop"
-      alt="google play store app submission mobile app publishing"
-      class="medium"
-      onerror="this.style.display='none'">
-    <div class="post-photo-caption">The Play Store submission process takes about two to three days for initial review. Once approved, updates go live much faster.</div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-header">
-      <span class="step-num">07</span>
-      <span class="step-title">Submit to the Play Store</span>
-      <span class="step-badge">Half a day</span>
-    </div>
-    <div class="step-body">
-      <p>Google Play requires a one-time $25 developer account fee. After that, submitting an app is a form. You upload the APK or AAB file that Expo generates, fill in the metadata Claude helped you write, upload the assets Midjourney generated, set your pricing, and submit for review.</p>
-      <p>First-time submissions take anywhere from one to three days for Google to review. Updates to existing apps usually go live within a few hours. The most common rejection reasons are missing privacy policy, incomplete content rating questionnaire, or screenshots that dont match the actual app. Claude can help you troubleshoot any rejection message you get.</p>
-      <div class="step-tool">
-        <p>Tool: Google Play Console for submission. Expo EAS Build for generating the submission file. Claude for decoding any rejection messages and fixing issues.</p>
-      </div>
-    </div>
-  </div>
-
-  <h2>The Full Tool Stack in One Place</h2>
-
-  <p>To make this easy to reference, here is every tool I use in the workflow.</p>
-
-  <div class="tool-row">
-    <div class="tool-chip"><div class="name">Claude</div><div class="role">Code, logic, prompts, copy</div></div>
-    <div class="tool-chip"><div class="name">Expo</div><div class="role">React Native app shell</div></div>
-    <div class="tool-chip"><div class="name">Firebase</div><div class="role">Auth and database</div></div>
-    <div class="tool-chip"><div class="name">Supabase</div><div class="role">Relational data</div></div>
-    <div class="tool-chip"><div class="name">Midjourney</div><div class="role">App icon and assets</div></div>
-    <div class="tool-chip"><div class="name">VS Code</div><div class="role">Code editor</div></div>
-  </div>
-
-  <h2>The Honest Limitations You Should Know About</h2>
-
-  <p>This workflow is not magic and I want to be clear about where it has limits.</p>
-
-  <p>Complex debugging can be slow. When something breaks in a non-obvious way and Claude cannot immediately figure out what the problem is from the error message, you can end up spending a long time going back and forth. This has improved significantly as the models have gotten better but it still happens. Having the patience to stay methodical and keep describing the problem clearly is genuinely a skill in itself.</p>
-
-  <p>Performance edge cases are harder to catch. If you are building something that handles large datasets or needs to be extremely fast, you might ship something that works fine in testing and has problems at scale. Claude is good at writing functional code but it does not always spontaneously optimise for performance unless you specifically ask it to think about that.</p>
-
-  <p>And there is a maintenance consideration. The code Claude generates is real, working code. But if you come back to it six months later and need to make a significant change, you will need to give Claude a lot of context about what is already there. I have started keeping a "codebase notes" document for each project that summarises what each major part does so I can feed it back to Claude when needed.</p>
-
-  <!-- PHOTO 4 -->
-  <div class="post-photo">
-    <img
-      src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80&auto=format&fit=crop"
-      alt="person thinking planning problem solving laptop focused work"
-      class="short"
-      onerror="this.style.display='none'">
-    <div class="post-photo-caption">The workflow has real limits. Knowing what they are upfront saves you from hitting them at the worst possible moment.</div>
-  </div>
-
-  <h2>What I Would Do Differently Starting From Zero Today</h2>
-
-  <p>The biggest mistake I made on my first app was trying to build too much before testing whether anyone wanted it. I spent three weeks building features nobody ended up using. Now I build the smallest version that proves the core idea works, put it in front of ten real people, and only add features based on what they actually ask for.</p>
-
-  <p>The second thing I would do differently is start with a paid developer account from day one. The $25 Google Play fee feels like a commitment but it also keeps you honest. When you have paid to publish, you tend to actually finish and ship instead of tinkering indefinitely.</p>
-
-  <p>And the third thing is to keep a running conversation with Claude rather than starting fresh every session. If you are using Claude for a specific app project, keep one long conversation going for that project. Give it context at the start of every session. The more context it has about your codebase, your users, and your goals, the better its output gets.</p>
-
-  <div class="highlight-text">
-    <p>The barrier to building an Android app in 2026 is not technical skill. It is the same barrier it has always been for any creative project: the discipline to sit down and actually do the work, one step at a time, until it is finished.</p>
-  </div>
-
-  <p>The apps I have built this way are not perfect. They have rough edges. But they are real, they are live, and people use them. That is infinitely more valuable than a perfect idea that never gets built because you were waiting until you knew how to code properly.</p>
-
-  <p>The FACP Assistant app that is available for download on this site was built exactly this way. If you want to see what the end result of this workflow looks like, that is a good place to start. And if you are working on an app idea and want to talk through whether this workflow is right for your specific case, the contact page is there.</p>
-
-  <hr>
-
-  <p>One last thing. The tools in this workflow are changing fast. Expo releases updates regularly. Claude gets better every few months. What took me a day eighteen months ago now takes a few hours. By the time you are reading this, some of the specific steps might be even easier than I described. The core process though, describe what you want, build it, test it, ship it, stays the same.</p>
-
-  <div class="author-sign">
-    <div class="author-sign-avatar">A</div>
-    <div class="author-sign-info">
-      <strong>Arsalan</strong>
-      <p>AI Expert &amp; Creative Technologist · Dubai, May 2026</p>
-    </div>
-  </div>
-
-  <div class="post-end-bar">
-    <div class="end-tags">
-      <span class="end-tag">Android Apps</span>
-      <span class="end-tag">No Code</span>
-      <span class="end-tag">AI Tools</span>
-      <span class="end-tag">Tutorial</span>
-      <span class="end-tag">Expo</span>
-      <span class="end-tag">Dubai</span>
-      <span class="end-tag">2026</span>
-    </div>
-    <div class="share-row">
-      <span class="share-label">Share</span>
-      <button class="share-btn" title="Copy link" onclick="copyLink(event)">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      </button>
-      <button class="share-btn" title="Share on X" onclick="shareTwitter()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </button>
-    </div>
-  </div>
-
-</article>
-
-<div class="back-strip reveal">
-  <div class="back-strip-inner">
-    <div class="back-strip-text">
-      <p>More essays on AI and how its changing everything</p>
-      <span>The AI Journal by Arsalan</span>
-    </div>
-    <a href="blog.html" class="btn-back-blog">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to Blog
-    </a>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2026 Arsalan &middot; AI Expert &amp; Creative Technologist</p>
-</footer>
-
-<script>
-const progress=document.getElementById('read-progress');
-window.addEventListener('scroll',()=>{const doc=document.documentElement,s=doc.scrollTop||document.body.scrollTop,t=(doc.scrollHeight||document.body.scrollHeight)-doc.clientHeight;progress.style.transform=`scaleX(${Math.min(s/t,1)})`;});
-function copyLink(e){navigator.clipboard.writeText(window.location.href).then(()=>{const b=e.currentTarget;b.style.borderColor='var(--cyan)';b.style.color='var(--cyan)';setTimeout(()=>{b.style.borderColor='';b.style.color='';},2000);});}
-function shareTwitter(){const t=encodeURIComponent("How I Build AI-Powered Android Apps Without Being a Developer — by Arsalan"),u=encodeURIComponent(window.location.href);window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`,'_blank');}
-const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
-const pc=['#00f7ff','#00ff88','#008cff'],pts=[];
-for(let i=0;i<50;i++)pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.5+0.5,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:pc[Math.floor(Math.random()*3)]});
-function animBg(){bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);pts.forEach((p,i)=>{bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.3;bgCtx.fill();bgCtx.globalAlpha=1;for(let j=i+1;j<pts.length;j++){const p2=pts[j],d=Math.hypot(p.x-p2.x,p.y-p2.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,255,136,${(1-d/100)*.1})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;});requestAnimationFrame(animBg);}
-animBg();
-window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
-const revs=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});revs.forEach(el=>obs.observe(el));
-(function(){if(window.innerWidth<=900)return;const canvas=document.getElementById('creature-canvas'),ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=.55,AL=18,GC='#00ff88',SC='rgba(0,255,136,0.85)',LR=.18;let mx=window.innerWidth/2,my=window.innerHeight/2;const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});let lp=0;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});const lerp=(a,b,t)=>a+(b-a)*t;function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}function update(){segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}lp+=.12;}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,255,136,0.06)';ctx.fill();ctx.restore();}for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,255,136,0.12)';ctx.fill();const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();const as2=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as2,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as2,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=20;ctx.shadowColor=GC;ctx.fillStyle='rgba(0,255,136,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}function loop(){update();draw();requestAnimationFrame(loop);}loop();})();
-</script>
-</body>
-</html>
+    <p>A bed space and housing finder for expats in Dubai. A building code assistant with OCR that scans documents and extracts relevant regulations. A l
