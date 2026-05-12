@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>How I Build AI-Powered Android Apps Without Being a Developer | Arsalan</title>
+<meta name="description" content="My full workflow for building and publishing AI-powered Android apps without a computer science degree. From idea to Play Store using AI tools, no-code platforms, and a browser. Step by step, no fluff.">
+<meta name="keywords" content="build android app without coding, AI app builder no code, how to build android app 2026, no code app development, AI powered android apps, build app without developer, app development AI tools, no code AI app, publish app play store without coding, android app builder 2026, AI app development Dubai">
+<meta property="og:title" content="How I Build AI-Powered Android Apps Without Being a Developer">
+<meta property="og:description" content="My full workflow from idea to Play Store. No CS degree. No agency. Just AI tools, no-code platforms, and a browser.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How I Build AI-Powered Android Apps Without Being a Developer">
+<link rel="canonical" href="https://www.arsalanportfolio.live/blog-android-apps-no-code.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00f7ff;--blue:#008cff;--magenta:#ff00ff;--gold:#f0c040;--green:#00ff88;
+  --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
+  --border-accent:rgba(0,247,255,0.2);--text-primary:#f0f0f0;
+  --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+@media(max-width:900px){body{cursor:auto;}}
+canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+@media(max-width:900px){canvas#creature-canvas{display:none;}}
+#read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--green),var(--cyan),var(--blue));transform-origin:left;transform:scaleX(0);transition:transform 0.1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:600px){.nav-inner{padding:0 18px;}}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-back:hover{color:var(--cyan);}
+.nav-back svg{transition:transform 0.2s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.hero-inner{padding:0 18px;}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
+.breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--cyan);}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.post-tag-pill{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,255,136,0.3);background:rgba(0,255,136,0.06);color:var(--green);}
+.post-tag-pill.cyan{border-color:rgba(0,247,255,0.25);background:rgba(0,247,255,0.06);color:var(--cyan);}
+.post-tag-pill.gold{border-color:rgba(240,192,64,0.25);background:rgba(240,192,64,0.06);color:var(--gold);}
+.post-hero h1{font-family:'Lora',serif;font-weight:600;font-style:italic;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;color:#fff;margin-bottom:20px;}
+.lede{font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:30px;font-style:italic;}
+.post-meta-bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.meta-author-block{display:flex;align-items:center;gap:10px;}
+.meta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-author-info{display:flex;flex-direction:column;gap:1px;}
+.meta-author-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);}
+.meta-author-role{font-size:0.7rem;color:var(--text-muted);}
+.meta-sep{color:var(--text-muted);font-size:0.7rem;}
+.meta-date,.meta-read{font-size:0.78rem;color:var(--text-muted);}
+.meta-read{display:flex;align-items:center;gap:5px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+@media(max-width:600px){.hero-visual{padding:0 18px;}}
+.photo-box{border-radius:16px;overflow:hidden;border:1px solid rgba(0,255,136,0.15);position:relative;background:#06101e;}
+.photo-box img{width:100%;display:block;object-fit:cover;filter:brightness(0.82) saturate(1.15);}
+.photo-box img.hero-img{height:420px;}
+@media(max-width:600px){.photo-box img.hero-img{height:240px;}}
+.photo-box .photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(5,8,16,0.72));}
+.photo-caption{padding:10px 16px;font-size:0.7rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.post-body{padding:0 18px 60px;}}
+.post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
+.post-body p strong{color:#fff;font-weight:600;}
+.post-body p em{font-style:italic;color:#e8f0f8;}
+.post-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:#fff;line-height:1.2;margin:54px 0 18px;padding-left:16px;border-left:3px solid var(--green);}
+.post-body h3{font-family:'DM Sans',sans-serif;font-weight:500;color:var(--green);margin:36px 0 12px;text-transform:uppercase;letter-spacing:0.1em;font-size:0.78rem;}
+.post-body hr{border:none;border-top:1px solid var(--border);margin:52px 0;}
+.pull-quote{margin:44px 0;padding:0 0 0 24px;border-left:3px solid var(--green);}
+.pull-quote p{font-family:'Lora',serif;font-style:italic;font-size:1.2rem!important;line-height:1.7!important;color:rgba(255,255,255,0.88)!important;margin-bottom:0!important;}
+.aside-box{margin:38px 0;padding:20px 24px;border-radius:10px;background:rgba(0,255,136,0.04);border:1px solid rgba(0,255,136,0.15);}
+.aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.aside-label::before{content:'';display:block;width:14px;height:1px;background:var(--green);}
+.aside-box p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
+.post-photo{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#06101e;}
+.post-photo img{width:100%;display:block;object-fit:cover;filter:brightness(0.84) saturate(1.1);}
+.post-photo img.tall{height:380px;}
+.post-photo img.medium{height:270px;}
+.post-photo img.short{height:200px;}
+@media(max-width:600px){.post-photo img.tall{height:220px;}.post-photo img.medium{height:170px;}.post-photo img.short{height:140px;}}
+.post-photo-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.photo-grid{grid-template-columns:1fr;}}
+.photo-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#06101e;}
+.photo-grid-item img{width:100%;height:190px;object-fit:cover;display:block;filter:brightness(0.84) saturate(1.1);}
+.photo-grid-label{padding:8px 12px;font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;background:rgba(0,0,0,0.4);border-top:1px solid var(--border);}
+.photo-wide{margin:44px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#06101e;}
+.photo-wide img{width:100%;display:block;height:320px;object-fit:cover;filter:brightness(0.82) saturate(1.1);}
+@media(max-width:600px){.photo-wide img{height:190px;}}
+.photo-wide-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.step-card{margin:36px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(0,255,136,0.18);background:rgba(0,255,136,0.02);}
+.step-header{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid rgba(0,255,136,0.12);}
+.step-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;color:var(--green);min-width:44px;}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#fff;flex:1;}
+.step-badge{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.25);color:var(--green);white-space:nowrap;}
+.step-body{padding:20px 24px;}
+.step-body p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;line-height:1.85!important;margin-bottom:12px!important;}
+.step-body p:last-child{margin-bottom:0!important;}
+.step-tool{margin-top:14px;padding:12px 16px;border-radius:8px;background:rgba(0,0,0,0.4);border-left:3px solid var(--green);}
+.step-tool p{font-family:'DM Sans',sans-serif;font-size:0.84rem!important;color:rgba(200,230,210,0.85)!important;margin:0!important;font-style:italic;}
+.highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(0,255,136,0.05),rgba(0,140,255,0.04));border:1px solid rgba(0,255,136,0.15);position:relative;overflow:hidden;}
+.highlight-text::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan));}
+.highlight-text p{font-family:'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
+.tool-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:36px 0;}
+@media(max-width:500px){.tool-row{grid-template-columns:1fr 1fr;}}
+.tool-chip{padding:14px 16px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.02);text-align:center;}
+.tool-chip .name{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;}
+.tool-chip .role{font-size:0.68rem;color:var(--text-muted);}
+.post-end-bar{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+.end-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);cursor:default;}
+.share-row{display:flex;align-items:center;gap:10px;}
+.share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
+.share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
+.share-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,247,255,0.06);}
+.back-strip{max-width:680px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.back-strip{padding:0 18px 60px;}}
+.back-strip-inner{padding:28px 32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.back-strip-text p{font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;}
+.back-strip-text span{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text-primary);}
+.btn-back-blog{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;border:1px solid var(--border-accent);color:var(--cyan);font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.875rem;text-decoration:none;transition:all 0.2s;}
+.btn-back-blog:hover{background:rgba(0,247,255,0.06);transform:translateY(-2px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{font-size:0.78rem;color:var(--text-muted);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.author-sign{margin-top:40px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.author-sign-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0;}
+.author-sign-info p{font-size:0.78rem;color:var(--text-muted);}
+.author-sign-info strong{font-size:0.9rem;color:var(--text-primary);font-weight:500;}
+img{background:#06101e;}
+</style>
+</head>
+<body>
+<div id="read-progress"></div>
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="blog.html" class="nav-back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="blog.html">Blog</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Tutorials</span>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag-pill">Tutorials</span>
+      <span class="post-tag-pill cyan">AI Apps</span>
+      <span class="post-tag-pill gold">Step by Step</span>
+    </div>
+    <h1>How I Build AI-Powered Android Apps Without Being a Developer</h1>
+    <p class="lede">My full workflow from idea to Play Store. No computer science degree. No agency. No expensive development team. Just AI tools, a no-code platform, and a browser. I have shipped real apps this way and I am going to walk you through exactly how.</p>
+    <div class="post-meta-bar">
+      <div class="meta-author-block">
+        <div class="meta-avatar">A</div>
+        <div class="meta-author-info">
+          <span class="meta-author-name">Arsalan</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
+        </div>
+      </div>
+      <span class="meta-sep">·</span>
+      <span class="meta-date">May 11, 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        11 min read
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="photo-box">
+      <img
+        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1400&q=80&auto=format&fit=crop"
+        alt="android phone app development mobile screen build app without code"
+        class="hero-img"
+        onerror="this.style.display='none'">
+      <div class="photo-overlay"></div>
+      <div class="photo-caption">Every app I have shipped started as a note on my phone. The tools to get from that note to the Play Store have never been more accessible.</div>
+    </div>
+  </div>
+</section>
+
+<article class="post-body reveal">
+
+  <p>Two years ago I had an idea for a simple utility app. Something that would help people in my local area find housing faster, a specific problem I had watched people struggle with. The old version of me would have either hired a developer, waited until I had the money to do that properly, or just filed it away and forgotten about it.</p>
+
+  <p>Instead I built it myself over three weekends without writing a single line of code from scratch. It is on the Play Store. People use it. That experience changed completely how I think about what is possible without a traditional technical background.</p>
+
+  <p>Since then I have built several more Android apps the same way, each one more capable than the last because the AI tools involved kept improving. This post is the walkthrough I wish I had when I started. No computer science required. No expensive freelance developer. Just a methodical process that actually works.</p>
+
+  <!-- HERO PHOTO 1 -->
+  <div class="post-photo">
+    <img
+      src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop"
+      alt="person using smartphone app mobile development modern interface"
+      class="tall"
+      onerror="this.style.display='none'">
+    <div class="post-photo-caption">The bar for shipping a real Android app has dropped dramatically. The constraint now is the idea, not the technical skill.</div>
+  </div>
+
+  <h2>Before Anything Else: What Kind of Android App Can You Actually Build This Way</h2>
+
+  <p>I want to be honest upfront because I hate posts that oversell what is possible. This workflow works brilliantly for a specific category of app. Utility apps that solve a clear and specific problem. Community apps where the value is in the content or the people, not complex technical features. Tools that connect an AI capability to a simple interface. Apps built around a form, a list, a feed, or a map.</p>
+
+  <p>What it does not work well for is anything that requires deep custom hardware integration, very complex real-time processing, or enterprise-grade security architecture. If you are trying to build the next Uber or a banking app, you need actual developers. But for the vast majority of useful app ideas that normal people have, this workflow gets you there.</p>
+
+  <div class="aside-box">
+    <div class="aside-label">Apps I have personally shipped this way</div>
+    <p>A bed space and housing finder for expats in Dubai. A building code assistant with OCR that scans documents and extracts relevant regulations. A local classifieds platform for a specific Pakistani district. All of these are 
