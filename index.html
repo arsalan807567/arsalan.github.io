@@ -1155,7 +1155,7 @@ footer p {
         <h1>Arsalan</h1>
         <span class="hero-title-accent">Shaping the Future with AI</span>
         <p>
-          I build intelligent, high-impact solutions at the intersection of AI and creative production — from AI-powered video and generative content to product photography and interactive web experiences. Trusted by global companies to deliver results that push the limits of what AI can create.
+          I design and build full stack AI-powered websites, web apps, and Android applications turning complex ideas into fast, intelligent, production ready products.From custom AI integrations and automation systems to interactive web experiences, I help businesses and creators leverage the real power of AI beyond the hype.
         </p>
         <div class="hero-cta-row">
           <a href="#portfolio" class="btn-primary">
@@ -1317,59 +1317,8 @@ footer p {
       <h2 class="section-title">Portfolio</h2>
       <p class="section-sub">A showcase of AI-driven projects delivered for clients worldwide.</p>
     </div>
-    <div class="portfolio-grid reveal">
 
-      <div class="portfolio-card">
-        <div class="portfolio-media">
-          <video controls width="100%">
-            <source src="video1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tag">AI Video</div>
-          <div class="portfolio-title">AI Video Project 1</div>
-        </div>
-      </div>
-
-      <div class="portfolio-card">
-        <div class="portfolio-media">
-          <video controls width="100%">
-            <source src="video2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tag">AI Video</div>
-          <div class="portfolio-title">AI Video Project 2</div>
-        </div>
-      </div>
-
-      <div class="portfolio-card">
-        <div class="portfolio-media">
-          <video autoplay loop muted playsinline width="100%">
-            <source src="slideshow1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tag">AI Photography</div>
-          <div class="portfolio-title">Photos Project 1</div>
-        </div>
-      </div>
-
-      <div class="portfolio-card">
-        <div class="portfolio-media">
-          <video autoplay loop muted playsinline width="100%">
-            <source src="slideshow2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tag">AI Photography</div>
-          <div class="portfolio-title">Photos Project 2</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SUB-SECTION: Web Apps & Games -->
+    <!-- WEB APPS & GAMES — NOW FIRST -->
     <div class="portfolio-subsection reveal">
       <div class="subsection-header">
         <div class="subsection-line"></div>
@@ -1482,6 +1431,68 @@ footer p {
       </div>
 
     </div>
+
+    <!-- AI VIDEO & PHOTOGRAPHY — NOW SECOND -->
+    <div class="portfolio-subsection reveal" style="margin-top: 60px;">
+      <div class="subsection-header">
+        <div class="subsection-line"></div>
+        <div class="subsection-label">AI Video &amp; Photography</div>
+        <div class="subsection-line"></div>
+      </div>
+      <p class="section-sub" style="margin-bottom: 32px;">AI-driven video production and product photography delivered for global clients.</p>
+    </div>
+    <div class="portfolio-grid reveal">
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video controls width="100%">
+            <source src="video1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Video</div>
+          <div class="portfolio-title">AI Video Project 1</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video controls width="100%">
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Video</div>
+          <div class="portfolio-title">AI Video Project 2</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video autoplay loop muted playsinline width="100%">
+            <source src="slideshow1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Photography</div>
+          <div class="portfolio-title">Photos Project 1</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-media">
+          <video autoplay loop muted playsinline width="100%">
+            <source src="slideshow2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-tag">AI Photography</div>
+          <div class="portfolio-title">Photos Project 2</div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -1599,7 +1610,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
 
-// HAMBURGER — fixed with stopPropagation and no inline onclick
+// HAMBURGER
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
 
@@ -1614,14 +1625,12 @@ hamburger.addEventListener('click', function(e) {
   mobileNav.classList.toggle('open');
 });
 
-// Close when clicking a nav link
 mobileNav.querySelectorAll('a').forEach(function(link) {
   link.addEventListener('click', function() {
     closeMenu();
   });
 });
 
-// Close when clicking outside
 document.addEventListener('click', function(e) {
   if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
     closeMenu();
