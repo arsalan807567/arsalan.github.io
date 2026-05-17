@@ -540,39 +540,55 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 });
 
 // NEWSLETTER — EmailJS
-function submitNotify(){
-  const emailInput=document.getElementById('notify-email');
-  const msg=document.getElementById('notify-msg');
-  const btn=document.getElementById('notify-btn');
-  const email=emailInput.value.trim();
-  if(!email||!/\S+@\S+\.\S+/.test(email)){
-    msg.style.color='#ff6b6b';
-    msg.textContent='Please enter a valid email address.';
-    msg.style.display='block';
-    return;
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script>
+  emailjs.init("OmaGJEnx8hvNZH38P");
+
+  function submitNotify() {
+    const emailInput = document.getElementById('notify-email');
+    const msg = document.getElementById('notify-msg');
+    const btn = document.getElementById('notify-btn');
+
+    const email = emailInput.value.trim();
+
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      msg.style.color = '#ff6b6b';
+      msg.textContent = 'Please enter a valid email address.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    emailjs.send(
+      'service_891wbn4',
+      'template_slshl9j',
+      {
+        subscriber_email: email,
+        subscriber_name: email,
+        blog_title: "New Blog Alert",
+        blog_summary: "Stay tuned for new posts on Arsalan Blog.",
+        blog_link: "https://yourblog.github.io"
+      }
+    ).then(() => {
+      msg.style.color = '#00ffd5';
+      msg.textContent = 'You are subscribed successfully!';
+      msg.style.display = 'block';
+
+      emailInput.value = '';
+      btn.textContent = 'Subscribed';
+    }).catch(() => {
+      msg.style.color = '#ff6b6b';
+      msg.textContent = 'Something went wrong. Try again.';
+      msg.style.display = 'block';
+
+      btn.textContent = 'Notify Me';
+      btn.disabled = false;
+    });
   }
-  btn.textContent='Sending...';
-  btn.disabled=true;
-  emailjs.send('service_arsalan_blog','template_blog_notify',{
-    subscriber_email:email,
-    to_email:'arslankhan807567@gmail.com',
-    subscriber_name:email
-  }).then(()=>{
-    msg.style.color='var(--cyan)';
-    msg.textContent='You are on the list. You will get an email when the next post drops.';
-    msg.style.display='block';
-    emailInput.value='';
-    btn.textContent='Done';
-  }).catch(()=>{
-    // Fallback: open mailto so subscriber email still gets logged
-    msg.style.color='var(--cyan)';
-    msg.textContent='Almost done — just confirm in the window that opened.';
-    msg.style.display='block';
-    window.open('mailto:arslankhan807567@gmail.com?subject=Blog%20Notification%20Signup&body=Please%20add%20me%20to%20new%20post%20notifications%3A%20'+encodeURIComponent(email),'_blank');
-    btn.textContent='Notify Me';
-    btn.disabled=false;
-  });
-}
+</script>
 
 // CENTIPEDE CURSOR — cyan to match blog posts
 (function(){
