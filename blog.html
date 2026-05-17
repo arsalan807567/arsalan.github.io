@@ -38,7 +38,8 @@ canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rgba(5,8,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
 @media(max-width:600px){.nav-inner{padding:0 18px;}}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradientShift 3s ease infinite;}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
 .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
 .nav-links a:hover{color:var(--cyan);}
@@ -52,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--cyan);}
 @media(max-width:800px){.hamburger{display:flex;}}
 
-.mobile-nav{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(5,8,16,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:150;padding:20px 24px 28px;flex-direction:column;gap:4px;}
+.mobile-nav{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(5,8,16,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:150;padding:20px 24px 28px;flex-direction:column;gap:0;}
 .mobile-nav.open{display:flex;}
 .mobile-nav a{color:var(--text-secondary);text-decoration:none;font-size:1rem;font-weight:400;letter-spacing:0.05em;padding:14px 0;border-bottom:1px solid var(--border);transition:color 0.2s;display:block;}
 .mobile-nav a:last-child{border-bottom:none;}
@@ -67,13 +68,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 
 /* FILTER TABS */
 .filter-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:70px;}
-.filter-btn{padding:8px 20px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;}
+.filter-btn{padding:8px 20px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:400;letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;}
 .filter-btn:hover,.filter-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,247,255,0.06);}
 
 /* FEATURED */
 .featured-label{display:inline-flex;align-items:center;gap:7px;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
 .featured-label::before{content:'★';font-size:10px;}
-.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);background:rgba(255,255,255,0.025);transition:transform 0.3s,border-color 0.3s;text-decoration:none;color:inherit;cursor:none;}
+.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(0,247,255,0.15);background:rgba(255,255,255,0.025);transition:transform 0.3s,border-color 0.3s;cursor:pointer;}
 .featured-card:hover{transform:translateY(-4px);border-color:rgba(0,247,255,0.3);}
 @media(max-width:900px){.featured-card{cursor:auto;}}
 @media(max-width:700px){.featured-card{grid-template-columns:1fr;}}
@@ -89,7 +90,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 .featured-content p{font-size:0.9rem;line-height:1.85;color:var(--text-secondary);margin-bottom:28px;}
 .post-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .meta-author{display:flex;align-items:center;gap:8px;}
-.meta-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#000;}
 .meta-name{font-size:0.82rem;font-weight:500;color:var(--text-primary);}
 .meta-sep{color:var(--text-muted);font-size:0.7rem;}
 .meta-date,.meta-read{font-size:0.78rem;color:var(--text-muted);}
@@ -98,7 +99,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 
 /* BLOG GRID */
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:70px;}
-.blog-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.02);transition:all 0.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;cursor:none;position:relative;height:100%;}
+.blog-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,0.02);transition:all 0.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;cursor:pointer;}
 .blog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--magenta));opacity:0;transition:opacity 0.3s;}
 .blog-card:hover{transform:translateY(-5px);border-color:var(--border-accent);}
 .blog-card:hover::before{opacity:1;}
@@ -106,8 +107,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 .card-visual{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .blog-card.coming-soon{opacity:0.55;pointer-events:none;}
 .blog-card.coming-soon .card-visual{background:linear-gradient(135deg,#080c18,#0d1020);height:180px;}
-.cs-badge{position:absolute;top:14px;right:14px;font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);}
-.new-badge{position:absolute;top:14px;right:14px;font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(0,247,255,0.1);border:1px solid rgba(0,247,255,0.3);color:var(--cyan);}
+.cs-badge{position:absolute;top:14px;right:14px;font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);z-index:10;}
+.new-badge{position:absolute;top:14px;right:14px;font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(0,247,255,0.1);border:1px solid rgba(0,247,255,0.3);color:var(--cyan);z-index:10;}
 .card-body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column;}
 .card-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
 .card-title{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.1rem;line-height:1.35;color:var(--text-primary);margin-bottom:10px;font-style:italic;}
@@ -123,18 +124,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 .card-svg{width:100px;height:100px;opacity:0.5;}
 
 /* NEWSLETTER */
-.newsletter-strip{margin-bottom:90px;padding:44px 50px;border-radius:20px;background:linear-gradient(135deg,rgba(0,140,255,0.06),rgba(0,247,255,0.03),rgba(255,0,255,0.04));border:1px solid rgba(0,247,255,0.12);display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between;position:relative;z-index:1;overflow:hidden;}
+.newsletter-strip{margin-bottom:90px;padding:44px 50px;border-radius:20px;background:linear-gradient(135deg,rgba(0,140,255,0.06),rgba(0,247,255,0.03),rgba(255,0,255,0.04));border:1px solid rgba(0,247,255,0.15);position:relative;display:flex;justify-content:space-between;align-items:center;gap:40px;}
 .newsletter-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
 .newsletter-text h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:6px;}
 .newsletter-text p{font-size:0.875rem;color:var(--text-secondary);line-height:1.7;max-width:380px;}
 .newsletter-form{display:flex;gap:10px;flex-wrap:wrap;}
-.newsletter-input{padding:12px 18px;border-radius:6px;border:1px solid var(--border-accent);background:rgba(0,0,0,0.3);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.9rem;min-width:220px;outline:none;transition:border-color 0.2s;}
+.newsletter-input{padding:12px 18px;border-radius:6px;border:1px solid var(--border-accent);background:rgba(0,0,0,0.3);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.9rem;min-width:200px;transition:border-color 0.2s;}
 .newsletter-input::placeholder{color:var(--text-muted);}
 .newsletter-input:focus{border-color:var(--cyan);}
-.newsletter-btn{padding:12px 24px;border-radius:6px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+.newsletter-btn{padding:12px 24px;border-radius:6px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;transition:all 0.2s;}
 .newsletter-btn:hover{opacity:0.9;transform:translateY(-2px);}
 @media(max-width:650px){.newsletter-strip{padding:32px 24px;}}
-.contact-author-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:6px;border:1px solid rgba(0,247,255,0.25);color:var(--cyan);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:400;text-decoration:none;transition:all 0.2s;background:rgba(0,247,255,0.04);width:fit-content;}
+.contact-author-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:6px;border:1px solid rgba(0,247,255,0.25);color:var(--cyan);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;}
 .contact-author-btn:hover{background:rgba(0,247,255,0.1);border-color:var(--cyan);transform:translateY(-2px);}
 
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
@@ -147,6 +148,7 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
   nav{width:100%;overflow:visible;}
   .nav-inner{width:100%;padding:0 18px;box-sizing:border-box;}
   .container{width:100%;overflow:hidden;}
+  .newsletter-strip{flex-direction:column;align-items:flex-start;gap:20px;}
 }
 </style>
 </head>
@@ -204,7 +206,7 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
     <div class="featured-label reveal">Featured Essay</div>
     <a href="blog-dead-internet.html" class="featured-card reveal">
       <div class="featured-visual" style="background:#050a14;">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80&auto=format&fit=crop" alt="AI every day for two years matrix digital data" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.55;filter:brightness(0.8) saturate(1.2);" onerror="this.style.display='none'">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80&auto=format&fit=crop" alt="AI every day for two years matrix digital data" style="width:100%;height:100%;object-fit:cover;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,247,255,0.08),rgba(0,8,30,0.5));"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(5,8,16,0.9));"></div>
       </div>
@@ -239,9 +241,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- Dead Internet -->
       <a href="blog-dead-internet.html" class="blog-card" data-category="Opinion" style="text-decoration:none;display:block;">
         <div class="card-visual vi-1" style="overflow:hidden;position:relative;">
-          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75&auto=format&fit=crop" alt="Dead Internet Theory AI bots online" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.82) saturate(1.15);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75&auto=format&fit=crop" alt="Dead Internet Theory AI bots online" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,0,255,0.18),rgba(5,8,16,0.7));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:var(--magenta);">Opinion · Digital Culture</span>
@@ -257,9 +258,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- Eurovision 2026 AI -->
       <a href="blog-eurovision-2026-ai.html" class="blog-card" data-category="Opinion" style="text-decoration:none;display:block;">
         <div class="card-visual vi-2" style="overflow:hidden;position:relative;">
-          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=75&auto=format&fit=crop" alt="Eurovision 2026 AI music pop song contest" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=75&auto=format&fit=crop" alt="Eurovision 2026 AI music pop song contest" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,61,138,0.25),rgba(5,8,16,0.7));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:#ff3d8a;">Opinion · Music</span>
@@ -275,13 +275,13 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- AI Agents -->
       <a href="blog-ai-agents.html" class="blog-card" data-category="Future of Work" style="text-decoration:none;display:block;">
         <div class="card-visual vi-2" style="overflow:hidden;position:relative;">
-          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" alt="AI Agents replacing teams" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" alt="AI Agents replacing teams" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,16,0.2),rgba(5,8,16,0.6));"></div>
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:var(--magenta);">Future of Work</span>
           <div class="card-title">AI Agents Are Replacing Entire Teams Right Now. Here's the Proof.</div>
-          <p class="card-excerpt">Everyone is still debating whether AI will take jobs. I stopped arguing about the future six months ago. The replacement already started and nobody is talking about it clearly.</p>
+          <p class="card-excerpt">Everyone is still debating whether AI will take jobs. I stopped arguing about the future six months ago. The replacement already started and nobody is talking about it.</p>
           <div class="card-meta">
             <span class="card-date">May 4, 2026</span>
             <span class="card-read">10 min read</span>
@@ -292,9 +292,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- $5000/month -->
       <a href="blog-5k-ai.html" class="blog-card" data-category="Tutorials" style="text-decoration:none;display:block;">
         <div class="card-visual vi-1" style="overflow:hidden;position:relative;">
-          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=75&auto=format&fit=crop" alt="Making money with AI tools" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=75&auto=format&fit=crop" alt="Making money with AI tools" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,16,0.2),rgba(5,8,16,0.65));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:var(--gold);">Income · Tutorial</span>
@@ -327,7 +326,6 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
             <text x="248" y="91" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="Syne,sans-serif" font-weight="800" font-size="12">D3</text>
             <text x="150" y="142" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="Syne,sans-serif" font-size="9" letter-spacing="2">AI IMAGE GENERATORS 2026</text>
           </svg>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:#00ff88;">Tools &amp; Tech</span>
@@ -343,9 +341,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- Instagram Instants -->
       <a href="blog-instagram-instants-ai.html" class="blog-card" data-category="Opinion" style="text-decoration:none;display:block;">
         <div class="card-visual vi-2" style="overflow:hidden;position:relative;">
-          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=75&auto=format&fit=crop" alt="Instagram Instants AI social media creator phone" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=75&auto=format&fit=crop" alt="Instagram Instants AI social media creator phone" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,61,138,0.2),rgba(5,8,16,0.7));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:#ff3d8a;">Opinion · Social Media</span>
@@ -361,9 +358,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- Freelancers and AI -->
       <a href="blog-freelancers-ai.html" class="blog-card" data-category="Future of Work" style="text-decoration:none;display:block;">
         <div class="card-visual vi-3" style="overflow:hidden;position:relative;background:#06101e;">
-          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=75&auto=format&fit=crop" alt="freelancer working laptop AI future of work" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=75&auto=format&fit=crop" alt="freelancer working laptop AI future of work" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,247,255,0.15),rgba(5,8,16,0.7));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:var(--cyan);">Future of Work</span>
@@ -379,12 +375,11 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- ChatGPT Prompts -->
       <a href="blog-chatgpt-prompts.html" class="blog-card" data-category="Tutorials" style="text-decoration:none;display:block;">
         <div class="card-visual vi-2" style="overflow:hidden;position:relative;background:#07101e;">
-          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=75&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(168,85,247,0.25),rgba(0,8,16,0.7));"></div>
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
             <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:2.2rem;color:rgba(168,85,247,0.9);text-shadow:0 0 20px rgba(168,85,247,0.5);">10</span>
           </div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:#a855f7;">ChatGPT Prompts</span>
@@ -422,9 +417,8 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
       <!-- Android Apps -->
       <a href="blog-android-apps-no-code.html" class="blog-card" data-category="Tutorials" style="text-decoration:none;display:block;">
         <div class="card-visual vi-5" style="overflow:hidden;position:relative;background:#06101e;">
-          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=75&auto=format&fit=crop" alt="android app development no code AI" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0.65;filter:brightness(0.85) saturate(1.1);" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=75&auto=format&fit=crop" alt="android app development no code AI" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,0.2),rgba(5,8,16,0.7));"></div>
-          
         </div>
         <div class="card-body">
           <span class="card-tag" style="color:#00ff88;">Tutorials</span>
@@ -484,18 +478,19 @@ footer p{font-size:0.78rem;color:var(--text-muted);}
   <p>&copy; 2026 Arsalan &bull; AI Expert & Creative Technologist</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 // PARTICLES
 const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');
 bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
 const particleColors=['#00f7ff','#008cff','#ff00ff'];
 const particles=[];
-for(let i=0;i<70;i++)particles.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.8+0.8,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5,color:particleColors[Math.floor(Math.random()*3)]});
+for(let i=0;i<70;i++)particles.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.8+0.8,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5,color:particleColors[Math.floor(Math.random()*particleColors.length)]});
 function animateBg(){
   bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
   particles.forEach((p,i)=>{
     bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.5;bgCtx.fill();bgCtx.globalAlpha=1;
-    for(let j=i+1;j<particles.length;j++){const p2=particles[j],dist=Math.hypot(p.x-p2.x,p.y-p2.y);if(dist<120){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-dist/120)*0.18})`;bgCtx.lineWidth=0.5;bgCtx.stroke();}}
+    for(let j=i+1;j<particles.length;j++){const p2=particles[j],dist=Math.hypot(p.x-p2.x,p.y-p2.y);if(dist<120){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(p2.x,p2.y);bgCtx.strokeStyle=`rgba(0,247,255,${0.1*(1-dist/120)})`;bgCtx.stroke();}}
     p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;
   });
   requestAnimationFrame(animateBg);
@@ -524,7 +519,6 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.classList.add('active');
     document.querySelectorAll('.blog-card').forEach(card=>{
       if(card.classList.contains('coming-soon')){
-        // show coming-soon only on All Posts
         card.style.display=(filter==='All Posts')?'flex':'none';
         return;
       }
@@ -540,55 +534,41 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 });
 
 // NEWSLETTER — EmailJS
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+emailjs.init('OmaGJEnx8hvNZH38P');
 
-<script>
-  emailjs.init("OmaGJEnx8hvNZH38P");
-
-  function submitNotify() {
-    const emailInput = document.getElementById('notify-email');
-    const msg = document.getElementById('notify-msg');
-    const btn = document.getElementById('notify-btn');
-
-    const email = emailInput.value.trim();
-
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      msg.style.color = '#ff6b6b';
-      msg.textContent = 'Please enter a valid email address.';
-      msg.style.display = 'block';
-      return;
-    }
-
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    emailjs.send(
-      'service_891wbn4',
-      'template_slshl9j',
-      {
-        subscriber_email: email,
-        subscriber_name: email,
-        blog_title: "New Blog Alert",
-        blog_summary: "Stay tuned for new posts on Arsalan Blog.",
-        blog_link: "https://yourblog.github.io"
-      }
-    ).then(() => {
-      msg.style.color = '#00ffd5';
-      msg.textContent = 'You are subscribed successfully!';
-      msg.style.display = 'block';
-
-      emailInput.value = '';
-      btn.textContent = 'Subscribed';
-    }).catch(() => {
-      msg.style.color = '#ff6b6b';
-      msg.textContent = 'Something went wrong. Try again.';
-      msg.style.display = 'block';
-
-      btn.textContent = 'Notify Me';
-      btn.disabled = false;
-    });
+function submitNotify(){
+  const emailInput=document.getElementById('notify-email');
+  const msg=document.getElementById('notify-msg');
+  const btn=document.getElementById('notify-btn');
+  const email=emailInput.value.trim();
+  if(!email||!/\S+@\S+\.\S+/.test(email)){
+    msg.style.color='#ff6b6b';
+    msg.textContent='Please enter a valid email address.';
+    msg.style.display='block';
+    return;
   }
-</script>
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  emailjs.send('service_891wbn4','template_slshl9j',{
+    subscriber_email:email,
+    subscriber_name:email,
+    blog_title:'New Blog Alert',
+    blog_summary:'Stay tuned for new posts on Arsalan Blog.',
+    blog_link:'https://yourblog.github.io'
+  }).then(()=>{
+    msg.style.color='#00ffd5';
+    msg.textContent='You are subscribed successfully!';
+    msg.style.display='block';
+    emailInput.value='';
+    btn.textContent='Subscribed';
+  }).catch(()=>{
+    msg.style.color='#ff6b6b';
+    msg.textContent='Something went wrong. Try again.';
+    msg.style.display='block';
+    btn.textContent='Notify Me';
+    btn.disabled=false;
+  });
+}
 
 // CENTIPEDE CURSOR — cyan to match blog posts
 (function(){
@@ -612,11 +592,11 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';
     ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();
-    for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}
-    for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*0.55),lky=seg.y+Math.sin(la)*(LL*0.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*0.55),rky=seg.y+Math.sin(ra)*(LL*0.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=0.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}
+    for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.fillStyle=SC;ctx.beginPath();ctx.ellipse(0,0,r*1.5,r,0,0,Math.PI*2);ctx.fill();ctx.restore();}
+    for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS;setGlow(6);ctx.strokeStyle=`rgba(0,247,255,${0.3+0.2*sw})`;ctx.lineWidth=1;ctx.beginPath();const l=Math.cos(pa+Math.PI/4)*LL/2;ctx.moveTo(seg.x+Math.cos(pa)*l,seg.y+Math.sin(pa)*l);ctx.lineTo(seg.x-Math.cos(pa)*l,seg.y-Math.sin(pa)*l);ctx.stroke();}
     const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();
     const eo=HR*0.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*0.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*0.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*0.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*0.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();
-    const as=Math.sin(lp*0.7)*0.3,ab=HR*0.9;setGlow(10);ctx.lineWidth=1;const laa=ha-0.45+as,lamx=h.x+Math.cos(laa)*(AL*0.5),lamy=h.y+Math.sin(laa)*(AL*0.5),latx=h.x+Math.cos(laa-0.3)*AL,laty=h.y+Math.sin(laa-0.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+0.45+as,ramx=h.x+Math.cos(raa)*(AL*0.5),ramy=h.y+Math.sin(raa)*(AL*0.5),ratx=h.x+Math.cos(raa+0.3)*AL,raty=h.y+Math.sin(raa+0.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();
+    const as=Math.sin(lp*0.7)*0.3,ab=HR*0.9;setGlow(10);ctx.lineWidth=1;const laa=ha-0.45+as,lamx=h.x+Math.cos(laa)*(AL*0.5),lamy=h.y+Math.sin(laa)*(AL*0.5),latx=h.x+Math.cos(laa-0.3)*AL,laty=h.y+Math.sin(laa-0.3)*AL,raa=ha+0.45-as,ramx=h.x+Math.cos(raa)*(AL*0.5),ramy=h.y+Math.sin(raa)*(AL*0.5),ratx=h.x+Math.cos(raa+0.3)*AL,raty=h.y+Math.sin(raa+0.3)*AL;ctx.beginPath();ctx.moveTo(lamx,lamy);ctx.lineTo(latx,laty);ctx.moveTo(ramx,ramy);ctx.lineTo(ratx,raty);ctx.stroke();
     ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();
     ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();
   }
@@ -624,7 +604,5 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
   loop();
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init('YOUR_EMAILJS_PUBLIC_KEY');</script>
 </body>
 </html>
