@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Free AI Text Humanizer — Convert AI Writing to Human Text | Arsalan</title>
-<meta name="description" content="Free AI text humanizer tool. Paste ChatGPT, Claude or any AI-generated text and instantly convert it to natural human-sounding writing. Bypass AI detectors, pass Turnitin, and make AI text undetectable. 100% free, no signup.">
-<meta name="keywords" content="AI text humanizer, humanize AI text, AI to human text converter, bypass AI detector, make AI text undetectable, ChatGPT text humanizer, AI writing humanizer free, convert AI text to human, undetectable AI text, AI text paraphraser, bypass Turnitin AI detection, humanize ChatGPT text, AI content humanizer, remove AI writing, AI text to human writing, free AI humanizer tool 2026, humanize AI content free, AI detection remover, pass AI detector, anti AI detector tool">
+<meta name="description" content="Free AI text humanizer tool. Paste ChatGPT, Claude or any AI-generated text and instantly convert it to natural human-sounding writing. Bypass AI detectors, pass Turnitin, make AI text undetectable. 100% free, no signup required.">
+<meta name="keywords" content="AI text humanizer, humanize AI text, AI to human text converter, bypass AI detector, make AI text undetectable, ChatGPT text humanizer, AI writing humanizer free, convert AI text to human, undetectable AI text, AI text paraphraser, bypass Turnitin AI detection, humanize ChatGPT text, AI content humanizer, remove AI writing, AI text to human writing, free AI humanizer tool 2026, humanize AI content free, AI detection remover, pass AI detector, anti AI detector tool, humanize gemini text, humanize claude text">
 <meta property="og:title" content="Free AI Text Humanizer — Make AI Writing Sound Human Instantly">
 <meta property="og:description" content="Paste any AI-generated text and get natural human-sounding writing back in seconds. Free, no signup, no limits.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free AI Text Humanizer Tool — Convert AI to Human Text">
+<meta name="twitter:description" content="Paste ChatGPT or any AI text and get back natural human-sounding writing instantly. Free forever.">
 <link rel="canonical" href="https://www.arsalanportfolio.live/ai-text-humanizer.html">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -32,7 +33,6 @@ body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-s
 canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
 canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
 @media(max-width:900px){canvas#creature-canvas{display:none;}}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
 @media(max-width:600px){.nav-inner{padding:0 18px;}}
@@ -41,125 +41,90 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rg
 .nav-back:hover{color:var(--cyan);}
 .nav-back svg{transition:transform 0.2s;}
 .nav-back:hover svg{transform:translateX(-3px);}
-
 .page-wrap{max-width:1000px;margin:0 auto;padding:110px 32px 80px;position:relative;z-index:1;}
 @media(max-width:600px){.page-wrap{padding:100px 18px 60px;}}
-
 .hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:20px;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.25);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
-.hero-badge::before{content:'●';font-size:8px;animation:pulse 1.8s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-
+.hero-badge::before{content:'●';font-size:8px;animation:blink 1.8s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
 .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin-bottom:14px;background:linear-gradient(135deg,#fff 0%,#c8d8f0 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.page-sub{font-size:1rem;color:var(--text-secondary);line-height:1.85;max-width:620px;margin-bottom:40px;}
-
-.stats-row{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:48px;}
-.stat-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);font-size:0.8rem;color:var(--text-secondary);}
+.page-sub{font-size:1rem;color:var(--text-secondary);line-height:1.85;max-width:640px;margin-bottom:36px;}
+.stats-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px;}
+.stat-pill{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);font-size:0.78rem;color:var(--text-secondary);}
 .stat-pill strong{color:var(--cyan);font-family:'Syne',sans-serif;font-weight:700;}
-
 .tool-card{background:rgba(255,255,255,0.025);border:1px solid rgba(0,247,255,0.12);border-radius:20px;overflow:hidden;position:relative;}
 .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--magenta));}
-
-.tool-header{padding:24px 28px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-@media(max-width:600px){.tool-header{padding:20px 18px 0;}}
-.tool-tabs{display:flex;gap:6px;}
-.tool-tab{padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+.tool-header{padding:22px 28px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+@media(max-width:600px){.tool-header{padding:18px 18px 0;}}
+.tool-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+.tool-tab{padding:7px 15px;border-radius:20px;font-size:0.76rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.tool-tab:hover{color:var(--text-secondary);}
 .tool-tab.active{border-color:rgba(0,247,255,0.4);color:var(--cyan);background:rgba(0,247,255,0.07);}
-.mode-badge{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(0,255,136,0.3);color:var(--green);background:rgba(0,255,136,0.06);}
-
-.panels{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:20px 28px 0;}
-@media(max-width:700px){.panels{grid-template-columns:1fr;padding:16px 18px 0;}}
-
-.panel{position:relative;}
+.mode-badge{font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(0,255,136,0.3);color:var(--green);background:rgba(0,255,136,0.06);white-space:nowrap;}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:18px 0 0;}
+@media(max-width:680px){.panels{grid-template-columns:1fr;}}
+.panel{padding:0 28px 18px;}
+@media(max-width:600px){.panel{padding:0 18px 14px;}}
 .panel:first-child{border-right:1px solid var(--border);}
-@media(max-width:700px){.panel:first-child{border-right:none;border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;}}
-
-.panel-label{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
-.char-count{font-size:0.68rem;color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0;}
-
-.panel:first-child .panel-label{padding-right:20px;}
-.panel:last-child .panel-label{padding-left:20px;}
-@media(max-width:700px){.panel:last-child .panel-label{padding-left:0;}}
-
-textarea{width:100%;min-height:240px;background:transparent;border:none;outline:none;resize:vertical;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.95rem;line-height:1.75;font-weight:300;padding-right:20px;}
-@media(max-width:700px){textarea{padding-right:0;}}
+@media(max-width:680px){.panel:first-child{border-right:none;border-bottom:1px solid var(--border);padding-bottom:18px;}.panel:last-child{padding-top:14px;}}
+.panel-label{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.char-count{font-size:0.68rem;color:var(--text-muted);font-weight:300;text-transform:none;letter-spacing:0;}
+textarea{width:100%;min-height:220px;background:transparent;border:none;outline:none;resize:vertical;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.92rem;line-height:1.8;font-weight:300;}
 textarea::placeholder{color:var(--text-muted);}
-textarea:last-of-type{padding-left:20px;padding-right:0;}
-@media(max-width:700px){textarea:last-of-type{padding-left:0;}}
-
-#output-text{color:var(--text-primary);}
-#output-text.loading{color:var(--text-muted);font-style:italic;}
-
-.tool-footer{padding:20px 28px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:20px;}
-@media(max-width:600px){.tool-footer{padding:16px 18px 20px;}}
-
-.settings-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.setting-chip{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
-.setting-chip:hover,.setting-chip.active{border-color:var(--border-accent);color:var(--cyan);background:rgba(0,247,255,0.05);}
-.setting-chip svg{width:12px;height:12px;opacity:0.6;}
-
-.actions-row{display:flex;align-items:center;gap:10px;}
-.btn-humanize{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.btn-humanize:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,247,255,0.25);}
-.btn-humanize:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}
-.btn-copy{display:inline-flex;align-items:center;gap:7px;padding:12px 18px;border-radius:8px;border:1px solid var(--border-accent);color:var(--cyan);background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:400;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.btn-copy:hover{background:rgba(0,247,255,0.07);transform:translateY(-2px);}
-.btn-clear{display:inline-flex;align-items:center;padding:12px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text-muted);background:transparent;cursor:pointer;transition:all 0.2s;}
-.btn-clear:hover{border-color:rgba(255,68,85,0.3);color:#ff4455;}
-
-.progress-bar{height:2px;background:var(--border);border-radius:2px;overflow:hidden;margin:0 28px;display:none;}
-@media(max-width:600px){.progress-bar{margin:0 18px;}}
-.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--magenta));border-radius:2px;transition:width 0.4s ease;}
+.progress-bar{height:2px;background:rgba(255,255,255,0.04);display:none;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--magenta));transition:width 0.35s ease;}
 .progress-bar.active{display:block;}
-
-.status-bar{padding:10px 28px;font-size:0.78rem;color:var(--text-muted);min-height:36px;display:flex;align-items:center;gap:8px;}
+.status-bar{padding:10px 28px;font-size:0.78rem;color:var(--text-muted);min-height:36px;display:flex;align-items:center;gap:8px;border-top:1px solid var(--border);}
 @media(max-width:600px){.status-bar{padding:10px 18px;}}
+.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
 .status-bar.success{color:var(--green);}
 .status-bar.error{color:#ff4455;}
-.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
-
-.features-section{margin-top:64px;}
-.features-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;color:#fff;margin-bottom:8px;text-align:center;}
-.features-sub{font-size:0.9rem;color:var(--text-secondary);text-align:center;margin-bottom:36px;}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
-.feature-card{padding:22px 20px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,0.02);transition:all 0.25s;}
-.feature-card:hover{border-color:var(--border-accent);background:rgba(0,247,255,0.02);transform:translateY(-3px);}
-.feature-icon{font-size:1.4rem;margin-bottom:12px;}
-.feature-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:#fff;margin-bottom:6px;}
-.feature-desc{font-size:0.82rem;color:var(--text-secondary);line-height:1.65;}
-
-.faq-section{margin-top:72px;}
-.faq-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;color:#fff;margin-bottom:36px;text-align:center;}
-.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.tool-footer{padding:14px 28px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+@media(max-width:600px){.tool-footer{padding:12px 18px 18px;}}
+.settings-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.setting-chip{display:flex;align-items:center;gap:5px;padding:6px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:0.75rem;cursor:pointer;transition:all 0.2s;}
+.setting-chip:hover,.setting-chip.active{border-color:var(--border-accent);color:var(--cyan);background:rgba(0,247,255,0.05);}
+.setting-chip svg{width:11px;height:11px;flex-shrink:0;}
+.actions-row{display:flex;align-items:center;gap:8px;}
+.btn-humanize{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.btn-humanize:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,247,255,0.25);}
+.btn-humanize:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-copy{display:inline-flex;align-items:center;gap:6px;padding:11px 16px;border-radius:8px;border:1px solid var(--border-accent);color:var(--cyan);background:transparent;font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;transition:all 0.2s;}
+.btn-copy:hover{background:rgba(0,247,255,0.07);transform:translateY(-2px);}
+.btn-clear{display:inline-flex;align-items:center;padding:11px 13px;border-radius:8px;border:1px solid var(--border);color:var(--text-muted);background:transparent;cursor:pointer;transition:all 0.2s;}
+.btn-clear:hover{border-color:rgba(255,68,85,0.35);color:#ff4455;}
+.section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;margin-bottom:8px;}
+.section-sub{font-size:0.88rem;color:var(--text-secondary);margin-bottom:36px;}
+.how-section{margin-top:60px;text-align:center;}
+.steps-row{display:flex;gap:0;justify-content:center;flex-wrap:wrap;}
+.step{flex:1;min-width:150px;max-width:210px;text-align:center;padding:0 14px;}
+.step-num{width:52px;height:52px;border-radius:50%;background:rgba(0,247,255,0.07);border:1px solid rgba(0,247,255,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--cyan);}
+.step-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.85rem;color:#fff;margin-bottom:5px;}
+.step-desc{font-size:0.76rem;color:var(--text-secondary);line-height:1.6;}
+.features-section{margin-top:60px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+.feature-card{padding:20px 18px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,0.02);transition:all 0.25s;}
+.feature-card:hover{border-color:var(--border-accent);transform:translateY(-3px);}
+.feature-icon{font-size:1.3rem;margin-bottom:10px;}
+.feature-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;color:#fff;margin-bottom:5px;}
+.feature-desc{font-size:0.79rem;color:var(--text-secondary);line-height:1.65;}
+.faq-section{margin-top:64px;}
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0;}
 .faq-item:last-child{border-bottom:none;}
-.faq-q{font-family:'Syne',sans-serif;font-weight:600;font-size:0.95rem;color:#fff;margin-bottom:10px;}
-.faq-a{font-size:0.88rem;color:var(--text-secondary);line-height:1.75;}
-
-.how-section{margin-top:72px;text-align:center;}
-.how-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.6rem;color:#fff;margin-bottom:8px;}
-.how-sub{font-size:0.9rem;color:var(--text-secondary);margin-bottom:40px;}
-.steps-row{display:flex;gap:0;position:relative;flex-wrap:wrap;justify-content:center;}
-.steps-row::before{content:'';position:absolute;top:28px;left:16%;right:16%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,247,255,0.2),transparent);pointer-events:none;}
-@media(max-width:700px){.steps-row::before{display:none;}}
-.step{flex:1;min-width:160px;max-width:220px;text-align:center;padding:0 16px;}
-.step-num{width:56px;height:56px;border-radius:50%;background:rgba(0,247,255,0.08);border:1px solid rgba(0,247,255,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--cyan);}
-.step-title{font-family:'Syne',sans-serif;font-weight:600;font-size:0.88rem;color:#fff;margin-bottom:6px;}
-.step-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.6;}
-
-.seo-text-section{margin-top:72px;padding:36px 40px;border-radius:20px;background:rgba(255,255,255,0.015);border:1px solid var(--border);}
-@media(max-width:600px){.seo-text-section{padding:24px 20px;}}
-.seo-text-section h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:14px;}
-.seo-text-section p{font-size:0.88rem;color:var(--text-secondary);line-height:1.85;margin-bottom:14px;}
-.seo-text-section p:last-child{margin-bottom:0;}
-
-footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;margin-top:80px;}
-footer p{font-size:0.78rem;color:var(--text-muted);}
+.faq-q{font-family:'Syne',sans-serif;font-weight:600;font-size:0.92rem;color:#fff;margin-bottom:8px;}
+.faq-a{font-size:0.85rem;color:var(--text-secondary);line-height:1.75;}
+.seo-block{margin-top:64px;padding:32px 36px;border-radius:18px;background:rgba(255,255,255,0.015);border:1px solid var(--border);}
+@media(max-width:600px){.seo-block{padding:22px 18px;}}
+.seo-block h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:12px;}
+.seo-block p{font-size:0.85rem;color:var(--text-secondary);line-height:1.85;margin-bottom:12px;}
+.seo-block p:last-child{margin-bottom:0;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:26px 0;text-align:center;margin-top:68px;}
+footer p{font-size:0.76rem;color:var(--text-muted);}
 footer a{color:var(--cyan);text-decoration:none;}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);padding:12px 22px;border-radius:8px;background:rgba(0,255,136,0.12);border:1px solid rgba(0,255,136,0.3);color:var(--green);font-size:0.85rem;font-weight:500;opacity:0;transition:all 0.3s;z-index:9998;pointer-events:none;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);padding:11px 20px;border-radius:8px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.28);color:var(--green);font-size:0.82rem;font-weight:500;opacity:0;transition:all 0.28s;z-index:9998;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 </style>
 </head>
 <body>
@@ -181,24 +146,25 @@ footer a{color:var(--cyan);text-decoration:none;}
 <div class="page-wrap">
 
   <div class="reveal">
-    <div class="hero-badge">Free Tool · No Signup Required</div>
-    <h1 class="page-title">AI Text Humanizer</h1>
-    <p class="page-sub">Paste any AI-generated text from ChatGPT, Claude, Gemini, or any other AI tool and get back natural, human-sounding writing instantly. Free, unlimited, no account needed.</p>
+    <div class="hero-badge">Free Tool &nbsp;·&nbsp; No Signup &nbsp;·&nbsp; Powered by Gemini AI</div>
+    <h1 class="page-title">Free AI Text Humanizer</h1>
+    <p class="page-sub">Paste any AI-generated text from ChatGPT, Claude, Gemini, Grok or any AI writing tool and get back natural human-sounding writing instantly. Free, no account needed, works on all AI text.</p>
     <div class="stats-row">
-      <div class="stat-pill"><strong>100%</strong> Free forever</div>
-      <div class="stat-pill"><strong>No</strong> signup required</div>
-      <div class="stat-pill"><strong>Works</strong> on all AI text</div>
-      <div class="stat-pill"><strong>Instant</strong> results</div>
+      <div class="stat-pill"><strong>100%</strong>&nbsp;Free</div>
+      <div class="stat-pill"><strong>No</strong>&nbsp;signup</div>
+      <div class="stat-pill"><strong>All</strong>&nbsp;AI tools</div>
+      <div class="stat-pill"><strong>Instant</strong>&nbsp;results</div>
+      <div class="stat-pill"><strong>4</strong>&nbsp;writing modes</div>
     </div>
   </div>
 
   <div class="tool-card reveal">
     <div class="tool-header">
       <div class="tool-tabs">
-        <button class="tool-tab active" data-mode="standard" onclick="setMode(this,'standard')">Standard</button>
-        <button class="tool-tab" data-mode="academic" onclick="setMode(this,'academic')">Academic</button>
-        <button class="tool-tab" data-mode="casual" onclick="setMode(this,'casual')">Casual</button>
-        <button class="tool-tab" data-mode="professional" onclick="setMode(this,'professional')">Professional</button>
+        <button class="tool-tab active" onclick="setMode(this,'standard')">Standard</button>
+        <button class="tool-tab" onclick="setMode(this,'academic')">Academic</button>
+        <button class="tool-tab" onclick="setMode(this,'casual')">Casual</button>
+        <button class="tool-tab" onclick="setMode(this,'professional')">Professional</button>
       </div>
       <div class="mode-badge" id="mode-label">Standard Mode</div>
     </div>
@@ -207,16 +173,16 @@ footer a{color:var(--cyan);text-decoration:none;}
       <div class="panel">
         <div class="panel-label">
           AI Text Input
-          <span class="char-count" id="input-count">0 characters</span>
+          <span class="char-count" id="input-count">0 / 8000</span>
         </div>
-        <textarea id="input-text" placeholder="Paste your ChatGPT, Claude, Gemini or any AI-generated text here and click Humanize..."></textarea>
+        <textarea id="input-text" placeholder="Paste your ChatGPT, Claude, Gemini or any AI-generated text here then click Humanize..."></textarea>
       </div>
       <div class="panel">
-        <div class="panel-label" style="padding-left:20px;">
+        <div class="panel-label">
           Humanized Output
           <span class="char-count" id="output-count">0 characters</span>
         </div>
-        <textarea id="output-text" readonly placeholder="Your humanized, natural-sounding text will appear here..."></textarea>
+        <textarea id="output-text" readonly placeholder="Your natural human-sounding text will appear here..."></textarea>
       </div>
     </div>
 
@@ -224,7 +190,7 @@ footer a{color:var(--cyan);text-decoration:none;}
       <div class="progress-fill" id="progress-fill"></div>
     </div>
 
-    <div class="status-bar" id="status-bar">Ready to humanize your AI text</div>
+    <div class="status-bar" id="status-bar">Ready — paste your AI text and click Humanize</div>
 
     <div class="tool-footer">
       <div class="settings-row">
@@ -232,24 +198,24 @@ footer a{color:var(--cyan);text-decoration:none;}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           Natural Flow
         </button>
-        <button class="setting-chip active" id="chip-var" onclick="toggleChip(this)">
+        <button class="setting-chip active" id="chip-vary" onclick="toggleChip(this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
           Vary Sentences
         </button>
         <button class="setting-chip" id="chip-simple" onclick="toggleChip(this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h8M4 18h16"/></svg>
-          Simplify
+          Simplify Words
         </button>
       </div>
       <div class="actions-row">
-        <button class="btn-clear" onclick="clearAll()" title="Clear">
+        <button class="btn-clear" onclick="clearAll()" title="Clear all">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
         </button>
-        <button class="btn-copy" onclick="copyOutput()" id="copy-btn">
+        <button class="btn-copy" onclick="copyOutput()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
           Copy
         </button>
-        <button class="btn-humanize" onclick="humanizeText()" id="humanize-btn">
+        <button class="btn-humanize" id="humanize-btn" onclick="humanizeText()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a5 5 0 015 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 015-5zm0 13c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/></svg>
           Humanize Text
         </button>
@@ -258,257 +224,217 @@ footer a{color:var(--cyan);text-decoration:none;}
   </div>
 
   <div class="how-section reveal">
-    <h2 class="how-title">How to Humanize AI Text</h2>
-    <p class="how-sub">Three steps and your text sounds completely human written</p>
+    <div class="section-title">How to Humanize AI Text</div>
+    <p class="section-sub">Three steps and your text sounds completely human written</p>
     <div class="steps-row">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-title">Paste AI Text</div>
-        <div class="step-desc">Copy text from ChatGPT, Claude, Gemini, or any AI writing tool and paste it in the left box</div>
+        <div class="step-desc">Copy from ChatGPT, Claude, Gemini or any AI tool and paste in the left panel</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-title">Choose Mode</div>
-        <div class="step-desc">Select Standard, Academic, Casual or Professional depending on how you need the output to sound</div>
+        <div class="step-desc">Pick Standard, Academic, Casual or Professional depending on your needs</div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-title">Get Human Text</div>
-        <div class="step-desc">Click Humanize and receive natural, flowing text that reads like it was written by a real person</div>
+        <div class="step-desc">Click Humanize and get natural flowing text that reads like a real person wrote it</div>
       </div>
     </div>
   </div>
 
   <div class="features-section reveal">
-    <div class="features-title">Why Use This AI Text Humanizer</div>
-    <p class="features-sub">Built for students, writers, marketers and content creators who need AI text that sounds real</p>
+    <div class="section-title" style="text-align:center;margin-bottom:8px;">Why Use This AI Text Humanizer</div>
+    <p class="section-sub" style="text-align:center;">Built for students, writers, marketers and creators who need AI text that sounds real</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🧠</div>
         <div class="feature-title">Removes AI Patterns</div>
-        <div class="feature-desc">Eliminates the robotic sentence structures, overused transitions and predictable phrasing that makes AI writing instantly recognizable</div>
+        <div class="feature-desc">Eliminates robotic sentence structures, overused transitions and predictable phrasing that makes AI writing instantly recognizable</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✍️</div>
         <div class="feature-title">Natural Human Voice</div>
-        <div class="feature-desc">Adds natural variation in sentence length, casual connectors, and genuine personality that makes text feel written by a real human</div>
+        <div class="feature-desc">Adds natural sentence variation, casual connectors and genuine personality that makes text feel written by a real human</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎓</div>
         <div class="feature-title">Academic Mode</div>
-        <div class="feature-desc">Rewrites AI essays and research text to sound like authentic student writing with appropriate vocabulary and natural academic flow</div>
+        <div class="feature-desc">Rewrites AI essays to sound like authentic student writing with natural academic flow and appropriate vocabulary</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
         <div class="feature-title">Instant Results</div>
-        <div class="feature-desc">No waiting, no queue. Powered by Claude AI to deliver high quality humanized text in seconds with no signup or payment required</div>
+        <div class="feature-desc">No waiting, no queue. Powered by Gemini AI to deliver high quality humanized text in seconds with zero signup</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
         <div class="feature-title">Private and Secure</div>
-        <div class="feature-desc">Your text is processed and returned immediately. Nothing is stored, logged or saved. Complete privacy for sensitive content</div>
+        <div class="feature-desc">Text is processed through a secure server and returned immediately. Nothing is stored or saved anywhere</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🌍</div>
         <div class="feature-title">Works on All AI Text</div>
-        <div class="feature-desc">ChatGPT, Claude, Gemini, Grok, Llama, Mistral, Copilot — paste text from any AI model and get back human-sounding writing</div>
+        <div class="feature-desc">ChatGPT, Claude, Gemini, Grok, Copilot, Jasper — paste from any AI tool and get human-sounding writing back</div>
       </div>
     </div>
   </div>
 
   <div class="faq-section reveal">
-    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="section-title" style="margin-bottom:28px;">Frequently Asked Questions</div>
     <div class="faq-item">
-      <div class="faq-q">What is an AI text humanizer?</div>
-      <div class="faq-a">An AI text humanizer is a tool that takes AI-generated text and rewrites it to sound natural and human-written. AI writing tools like ChatGPT tend to produce text with predictable patterns, repetitive structures and robotic phrasing. A humanizer removes those patterns and replaces them with the natural variation, personality and flow that characterizes real human writing.</div>
+      <div class="faq-q">What is an AI text humanizer and how does it work?</div>
+      <div class="faq-a">An AI text humanizer takes AI-generated text and rewrites it to sound natural and human-written. AI tools like ChatGPT produce text with predictable patterns and robotic phrasing. This tool uses Gemini AI to identify and replace those patterns with the natural variation and organic voice that real human writing has.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Can this tool bypass AI detectors?</div>
-      <div class="faq-a">This tool rewrites AI text to be more natural and human sounding, which significantly reduces the likelihood of AI detection. However no tool can guarantee 100% undetectability in all cases because AI detection technology is continuously evolving. The best results come from using the humanized output as a starting point and doing a final pass yourself.</div>
+      <div class="faq-q">Can this bypass AI detectors like Turnitin or GPTZero?</div>
+      <div class="faq-a">This tool rewrites AI text to be significantly more natural and human sounding, which substantially reduces the likelihood of AI detection. No tool can guarantee 100% undetectability in every case as detection technology constantly evolves. Use the humanized output as a strong base and do a quick personal edit for best results.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Is the AI text humanizer completely free?</div>
-      <div class="faq-a">Yes, completely free with no signup, no credit card, and no usage limits. This is a free tool offered by Arsalan as part of his free AI services for creators, students and professionals.</div>
+      <div class="faq-q">Is this completely free with no limits?</div>
+      <div class="faq-a">Yes, completely free with no signup, no credit card and no usage limits per session. This is a free tool offered by Arsalan as part of his free AI services for creators, students and professionals.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Which AI writing tools does this work with?</div>
-      <div class="faq-a">This humanizer works with text from any AI writing tool including ChatGPT, Claude, Google Gemini, Microsoft Copilot, Grok, Llama, Mistral, Jasper, Copy.ai, and any other AI text generator. If it was written by an AI, this tool can help humanize it.</div>
+      <div class="faq-a">This humanizer works with text from ChatGPT, Claude, Google Gemini, Microsoft Copilot, Grok, Llama, Mistral, Jasper, Copy.ai, Writesonic and any other AI text generator. If an AI wrote it this tool can humanize it.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What is the difference between the writing modes?</div>
-      <div class="faq-a">Standard mode produces natural, balanced human writing suitable for most purposes. Academic mode preserves formal language while removing AI patterns, ideal for essays and research. Casual mode adds conversational personality and informal tone. Professional mode produces clean, polished writing appropriate for business communications and formal content.</div>
+      <div class="faq-q">What is the difference between the four writing modes?</div>
+      <div class="faq-a">Standard produces natural balanced writing for most purposes. Academic preserves formal language while removing AI patterns, ideal for essays. Casual adds conversational personality for blogs and social media. Professional produces clean polished writing for business communications.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Does this save or store my text?</div>
-      <div class="faq-a">No. Your text is sent to the AI API, processed, and the result is returned to your browser. Nothing is stored, logged or retained in any database. Your content remains completely private.</div>
+      <div class="faq-q">Is my text stored or saved anywhere?</div>
+      <div class="faq-a">No. Your text is sent to a secure server, processed by Gemini AI, and the result is returned to your browser. Nothing is stored, logged or retained in any database. Your content is completely private.</div>
     </div>
   </div>
 
-  <div class="seo-text-section reveal">
+  <div class="seo-block reveal">
     <h2>The Best Free AI Text Humanizer Tool in 2026</h2>
-    <p>As AI writing tools like ChatGPT and Claude have become mainstream, the demand for reliable AI text humanizers has exploded. Whether you are a student who used AI to draft an essay, a marketer who needs content that does not read like it came from a robot, or a content creator who wants to speed up production without sacrificing authenticity, having a tool that can convert AI text to human text is now essential.</p>
-    <p>This free AI text humanizer uses advanced language processing to identify and rewrite the specific patterns that make AI writing detectable. Overused transition phrases like "furthermore" and "in conclusion", perfectly parallel sentence structures, an absence of natural hesitation and personality, uniform sentence rhythm. These are the telltale signs. The humanizer replaces them with the natural variation and organic voice that genuine human writing carries.</p>
-    <p>Unlike many AI humanizer tools that simply run a basic paraphrase, this tool understands context and rewrites with the goal of preserving your meaning while completely transforming the texture of the language. The result is text that reads authentically human because it has been rewritten to match how humans actually write, not just how they theoretically should write.</p>
+    <p>As AI writing tools like ChatGPT, Claude and Gemini have become mainstream, the demand for reliable AI text humanizers has grown enormously. Whether you are a student who used AI to draft an essay, a marketer who needs content that does not read like a robot wrote it, or a creator who wants to speed up production without sacrificing authenticity, having a tool that converts AI text to human text is now essential.</p>
+    <p>This free AI text humanizer uses Gemini AI to identify and rewrite the specific patterns that make AI writing detectable. Overused transition phrases, perfectly parallel sentence structures, the absence of natural hesitation and personality. These are the telltale signs. The humanizer replaces them with natural variation and organic voice that genuine human writing carries.</p>
+    <p>Unlike basic paraphrase tools, this AI to human text converter understands context and rewrites with the goal of preserving your meaning while completely transforming the texture of the language. The result is text that reads authentically human because it was rewritten to match how humans actually write. Use it free, use it daily, no limits.</p>
   </div>
 
 </div>
 
 <footer>
-  <p>&copy; 2026 <a href="index.html">Arsalan</a> &bull; AI Expert &amp; Creative Technologist &bull; <a href="index.html#contact">Contact</a></p>
+  <p>&copy; 2026 <a href="index.html">Arsalan</a> &bull; AI Expert &amp; Creative Technologist &bull; <a href="index.html#contact">Contact</a> &bull; <a href="blog.html">Blog</a></p>
 </footer>
 
 <script>
-let currentMode = 'standard';
-
-const modeLabels = {
-  standard: 'Standard Mode',
-  academic: 'Academic Mode',
-  casual: 'Casual Mode',
-  professional: 'Professional Mode'
+let currentMode='standard';
+const modeLabels={standard:'Standard Mode',academic:'Academic Mode',casual:'Casual Mode',professional:'Professional Mode'};
+const modePrompts={
+  standard:`You are an expert at rewriting AI-generated text to sound completely natural and human-written. Rewrite the following text so it sounds like a real thoughtful person wrote it. Vary sentence lengths naturally, add subtle personality, use contractions where appropriate, remove robotic patterns. Avoid overused AI phrases like "furthermore", "in conclusion", "it is worth noting", "delve into", "it is important to note", "in today's world", "tapestry". Keep the exact same meaning but make it feel genuinely human. Return only the rewritten text, no explanation, no preamble, no quotes.`,
+  academic:`You are an expert at rewriting AI-generated text to sound like authentic student academic writing. Rewrite the following text to preserve formal academic tone but completely remove AI patterns. Vary sentence structure naturally, use vocabulary a real student would use, avoid perfectly polished AI phrasing. Make it sound like a smart human wrote this for an essay or research paper. Keep the same meaning and academic level. Return only the rewritten text, no explanation or preamble.`,
+  casual:`You are an expert at rewriting AI-generated text to sound casual and conversational, like a real person writing a blog post or social media caption. Use contractions, shorter punchy sentences, a bit of personality and informality. Remove all robotic AI patterns. Keep the same meaning but make it feel like a real person talking. Return only the rewritten text, no explanation or preamble.`,
+  professional:`You are an expert at rewriting AI-generated text to sound like polished human professional writing for a business context. Make it clear, direct and natural. Remove AI patterns and robotic phrasing. Keep the same meaning and professional tone but add human authenticity. Return only the rewritten text, no explanation or preamble.`
 };
 
-const modePrompts = {
-  standard: `You are an expert at rewriting AI-generated text to sound completely natural and human-written. Rewrite the following text so it sounds like a real person wrote it. Make it flow naturally, vary sentence lengths, add personality, remove robotic patterns, avoid overused AI phrases like "furthermore", "in conclusion", "it is worth noting", "delve into", "tapestry". Keep the same meaning but make it feel genuinely human. Return only the rewritten text, nothing else.`,
-  academic: `You are an expert at rewriting AI-generated text to sound like authentic student academic writing. Rewrite the following text to preserve academic tone but remove AI patterns. Vary sentence structure naturally, use vocabulary a real student would use, avoid overly polished AI phrasing, make it sound like a smart human wrote it for an essay or paper. Keep the same meaning. Return only the rewritten text, nothing else.`,
-  casual: `You are an expert at rewriting AI-generated text to sound casual and conversational, like a real person texting or writing a blog post. Rewrite the following text with a relaxed, natural voice. Use contractions, shorter sentences, a bit of personality and informality. Remove all robotic AI patterns. Keep the same meaning but make it feel like a real person talking. Return only the rewritten text, nothing else.`,
-  professional: `You are an expert at rewriting AI-generated text to sound like polished human professional writing. Rewrite the following text for a business or professional context. Make it clear, direct and natural, like a competent human professional wrote it. Remove AI patterns and robotic phrasing. Keep the same meaning and professional tone but add human authenticity. Return only the rewritten text, nothing else.`
-};
-
-function setMode(btn, mode) {
-  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+function setMode(btn,mode){
+  document.querySelectorAll('.tool-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  currentMode = mode;
-  document.getElementById('mode-label').textContent = modeLabels[mode];
+  currentMode=mode;
+  document.getElementById('mode-label').textContent=modeLabels[mode];
 }
 
-function toggleChip(chip) {
-  chip.classList.toggle('active');
-}
+function toggleChip(chip){chip.classList.toggle('active');}
 
-document.getElementById('input-text').addEventListener('input', function() {
-  document.getElementById('input-count').textContent = this.value.length + ' characters';
+document.getElementById('input-text').addEventListener('input',function(){
+  const len=this.value.length;
+  document.getElementById('input-count').textContent=len+' / 8000';
+  if(len>8000)this.value=this.value.substring(0,8000);
 });
 
-document.getElementById('output-text').addEventListener('input', function() {
-  document.getElementById('output-count').textContent = this.value.length + ' characters';
-});
-
-function setStatus(msg, type='') {
-  const bar = document.getElementById('status-bar');
-  bar.className = 'status-bar' + (type ? ' ' + type : '');
-  bar.innerHTML = type ? `<span class="status-dot"></span>${msg}` : msg;
+function setStatus(msg,type){
+  const bar=document.getElementById('status-bar');
+  bar.className='status-bar'+(type?' '+type:'');
+  bar.innerHTML=type?`<span class="status-dot"></span>${msg}`:msg;
 }
 
-function startProgress() {
-  const bar = document.getElementById('progress-bar');
-  const fill = document.getElementById('progress-fill');
-  bar.classList.add('active');
-  fill.style.width = '0%';
-  let w = 0;
-  const iv = setInterval(() => {
-    w = Math.min(w + Math.random() * 8 + 2, 88);
-    fill.style.width = w + '%';
-  }, 300);
-  return { bar, fill, iv };
+let progressInterval=null;
+function startProgress(){
+  const bar=document.getElementById('progress-bar'),fill=document.getElementById('progress-fill');
+  bar.classList.add('active');fill.style.width='0%';
+  let w=0;
+  progressInterval=setInterval(()=>{w=Math.min(w+Math.random()*6+2,88);fill.style.width=w+'%';},280);
+}
+function endProgress(){
+  clearInterval(progressInterval);
+  const fill=document.getElementById('progress-fill');
+  fill.style.width='100%';
+  setTimeout(()=>{document.getElementById('progress-bar').classList.remove('active');fill.style.width='0%';},500);
 }
 
-function endProgress(prog) {
-  clearInterval(prog.iv);
-  prog.fill.style.width = '100%';
-  setTimeout(() => {
-    prog.bar.classList.remove('active');
-    prog.fill.style.width = '0%';
-  }, 600);
-}
+async function humanizeText(){
+  const inputText=document.getElementById('input-text').value.trim();
+  if(!inputText){setStatus('Please paste some AI-generated text in the left panel first.','error');return;}
+  if(inputText.length<30){setStatus('Please enter at least a couple of sentences for best results.','error');return;}
 
-async function humanizeText() {
-  const inputText = document.getElementById('input-text').value.trim();
-  if (!inputText) {
-    setStatus('Please paste some AI text in the left box first.', 'error');
-    return;
-  }
-  if (inputText.length < 20) {
-    setStatus('Please enter at least a sentence or two for best results.', 'error');
-    return;
-  }
+  const btn=document.getElementById('humanize-btn');
+  const outputTA=document.getElementById('output-text');
 
-  const btn = document.getElementById('humanize-btn');
-  const outputTA = document.getElementById('output-text');
+  btn.disabled=true;
+  btn.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.9s linear infinite"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Humanizing...`;
 
-  btn.disabled = true;
-  btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Humanizing...`;
-
-  const prog = startProgress();
+  startProgress();
   setStatus('Analyzing AI patterns and rewriting naturally...');
-  outputText.value = '';
-  outputTA.classList.add('loading');
+  outputTA.value='';
+  document.getElementById('output-count').textContent='0 characters';
 
-  const simpleChip = document.getElementById('chip-simple').classList.contains('active');
-  let systemPrompt = modePrompts[currentMode];
-  if (simpleChip) systemPrompt += ' Also simplify complex words where possible.';
+  const simplify=document.getElementById('chip-simple').classList.contains('active');
+  let prompt=modePrompts[currentMode];
+  if(simplify)prompt+=' Also replace unnecessarily complex words with simpler everyday equivalents where it improves readability.';
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: inputText }]
-      })
+  try{
+    const response=await fetch('/api/humanize',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:inputText,systemPrompt:prompt})
     });
+    const data=await response.json();
+    if(!response.ok)throw new Error(data.error||'Server error '+response.status);
+    const humanized=data.result||'';
+    if(!humanized)throw new Error('Empty response received');
 
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.error?.message || 'API error ' + response.status);
+    endProgress();
+    outputTA.value=humanized;
+    document.getElementById('output-count').textContent=humanized.length+' characters';
+    setStatus('Done! Your text has been humanized successfully.','success');
+  }catch(err){
+    endProgress();
+    const msg=err.message||'Something went wrong';
+    if(msg.includes('quota')||msg.includes('429')){
+      setStatus('Daily limit reached. Please try again tomorrow.','error');
+    }else{
+      setStatus(msg+' — Please try again.','error');
     }
-
-    const data = await response.json();
-    const humanized = data.content?.[0]?.text || '';
-
-    if (!humanized) throw new Error('Empty response from API');
-
-    endProgress(prog);
-    outputTA.classList.remove('loading');
-    outputTA.value = humanized;
-    document.getElementById('output-count').textContent = humanized.length + ' characters';
-    setStatus('Done! Your text has been humanized successfully.', 'success');
-
-  } catch (err) {
-    endProgress(prog);
-    outputTA.classList.remove('loading');
-    setStatus('Something went wrong. Please try again.', 'error');
-    console.error(err);
+    console.error('Humanizer error:',err);
   }
 
-  btn.disabled = false;
-  btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a5 5 0 015 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 015-5zm0 13c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/></svg> Humanize Text`;
+  btn.disabled=false;
+  btn.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a5 5 0 015 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 015-5zm0 13c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/></svg> Humanize Text`;
 }
 
-function copyOutput() {
-  const text = document.getElementById('output-text').value;
-  if (!text) return;
-  navigator.clipboard.writeText(text).then(() => {
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2200);
+function copyOutput(){
+  const text=document.getElementById('output-text').value;
+  if(!text)return;
+  navigator.clipboard.writeText(text).then(()=>{
+    const t=document.getElementById('toast');t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2200);
   });
 }
 
-function clearAll() {
-  document.getElementById('input-text').value = '';
-  document.getElementById('output-text').value = '';
-  document.getElementById('input-count').textContent = '0 characters';
-  document.getElementById('output-count').textContent = '0 characters';
-  setStatus('Ready to humanize your AI text');
+function clearAll(){
+  document.getElementById('input-text').value='';
+  document.getElementById('output-text').value='';
+  document.getElementById('input-count').textContent='0 / 8000';
+  document.getElementById('output-count').textContent='0 characters';
+  setStatus('Ready — paste your AI text and click Humanize');
 }
 
-const style = document.createElement('style');
-style.textContent = '@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}'
-document.head.appendChild(style);
-
-// PARTICLES
 const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');
 bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
 const pc=['#00f7ff','#008cff','#ff00ff'],pts=[];
@@ -516,12 +442,8 @@ for(let i=0;i<60;i++)pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*bg
 function animBg(){bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);pts.forEach((p,i)=>{bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.4;bgCtx.fill();bgCtx.globalAlpha=1;for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(q.x,q.y);bgCtx.strokeStyle=`rgba(0,247,255,${(1-d/120)*.15})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;});requestAnimationFrame(animBg);}
 animBg();
 window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
-
-// REVEAL
 const revs=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});
 revs.forEach(el=>obs.observe(el));
-
-// CENTIPEDE CURSOR
 (function(){if(window.innerWidth<=900)return;const canvas=document.getElementById('creature-canvas'),ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LR=.18;let mx=window.innerWidth/2,my=window.innerHeight/2;const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});let lp=0;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});const lerp=(a,b,t)=>a+(b-a)*t;function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}function update(){segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}lp+=.12;}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();const as2=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as2,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as2,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}function loop(){update();draw();requestAnimationFrame(loop);}loop();})();
 </script>
 </body>
