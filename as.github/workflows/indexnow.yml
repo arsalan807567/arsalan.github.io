@@ -1,0 +1,30 @@
+name: Submit URLs to IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          echo "Reading sitemap..."
+
+          URLS=$(curl -s https://www.arsalanportfolio.live/sitemap.xml \
+          | grep -oP '(?<=<loc>).*?(?=</loc>)')
+
+          for URL in $URLS
+          do
+            echo "Submitting $URL"
+
+            curl -X POST "https://www.bing.com/indexnow?url=$URL&key=6d188f22e3084e4d81d14e1d6a91e3d6&keyLocation=https://www.arsalanportfolio.live/6d188f22e3084e4d81d14e1d6a91e3d6.txt"
+
+            echo ""
+          done
