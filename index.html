@@ -967,42 +967,6 @@ section {
   .btn-ai-prompts { cursor: auto; }
 }
 
-.btn-humanizer {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0,247,255,0.15), rgba(0,140,255,0.15));
-  border: 1px solid rgba(0,247,255,0.4);
-  color: #fff;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s;
-  cursor: none;
-  position: relative;
-  overflow: hidden;
-  margin-top: 16px;
-}
-.btn-humanizer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,247,255,0.22), rgba(0,140,255,0.22));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.btn-humanizer:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 40px rgba(0,247,255,0.25);
-  border-color: var(--cyan);
-}
-.btn-humanizer:hover::before { opacity: 1; }
-.btn-humanizer span { position: relative; z-index: 1; }
-@media (max-width: 900px) { .btn-humanizer { cursor: auto; } }
-
 /* ---- FACP BANNER ---- */
 .facp-banner {
   margin: 20px 0 60px;
@@ -1553,17 +1517,11 @@ footer p {
       </div>
 
       <div class="prompts-cta-section">
-        <p>Free AI tools, prompts, tips and tricks — built for creators, students and professionals.</p>
+        <p>Free AI prompts, tips and tricks, and free AI tools.</p>
         <a href="prompts.html" class="btn-ai-prompts">
           <span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             🤖 AI Prompts
-          </span>
-        </a>
-        <a href="ai-text-humanizer.html" class="btn-humanizer">
-          <span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M12 2a5 5 0 015 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 015-5zm0 13c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/></svg>
-            ✨ Free AI Text Humanizer
           </span>
         </a>
       </div>
