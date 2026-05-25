@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2XVPX7N1X5"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2XVPX7N1X5');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Is AI Making Us Less Creative or More? My Honest Answer | Arsalan</title>
+<meta name="description" content="Everyone has a take on whether AI is killing human creativity or unleashing it. After two years of using AI tools every single day in my work, here is my actual answer.">
+<meta name="keywords" content="is AI making us less creative, AI and creativity, AI killing creativity, does AI make you more creative, AI creativity 2026, human creativity vs AI, AI art creativity debate, AI creative tools, creativity AI opinion, AI replacing creative jobs">
+<meta property="og:title" content="Is AI Making Us Less Creative or More? My Honest Answer">
+<meta property="og:description" content="Two years of daily AI use later, here is my honest take on what it actually does to your creativity. The answer is more complicated than either side wants to admit.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1200&q=80&auto=format&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.arsalanportfolio.live/blog-ai-creativity.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="manifest" href="site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00f7ff;--blue:#008cff;--purple:#c084fc;--magenta:#ff00ff;
+  --bg:#050810;--surface:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);
+  --border-accent:rgba(192,132,252,0.2);--text-primary:#f0f0f0;
+  --text-secondary:#8a9bb0;--text-muted:#4a5568;--prose:#d0dae8;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+@media(max-width:900px){body{cursor:auto;}}
+canvas#particles{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+canvas#creature-canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+@media(max-width:900px){canvas#creature-canvas{display:none;}}
+#read-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--blue));transform-origin:left;transform:scaleX(0);transition:transform 0.1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
+@media(max-width:600px){.nav-inner{padding:0 18px;}}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-back:hover{color:var(--purple);}
+.nav-back svg{transition:transform 0.2s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+.post-hero{padding:115px 0 0;position:relative;z-index:1;}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.hero-inner{padding:0 18px;}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.72rem;color:var(--text-muted);margin-bottom:30px;}
+.breadcrumb a{color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--purple);}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.post-tag-pill{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(192,132,252,0.3);background:rgba(192,132,252,0.07);color:var(--purple);}
+.post-tag-pill.cyan{border-color:rgba(0,247,255,0.25);background:rgba(0,247,255,0.06);color:var(--cyan);}
+.post-hero h1{font-family:'Lora',serif;font-weight:600;font-style:italic;font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;color:#fff;margin-bottom:20px;}
+.lede{font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--text-secondary);margin-bottom:30px;font-style:italic;}
+.post-meta-bar{display:flex;align-items:center;gap:14px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.meta-author-block{display:flex;align-items:center;gap:10px;}
+.meta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;flex-shrink:0;}
+.meta-author-info{display:flex;flex-direction:column;gap:1px;}
+.meta-author-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);}
+.meta-author-role{font-size:0.7rem;color:var(--text-muted);}
+.meta-sep{color:var(--text-muted);font-size:0.7rem;}
+.meta-date{font-size:0.78rem;color:var(--text-muted);}
+.meta-read{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+.hero-visual{max-width:760px;margin:40px auto 0;padding:0 32px;}
+@media(max-width:600px){.hero-visual{padding:0 18px;}}
+.hero-img-box{border-radius:16px;overflow:hidden;border:1px solid rgba(192,132,252,0.2);position:relative;height:420px;}
+@media(max-width:600px){.hero-img-box{height:240px;}}
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.78) saturate(1.1);}
+.hero-img-box .img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(5,8,16,0.85));}
+.hero-img-box .img-caption{position:absolute;bottom:14px;left:18px;right:18px;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.post-body{max-width:680px;margin:52px auto 0;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.post-body{padding:0 18px 60px;}}
+.post-body p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.95;color:var(--prose);margin-bottom:26px;font-weight:400;}
+.post-body p strong{color:#fff;font-weight:600;}
+.post-body h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.5vw,1.75rem);color:#fff;line-height:1.2;margin:54px 0 18px;padding-left:16px;border-left:3px solid var(--purple);}
+.post-body hr{border:none;border-top:1px solid var(--border);margin:52px 0;}
+.pull-quote{margin:44px 0;padding:0 0 0 24px;border-left:3px solid var(--purple);}
+.pull-quote p{font-family:'Lora',serif;font-style:italic;font-size:1.2rem!important;line-height:1.7!important;color:rgba(255,255,255,0.88)!important;margin-bottom:0!important;}
+.aside-box{margin:38px 0;padding:20px 24px;border-radius:10px;background:rgba(192,132,252,0.04);border:1px solid rgba(192,132,252,0.18);}
+.aside-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.aside-label::before{content:'';display:block;width:14px;height:1px;background:var(--purple);}
+.aside-box p{font-family:'DM Sans',sans-serif;font-size:0.92rem!important;color:var(--text-secondary)!important;margin-bottom:0!important;line-height:1.8!important;}
+.post-img{margin:40px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.post-img img{width:100%;display:block;object-fit:cover;filter:brightness(0.82) saturate(1.1);}
+.post-img.tall img{height:380px;}
+.post-img.medium img{height:280px;}
+@media(max-width:600px){.post-img.tall img{height:220px;}.post-img.medium img{height:180px;}}
+.post-img-caption{padding:10px 16px;font-size:0.72rem;color:var(--text-muted);font-style:italic;text-align:center;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0;}
+@media(max-width:500px){.img-grid{grid-template-columns:1fr;}}
+.img-grid-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);height:200px;position:relative;}
+.img-grid-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82) saturate(1.1);}
+.img-grid-item .grid-label{position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:0.04em;}
+.highlight-text{margin:40px 0;padding:28px 32px;border-radius:14px;background:linear-gradient(135deg,rgba(192,132,252,0.06),rgba(0,140,255,0.04));border:1px solid rgba(192,132,252,0.18);position:relative;overflow:hidden;}
+.highlight-text::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan));}
+.highlight-text p{font-family:'Lora',serif;font-size:1.15rem!important;font-style:italic;color:rgba(255,255,255,0.88)!important;margin:0!important;line-height:1.75!important;}
+.post-end-bar{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+.end-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.end-tag{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-muted);transition:all 0.2s;cursor:default;}
+.end-tag:hover{border-color:rgba(192,132,252,0.3);color:var(--purple);}
+.share-row{display:flex;align-items:center;gap:10px;}
+.share-label{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
+.share-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:all 0.2s;cursor:pointer;}
+.share-btn:hover{border-color:var(--purple);color:var(--purple);background:rgba(192,132,252,0.06);}
+.back-strip{max-width:680px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+@media(max-width:600px){.back-strip{padding:0 18px 60px;}}
+.back-strip-inner{padding:28px 32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.back-strip-text p{font-size:0.76rem;color:var(--text-muted);margin-bottom:4px;}
+.back-strip-text span{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--text-primary);}
+.btn-back-blog{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;border:1px solid var(--border-accent);color:var(--purple);font-family:'DM Sans',sans-serif;font-weight:400;font-size:0.875rem;text-decoration:none;transition:all 0.2s;}
+.btn-back-blog:hover{background:rgba(192,132,252,0.06);transform:translateY(-2px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{font-size:0.78rem;color:var(--text-muted);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.author-sign{margin-top:40px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.author-sign-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0;}
+.author-sign-info p{font-size:0.78rem;color:var(--text-muted);}
+.author-sign-info strong{font-size:0.9rem;color:var(--text-primary);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+<canvas id="particles"></canvas>
+<canvas id="creature-canvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Arsalan</a>
+    <a href="blog.html" class="nav-back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Posts
+    </a>
+  </div>
+</nav>
+
+<section class="post-hero">
+  <div class="hero-inner reveal">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="blog.html">Blog</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Opinion</span>
+    </div>
+    <div class="post-tags">
+      <span class="post-tag-pill">Opinion</span>
+      <span class="post-tag-pill cyan">Creativity</span>
+    </div>
+    <h1>Is AI Making Us Less Creative or More? Here Is My Actual Answer.</h1>
+    <p class="lede">Two years of using AI tools every single day will change how you think about this question. Not in the way the optimists say and not in the way the pessimists say either. The truth is somewhere messier than both camps want to admit.</p>
+    <div class="post-meta-bar">
+      <div class="meta-author-block">
+        <div class="meta-avatar">A</div>
+        <div class="meta-author-info">
+          <span class="meta-author-name">Arsalan</span>
+          <span class="meta-author-role">AI Expert · Dubai</span>
+        </div>
+      </div>
+      <span class="meta-sep">·</span>
+      <span class="meta-date">May 25, 2026</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        12 min read
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="hero-img-box">
+      <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1400&q=85&auto=format&fit=crop" alt="AI creativity human art making less or more creative 2026" loading="eager" onerror="this.style.display='none'">
+      <div class="img-overlay"></div>
+      <span class="img-caption">The debate about AI and creativity has been running for years. Most of it misses the point entirely. Photo: Unsplash</span>
+    </div>
+  </div>
+</section>
+
+<article class="post-body">
+
+  <p>About six months into using AI tools seriously, I noticed something that bothered me. I was producing more than I ever had. More images, more written pieces, more video content, more ideas turned into actual things. But I had this nagging feeling that something was slightly off. Like I was eating more but tasting less.</p>
+
+  <p>I tried to push that feeling away for a while because it felt ungrateful. The tools were incredible. The output was real. Clients were happy. But the feeling kept coming back, usually late at night when I was going through the day's work and trying to figure out what any of it actually meant to me.</p>
+
+  <p>That is when I started paying attention to the question properly instead of just having a vague anxiety about it. Is AI making me more creative or less? And the more I looked at it honestly, the more I realised the question itself is not quite right. It assumes creativity is one thing. It isnt.</p>
+
+  <div class="post-img tall">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop" alt="creative work AI tools artist laptop making art" loading="lazy" onerror="this.style.display='none'">
+    <div class="post-img-caption">Volume went up immediately when I started using AI. Whether that is the same thing as being more creative took a lot longer to figure out.</div>
+  </div>
+
+  <h2>What people mean when they say creativity</h2>
+
+  <p>When someone says AI is killing creativity, they usually mean one of two things. Either they mean the output is not genuinely original because the AI is recombining existing work, or they mean the human doing it has stopped developing the skills and taste that make creativity meaningful. Both are legitimate concerns. They are also different concerns that need different answers.</p>
+
+  <p>When someone says AI is expanding creativity, they usually mean that the barrier between having an idea and being able to express it has collapsed. People who could never draw can now make images. People who could not write a full article can now publish one. The gap between imagination and execution used to filter out a lot of people who had interesting things to say but lacked the technical skills to say them. AI has largely removed that filter.</p>
+
+  <p>Both of these things are true at the same time. That is the part the debate keeps tripping over. The question is not whether AI helps or hurts creativity. It does both, depending entirely on how you use it and what you were doing before.</p>
+
+  <h2>What it actually did to my own creative work</h2>
+
+  <p>I work across AI video production, generative art, product photography, and building tools for clients here in Dubai. Before I was using AI heavily, I was doing some of this manually and the rest I simply wasnt doing at all because the technical ceiling was too high or the time cost was too much.</p>
+
+  <p>What AI did first was remove the technical ceiling. I could suddenly produce things I had imagined but could not execute. That felt genuinely liberating and for the first few months my output was higher and I felt more creative than I ever had. The ideas were coming faster because the execution was no longer a bottleneck.</p>
+
+  <p>Then something subtle happened. Because execution was no longer the hard part, the hard part shifted entirely to the idea. And I noticed that my ideas were not actually that good. The AI was papering over this. I could take a mediocre concept, run it through the tools, and get something that looked competent. Nothing was forcing me to sharpen the idea itself because the output looked fine regardless.</p>
+
+  <aside class="aside-box">
+    <div class="aside-label">The real shift</div>
+    <p>Before AI, a bad idea died in execution. The difficulty of making something forced you to keep interrogating whether it was worth making. AI removed that filter. You can now fully produce a mediocre idea in twenty minutes. The question is whether you notice it is mediocre when you are done.</p>
+  </aside>
+
+  <h2>The volume trap</h2>
+
+  <p>This is the one I see most in people who are new to AI tools and very excited about them, and it is the one I fell into myself. When you can produce a lot, you produce a lot. The output feels creative because it is varied and fast and it looks good. But volume and creativity are not the same thing and it is easy to confuse them when everything is coming out at high speed.</p>
+
+  <p>I went through a period where I was generating fifty images a day for client work and personal projects. Most of them were competent. Some of them were good. Very few of them had the kind of specific intention behind them that separates something interesting from something that is just well made. I was selecting from outputs rather than creating. Those feel similar from the outside but they are quite different from the inside.</p>
+
+  <p>The photographers I know who use AI understand this distinction clearly. The ones who are still making great work are using AI to execute ideas they have thought through carefully. The ones whose work has gotten blander are using AI to generate options and then picking the best one. The first approach uses AI as a tool. The second uses AI as a substitute for the thinking that makes a creative decision actually creative.</p>
+
+  <div class="img-grid">
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=75&auto=format&fit=crop" alt="AI generated art creative process human vs machine" loading="lazy" onerror="this.style.display='none'">
+      <div class="grid-label">Generating fifty options is not the same as having one clear vision</div>
+    </div>
+    <div class="img-grid-item">
+      <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=75&auto=format&fit=crop" alt="writer creative thinking laptop AI tools 2026" loading="lazy" onerror="this.style.display='none'">
+      <div class="grid-label">The thinking that happens before you open any tool is still entirely yours</div>
+    </div>
+  </div>
+
+  <h2>Where AI genuinely does expand creativity</h2>
+
+  <p>I do not want this to read as purely negative because that would be dishonest. There are real ways AI has made me and the people around me more creative, not just more productive.</p>
+
+  <p>The most significant one is exploration. Before AI, testing a visual direction cost hours. Now it costs minutes. That means I actually test more directions before committing to one. I explore more widely before I narrow down. That exploration feeds the final decision in a way that simply was not possible before when the cost of exploration was too high to justify doing it thoroughly.</p>
+
+  <p>The second one is removing the fear of the blank page. A lot of creative paralysis comes from staring at nothing and not knowing where to start. AI gives you a starting point instantly. It is not a good starting point necessarily, but it is something to react to. And reacting is almost always easier than initiating from zero. A lot of my best work in the last year started with an AI output I disliked and then pushed against.</p>
+
+  <p>The third one is cross-domain thinking. Because I can now produce things in categories I was not trained in, I am applying ideas from one field to another in ways I could not before. A concept from graphic design that I would never have been able to execute as a video can now be translated. That translation produces genuinely new things that would not have existed otherwise.</p>
+
+  <div class="pull-quote">
+    <p>Some of my best work in the last year started as an AI output I found boring or wrong. The reaction to it, the desire to push back against what the machine gave me, turned out to be more creatively generative than starting from nothing.</p>
+  </div>
+
+  <h2>What it is doing to people who are just starting out</h2>
+
+  <p>This is where my concern is most serious. For someone who already has developed taste and judgment, AI is a powerful tool that amplifies what they can do. For someone who is still developing those things, AI might be quietly preventing the development from happening.</p>
+
+  <p>Taste gets built through struggle. You draw badly for years and in the process of drawing badly you develop an eye for what makes something work. You write clunky sentences and in the process of recognising they are clunky you develop a sense for rhythm and precision. That development requires resistance. It requires the friction of not being able to make the thing you can see in your head.</p>
+
+  <p>AI removes that friction. If a student learning design can generate a polished layout in thirty seconds, they never have to sit with the discomfort of not knowing how to make it work. That discomfort is where a lot of learning lives. I am genuinely uncertain what it means for the generation of creatives who are coming up now having never had to sit with it.</p>
+
+  <p>This is not an argument against teaching young people to use AI tools. They absolutely should learn them. It is an argument for making sure the fundamentals come first, not because the fundamentals are sacred, but because understanding why something works gives you the judgment to direct AI tools toward something interesting rather than just something passable.</p>
+
+  <h2>My actual answer after two years</h2>
+
+  <p>AI made me more productive immediately. It made me more exploratory within about three months. It made me genuinely more creative in the ways that matter, specifically the quality of ideas and the specificity of intention, only after I noticed what it was doing to my thinking and made a deliberate effort to counteract it.</p>
+
+  <p>The counteraction was simple. I started spending more time on the idea before touching any tool. Writing down exactly what I was trying to achieve and why, not in a laborious way, just five minutes of actual thinking before I opened anything. That small shift changed the quality of what I was making significantly because it meant the AI was executing my specific vision rather than generating options I was browsing through.</p>
+
+  <p>Without that shift I think AI would have made me less creative over time. Not because the tools are bad but because they make it too easy to skip the part of the creative process where you develop and clarify what you actually want to say. That part does not feel like work. It feels like sitting there doing nothing. AI gives you an excuse to skip it by giving you something to do immediately instead.</p>
+
+  <div class="highlight-text">
+    <p>AI will make you more creative if you use it to execute ideas you have thought through. It will make you less creative if you use it to avoid thinking. The tool does not decide which one happens. You do, every single time you open it.</p>
+  </div>
+
+  <h2>The question worth asking instead</h2>
+
+  <p>Instead of asking whether AI makes you more or less creative, the more useful question is: what did you do before you opened the tool? If the answer is you had a clear idea, a specific intention, something you were trying to express, then AI is probably serving you well. If the answer is you opened the tool first and then figured out what you were making, that is worth paying attention to.</p>
+
+  <p>The tool is neutral. The habit is not.</p>
+
+  <p>I still use AI every single day. I still think it is the most significant shift in how creative work gets done in my lifetime. I just think the honest conversation about it requires admitting that it cuts both ways and that which way it cuts for any individual person depends entirely on what they bring to it.</p>
+
+  <hr>
+
+  <p>This is part of an ongoing series of opinion pieces on AI and what it actually looks like to work with it every day. The next one will be just as honest.</p>
+
+  <div class="author-sign">
+    <div class="author-sign-avatar">A</div>
+    <div class="author-sign-info">
+      <strong>Arsalan</strong>
+      <p>AI Expert &amp; Creative Technologist · Dubai, May 2026</p>
+    </div>
+  </div>
+
+  <div class="post-end-bar">
+    <div class="end-tags">
+      <span class="end-tag">Opinion</span>
+      <span class="end-tag">Creativity</span>
+      <span class="end-tag">AI Tools</span>
+      <span class="end-tag">Dubai</span>
+      <span class="end-tag">Real Talk</span>
+    </div>
+    <div class="share-row">
+      <span class="share-label">Share</span>
+      <button class="share-btn" title="Copy link" onclick="copyLink(event)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+      <button class="share-btn" title="Share on X" onclick="shareTwitter()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </button>
+    </div>
+  </div>
+
+</article>
+
+<div class="back-strip reveal">
+  <div class="back-strip-inner">
+    <div class="back-strip-text">
+      <p>More honest takes on AI and creative work</p>
+      <span>The AI Journal by Arsalan</span>
+    </div>
+    <a href="blog.html" class="btn-back-blog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Arsalan &middot; AI Expert &amp; Creative Technologist</p>
+</footer>
+
+<script>
+const progress=document.getElementById('read-progress');
+window.addEventListener('scroll',()=>{const doc=document.documentElement,s=doc.scrollTop||document.body.scrollTop,t=(doc.scrollHeight||document.body.scrollHeight)-doc.clientHeight;progress.style.transform=`scaleX(${Math.min(s/t,1)})`;});
+function copyLink(e){navigator.clipboard.writeText(window.location.href).then(()=>{const b=e.currentTarget;b.style.borderColor='var(--purple)';b.style.color='var(--purple)';setTimeout(()=>{b.style.borderColor='';b.style.color='';},2000);});}
+function shareTwitter(){const t=encodeURIComponent("Is AI Making Us Less Creative or More? My Honest Answer — by Arsalan"),u=encodeURIComponent(window.location.href);window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`,'_blank');}
+const bgCanvas=document.getElementById('particles'),bgCtx=bgCanvas.getContext('2d');
+bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;
+const pc=['#c084fc','#008cff','#00f7ff'],pts=[];
+for(let i=0;i<55;i++)pts.push({x:Math.random()*bgCanvas.width,y:Math.random()*bgCanvas.height,r:Math.random()*1.8+0.5,dx:(Math.random()-.5)*.45,dy:(Math.random()-.5)*.45,color:pc[Math.floor(Math.random()*3)]});
+function animBg(){bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);pts.forEach((p,i)=>{bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle=p.color;bgCtx.globalAlpha=0.3;bgCtx.fill();bgCtx.globalAlpha=1;for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<110){bgCtx.beginPath();bgCtx.moveTo(p.x,p.y);bgCtx.lineTo(q.x,q.y);bgCtx.strokeStyle=`rgba(192,132,252,${(1-d/110)*.12})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>bgCanvas.width)p.dx*=-1;if(p.y<0||p.y>bgCanvas.height)p.dy*=-1;});requestAnimationFrame(animBg);}
+animBg();
+window.addEventListener('resize',()=>{bgCanvas.width=window.innerWidth;bgCanvas.height=window.innerHeight;});
+const revs=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});revs.forEach(el=>obs.observe(el));
+(function(){if(window.innerWidth<=900)return;const canvas=document.getElementById('creature-canvas'),ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',()=>{if(window.innerWidth<=900){canvas.style.display='none';return;}canvas.style.display='block';resize();});const NS=18,SL=14,HR=7,BRM=6,BRm=2,LP=8,LL=22,LS=.55,AL=18,GC='#00f7ff',SC='rgba(0,247,255,0.85)',LR=.18;let mx=window.innerWidth/2,my=window.innerHeight/2;const segs=[];for(let i=0;i<NS;i++)segs.push({x:mx-i*SL,y:my});let lp=0;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});const lerp=(a,b,t)=>a+(b-a)*t;function setGlow(b){ctx.shadowBlur=b;ctx.shadowColor=GC;ctx.strokeStyle=SC;ctx.fillStyle=SC;}function update(){segs[0].x=lerp(segs[0].x,mx,LR);segs[0].y=lerp(segs[0].y,my,LR);for(let i=1;i<NS;i++){const p=segs[i-1],c=segs[i],dx=c.x-p.x,dy=c.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||.001;c.x=p.x+(dx/d)*SL;c.y=p.y+(dy/d)*SL;}lp+=.12;}function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(segs[0].x,segs[0].y);for(let i=1;i<NS;i++)ctx.lineTo(segs[i].x,segs[i].y);setGlow(12);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<NS;i++){const t=i/(NS-1),r=lerp(BRM,BRm,t);let a=i<NS-1?Math.atan2(segs[i+1].y-segs[i].y,segs[i+1].x-segs[i].x):Math.atan2(segs[i].y-segs[i-1].y,segs[i].x-segs[i-1].x);ctx.save();ctx.translate(segs[i].x,segs[i].y);ctx.rotate(a);setGlow(8);ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,r*1.4,r,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.06)';ctx.fill();ctx.restore();}for(let pair=0;pair<LP;pair++){const si=pair+1;if(si>=NS)break;const seg=segs[si],prev=segs[si-1],ba=Math.atan2(seg.y-prev.y,seg.x-prev.x),pa=ba+Math.PI/2,ph=lp+pair*(Math.PI/LP),sw=Math.sin(ph)*LS,la=pa+sw,ltx=seg.x+Math.cos(la)*LL,lty=seg.y+Math.sin(la)*LL,lkx=seg.x+Math.cos(la)*(LL*.55),lky=seg.y+Math.sin(la)*(LL*.55),ra=pa+Math.PI+sw,rtx=seg.x+Math.cos(ra)*LL,rty=seg.y+Math.sin(ra)*LL,rkx=seg.x+Math.cos(ra)*(LL*.55),rky=seg.y+Math.sin(ra)*(LL*.55);setGlow(6);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(lkx,lky);ctx.lineTo(ltx,lty);ctx.stroke();ctx.beginPath();ctx.moveTo(seg.x,seg.y);ctx.lineTo(rkx,rky);ctx.lineTo(rtx,rty);ctx.stroke();const cl=5,cs=.35,lla=Math.atan2(lty-lky,ltx-lkx);ctx.beginPath();ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla+cs)*cl,lty+Math.sin(lla+cs)*cl);ctx.moveTo(ltx,lty);ctx.lineTo(ltx+Math.cos(lla-cs)*cl,lty+Math.sin(lla-cs)*cl);ctx.stroke();const rla=Math.atan2(rty-rky,rtx-rkx);ctx.beginPath();ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla+cs)*cl,rty+Math.sin(rla+cs)*cl);ctx.moveTo(rtx,rty);ctx.lineTo(rtx+Math.cos(rla-cs)*cl,rty+Math.sin(rla-cs)*cl);ctx.stroke();}const h=segs[0],n=segs[1],ha=Math.atan2(h.y-n.y,h.x-n.x);setGlow(18);ctx.lineWidth=1.8;ctx.beginPath();ctx.arc(h.x,h.y,HR,0,Math.PI*2);ctx.stroke();ctx.fillStyle='rgba(0,247,255,0.12)';ctx.fill();const eo=HR*.55,ep=ha+Math.PI/2;setGlow(10);ctx.fillStyle=SC;ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)+Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)+Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(h.x+Math.cos(ha)*(HR*.4)-Math.cos(ep)*eo,h.y+Math.sin(ha)*(HR*.4)-Math.sin(ep)*eo,2,0,Math.PI*2);ctx.fill();const as2=Math.sin(lp*.7)*.3,ab=HR*.9;setGlow(10);ctx.lineWidth=1;const laa=ha-.45+as2,lamx=h.x+Math.cos(laa)*(AL*.5),lamy=h.y+Math.sin(laa)*(AL*.5),latx=h.x+Math.cos(laa-.3)*AL,laty=h.y+Math.sin(laa-.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(lamx,lamy,latx,laty);ctx.stroke();const raa=ha+.45+as2,ramx=h.x+Math.cos(raa)*(AL*.5),ramy=h.y+Math.sin(raa)*(AL*.5),ratx=h.x+Math.cos(raa+.3)*AL,raty=h.y+Math.sin(raa+.3)*AL;ctx.beginPath();ctx.moveTo(h.x+Math.cos(ha)*ab,h.y+Math.sin(ha)*ab);ctx.quadraticCurveTo(ramx,ramy,ratx,raty);ctx.stroke();ctx.fillStyle=SC;setGlow(14);ctx.beginPath();ctx.arc(latx,laty,2.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(ratx,raty,2.5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=20;ctx.shadowColor='#00f7ff';ctx.fillStyle='rgba(0,247,255,0.9)';ctx.beginPath();ctx.arc(mx,my,4,0,Math.PI*2);ctx.fill();}function loop(){update();draw();requestAnimationFrame(loop);}loop();})();
+</script>
+</body>
+</html>
