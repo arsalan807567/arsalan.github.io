@@ -966,6 +966,53 @@ section {
 @media (max-width: 900px) {
   .btn-ai-prompts { cursor: auto; }
 }
+  .prompts-cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-claude-skills {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(204,120,92,0.18), rgba(255,0,255,0.1));
+  border: 1px solid rgba(204,120,92,0.45);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-claude-skills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(204,120,92,0.25), rgba(255,0,255,0.15));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-claude-skills:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(204,120,92,0.3);
+  border-color: #cc785c;
+}
+
+.btn-claude-skills:hover::before { opacity: 1; }
+.btn-claude-skills span { position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .btn-claude-skills { cursor: auto; }
+}
 
 /* ---- FACP BANNER ---- */
 .facp-banner {
@@ -1516,16 +1563,15 @@ footer p {
         </a>
       </div>
 
-      <div class="prompts-cta-section">
-        <p>Free AI prompts, tips and tricks, and free AI tools.</p>
-        <a href="prompts.html" class="btn-ai-prompts">
-          <span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            🤖 AI Prompts
-          </span>
-        </a>
-      </div>
-    </div>
+     <div class="prompts-cta-section">
+  <p>Free AI prompts, tips and tricks, and free AI tools.</p>
+  <a href="prompts.html" class="btn-ai-prompts">
+    <span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      🤖 AI Prompts
+    </span>
+  </a>
+</div>
 
     <div class="facp-banner reveal" style="margin-top: 60px;">
       <div class="facp-text">
