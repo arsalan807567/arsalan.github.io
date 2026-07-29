@@ -3,24 +3,55 @@
   const WORKER_URL = "https://portfolio-chatbot.arslankhan807567.workers.dev/chat";
   // =========================
 
+  const BOT_SVG = `<svg class="cb-bot-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="cb-glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="5.5" result="blur" />
+        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <radialGradient id="cb-helmet-grad" cx="30%" cy="25%" r="75%">
+        <stop offset="0%" stop-color="#ffffff" /><stop offset="65%" stop-color="#f1f5f9" /><stop offset="100%" stop-color="#cbd5e1" />
+      </radialGradient>
+      <linearGradient id="cb-chrome-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f8fafc" /><stop offset="50%" stop-color="#94a3b8" /><stop offset="100%" stop-color="#475569" />
+      </linearGradient>
+      <radialGradient id="cb-screen-grad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#1e293b" /><stop offset="85%" stop-color="#0f172a" /><stop offset="100%" stop-color="#020617" />
+      </radialGradient>
+      <pattern id="cb-led-pattern" width="8" height="4" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="2" x2="8" y2="2" stroke="#00f2fe" stroke-width="2.5" />
+      </pattern>
+    </defs>
+    <rect x="154" y="32" width="12" height="34" fill="url(#cb-chrome-grad)" rx="2" />
+    <polygon points="142,32 178,32 170,16 150,16" fill="url(#cb-chrome-grad)" />
+    <rect x="152" y="20" width="16" height="6" fill="#00f2fe" filter="url(#cb-glow-filter)" />
+    <rect x="15" y="110" width="30" height="100" rx="4" fill="url(#cb-chrome-grad)" stroke="#94a3b8" stroke-width="1.5" />
+    <rect x="25" y="130" width="8" height="60" rx="2" fill="#00f2fe" filter="url(#cb-glow-filter)" />
+    <rect x="275" y="110" width="30" height="100" rx="4" fill="url(#cb-chrome-grad)" stroke="#94a3b8" stroke-width="1.5" />
+    <rect x="287" y="130" width="8" height="60" rx="2" fill="#00f2fe" filter="url(#cb-glow-filter)" />
+    <path d="M 90,65 L 230,65 L 275,110 L 275,210 L 230,255 L 90,255 L 45,210 L 45,110 Z" fill="url(#cb-helmet-grad)" stroke="#94a3b8" stroke-width="2" />
+    <path d="M 102,80 L 218,80 L 260,122 L 260,198 L 218,240 L 102,240 L 60,198 L 60,122 Z" fill="#020617" stroke="rgba(0,242,254,0.3)" stroke-width="1.5" />
+    <path d="M 102,80 L 218,80 L 260,122 L 260,198 L 218,240 L 102,240 L 60,198 L 60,122 Z" fill="none" stroke="#00f2fe" stroke-width="2" opacity="0.8" filter="url(#cb-glow-filter)" />
+    <path d="M 104,83 L 216,83 L 257,124 L 257,196 L 216,237 L 104,237 L 63,196 L 63,124 Z" fill="url(#cb-screen-grad)" />
+    <path d="M 88,122 L 138,114" stroke="#00f2fe" stroke-width="4.5" stroke-linecap="square" filter="url(#cb-glow-filter)" />
+    <rect x="90" y="135" width="46" height="25" rx="3" fill="#00f2fe" opacity="0.45" filter="url(#cb-glow-filter)" />
+    <rect x="90" y="135" width="46" height="25" rx="3" fill="url(#cb-led-pattern)" />
+    <path d="M 182,114 L 232,122" stroke="#00f2fe" stroke-width="4.5" stroke-linecap="square" filter="url(#cb-glow-filter)" />
+    <rect x="184" y="135" width="46" height="25" rx="3" fill="#00f2fe" opacity="0.45" filter="url(#cb-glow-filter)" />
+    <rect x="184" y="135" width="46" height="25" rx="3" fill="url(#cb-led-pattern)" />
+    <path d="M 130,190 L 160,202 L 190,190" fill="none" stroke="#00f2fe" stroke-width="5" stroke-linejoin="round" stroke-linecap="square" filter="url(#cb-glow-filter)" />
+  </svg>`;
+
+  const BOT_SVG_SMALL = `<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 90,65 L 230,65 L 275,110 L 275,210 L 230,255 L 90,255 L 45,210 L 45,110 Z" fill="#e3e8f0" />
+    <rect x="15" y="120" width="26" height="80" rx="4" fill="#48607f" />
+    <rect x="279" y="120" width="26" height="80" rx="4" fill="#48607f" />
+    <path d="M 104,83 L 216,83 L 257,124 L 257,196 L 216,237 L 104,237 L 63,196 L 63,124 Z" fill="#0f172a" />
+    <rect x="90" y="135" width="46" height="25" rx="6" fill="#22e8ff" />
+    <rect x="184" y="135" width="46" height="25" rx="6" fill="#22e8ff" />
+  </svg>`;
+
   const ICONS = {
-    bot: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cb-bot-face">
-      <rect x="4" y="7" width="16" height="13" rx="5" fill="currentColor" opacity="0.001"/>
-      <path d="M12 2v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-      <circle cx="12" cy="2" r="1.3" fill="#fff"/>
-      <rect x="3.5" y="6.5" width="17" height="14" rx="6" stroke="#fff" stroke-width="1.6"/>
-      <rect x="7.5" y="11.5" width="3" height="4" rx="1.5" class="cb-bot-eye"/>
-      <rect x="13.5" y="11.5" width="3" height="4" rx="1.5" class="cb-bot-eye"/>
-      <path d="M9 17.5c1 .8 5 .8 6 0" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
-    </svg>`,
-    botSmall: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3.5" y="6.5" width="17" height="14" rx="6" stroke="#fff" stroke-width="1.8"/>
-      <circle cx="9" cy="13.5" r="1.6" fill="#fff"/>
-      <circle cx="15" cy="13.5" r="1.6" fill="#fff"/>
-      <path d="M9.5 17.3c1 .7 4 .7 5 0" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M12 2.2v3.3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-      <circle cx="12" cy="2.2" r="1.1" fill="#fff"/>
-    </svg>`,
     close: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </svg>`,
@@ -46,14 +77,46 @@
     return node;
   }
 
-  const launcher = el("button", {
-    id: "cb-launcher",
-    "aria-label": "Open chat",
-    html: ICONS.bot,
-  });
-  document.body.appendChild(launcher);
+  const particles = el("div", { class: "cb-particles" }, [
+    el("div", { class: "cb-particle p1" }),
+    el("div", { class: "cb-particle p2" }),
+    el("div", { class: "cb-particle p3" }),
+    el("div", { class: "cb-particle p4" }),
+  ]);
+  const gloss = el("div", { class: "cb-gloss" });
+  const headSvgWrap = el("div", { html: BOT_SVG });
+  const head = el("div", { class: "cb-head" }, [gloss, headSvgWrap.firstElementChild]);
+  const headWrapper = el("div", { class: "cb-head-wrapper" }, [head]);
+  const scene = el("div", { class: "cb-scene" }, [particles, headWrapper]);
 
-  const headerAvatar = el("div", { id: "cb-header-avatar", html: ICONS.botSmall });
+  const tooltipDots = el("div", { class: "cb-typing-dots" }, [el("span"), el("span"), el("span")]);
+  const tooltipText = el("span", { class: "cb-tooltip-text", html: "Need my help?" });
+  const tooltip = el("div", { id: "cb-tooltip" }, [tooltipDots, tooltipText]);
+
+  const launcher = el("button", { id: "cb-launcher", "aria-label": "Open chat" }, [scene]);
+  const launcherWrap = el("div", { id: "cb-launcher-wrap" }, [tooltip, launcher]);
+  document.body.appendChild(launcherWrap);
+
+  function tooltipCycle() {
+    if (win.classList.contains("cb-open")) {
+      tooltip.style.opacity = "0";
+      return;
+    }
+    tooltip.style.opacity = "1";
+    tooltipDots.style.display = "flex";
+    tooltipText.style.display = "none";
+    setTimeout(() => {
+      tooltipDots.style.display = "none";
+      tooltipText.style.display = "inline";
+    }, 700);
+    setTimeout(() => {
+      tooltip.style.opacity = "0";
+    }, 1700);
+  }
+  tooltipCycle();
+  setInterval(tooltipCycle, 2000);
+
+  const headerAvatar = el("div", { id: "cb-header-avatar", html: BOT_SVG_SMALL });
   const headerText = el("div", { id: "cb-header-text" }, [
     el("div", { id: "cb-header-title", html: "Arsalan AI" }),
     el("div", { id: "cb-header-status" }, [
@@ -88,7 +151,7 @@
   function addRow(bubbleNode, sender) {
     const row = el("div", { class: `cb-row cb-${sender}` });
     if (sender === "bot") {
-      row.appendChild(el("div", { class: "cb-avatar-sm", html: ICONS.botSmall }));
+      row.appendChild(el("div", { class: "cb-avatar-sm", html: BOT_SVG_SMALL }));
     }
     row.appendChild(bubbleNode);
     messagesEl.appendChild(row);
@@ -112,8 +175,7 @@
     bubble.appendChild(
       el("div", { class: "cb-typing-dots" }, [el("span"), el("span"), el("span")])
     );
-    const row = addRow(bubble, "bot");
-    return row;
+    return addRow(bubble, "bot");
   }
 
   function addWhatsappButton(link) {

@@ -12,56 +12,135 @@
   --cb-whatsapp-dark: #1ebe5a;
   --cb-radius: 18px;
   --cb-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --cb-neon: #22e8ff;
+  --cb-glass-bg: rgba(10, 25, 50, 0.55);
+  --cb-glass-border: rgba(34, 232, 255, 0.45);
+}
+
+#cb-launcher-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
 }
 
 #cb-launcher {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
+  position: relative;
+  width: 92px;
+  height: 92px;
+  background: transparent;
   border: none;
-  cursor: pointer;
-  z-index: 9999;
-  background: var(--cb-panel);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--cb-shadow);
-  animation: cb-float 3.2s ease-in-out infinite;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   padding: 0;
+  cursor: pointer;
+  overflow: visible;
 }
-#cb-launcher::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  background: var(--cb-gradient);
-  opacity: 0.55;
-  filter: blur(10px);
-  z-index: -1;
-  animation: cb-pulse 2.4s ease-in-out infinite;
-}
-#cb-launcher:hover { transform: scale(1.08) rotate(-4deg); }
-#cb-launcher svg { width: 30px; height: 30px; display: block; }
-#cb-launcher.cb-hidden { transform: scale(0); opacity: 0; pointer-events: none; }
 
-@keyframes cb-float {
+.cb-scene { position: relative; width: 100%; height: 100%; }
+
+.cb-particles { position: absolute; inset: 0; pointer-events: none; }
+.cb-particle {
+  position: absolute;
+  background: var(--cb-neon);
+  box-shadow: 0 0 8px var(--cb-neon);
+  opacity: 0.5;
+  transform: rotate(45deg);
+  animation: cb-particle-float linear infinite;
+}
+.cb-particle.p1 { width: 5px; height: 5px; left: 8%; top: 42%; animation-duration: 9s; animation-delay: -1s; }
+.cb-particle.p2 { width: 4px; height: 4px; left: 88%; top: 55%; animation-duration: 7s; animation-delay: -3s; }
+.cb-particle.p3 { width: 6px; height: 6px; left: 18%; top: 8%; animation-duration: 11s; animation-delay: -2s; opacity: 0.35; }
+.cb-particle.p4 { width: 4px; height: 4px; left: 80%; top: 12%; animation-duration: 8s; animation-delay: -5s; }
+
+@keyframes cb-particle-float {
+  0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-30px) rotate(225deg) scale(0.5); opacity: 0; }
+}
+
+.cb-head-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: cb-float-motion 5s ease-in-out infinite;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#cb-launcher:hover .cb-head-wrapper { transform: scale(1.06); }
+
+.cb-head {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: cb-breathe 4s ease-in-out infinite;
+}
+
+@keyframes cb-float-motion {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
 }
-@keyframes cb-pulse {
-  0%, 100% { opacity: 0.45; transform: scale(1); }
-  50% { opacity: 0.75; transform: scale(1.12); }
+@keyframes cb-breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.02, 0.98); }
 }
 
-.cb-bot-eye { fill: #fff; }
-.cb-bot-face { animation: cb-blink 4.5s ease-in-out infinite; transform-origin: center; }
-@keyframes cb-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  95% { transform: scaleY(0.15); }
+.cb-bot-svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5)); }
+
+.cb-gloss {
+  position: absolute;
+  top: 22%;
+  left: 15%;
+  width: 70%;
+  height: 56%;
+  background: linear-gradient(135deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 70%);
+  background-size: 300% 300%;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: cb-gloss-sweep 6s ease-in-out infinite;
+}
+@keyframes cb-gloss-sweep {
+  0% { background-position: 200% 200%; }
+  50% { background-position: 0% 0%; }
+  100% { background-position: -200% -200%; }
+}
+
+#cb-tooltip {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 20px;
+  background: var(--cb-glass-bg);
+  border: 1.5px solid var(--cb-glass-border);
+  border-radius: 4px;
+  padding: 9px 14px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#cb-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -8px;
+  border-width: 7px 0 0 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--cb-glass-border);
+}
+#cb-tooltip .cb-typing-dots span { background: var(--cb-neon); box-shadow: 0 0 6px var(--cb-neon); }
+.cb-tooltip-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 8px rgba(34, 232, 255, 0.7);
+  display: none;
 }
 
 #cb-window {
@@ -110,7 +189,7 @@
   justify-content: center;
   flex-shrink: 0;
 }
-#cb-header-avatar svg { width: 20px; height: 20px; }
+#cb-header-avatar svg { width: 22px; height: 22px; }
 #cb-header-text { flex: 1; min-width: 0; }
 #cb-header-title { font-weight: 700; font-size: 14.5px; line-height: 1.2; }
 #cb-header-status {
@@ -180,13 +259,13 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--cb-gradient);
+  background: var(--cb-panel-2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.cb-avatar-sm svg { width: 15px; height: 15px; }
+.cb-avatar-sm svg { width: 18px; height: 18px; }
 
 .cb-msg {
   max-width: 76%;
@@ -291,7 +370,7 @@
 #cb-send svg { width: 16px; height: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
-  #cb-launcher, #cb-launcher::before, .cb-bot-face, .cb-row, .cb-typing-dots span, .cb-whatsapp-btn {
+  .cb-head-wrapper, .cb-head, .cb-gloss, .cb-particle, .cb-row, .cb-typing-dots span, .cb-whatsapp-btn {
     animation: none !important;
   }
   #cb-window { transition: opacity 0.15s ease; }
