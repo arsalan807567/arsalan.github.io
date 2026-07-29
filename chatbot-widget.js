@@ -97,25 +97,6 @@
   const launcherWrap = el("div", { id: "cb-launcher-wrap" }, [tooltip, launcher]);
   document.body.appendChild(launcherWrap);
 
-  function tooltipCycle() {
-    if (win.classList.contains("cb-open")) {
-      tooltip.style.opacity = "0";
-      return;
-    }
-    tooltip.style.opacity = "1";
-    tooltipDots.style.display = "flex";
-    tooltipText.style.display = "none";
-    setTimeout(() => {
-      tooltipDots.style.display = "none";
-      tooltipText.style.display = "inline";
-    }, 700);
-    setTimeout(() => {
-      tooltip.style.opacity = "0";
-    }, 1700);
-  }
-  tooltipCycle();
-  setInterval(tooltipCycle, 2000);
-
   const headerAvatar = el("div", { id: "cb-header-avatar", html: BOT_SVG_SMALL });
   const headerText = el("div", { id: "cb-header-text" }, [
     el("div", { id: "cb-header-title", html: "Arsalan AI" }),
@@ -134,6 +115,25 @@
 
   const win = el("div", { id: "cb-window" }, [header, messagesEl, inputRow]);
   document.body.appendChild(win);
+
+  function tooltipCycle() {
+    if (win.classList.contains("cb-open")) {
+      tooltip.style.opacity = "0";
+      return;
+    }
+    tooltip.style.opacity = "1";
+    tooltipDots.style.display = "flex";
+    tooltipText.style.display = "none";
+    setTimeout(() => {
+      tooltipDots.style.display = "none";
+      tooltipText.style.display = "inline";
+    }, 700);
+    setTimeout(() => {
+      tooltip.style.opacity = "0";
+    }, 1700);
+  }
+  tooltipCycle();
+  setInterval(tooltipCycle, 2000);
 
   function toggleWindow() {
     const opening = !win.classList.contains("cb-open");
