@@ -899,6 +899,74 @@ section {
   margin-top: 10px;
 }
 
+.webapp-preview-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.webapp-placeholder-inner {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  background: linear-gradient(135deg, rgba(0,247,255,0.05), rgba(255,0,255,0.05));
+}
+
+.webapp-placeholder-inner svg { color: var(--cyan); opacity: 0.7; }
+
+.webapp-placeholder-inner span {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.portfolio-link-disabled {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+/* ---- MINI CTA (project conversion banners) ---- */
+.mini-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px dashed var(--border-accent);
+  background: rgba(0,247,255,0.03);
+  text-align: center;
+}
+
+.mini-cta span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.mini-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.mini-cta-link:hover { gap: 10px; }
+
+@media (max-width: 900px) {
+  .mini-cta-link { cursor: auto; }
+}
+
 /* ---- CONTACT ---- */
 .contact-section {
   text-align: center;
@@ -912,6 +980,107 @@ section {
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+/* ---- PROJECT INQUIRY FORM ---- */
+.project-form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.project-form-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.project-form-wrap .section-sub {
+  margin-left: 0;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form-optional {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  background: rgba(0,247,255,0.04);
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.form-group textarea { resize: vertical; min-height: 90px; }
+
+.project-form-submit {
+  align-self: flex-start;
+  border: none;
+}
+
+.form-status {
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.form-status.status-error { color: #ff6b6b; }
+.form-status.status-success { color: var(--cyan); }
+
+@media (max-width: 900px) {
+  .project-form-submit { cursor: auto; }
 }
 
 /* ---- AI PROMPTS ---- */
@@ -1205,11 +1374,11 @@ footer p {
           I design and build full-stack AI-powered websites, web apps, and Android applications — turning complex ideas into fast, intelligent, production-ready products. From custom AI integrations and automation systems to interactive web experiences, I help businesses and creators leverage the real power of AI beyond the hype.
         </p>
         <div class="hero-cta-row">
-          <a href="#portfolio" class="btn-primary">
+          <a href="#contact" class="btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            View Portfolio
+            Start a Project
           </a>
-          <a href="#contact" class="btn-outline">Get in Touch</a>
+          <a href="#portfolio" class="btn-outline">View Portfolio</a>
         </div>
       </div>
 
@@ -1341,18 +1510,28 @@ footer p {
       </div>
       <div class="service-card">
         <div class="service-num">03</div>
-        <div class="service-title">AI Automation</div>
-        <p class="service-desc">Intelligent chatbots, workflow automation, and virtual assistants that streamline operations and scale businesses.</p>
+        <div class="service-title">AI Agents & Automation</div>
+        <p class="service-desc">AI agents, WhatsApp automation, lead qualification, customer support automation, and business workflow automation.</p>
       </div>
       <div class="service-card">
         <div class="service-num">04</div>
-        <div class="service-title">AI Content Creation</div>
-        <p class="service-desc">Scripts, blogs, marketing copy, and social content generated and refined with state-of-the-art AI models.</p>
+        <div class="service-title">AI Applications</div>
+        <p class="service-desc">RAG chatbots, AI assistants, document intelligence, AI reporting, voice AI, and custom AI tools built for real use.</p>
       </div>
       <div class="service-card">
         <div class="service-num">05</div>
-        <div class="service-title">AI Web Solutions</div>
-        <p class="service-desc">AI-integrated websites and applications that deliver modern, interactive, and intelligent user experiences.</p>
+        <div class="service-title">Python & Backend Engineering</div>
+        <p class="service-desc">FastAPI applications, Python backend systems, API development, media-processing systems, and data-processing tools.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-title">Web Development</div>
+        <p class="service-desc">Business websites, landing pages, web applications, dashboards, and SaaS MVPs, built with modern, AI-integrated experiences.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">07</div>
+        <div class="service-title">AI Content Creation</div>
+        <p class="service-desc">Scripts, blogs, marketing copy, and social content generated and refined with state-of-the-art AI models.</p>
       </div>
     </div>
   </div>
@@ -1369,8 +1548,57 @@ footer p {
       <p class="section-sub">A showcase of AI-driven projects delivered for clients worldwide.</p>
     </div>
 
-    <!-- WEB APPS & GAMES — NOW FIRST -->
-    <div class="portfolio-subsection reveal">
+    <!-- PYTHON & AI ENGINEERING -->
+    <div class="portfolio-subsection reveal" style="margin-top: 0;">
+      <div class="subsection-header">
+        <div class="subsection-line"></div>
+        <div class="subsection-label">Python &amp; AI Engineering</div>
+        <div class="subsection-line"></div>
+      </div>
+      <p class="section-sub" style="margin-bottom: 32px;">Full-stack AI and backend systems — from FastAPI services to production-ready AI-powered applications.</p>
+    </div>
+    <div class="webapps-grid reveal">
+
+      <!-- Reelfetch -->
+      <div class="webapp-card">
+        <div class="webapp-preview webapp-preview-placeholder">
+          <div class="webapp-placeholder-inner">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg>
+            <span>Live Demo Coming Soon</span>
+          </div>
+        </div>
+        <div class="webapp-info">
+          <div class="webapp-top-row">
+            <div class="webapp-tag">Python &amp; AI Engineering</div>
+            <div class="webapp-stack">
+              <span class="webapp-stack-badge">Python</span>
+              <span class="webapp-stack-badge">FastAPI</span>
+              <span class="webapp-stack-badge">Next.js</span>
+            </div>
+          </div>
+          <div class="webapp-title">Reelfetch — Instagram Video &amp; Reels Downloader</div>
+          <div class="webapp-desc">A production-ready full-stack Instagram Video &amp; Reels Downloader that lets users download publicly accessible Instagram content by pasting a URL. Built with a Next.js frontend and a Python/FastAPI media-processing backend, with CAPTCHA protection, rate limiting, quality detection, and SEO/AEO optimization.</div>
+          <div class="webapp-footer">
+            <!-- TODO(Arsalan): replace with the live Reelfetch URL once deployed -->
+            <span class="portfolio-link portfolio-link-disabled" aria-disabled="true">
+              Live Demo Coming Soon
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-cta reveal">
+      <span>Have a similar Python or backend project?</span>
+      <a href="#contact" class="mini-cta-link">
+        Start a Project
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- WEB APPS & GAMES -->
+    <div class="portfolio-subsection reveal" style="margin-top: 60px;">
       <div class="subsection-header">
         <div class="subsection-line"></div>
         <div class="subsection-label">My Web Apps &amp; Games</div>
@@ -1534,6 +1762,14 @@ footer p {
       </div>
     </div>
 
+    <div class="mini-cta reveal">
+      <span>Interactive experiences for brands — I build custom interactive and AI-powered web experiences like this for brands, products and campaigns.</span>
+      <a href="#contact" class="mini-cta-link">
+        Build Something Interactive
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
     <!-- MY WEBSITES -->
     <div class="portfolio-subsection reveal" style="margin-top: 60px;">
       <div class="subsection-header">
@@ -1568,6 +1804,14 @@ footer p {
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="mini-cta reveal">
+      <span>Have a similar idea? Let's build it.</span>
+      <a href="#contact" class="mini-cta-link">
+        Build Something Similar
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
 
     <!-- AI VIDEO & PHOTOGRAPHY — NOW THIRD -->
@@ -1652,6 +1896,75 @@ footer p {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.05.547 4.063 1.588 5.814L.461 23.016l6.552-1.746C10.063 23.201 11.001 23.5 12 23.5c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.5c-.85 0-1.677-.18-2.447-.525l-.175-.09-1.814.483.517-1.883-.116-.186C2.097 17.145 1.5 14.66 1.5 12c0-5.799 4.701-10.5 10.5-10.5s10.5 4.701 10.5 10.5-4.701 10.5-10.5 10.5z"/><path d="M17.415 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/></svg>
           WhatsApp
         </a>
+      </div>
+
+      <div class="project-form-wrap reveal" style="margin-top: 60px;">
+        <div class="section-label">Project Inquiry</div>
+        <h3 class="project-form-title">Start a Project</h3>
+        <p class="section-sub">Tell me what you need and I'll get back to you. This opens your email app with everything pre-filled — prefer WhatsApp? Use the button above instead.</p>
+
+        <form id="project-form" class="project-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pf-name">Name *</label>
+              <input type="text" id="pf-name" name="name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="pf-email">Email *</label>
+              <input type="email" id="pf-email" name="email" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pf-need">What do you need? *</label>
+            <select id="pf-need" name="need" required>
+              <option value="" disabled selected>Select an option</option>
+              <option>AI Agent</option>
+              <option>AI Chatbot / RAG</option>
+              <option>AI Automation</option>
+              <option>Python / FastAPI Backend</option>
+              <option>Website</option>
+              <option>Web Application</option>
+              <option>SaaS / MVP</option>
+              <option>Interactive Web Experience</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pf-phone">WhatsApp / Phone <span class="form-optional">(optional)</span></label>
+              <input type="tel" id="pf-phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="pf-company">Company <span class="form-optional">(optional)</span></label>
+              <input type="text" id="pf-company" name="company" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pf-budget">Budget <span class="form-optional">(optional)</span></label>
+            <select id="pf-budget" name="budget">
+              <option value="" selected>Not sure yet</option>
+              <option>Under $300</option>
+              <option>$300–$750</option>
+              <option>$750–$1,500</option>
+              <option>$1,500+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pf-desc">Project description <span class="form-optional">(optional)</span></label>
+            <textarea id="pf-desc" name="description" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary project-form-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Send Project Request
+          </button>
+
+          <p id="pf-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
 
      <div class="prompts-cta-section">
@@ -1754,6 +2067,54 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
+
+// PROJECT INQUIRY FORM
+const projectForm = document.getElementById('project-form');
+if (projectForm) {
+  const pfStatus = document.getElementById('pf-status');
+  projectForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    pfStatus.classList.remove('status-error', 'status-success');
+
+    const name = document.getElementById('pf-name').value.trim();
+    const email = document.getElementById('pf-email').value.trim();
+    const need = document.getElementById('pf-need').value;
+    const phone = document.getElementById('pf-phone').value.trim();
+    const company = document.getElementById('pf-company').value.trim();
+    const budget = document.getElementById('pf-budget').value;
+    const description = document.getElementById('pf-desc').value.trim();
+
+    if (!name || !email || !need) {
+      pfStatus.textContent = 'Please fill in your name, email, and what you need — these are required.';
+      pfStatus.classList.add('status-error');
+      return;
+    }
+
+    pfStatus.textContent = 'Opening your email app…';
+
+    const subject = 'Project Inquiry: ' + need;
+    const bodyLines = [
+      'Name: ' + name,
+      'Email: ' + email,
+      'What they need: ' + need,
+      phone ? 'WhatsApp / Phone: ' + phone : null,
+      company ? 'Company: ' + company : null,
+      budget ? 'Budget: ' + budget : null,
+      description ? '\nProject description:\n' + description : null
+    ].filter(Boolean);
+
+    const mailtoUrl = 'mailto:arslankhan807567@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+    window.location.href = mailtoUrl;
+
+    setTimeout(function() {
+      pfStatus.textContent = "Thanks! Your email app should now be open with your project request ready to send. Didn't open? Email arslankhan807567@gmail.com directly, or use WhatsApp above.";
+      pfStatus.classList.add('status-success');
+    }, 600);
+  });
+}
 
 // HAMBURGER
 const hamburger = document.getElementById('hamburger');
